@@ -1,0 +1,1 @@
+print(string.format("A=%.4f", 3.14159 * math.pow(tonumber(io.read("*number")),2)))
