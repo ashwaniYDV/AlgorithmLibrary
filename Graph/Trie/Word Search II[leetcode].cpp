@@ -111,30 +111,38 @@ static int fastio = []() {
 
 class Solution {
 public:
+    int dx[4] = {0, 1, 0, -1};
+    int dy[4] = {-1, 0, 1, 0};
     int n, m, len;
     string word;
-
-    bool dfs(int i, int j, int pos, vector<vector<char>>& board){
+    
+    bool isValid(int i, int j, vector<vector<char>>& board) {
         if(i < 0 || i >= n || j < 0 || j >= m || board[i][j] == '#') return false;
+        return true;
+    }
+
+    bool dfs(int i, int j, int pos, vector<vector<char>>& board) {
+        if(!isValid(i, j, board)) return false;
 
         if(board[i][j] != word[pos]) return false;
 
-        if(pos == len - 1){
+        if(pos == len - 1) {
             return true;
         }
 
         char temp = board[i][j];
         board[i][j] = '#';
-
-        bool res = dfs(i + 1, j, pos + 1, board) || 
-                   dfs(i - 1, j, pos + 1, board) || 
-                   dfs(i, j + 1, pos + 1, board) || 
-                   dfs(i, j - 1, pos + 1, board);
+        bool res = false;
+        
+        for(int k = 0; k < 4; k++) {
+            res = res || dfs(i + dx[k], j + dy[k], pos+1, board);
+        }
 
         board[i][j] = temp;
 
         return res;
     }
+    
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
         n = board.size();
         m = board[0].size();
