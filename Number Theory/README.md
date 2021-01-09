@@ -50,8 +50,9 @@
    = gcd(a1, a2−a1, ...,an−1 − an−2,an − an−1)
    Therefore gcd(a1, a2, ..., an−1, an) == gcd(a1, a2 − a1, a3 - a2, a4 - a3, ..., an−1 − an−2, an − an−1)
    ```
+   In general:
    ```
-   gcd(a1 + k, a2 + k, ..., an−1 + k, an + k) is equal to gcd(a1 + k, a2 − a1, a3 - a2, a4 - a3, ..., an−1 − an−2, an − an−1)
+   gcd(a1 + k, a2 + k, ..., an−1 + k, an + k) == gcd(a1 + k, a2 − a1, a3 - a2, a4 - a3, ..., an−1 − an−2, an − an−1)
 
-   gcd(a1 + bj, a2 + bj, ..., an−1 + bj, an + bj) is equal to gcd(a1 + bj, a2 − a1, ...,an−1 − an−2, an − an−1).
+   gcd(a1 + bj, a2 + bj, ..., an−1 + bj, an + bj) == gcd(a1 + bj, a2 − a1, ...,an−1 − an−2, an − an−1).
    ```
