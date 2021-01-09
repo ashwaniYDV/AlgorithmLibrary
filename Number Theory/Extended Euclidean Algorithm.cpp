@@ -33,14 +33,14 @@ const int MAXN = 5e5+5;
 const int N = 1e6+5;
 int n, m;
 
-int extended_euclid(int a, int b, int& x, int& y) {
+int extended_euclidean(int a, int b, int& x, int& y) {
     if (b == 0) {
         x = 1;
         y = 0;
         return a;
     }
     int x1, y1;
-    int d = extended_euclid(b, a % b, x1, y1);
+    int d = extended_euclidean(b, a % b, x1, y1);
     x = y1;
     y = x1 - y1 * (a / b);
     return d;
@@ -49,7 +49,7 @@ int extended_euclid(int a, int b, int& x, int& y) {
 void solve() {
     int x, y, z, a, b;
     cin >> a >> b;
-    z = extended_euclid(a, b, x, y);
+    z = extended_euclidean(a, b, x, y);
     cout << x << " " << y << endl;
 }
 
