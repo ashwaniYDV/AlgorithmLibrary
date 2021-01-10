@@ -22,7 +22,7 @@ using namespace std;
 #include <ext/pb_ds/assoc_container.hpp> 
 #include <ext/pb_ds/tree_policy.hpp> 
 using namespace __gnu_pbds;
-typedef tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update> ordered_set;
+typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
 
 typedef long long int ll;
 #define int long long int
@@ -63,19 +63,18 @@ void solve() {
     f(i, n) cin >> a[i];
 
     ordered_set s;
-    f(i, k) s.insert(a[i]);
-
-    ll old_mid = *s.find_by_order((k + 1) / 2 - 1);
+    for (int i = 0; i < k; i++) s.insert(a[i]);
+    ll old_m = *s.find_by_order((k + 1) / 2 - 1);
     ll d = 0;
-    for (int i = 0; i < k; i++) d += abs(a[i] - old_mid);
+    for (int i = 0; i < k; i++) d += abs(a[i] - old_m);
     cout << d;
     for (int i = 0; i < n - k; i++) {
         s.erase(s.find_by_order(s.order_of_key(a[i])));
         s.insert(a[i + k]);
         ll new_mid = *s.find_by_order((k + 1)/ 2 - 1);
-        d = d + abs(new_mid - a[i + k]) - abs(old_mid - a[i]);
-        if (k % 2 == 0) d -= (new_mid - old_mid);
-        old_mid = new_mid;
+        d = d + abs(new_mid - a[i + k]) - abs(old_m - a[i]);
+        if (k % 2 == 0) d -= (new_mid - old_m);
+        old_m = new_mid;
         cout << " " << d;
     }
     cout << endl;
