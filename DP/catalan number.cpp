@@ -15,10 +15,10 @@ unsigned long int catalanRecur(unsigned int n)
     // Base case 
     if (n <= 1) return 1; 
 
-    // catalan(n) is sum of catalan(i)*catalan(n-i-1) 
+    // catalan(n) is sum of catalan(i)*catalan(n-1-i) 
     unsigned long int res = 0; 
     for (int i=0; i<n; i++) 
-        res += catalanRecur(i)*catalanRecur(n-i-1); 
+        res += catalanRecur(i)*catalanRecur(n-1-i); 
 
     return res; 
 } 
@@ -38,7 +38,7 @@ unsigned long int catalanDP(unsigned int n)
     { 
         catalan[i] = 0; 
         for (int j=0; j<i; j++) 
-            catalan[i] += catalan[j] * catalan[i-j-1]; 
+            catalan[i] += catalan[j] * catalan[i-1-j]; 
     } 
 
     // Return last entry 
