@@ -2,7 +2,8 @@
 Find nth catalan number?
 
 Applications
-1) Count the number of possible BSTs with n keys
+1) https://leetcode.com/problems/unique-binary-search-trees/
+    Given n, how many structurally unique BST's that store values 1 ... n?
 2) Count the number of FBTs with (n + 1) leaves
 */
 
