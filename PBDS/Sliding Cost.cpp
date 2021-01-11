@@ -64,14 +64,15 @@ void solve() {
 
     ordered_set s;
     for (int i = 0; i < k; i++) s.insert(a[i]);
-    ll old_m = *s.find_by_order((k + 1) / 2 - 1);
+    ll old_m = *s.find_by_order((k - 1) / 2);
     ll d = 0;
     for (int i = 0; i < k; i++) d += abs(a[i] - old_m);
     cout << d;
+
     for (int i = 0; i < n - k; i++) {
         s.erase(s.find_by_order(s.order_of_key(a[i])));
         s.insert(a[i + k]);
-        ll new_mid = *s.find_by_order((k + 1)/ 2 - 1);
+        ll new_mid = *s.find_by_order((k - 1)/ 2);
         d = d + abs(new_mid - a[i + k]) - abs(old_m - a[i]);
         if (k % 2 == 0) d -= (new_mid - old_m);
         old_m = new_mid;
