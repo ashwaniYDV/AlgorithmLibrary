@@ -104,3 +104,23 @@ int32_t main() {
     solve();
     return 0;
 }
+
+/*
+Input:
+7 9
+1 2
+2 3
+2 4
+4 5
+5 1
+5 6
+5 7
+6 7
+7 6
+
+Output:
+SCC is: 3
+SCC is: 7 6
+SCC is: 5 4 2 1
+Total no. of SCC = 3
+*/
