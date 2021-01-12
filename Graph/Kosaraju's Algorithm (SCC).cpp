@@ -2,7 +2,7 @@
 Kosaraju's Algorithm to calculate and print 
 Strongly Connected Components (SCC) in directed graph
 
-https://youtu.be/TEbr3edMzo0
+https://youtu.be/Rs6DXyWpWrI
 */
 
 #include<bits/stdc++.h>
