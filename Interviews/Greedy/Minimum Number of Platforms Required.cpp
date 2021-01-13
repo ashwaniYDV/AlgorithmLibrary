@@ -1,3 +1,4 @@
+// https://youtu.be/dxVcMDI7vyI
 // https://www.geeksforgeeks.org/minimum-number-platforms-required-railwaybus-station/
 
 /*
@@ -6,6 +7,7 @@ Minimum Number of Platforms Required for a Railway/Bus Station
 
 
 /*
+Method 1:
 O(n^2)
 
 The idea is to take every interval one by one and find the number of intervals that overlap with it. 
@@ -57,8 +59,14 @@ int main()
 
 
 
-// O(n log n) time complexity and O(1) Space Complexity.
+
+
+
+
 /*
+Method 2:
+O(n log n)
+
 The idea is to consider all events in sorted order. 
 Once the events are in sorted order, trace the number of trains at any time keeping track of trains that have arrived, but not departed.
 
