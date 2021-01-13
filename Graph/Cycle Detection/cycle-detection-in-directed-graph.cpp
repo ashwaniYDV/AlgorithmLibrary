@@ -21,7 +21,7 @@ using namespace std;
  
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
-typedef vector<int>	vi;
+typedef vector<int> vi;
 typedef vector<ll> vl;
 typedef vector<pii> vpii;
 typedef vector<pll> vpll;
@@ -38,36 +38,36 @@ ll n, m;
 ll cycleDetected=0;
 ll color[N]; // all white
 map<ll,ll>vis;
-void dfs(ll u, ll par){
-	vis[u]=1;
-	color[u]=1; // grey
-	for(ll v: g[u]){
-		if(color[v] == 1){
-			// do anything you want when cycle detected
-			cycleDetected=1;
-		}
-		if(color[v]==0)
-			dfs(v,u);
-	}
-	color[u]=2; // black
+void dfs(ll u){
+    vis[u]=1;
+    color[u]=1; // grey
+    for(ll v: g[u]){
+        if(color[v] == 1){
+            // do anything you want when cycle detected
+            cycleDetected=1;
+        }
+        if(color[v]==0)
+            dfs(v);
+    }
+    color[u]=2; // black
 }
 
 int32_t main()
 {
-	IOS
-	ll t,k,x,y,z,p,q,u,v,ct=0,flag=0;
-	string s;
-	cin>>n>>m;
-	f(i,m) cin>>u>>v, g[u].pb(v);
-	fa(i,1,n+1){
-		if(!vis[i]){
-			dfs(i,0);
-		}
-	}
-	if(cycleDetected){
-		cout<<"Yes, there is/are cycle(s)";
-	}else{
-		cout<<"There is no cycle";
-	}
+    IOS
+    ll t,k,x,y,z,p,q,u,v,ct=0,flag=0;
+    string s;
+    cin>>n>>m;
+    f(i,m) cin>>u>>v, g[u].pb(v);
+    fa(i,1,n+1){
+        if(!vis[i]){
+            dfs(i);
+        }
+    }
+    if(cycleDetected){
+        cout<<"Yes, there is/are cycle(s)";
+    }else{
+        cout<<"There is no cycle";
+    }
 
 }
