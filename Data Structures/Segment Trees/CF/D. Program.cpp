@@ -123,6 +123,7 @@ void solve() {
         } else {
             mx = queryMax(1, 1, n, 1, l-1);
             mn = queryMin(1, 1, n, 1, l-1);
+            // i.e when l = 1, so l-1 = 0
             if(mx == -INF) {
                 mx = mn = 0;
             }
