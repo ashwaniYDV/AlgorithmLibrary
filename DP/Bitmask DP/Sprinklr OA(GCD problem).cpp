@@ -1,4 +1,6 @@
 // https://codeforces.com/blog/entry/84413
+// O(2 ^ N * (N ^ 2))
+// Credit: https://codeforces.com/profile/Not-Afraid
 
 /*
 You are given an array of size n (n is always even).
