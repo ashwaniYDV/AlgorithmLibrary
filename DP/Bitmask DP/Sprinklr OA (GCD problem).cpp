@@ -75,7 +75,7 @@ int go(int mask) {
     int ans = 0;
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
-            if (!((mask >> i) & 1) && !((mask >> j) & 1)) {
+            if (!(mask & (1 << i)) && !(mask & (1 << j))) {
                 int points = __gcd(a[i], a[j]) * cur_move;
                 int rem = go(mask | (1 << i) | (1 << j));
                 ans = max(ans, rem + points);
