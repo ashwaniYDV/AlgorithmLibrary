@@ -84,9 +84,9 @@ int go(int job, int mask) {
     }
 
     int ans = INF;
-    for (int i = 0; i < n; ++i) {
-        if (!(mask & (1 << i))) {
-            ans = min(ans, cost[i][job] + go(job+1, mask | (1 << i)));
+    for (int person = 0; person < n; ++person) {
+        if (!(mask & (1 << person))) {
+            ans = min(ans, cost[person][job] + go(job+1, mask | (1 << person)));
         }
     }
 
@@ -180,9 +180,9 @@ int go(int mask) {
     }
 
     int ans = INF;
-    for (int i = 0; i < n; ++i) {
-        if (!(mask & (1 << i))) {
-            ans = min(ans, cost[i][job] + go(mask | (1 << i)));
+    for (int person = 0; person < n; ++person) {
+        if (!(mask & (1 << person))) {
+            ans = min(ans, cost[person][job] + go(mask | (1 << person)));
         }
     }
     return dp[mask] = ans;
