@@ -76,7 +76,7 @@ double go(int mask) {
     double ans = 0;
 
     for (int fishWhichDies = 0; fishWhichDies < n; fishWhichDies++) {
-        if(!((mask) & (1 << fishWhichDies))) {
+        if(!(mask & (1 << fishWhichDies))) {
             int prevMask = mask | (1 << fishWhichDies);
             double prevDayProb = go(prevMask);
             ans += prevDayProb * pMove(prevMask, fishWhichDies);
