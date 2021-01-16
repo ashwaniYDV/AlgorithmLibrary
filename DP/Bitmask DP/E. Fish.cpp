@@ -68,7 +68,7 @@ double go(int mask) {
         return 1;
     }
 
-    if (dp[mask] > -0.9) { 
+    if (dp[mask] > 0) { 
         return dp[mask];
     }
 
