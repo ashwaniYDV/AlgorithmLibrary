@@ -8,6 +8,7 @@ Range of x = [0, c/a]
 Range of y = [0, c/b]
 */
 
+// Method 1: Most generalized
 #include<bits/stdc++.h>
 using namespace std;
  
