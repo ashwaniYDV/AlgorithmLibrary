@@ -241,6 +241,9 @@ void solve() {
 
     int min_y = ((d % a) * modInverse(b, a)) % a;
 
+    // ax+by = d
+    // ax = d - by
+    // if(d - b.y_min) no solution
     if(d < min_y * b) {
         cout << 0 << endl;
         return;
