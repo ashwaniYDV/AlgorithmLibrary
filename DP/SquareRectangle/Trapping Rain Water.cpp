@@ -100,22 +100,16 @@ public:
         
         while (lo <= hi) {
             if (height[lo] < height[hi]) {
-                if (height[lo] > left_max) {
-                    // update max in left
-                    left_max = height[lo];
-                } else {
-                    // water on curr element = max - curr
+                if (height[lo] <= left_max) {
                     res += left_max - height[lo];
                 }
+                left_max = max(left_max, height[lo]);
                 lo++;
             } else {
-                if (height[hi] > right_max) {
-                    // update right maximum
-                    right_max = height[hi];
-                } else {
-                    // water on curr element = max - curr
+                if (height[hi] <= right_max) {
                     res += right_max - height[hi];
                 }
+                right_max = max(right_max, height[hi]);
                 hi--;
             }
         }
