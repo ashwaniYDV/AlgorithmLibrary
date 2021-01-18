@@ -243,7 +243,7 @@ void solve() {
 
     // ax+by = d
     // ax = d - by
-    // if(d - b.y_min) no solution
+    // if(d - b.y_min < 0) no solution
     if(d < min_y * b) {
         cout << 0 << endl;
         return;
