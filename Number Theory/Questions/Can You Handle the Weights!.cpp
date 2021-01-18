@@ -246,6 +246,9 @@ void solve() {
         return;
     }
 
+    // y_min + n*a <= d/b
+    // n <= (d/b - y_min) / a
+
     n = ((d / b) - min_y) / a;
     cout << n + 1 << endl;
 }
