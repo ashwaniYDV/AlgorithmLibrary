@@ -1,5 +1,13 @@
 // https://www.hackerearth.com/problem/algorithm/can-you-handle-the-weights/
 
+/*
+Number of non-negative solutions of the equation:
+a*x + b*y = c
+
+Range of x = [0, c/a]
+Range of y = [0, c/b]
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
  
