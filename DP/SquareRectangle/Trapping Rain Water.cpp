@@ -9,7 +9,7 @@ Sum these water heights for all columns;
 */
 
 
-// O(n^2) soln.
+// O(n^2) time, O(1) space
 class Solution {
 public:
     int trap(vector<int>& height) {
@@ -38,7 +38,13 @@ public:
 
 
 
-// O(n)
+
+
+
+
+
+
+// O(n) time, O(n) space
 class Solution {
 public:
     int trap(vector<int>& height) {
@@ -68,6 +74,52 @@ public:
             res += (min(mxleft, mxright) - height[i]);
         }
         
+        return res;
+    }
+};
+
+
+
+
+
+
+
+
+
+// O(n) time, O(1) space
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int n = height.size();
+        if(n == 0) return 0;
+
+        // maximum element on left and right sides of height[i]
+        int left_max = 0, right_max = 0, res = 0;
+
+        int lo = 0, hi = n - 1;
+        
+        while (lo <= hi) {
+            if (height[lo] < height[hi]) {
+                if (height[lo] > left_max) {
+                    // update max in left
+                    left_max = height[lo];
+                } else {
+                    // water on curr element = max - curr
+                    res += left_max - height[lo];
+                }
+                lo++;
+            } else {
+                if (height[hi] > right_max) {
+                    // update right maximum
+                    right_max = height[hi];
+                } else {
+                    // water on curr element = max - curr
+                    res += right_max - height[hi];
+                }
+                hi--;
+            }
+        }
+
         return res;
     }
 };
