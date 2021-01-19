@@ -7,6 +7,10 @@
 The Chicken McNugget Theorem (or Postage Stamp Problem or Frobenius Coin Problem) 
 states that for any two relatively prime positive integers a, b [i.e gcd(a, b) = 1], 
 the greatest integer that cannot be written in the form ax + by for nonnegative integers x, y is = (a * b - a - b).
+
+A consequence of the theorem is that there are exactly 
+[(a - 1)*(b - 1) / 2] positive integers which cannot be expressed in the form a*x + b*y. 
+The proof is based on the fact that in each pair of the form (k, a*b-a-b-k), exactly one element is expressible.
 */
 
 
