@@ -66,8 +66,8 @@ void search(string str, string pat, int q) {
 
     // Calculate the hash value of pattern and string on first window of text 
     for (int i = 0; i < m; i++) { 
-        hashPat = (d * hashPat + pat[i]) % q; 
-        hashStr = (d * hashStr + str[i]) % q; 
+        hashPat = (hashPat * d + pat[i]) % q; 
+        hashStr = (hashStr * d + str[i]) % q; 
     } 
 
     // Slide the pattern over text one by one 
