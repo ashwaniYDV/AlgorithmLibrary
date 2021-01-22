@@ -64,6 +64,7 @@ vector<int> rabin_karp(string const& str, string const& pat) {
     vector<int> occurences;
     for (int i = 0; i <= n - m; i++) { 
         long long cur_h = (h_str[i+m] - h_str[i] + mod) % mod; 
+        // (cur_h / p_pow[i]) = h_pat
         if (cur_h == h_pat * p_pow[i] % mod) {
             occurences.push_back(i);
         }
