@@ -41,18 +41,6 @@ const int MAXN = 1e5+5;
 const int N = 1e5;
 int n, m;
 
-int compute_hash(string const& s) {
-    const int p = 31;
-    const int m = 1e9 + 9;
-    int hash_value = 0;
-    int p_pow = 1;
-    for (char c : s) {
-        hash_value = (hash_value + (c - 'a' + 1) * p_pow) % m;
-        p_pow = (p_pow * p) % m;
-    }
-    return hash_value;
-}
-
 int count_unique_substrings(string const& s) {
     int n = s.size();
     const int p = 31;
