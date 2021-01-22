@@ -69,7 +69,7 @@ int count_unique_substrings(string const& s) {
     }
 
     // for substring s(i, i+l-1): left=i, right=i+l-1
-    // from prefix (1 index based), cur_h = ((h[right+1] - h[left+1-1]) / p^i) % m = ((h[i + l] - h[i]) / p^i) % m
+    // from prefix (1 index based), cur_h = ((h[right+1] - h[left]) / p^i) % m = ((h[i + l] - h[i]) / p^i) % m
     // But we do not use inverse_mod here for p^i.
     // Hash calculation of substring concept:-
     // https://cp-algorithms.com/string/string-hashing.html#toc-tgt-3
