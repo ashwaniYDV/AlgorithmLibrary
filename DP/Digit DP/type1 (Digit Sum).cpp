@@ -1,4 +1,5 @@
-// Practice is the only shortcut to improve
+// SPOJ Digit Sum
+// https://www.spoj.com/problems/PR003004/
  
 #include<bits/stdc++.h>
 using namespace std;
@@ -42,8 +43,8 @@ const int MAXN = 1e5+5;
 const int N = 1e5;
 int n, m;
 
-// upto 10^8
-ll dp[10][80][2];
+
+ll dp[18][150][2];
 
 ll digit_dp(string str, ll pos, ll sum, ll tight){
     if(pos == str.length()) return sum;
@@ -75,7 +76,7 @@ void solve() {
 int32_t main() {
     IOS
     int T = 1;
-    // cin >> T;
+    cin >> T;
     while(T--)
     solve();
     return 0;
