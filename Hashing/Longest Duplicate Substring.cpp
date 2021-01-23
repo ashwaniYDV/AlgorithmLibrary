@@ -7,9 +7,9 @@ public:
     const ll mod = 1e9 + 9;
     vector<ll> p_pow, h;
     ll n, pos;
-    string ans, str;
+    string ans = "";
     
-    bool check(ll len, string const& s) {
+    string check(ll len, string const& s) {
         unordered_map<ll, vector<ll>> mp;
         for (ll i = 0; i <= n - len; i++) {
             ll cur_h = (h[i + len] - h[i] + mod) % mod;
@@ -18,13 +18,12 @@ public:
                 string temp = s.substr(pos, len);
                 string curr = s.substr(i, len);
                 if(temp.compare(curr)==0) {
-                    str = temp;
-                    return true;
+                    return temp;
                 }
             }
             mp[cur_h].push_back(i);
         }
-        return false;
+        return "";
     }
 
     void hash_fun(string const& s) {
@@ -43,12 +42,12 @@ public:
         // binary search for length of longest substring cuz if duplicate substring of len k is present then 
         // substring of len k-1 would of course be present, so search for greater lengths
         int low = 1, high = n;
-        ans = "";
         while(low <= high) {
             int mid = (high + low) / 2;
-            str  = "";
-            if(check(mid, s)) {
-                if(str.size() > ans.size()) ans = str;
+            
+            string temp  = check(mid, s);
+            if(temp.size() > ans.size()) {
+                ans = temp;
                 low = mid + 1;
             } else {
                 high = mid - 1;
