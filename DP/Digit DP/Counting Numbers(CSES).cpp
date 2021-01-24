@@ -42,6 +42,30 @@ const int MAXN = 1e5+5;
 const int N = 1e5;
 int n, m;
 
+// Method 2
+/*
+int dp[20][11][2][2];
+int digit_dp(string& str, int pos, int prevDigit, bool leadingZeros, bool tight) {
+    if(pos == n) return 1;
+
+    if(dp[pos][prevDigit][leadingZeros][tight] != -1) return dp[pos][prevDigit][leadingZeros][tight];
+
+    ll res = 0;
+    int ub = tight ? (str[pos] - '0') : 9;
+
+    for(int dig = 0; dig <= ub; dig++) {
+        if(dig == 0 && leadingZeros) {
+            res += digit_dp(str, pos+1, dig, 1, tight & (ub == dig));
+        } else if(leadingZeros) {
+            res += digit_dp(str, pos+1, dig, 0, tight & (ub == dig));
+        } else if(dig != prevDigit) {
+            res += digit_dp(str, pos+1, dig, 0, tight & (ub == dig));
+        }
+    }
+
+    return dp[pos][prevDigit][leadingZeros][tight] = res;
+}
+*/
 
 int dp[20][11][2][2];
 int digit_dp(string& str, int pos, int prevDigit, bool leadingZeros, bool tight) {
