@@ -6,7 +6,7 @@ public:
     const ll p = 31;
     const ll mod = 1e9 + 9;
     vector<ll> p_pow, h;
-    ll n, pos;
+    ll n;
     string ans = "";
     
     string check(ll len, string const& s) {
@@ -17,7 +17,7 @@ public:
             for(ll pos: mp[cur_h]) {
                 string temp = s.substr(pos, len);
                 string curr = s.substr(i, len);
-                if(temp.compare(curr)==0) {
+                if(temp.compare(curr) == 0) {
                     return temp;
                 }
             }
@@ -60,6 +60,7 @@ public:
         return ans;
     }
 };
+
 
 
 
