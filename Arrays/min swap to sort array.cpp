@@ -1,3 +1,7 @@
+/*
+NOTE: Array must have distinct elements for the below solutions.
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
