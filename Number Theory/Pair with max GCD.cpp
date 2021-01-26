@@ -41,10 +41,6 @@ void solve() {
 
 
 
-
-
-
-
 // O(N.log(N))
 /*
 This approach is based on the idea of Sieve Of Eratosthenes.
@@ -83,4 +79,67 @@ void solve() {
 		}
 	}
 	cout << res << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// https://codeforces.com/problemset/problem/1370/A
+// A. Maximum GCD
+
+// Method 1
+void solve() {
+	cin >> n;
+	int mx = n;
+	int cnt[mx+1] = {0};
+
+	loop(i, 1, n) cnt[i] = 1;
+
+	int res = 0;
+	for (int i = mx; i >= 1; i--) {
+		int k = 0; // count of numbers that are divisible by i
+	   	for (int j = i; j <= mx; j += i) {
+			k += cnt[j];
+	   	}
+
+	   	//if count of number more than one, 
+	   	//then we have two numbers with a divider i, 
+	   	//and it is not necessarily maximum divisor of these numbers.
+	   	if (k >= 2) {
+	   		res = i;
+	   		break;
+	   	}
+	}
+	cout << res << endl;
+}
+int32_t main() {
+	IOS
+	int T = 1;
+	cin >> T;
+	while(T--)
+	solve();
+	return 0;
+}
+
+// Method 2
+// For array = [1, 2, ..., n] max GCD pair = floor(n/2);
+// i.e GCD(n, floor(n/2)) = floor(n/2)
+int32_t main() {
+	IOS;
+	int t;
+	cin >> t;
+	while(t--) {
+		int n;
+		cin >> n;
+		cout << n / 2 << endl;
+	}
+	return 0;
 }
