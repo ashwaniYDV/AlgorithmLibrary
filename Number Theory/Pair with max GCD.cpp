@@ -68,7 +68,7 @@ void solve() {
 	f(i, n) cnt[a[i]]++;
 
 	int res = 0;
-	for (int i = 1; i <= mx; i++) {
+	for (int i = mx; i >= 1; i--) {
 		int k = 0; // count of numbers that are divisible by i
 	   	for (int j = i; j <= mx; j += i) {
 			k += cnt[j];
@@ -77,7 +77,10 @@ void solve() {
 	   	//if count of number more than one, 
 	   	//then we have two numbers with a divider i, 
 	   	//and it is not necessarily maximum divisor of these numbers.
-	   	if (k >= 2) res = max(res, i);
+	   	if (k >= 2) {
+			res = i;
+			break;
+		}
 	}
 	cout << res << endl;
 }
