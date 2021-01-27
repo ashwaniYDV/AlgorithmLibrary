@@ -3,11 +3,10 @@
 
 class NumMatrix {
 public:
-	vector<vector<int>> dp;
+    vector<vector<int>> dp;
     NumMatrix(vector<vector<int>>& matrix) {
         int n=matrix.size();
         int m = n>0 ? matrix[0].size() : 0;
-    	// dp.resize(n+1, vector<int>(m+1));
         dp = vector<vector<int>>(n+1, vector<int>(m+1, 0));
         for(int i=0; i<n+1; i++){
     		for(int j=0; j<m+1; j++){
