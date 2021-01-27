@@ -19,6 +19,7 @@ public:
     	}
     }
     
+    // query params are 0 based indexed
     int sumRegion(int row1, int col1, int row2, int col2) {
         row1++;
         row2++;
