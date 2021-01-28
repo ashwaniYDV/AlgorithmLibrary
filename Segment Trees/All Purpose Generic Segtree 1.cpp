@@ -1,3 +1,22 @@
+/*
+KEYNOTES:
+-------------------------------------------
+merge(X, identity_element) = X
+-------------------------------------------
+-------------------------------------------
+identity_transformation.combine(X) = X
+-------------------------------------------
+-------------------------------------------
+ALWAYS: older_update.combine(newer_update)
+-------------------------------------------
+*/
+
+
+
+
+
+
+
 // Query = Get sum on a range
 // Update = [Type 1] Add on a range, [Type 2] Set on a range
 
