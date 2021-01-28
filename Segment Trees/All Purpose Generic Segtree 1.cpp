@@ -42,6 +42,8 @@ int n, m;
  
 struct node {
 	int v = 0;
+	// use more variables if u want for more information
+	// these default values should be identity_element
 	node() {}
 	node(int val) {
 		v = val;
@@ -53,6 +55,8 @@ struct node {
 
 struct update {
 	int v = 0;
+	// use more variables if u want for more information
+	// these default values should be identity_transformation
 	update() {}
 	update(int val) {
 		v = val;
