@@ -2,46 +2,47 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-#pragma GCC optimize "03"
-#pragma GCC target("sse4")
-
+ 
+// #include <ext/pb_ds/assoc_container.hpp> 
+// #include <ext/pb_ds/tree_policy.hpp> 
+// using namespace __gnu_pbds;
+// typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+ 
 typedef long long int ll;
 #define int long long int
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define FRE freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
-#define debug cout << "debug" << endl;
-#define f(i,n) for(ll i=0;i<n;i++)
-#define fa(i,a,n) for(ll i=a;a<n?i<n:i>=n;a<n?i+=1:i-=1)
-#define loop(i,a, n) for(ll i = a; i <= n; i++)
-#define loopb(i,a, n) for(ll i = a; i >= n; i--)
+#define PRECISION(x) cout << setprecision(x); cout << fixed;
+#define debug(x) cout << #x << " is: " << (x) << endl;
+#define debugx(x) cout << #x << " is: " << (x) << endl; exit(0);
+#define kickstart(testcase, res) cout << "Case #" << testcase << ": " << res << endl;
+#define f(i,n) for(int i=0;i<n;i++)
+#define fa(i,a,n) for(int i=a;i<n;i++)
+#define loop(i,a, n) for(int i = a; i <= n; i++)
+#define loopb(i,a, n) for(int i = a; i >= n; i--)
 #define pb push_back
 #define pf push_front
 #define F first
 #define S second
 #define all(x) x.begin(), x.end()
-#define setmem(x, k) memset(x, k, sizeof(x))
-#define clr(x) memset(x, 0, sizeof(x))
-#define sortall(x) sort(all(x))
+#define uniq(v) (v).erase(unique(all(v)),(v).end())
 #define PI 3.1415926535897932384626
 #define MOD 1000000007
+#define MOD2 998244353
+#define INT_INF 1011111111
+#define INF 1000111000111000111LL
+// comment below line in interactive mode (since endl flushes stdout)
+#define endl "\n"
+typedef vector<int> vi;
 typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-typedef vector<int>	vi;
-typedef vector<ll> vl;
-typedef vector<pii> vpii;
-typedef vector<pll> vpll;
-typedef vector<vi> vvi;
-typedef vector<vl> vvl;
-typedef long double ld;
-typedef vector<vector<ll>> matrix;
-ll dx[] = {0, 1, 0, -1};
-ll dy[] = {-1, 0, 1, 0};
-const ll N = 5e5+2;
-// ll a[N], b[N], dp[N], level[N], vis[N], in[N], out[N];
-// vl g[N];
-ll n, m;
-
-ll arr[N];
+typedef vector<vector<int>> matrix;
+int dx[] = {0, 1, 0, -1, -1, 1, -1, 1};
+int dy[] = {-1, 0, 1, 0, -1, 1, 1, -1};
+const int MAXN = 1e3+5;
+const int N = 5e5+5;
+int n, m;
+ 
+int arr[N];
 
 struct data{
 	//Use required attributes
@@ -56,7 +57,7 @@ struct SegTree {
 	vector<bool> cLazy;
 	vector<int> lazy;
 
-	void init(int n){
+	void init(int n) {
 		N = n;
 		st.resize(4 * N + 5);
 		cLazy.assign(4 * N + 5, false);
@@ -76,8 +77,9 @@ struct SegTree {
 			lazy[node*2] = lazy[node];
 			lazy[node*2 + 1] = lazy[node];
 		}
-		st[node].mn += lazy[node];
+		st[node].mn = lazy[node];
 		cLazy[node] = 0;
+		lazy[node] = 0;
 	}
 
 	void build(int node, int L, int R){
@@ -91,26 +93,31 @@ struct SegTree {
 		merge(st[node], st[node*2], st[node*2+1]);
 	}
 
-	data Query(int node, int L, int R, int i, int j){
-		if(cLazy[node])
+	data Query(int node, int L, int R, int i, int j) {
+		if(cLazy[node]) {
 			propagate(node, L, R);
-		if(j<L || i>R)
+		}
+		if(j < L || i > R) {
 			return data();
-		if(i<=L && R<=j)
+		}
+		if(i <= L && R <= j) {
 			return st[node];
+		}
 		int M = (L + R)/2;
-		data left=Query(node*2, L, M, i, j);
-		data right=Query(node*2 + 1, M + 1, R, i, j);
+		data left = Query(node*2, L, M, i, j);
+		data right = Query(node*2 + 1, M + 1, R, i, j);
 		data cur;
 		merge(cur, left, right);
 		return cur;
 	}
 
 	data pQuery(int node, int L, int R, int pos){
-		if(cLazy[node])
+		if(cLazy[node]) {
 			propagate(node, L, R);
-		if(L == R)
+		}
+		if(L == R) {
 			return st[node];
+		}
 		int M = (L + R)/2;
 		if(pos <= M)
 			return pQuery(node*2, L, M, pos);
@@ -119,11 +126,13 @@ struct SegTree {
 	}	
 
 	void Update(int node, int L, int R, int i, int j, int val){
-		if(cLazy[node])
+		if(cLazy[node]) {
 			propagate(node, L, R);
-		if(j<L || i>R)
+		}
+		if(j < L || i > R) {
 			return;
-		if(i<=L && R<=j){
+		}
+		if(i <= L && R <= j) {
 			cLazy[node] = 1;
 			lazy[node] = val;
 			propagate(node, L, R);
@@ -136,9 +145,10 @@ struct SegTree {
 	}
 
 	void pUpdate(int node, int L, int R, int pos, int val){
-		if(cLazy[node])
+		if(cLazy[node]) {
 			propagate(node, L, R);
-		if(L == R){
+		}
+		if(L == R) {
 			cLazy[node] = 1;
 			lazy[node] = val;
 			propagate(node, L, R);
@@ -149,28 +159,29 @@ struct SegTree {
 			pUpdate(node*2, L, M, pos, val);
 		else
 			pUpdate(node*2 + 1, M + 1, R, pos, val);
+
 		merge(st[node], st[node*2], st[node*2 + 1]);
 	}
 
-	data query(int pos){
+	data query(int pos) {
 		return pQuery(1, 1, N, pos);
 	}
 
-	data query(int l, int r){
+	data query(int l, int r) {
 		return Query(1, 1, N, l, r);
 	}
 
-	void update(int pos, int val){
+	void update(int pos, int val) {
 		pUpdate(1, 1, N, pos, val);
 	}
 
-	void update(int l, int r, int val){
+	void update(int l, int r, int val) {
 		Update(1, 1, N, l, r, val);
 	}
 };
 
 void solve() {
-	ll t, l, r, L, R;
+	int t, l, r, L, R;
 	cin >> n >> t;
 	loop(i, 1, n) cin >> arr[i];
 	SegTree st;
@@ -188,10 +199,13 @@ void solve() {
 	}
 }
 
+
 int32_t main() {
 	IOS
+	int T = 1;
+	// cin >> T;
+	while(T--)
 	solve();
-	cerr<<"Time elapsed : "<<clock()*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n'; 
 	return 0;
 }
 
