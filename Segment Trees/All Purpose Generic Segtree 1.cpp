@@ -60,13 +60,15 @@ struct update {
 
 	// you can be sure that "other" is the newer update than the current
 	void combine(update &other, const int32_t &tl, const int32_t &tr) {
+		// ([Type 1 update] Add value on a range)
 		v += other.v;
-		// ([Type 2 update] Set all value on a range to other value ignoring current) 
+		// ([Type 2 update] Set value on a range) 
 		// v = other.v;  
 	}
 	void apply(node &x, const int32_t &tl, const int32_t &tr) {
+		// ([Type 1 update] Add value on a range)
 		x.v += (tr - tl + 1) * v;
-		// (For type 2 update)
+		// ([Type 2 update] Set value on a range) 
 		// x.v = (tr - tl + 1) * v; 
 	}
 };
