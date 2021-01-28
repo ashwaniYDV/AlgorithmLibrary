@@ -290,15 +290,15 @@ const int MAXN = 1e3+5;
 const int N = 1e5+5;
 int n, m;
  
-struct node {
+struct my_node {
 	int mn = INF;
 	int freq = 0;
-	node() {}
-	node(int val) {
+	my_node() {}
+	my_node(int val) {
 		mn = val;
 		freq = 1;
 	}
-	void merge(const node &l, const node &r) {
+	void merge(const my_node &l, const my_node &r) {
 		mn = min(l.mn, r.mn);
 		freq = 0;
 		if(l.mn == mn) freq += l.freq;
@@ -306,21 +306,21 @@ struct node {
 	}
 };
 
-struct update {
+struct my_update {
 	int v = 0;
-	update() {}
-	update(int val) {
+	my_update() {}
+	my_update(int val) {
 		v = val;
 	}
 
 	// you can be sure that "other" is the newer update than the current
-	void combine(update &other, const int32_t &tl, const int32_t &tr) {
+	void combine(my_update &other, const int32_t &tl, const int32_t &tr) {
 		// ([Type 1 update] Add value on a range)
 		v += other.v;
 		// ([Type 2 update] Set value on a range) 
 		// v = other.v;  
 	}
-	void apply(node &x, const int32_t &tl, const int32_t &tr) {
+	void apply(my_node &x, const int32_t &tl, const int32_t &tr) {
 		// freq won't change
 		x.mn += v;
 	}
@@ -424,7 +424,7 @@ public:
 
 void solve() {
 	int x, y, k, q;
-	segtree<node, update> s(1000);
+	segtree<my_node, my_update> s(1000);
 	vector<int> a(1000);
 	s.build(a);
 
@@ -435,7 +435,7 @@ void solve() {
 		cout << s.query(i, i).mn << " ";
 	}
 
-	node res = s.query(2, 4);
+	my_node res = s.query(2, 4);
 	cout << endl << res.mn << " " << res.freq;
 
 }
