@@ -65,12 +65,12 @@ struct SegTree {
 	}
 
 	//Write reqd merge functions
-	void merge(data &cur, data &l, data &r){
+	void merge(data &cur, data &l, data &r) {
 		cur.mn = min(l.mn, r.mn);
 	}
 	
 	//Handle lazy propagation appriopriately
-	void propagate(int node, int L, int R){
+	void propagate(int node, int L, int R) {
 		if(L != R){
 			cLazy[node*2] = 1;
 			cLazy[node*2 + 1] = 1;
@@ -82,8 +82,8 @@ struct SegTree {
 		lazy[node] = 0;
 	}
 
-	void build(int node, int L, int R){
-		if(L == R){
+	void build(int node, int L, int R) {
+		if(L == R) {
 			st[node].mn = arr[L];
 			return;
 		}
@@ -94,15 +94,13 @@ struct SegTree {
 	}
 
 	data Query(int node, int L, int R, int i, int j) {
-		if(cLazy[node]) {
+		if(cLazy[node]) 
 			propagate(node, L, R);
-		}
-		if(j < L || i > R) {
+		if(j < L || i > R) 
 			return data();
-		}
-		if(i <= L && R <= j) {
+		if(i <= L && R <= j) 
 			return st[node];
-		}
+
 		int M = (L + R)/2;
 		data left = Query(node*2, L, M, i, j);
 		data right = Query(node*2 + 1, M + 1, R, i, j);
@@ -111,13 +109,12 @@ struct SegTree {
 		return cur;
 	}
 
-	data pQuery(int node, int L, int R, int pos){
-		if(cLazy[node]) {
+	data pQuery(int node, int L, int R, int pos) {
+		if(cLazy[node]) 
 			propagate(node, L, R);
-		}
-		if(L == R) {
+		if(L == R) 
 			return st[node];
-		}
+
 		int M = (L + R)/2;
 		if(pos <= M)
 			return pQuery(node*2, L, M, pos);
@@ -125,13 +122,12 @@ struct SegTree {
 			return pQuery(node*2 + 1, M + 1, R, pos);
 	}	
 
-	void Update(int node, int L, int R, int i, int j, int val){
-		if(cLazy[node]) {
+	void Update(int node, int L, int R, int i, int j, int val) {
+		if(cLazy[node]) 
 			propagate(node, L, R);
-		}
-		if(j < L || i > R) {
+		if(j < L || i > R) 
 			return;
-		}
+
 		if(i <= L && R <= j) {
 			cLazy[node] = 1;
 			lazy[node] = val;
@@ -144,16 +140,16 @@ struct SegTree {
 		merge(st[node], st[node*2], st[node*2 + 1]);
 	}
 
-	void pUpdate(int node, int L, int R, int pos, int val){
-		if(cLazy[node]) {
+	void pUpdate(int node, int L, int R, int pos, int val) {
+		if(cLazy[node]) 
 			propagate(node, L, R);
-		}
 		if(L == R) {
 			cLazy[node] = 1;
 			lazy[node] = val;
 			propagate(node, L, R);
 			return;
 		}
+
 		int M = (L + R)/2;
 		if(pos <= M)
 			pUpdate(node*2, L, M, pos, val);
@@ -198,7 +194,6 @@ void solve() {
 		}
 	}
 }
-
 
 int32_t main() {
 	IOS
