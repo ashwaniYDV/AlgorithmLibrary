@@ -53,11 +53,6 @@ void solve() {
 	int total = 0, res = 0;
 	int i = 0, j = 0;
 
-	while(a[j] > k) {
-		j++;
-		i++;
-	}
-
 	while(j < n) {
 		if(mp[a[j]]) {
 			total++;
