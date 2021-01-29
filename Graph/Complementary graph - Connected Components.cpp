@@ -1,11 +1,14 @@
 /*
-https://codeforces.com/contest/920/problem/E
+Problem 1) https://codeforces.com/contest/920/problem/E
+Problem 2) https://codeforces.com/problemset/problem/190/E
+
 Que - Find number of connected components in the original graph if complementary graph is given of the original graph
 Time - O(n*log(n))
 */
 
 
 // Method 1 (DFS)
+// https://codeforces.com/contest/920/problem/E
 
 const int N = 2e5+5;
 int n, m;
@@ -67,6 +70,8 @@ void solve() {
 
 
 // Method 2 (BFS)
+// https://codeforces.com/contest/920/problem/E
+
 const int N = 2e5+5;
 int n, m;
 set<int> unvisited;
