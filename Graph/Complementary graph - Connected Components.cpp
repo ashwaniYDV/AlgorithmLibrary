@@ -17,11 +17,11 @@ set<int> g[N];
 int cnt = 0;
 
 void dfs(int u) {
-	cnt++;
-	unvisited.erase(u);
-	vector<int> tmp;
+    cnt++;
+    unvisited.erase(u);
+    vector<int> tmp;
 
-	for(int x: unvisited) {
+    for(int x: unvisited) {
         if(g[u].count(x) == 0) {
             tmp.pb(x);
         }
@@ -35,7 +35,7 @@ void dfs(int u) {
 }
 
 void solve() {
-	int u, v;
+    int u, v;
     cin >> n >> m;
 
     f(i, m) cin >> u >> v, g[u].insert(v), g[v].insert(u);
@@ -45,7 +45,7 @@ void solve() {
     for(int i = 1; i <= n; i++) {
         unvisited.insert(i);
     }
-    for(int i = 1; i <= n; i++) { 
+    for(int i = 1; i <= n; i++) {
         if(unvisited.count(i)) {
             cnt = 0;
             dfs(i);
@@ -78,7 +78,7 @@ set<int> unvisited;
 set<int> g[N];
 int cnt = 0;
 
-void bfs(int node){
+void bfs(int node) {
     queue <int> q;
     q.push(node);
     unvisited.erase(node);
@@ -102,7 +102,7 @@ void bfs(int node){
 }
 
 void solve() {
-	int u, v;
+    int u, v;
     cin >> n >> m;
 
     f(i, m) cin >> u >> v, g[u].insert(v), g[v].insert(u);
@@ -112,7 +112,7 @@ void solve() {
     for(int i = 1; i <= n; i++) {
         unvisited.insert(i);
     }
-    for(int i = 1; i <= n; i++) { 
+    for(int i = 1; i <= n; i++) {
         if(unvisited.count(i)) {
             cnt = 0;
             bfs(i);
