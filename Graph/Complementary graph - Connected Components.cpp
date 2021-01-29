@@ -7,8 +7,8 @@ Time - O(n*log(n))
 */
 
 
+// Problem 1) https://codeforces.com/contest/920/problem/E
 // Method 1 (DFS)
-// https://codeforces.com/contest/920/problem/E
 
 const int N = 2e5+5;
 int n, m;
@@ -69,8 +69,8 @@ void solve() {
 
 
 
+// Problem 1) https://codeforces.com/contest/920/problem/E
 // Method 2 (BFS)
-// https://codeforces.com/contest/920/problem/E
 
 const int N = 2e5+5;
 int n, m;
