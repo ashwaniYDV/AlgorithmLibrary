@@ -1,13 +1,13 @@
 class fenwick {
-    vector < int > bit;
+    vector<int> bit;
     int N;
-    public:
-        fenwick(int n) {
-            N = n + 5;
-            bit.resize(N);
-        }
+public:
+	fenwick(int n) {
+        N = n + 5;
+        bit.resize(N);
+    }
     void add(int i, int val) {
-        while (i < N) {
+    	while (i < N) {
             bit[i] += val;
             i += (i & -i);
         }
