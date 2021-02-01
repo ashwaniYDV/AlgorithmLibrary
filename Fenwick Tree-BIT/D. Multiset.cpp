@@ -1,6 +1,7 @@
 // https://youtu.be/fgEe-iPdqeI
 // https://codeforces.com/problemset/problem/1354/D
 
+// Method 1: O[N.(logN)^2]
 #include<bits/stdc++.h>
 using namespace std;
  
