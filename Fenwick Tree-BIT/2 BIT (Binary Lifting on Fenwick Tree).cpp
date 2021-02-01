@@ -1,5 +1,9 @@
 // https://youtu.be/nuUspQ7ORXE
 
+/*
+Array must be of non-negative integers
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
  
