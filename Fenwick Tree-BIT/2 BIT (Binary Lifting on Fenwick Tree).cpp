@@ -45,13 +45,13 @@ typedef vector<vector<int>> matrix;
 int dx[] = {0, 1, 0, -1, -1, 1, -1, 1};
 int dy[] = {-1, 0, 1, 0, -1, 1, 1, -1};
 const int MAXN = 5e5+5;
-const int N = 1e5+5;
+const int N = 1e6+5;
 int n, m, k;
-
-int BIT[N], a[N];
+ 
+int BIT[N+5], a[N+5];
 
 void update(int i, int val) {
-    while(i <= n) {
+    while(i < N) {
         BIT[i] += val;
         i += (i&-i);
     }
@@ -68,9 +68,9 @@ int query(int i) {
 
 // returns index of lower_bound of prefixSum
 int prefixSumLB(int prefixSum) {
-	int curr = 0, ans = 0, prevSum = 0;
-	for (int i = log2(n); i >= 0; i--) {
-		if(BIT[curr + (1 << i)] + prevSum < prefixSum) {
+	int curr = 0, prevSum = 0;
+	for (int i = log2(N); i >= 0; i--) {
+		if((curr + (1 << i)) < N && BIT[curr + (1 << i)] + prevSum < prefixSum) {
 			curr += (1 << i);
 			prevSum += BIT[curr];
 		}
@@ -80,9 +80,9 @@ int prefixSumLB(int prefixSum) {
 
 // returns index of upper_bound of prefixSum
 int prefixSumUB(int prefixSum) {
-	int curr = 0, ans = 0, prevSum = 0;
-	for (int i = log2(n); i >= 0; i--) {
-		if(BIT[curr + (1 << i)] + prevSum <= prefixSum) {
+	int curr = 0, prevSum = 0;
+	for (int i = log2(N); i >= 0; i--) {
+		if((curr + (1 << i)) < N && BIT[curr + (1 << i)] + prevSum <= prefixSum) {
 			curr += (1 << i);
 			prevSum += BIT[curr];
 		}
@@ -117,5 +117,4 @@ Input:
 Output:
 2
 3
-
 */
