@@ -1,4 +1,5 @@
 // https://youtu.be/fgEe-iPdqeI
+// https://youtu.be/imHu-B73MlI  (binary lifting)
 // https://codeforces.com/problemset/problem/1354/D
 
 // Method 1: O[N.(logN)^2]
