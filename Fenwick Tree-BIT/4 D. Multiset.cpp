@@ -144,6 +144,5 @@ void solve() {
     	return;
     }
  
-    int pos = prefixSumLB(res);
-	cout << pos << endl;
+	cout << prefixSumLB(1) << endl;
 } 
