@@ -5,7 +5,7 @@
 const int N = 1e6+5;
 int n, m, k;
 
-int BIT[N];
+int BIT[N+5];
 
 void update(int i, int val) {
     while(i > 0 && i < N) {
@@ -94,7 +94,7 @@ int query(int i) {
     return sum;
 }
  
-void go(int k) {
+int go(int k) {
 	int low = 1, high = N;
 	while(low <= high) {
 		int mid = low + (high - low) / 2;
@@ -106,8 +106,8 @@ void go(int k) {
 			high = mid - 1;
 		}
 	}
- 
-	update(low, -1);
+
+	return low;
 }
  
 void solve() {
@@ -123,10 +123,11 @@ void solve() {
     		update(x, 1);
     	} else {
     		x = -1*x;
-    		go(x);
+    		int pos = go(x);
+    		update(pos, -1);
     	}
     }
-
+ 
     // output part
     
     int res = query(N);
@@ -135,17 +136,6 @@ void solve() {
     	return;
     }
  
-    int low = 1, high = N;
-	while(low <= high) {
-		int mid = low + (high - low) / 2;
-		int val = query(mid);
- 
-		if(val < res) {
-			low = mid + 1;
-		} else {
-			high = mid - 1;
-		}
-	}
-
-	cout << low << endl;
+    int pos = go(res);
+	cout << pos << endl;
 } 
