@@ -16,7 +16,12 @@ Shubh Coding:
 
 <hr />
 
-## Special operations
+## Range operations [(cp-algorithms.com)](https://cp-algorithms.com/data_structures/fenwick.html#toc-tgt-8)
+A Fenwick tree can support the following range operations:
+
+- Point Update and Range Query
+- Range Update and Point Query
+- Range Update and Range Query
 ```
 1. Point Update and Range Query
 This is just the ordinary Fenwick tree as explained above.
