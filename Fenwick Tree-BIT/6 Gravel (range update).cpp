@@ -2,6 +2,8 @@
 // https://www.codechef.com/problems/SPREAD
 
 /*
+Range Update and Point Query
+
 Note this question can also be solved using segment tree by using lazy range update and point query.
 Because we have to update range [l, ...,r], but query of point should add the update only once (i.e. x) and not (r-l+1)*x 
 */
