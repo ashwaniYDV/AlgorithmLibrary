@@ -19,10 +19,6 @@ Shubh Coding:
 ## Range operations [(cp-algorithms.com)](https://cp-algorithms.com/data_structures/fenwick.html#toc-tgt-8)
 A Fenwick tree can support the following range operations:
 
-- Point Update and Range Query
-- Range Update and Point Query
-- Range Update and Range Query
-```
 1. Point Update and Range Query
 This is just the ordinary Fenwick tree as explained above.
 
@@ -39,4 +35,28 @@ To support both range updates and range queries we will use two BITs namely B1[]
 Suppose that we want to increment the interval [l,r] by the value x. 
 Similarly as in the previous method, we perform two point updates on B1: add(B1, l, x) and add(B1, r+1, -x). 
 And we also update B2.
+```
+def add(b, idx, x):
+    while idx <= N:
+        b[idx] += x
+        idx += idx & -idx
+
+def range_add(l,r,x):
+    add(B1, l, x)
+    add(B1, r+1, -x)
+    add(B2, l, x*(l-1))
+    add(B2, r+1, -x*r)
+
+def sum(b, idx):
+    total = 0
+    while idx > 0:
+        total += b[idx]
+        idx -= idx & -idx
+    return total
+
+def prefix_sum(idx):
+    return sum(B1, idx)*idx -  sum(B2, idx)
+
+def range_sum(l, r):
+    return prefix_sum(r) - prefix_sum(l-1)
 ```
