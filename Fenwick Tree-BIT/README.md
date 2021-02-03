@@ -27,4 +27,11 @@ Using simple tricks we can also do the reverse operations: increasing ranges and
 Let the Fenwick tree be initialized with zeros. 
 Suppose that we want to increment the interval [l,r] by x. 
 We make two point update operations on Fenwick tree which are add(l, x) and add(r+1, -x).
+
+3. Range Updates and Range Queries
+To support both range updates and range queries we will use two BITs namely B1[] and B2[], initialized with zeros.
+
+Suppose that we want to increment the interval [l,r] by the value x. 
+Similarly as in the previous method, we perform two point updates on B1: add(B1, l, x) and add(B1, r+1, -x). 
+And we also update B2.
 ```
