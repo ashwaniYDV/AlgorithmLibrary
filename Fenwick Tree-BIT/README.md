@@ -21,7 +21,7 @@ Shubh Coding:
 1. Point Update and Range Query
 This is just the ordinary Fenwick tree as explained above.
 
-2. Range Update and Point Query <br/>
+2. Range Update and Point Query
 Using simple tricks we can also do the reverse operations: increasing ranges and querying for single values.
 
 Let the Fenwick tree be initialized with zeros. 
