@@ -57,15 +57,15 @@ bool isSafe(int i, int j) {
 void dfs(int i, int j) {
 	if(!isSafe(i, j)) return;
 
-	if(s[i-1][j] == '.' && s[i][j+1] == '.') vertices++;
-	if(s[i-1][j] == '.' && s[i][j-1] == '.') vertices++;
-	if(s[i+1][j] == '.' && s[i][j+1] == '.') vertices++;
-	if(s[i+1][j] == '.' && s[i][j-1] == '.') vertices++;
+	if(i-1 >= 0 && j+1 < m && s[i-1][j] == '.' && s[i][j+1] == '.') vertices++;
+	if(i-1 >= 0 && j-1 >= 0 && s[i-1][j] == '.' && s[i][j-1] == '.') vertices++;
+	if(i+1 < n && j+1 < m && s[i+1][j] == '.' && s[i][j+1] == '.') vertices++;
+	if(i+1 < n && j-1 >= 0 && s[i+1][j] == '.' && s[i][j-1] == '.') vertices++;
 
-	if(s[i-1][j] == '#' && s[i][j+1] == '#' && s[i-1][j+1] == '.') vertices++;
-	if(s[i-1][j] == '#' && s[i][j-1] == '#' && s[i-1][j-1] == '.') vertices++;
-	if(s[i+1][j] == '#' && s[i][j+1] == '#' && s[i+1][j+1] == '.') vertices++;
-	if(s[i+1][j] == '#' && s[i][j-1] == '#' && s[i+1][j-1] == '.') vertices++;
+	if(i-1 >= 0 && j+1 < m && s[i-1][j] == '#' && s[i][j+1] == '#' && s[i-1][j+1] == '.') vertices++;
+	if(i-1 >= 0 && j-1 >= 0 && s[i-1][j] == '#' && s[i][j-1] == '#' && s[i-1][j-1] == '.') vertices++;
+	if(i+1 < n && j+1 < m && s[i+1][j] == '#' && s[i][j+1] == '#' && s[i+1][j+1] == '.') vertices++;
+	if(i+1 < n && j-1 >= 0 && s[i+1][j] == '#' && s[i][j-1] == '#' && s[i+1][j-1] == '.') vertices++;
 
 	vis[i][j] = 1;
  
