@@ -1,7 +1,7 @@
 // O(N.sqrt(N))
 /*
 Mark all divisors of each element, in O(n.sqrt(n)). 
-Then find maximum element of mark array that is marked more than twice, in O(n).
+Then find maximum element of mark array that is marked >= twice, in O(n).
 */
 vi cnt;
 void getDivisors(int n) {
