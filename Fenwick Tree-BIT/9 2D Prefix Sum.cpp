@@ -3,6 +3,8 @@ n*n matrix initially all elements are 0 (matrix is 1 based indexed)
 Operations:-
 Type 1: set matrix[x][y] = val
 Type 2: Find the sum of matrix whose top left corner is (1, 1) and bottom right corner is (x, y)
+
+NOTE: 2D can be extended to higher dimensions as well. Only the nested loops and BIT dimension will increase.
 */
 
 
