@@ -1,6 +1,12 @@
 // https://codeforces.com/contest/597/problem/C
 // https://youtu.be/WmDEZbTHN5c
 
+/*
+This question can be generalized as:
+After all operations:
+query(x, y) will give the count of LIS of length y considering array indices (1, ..., x) [i.e. arr[1], arr[2], ..., arr[x])] 
+*/
+
 const int N = 1e5+5;
 int n, m;
  
@@ -33,5 +39,6 @@ void solve() {
 			update(x, j, query(x - 1, j - 1));
 		}
 	}
+	// query(n, k) will give the count of LIS of length k considering array indices (1, ..., n) [i.e.whole array] 
 	cout << query(n, k) << endl;
 }
