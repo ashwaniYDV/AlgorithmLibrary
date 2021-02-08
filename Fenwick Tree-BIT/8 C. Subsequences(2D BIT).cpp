@@ -4,7 +4,7 @@
 /*
 This question can be generalized as:
 After all operations:
-query(x, y) will give the count of LIS of length y considering array indices (1, ..., x) [i.e. arr[1], arr[2], ..., arr[x])] 
+query(n, y) will give the count of LIS of length y considering whole array [i.e. arr[1], arr[2], ..., arr[n])] where arr is permutation of 1, ..., n
 */
 
 const int N = 1e5+5;
@@ -39,6 +39,6 @@ void solve() {
 			update(x, j, query(x - 1, j - 1));
 		}
 	}
-	// query(n, k) will give the count of LIS of length k considering array indices (1, ..., n) [i.e.whole array] 
+	// query(n, k) will give the count of LIS of length k
 	cout << query(n, k) << endl;
 }
