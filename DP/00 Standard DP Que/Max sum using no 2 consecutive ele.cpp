@@ -22,7 +22,7 @@ void solve() {
 	// memset(goDp, -1, sizeof goDp);
 	// cout << go(0, 0, a) << endl;
 
-  // DP soln
+  	// DP soln
 	if(n == 1) {
 		cout << a[0] << endl;
 		return;
