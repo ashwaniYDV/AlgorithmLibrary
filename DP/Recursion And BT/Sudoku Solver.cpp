@@ -26,7 +26,7 @@ bool isSafe(int grid[N][N], int row, int col, int num) {
     int startRow = row - row % 3; 
     int startCol = col - col % 3;
    
-   	// Check if we find the same num in the particular 3*3 sub-grid, return false
+    // Check if we find the same num in the particular 3*3 sub-grid, return false
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (grid[i + startRow][j + startCol] == num) return false;
