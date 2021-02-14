@@ -12,7 +12,6 @@ void print(int grid[N][N]) {
 
 // Checks whether it will be legal to assign num to the given row, col
 bool isSafe(int grid[N][N], int row, int col, int num) {
-     
     // Check if we find the same num in the similar row, return false
     for (int x = 0; x < N; x++) {
         if (grid[row][x] == num) return false;
@@ -57,7 +56,6 @@ bool solveSuduko(int grid[N][N], int row, int col) {
     }
  
     for (int num = 1; num <= N; num++) {
-         
         // Check if it is safe to place the num (1-9)  in the given row ,col  
         // --> we move to next column
         if (isSafe(grid, row, col, num)) {
