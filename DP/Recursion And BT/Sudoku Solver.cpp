@@ -44,7 +44,7 @@ bool solveSuduko(int grid[N][N], int row, int col) {
     	return true;
     }
  
- 	  // base case
+    // base case
     // Check if column value becomes 9, we move to next row and column start from 0
     if (col == N) {
         row++;
@@ -78,7 +78,7 @@ bool solveSuduko(int grid[N][N], int row, int col) {
 }
 
 void solve() {
-	  // 0 means unassigned cells
+    // 0 means unassigned cells
     int grid[N][N] = { { 3, 0, 6, 5, 0, 8, 4, 0, 0 },
                        { 5, 2, 0, 0, 0, 0, 0, 0, 0 },
                        { 0, 8, 7, 0, 0, 0, 0, 3, 1 },
