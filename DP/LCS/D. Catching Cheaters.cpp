@@ -11,6 +11,8 @@ In this case, we say that DP[i][j] = DP[i−1][j−1] + 2
 as the new letter will increase the LCS by 1, but both of the strings increase by one in length, so the total gain is 4−1−1=2.
 
 2) We can refer to DP[i][j−1] or DP[i][j−1] to extend one of the previous substrings, but not the LCS, so: DP[i][j] = max(DP[i-1][j], DP[i][j-1]) — 1.
+
+NOTE: If a dp[i][j] has a negative score, we can throw it away and start from scratch.
 */
 
 int n, m;
