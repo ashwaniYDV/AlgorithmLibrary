@@ -1,39 +1,48 @@
 #include<bits/stdc++.h>
 using namespace std;
-#pragma GCC optimize "03"
-#pragma GCC target("sse4")
  
-#define ll long long int
+// #include <ext/pb_ds/assoc_container.hpp> 
+// #include <ext/pb_ds/tree_policy.hpp> 
+// using namespace __gnu_pbds;
+// typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+// typedef tree<int,int,less<int>,rb_tree_tag,tree_order_statistics_node_update> ordered_map;
+// methods: find_by_order(k); & order_of_key(k); To make it an ordered_multiset, use pairs of (value, time_of_insertion) to distinguish values which are similar
+ 
+typedef long long int ll;
+#define int long long int
+#define ld long double
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define FRE freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
-#define f(i,n) for(ll i=0;i<n;i++)
-#define fa(i,a,n) for(ll i=a;a<n?i<n:i>=n;a<n?i+=1:i-=1)
-#define loop(i,a, n) for(ll i = a; i <= n; i++)
-#define loopb(i,a, n) for(ll i = a; i >= n; i--)
+#define PRECISION(x) cout << setprecision(x); cout << fixed;
+#define debug(x) cout << #x << " is: " << (x) << endl;
+#define debug2(x,y) cerr << (#x) <<", "<<(#y)<< " are: " << (x) <<", "<<(y)<< endl;
+#define debugx(x) cout << #x << " is: " << (x) << endl; exit(0);
+#define kickstart(testcase, res) cout << "Case #" << testcase << ": " << res << endl;
+#define f(i,n) for(int i=0;i<n;i++)
+#define fa(i,a,n) for(int i=a;i<n;i++)
+#define loop(i,a, n) for(int i = a; i <= n; i++)
+#define loopb(i,a, n) for(int i = a; i >= n; i--)
 #define pb push_back
 #define pf push_front
 #define F first
 #define S second
 #define all(x) x.begin(), x.end()
-#define setmem(x, k) memset(x, k, sizeof(x))
-#define clr(x) memset(x, 0, sizeof(x))
-#define sortall(x) sort(all(x))
+#define uniq(v) (v).erase(unique(all(v)),(v).end())
 #define PI 3.1415926535897932384626
 #define MOD 1000000007
+#define MOD2 998244353
+#define INT_INF 1011111111
+#define INF 1000111000111000111LL
+// comment below line in interactive mode (since endl flushes stdout)
+#define endl "\n"
+typedef vector<int> vi;
 typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-typedef vector<int>	vi;
-typedef vector<ll> vl;
-typedef vector<pii> vpii;
-typedef vector<pll> vpll;
-typedef vector<vi> vvi;
-typedef vector<vl> vvl;
-typedef long double ld;
-typedef vector<vector<ll>> matrix;
-const ll N = 1e5;
-// ll a[N], b[N], dp[N], level[N], vis[N], in[N], out[N];
-// vl g[N];
-ll n, m;
+typedef vector<vector<int>> matrix;
+int dx[] = {0, 1, 0, -1, -1, 1, -1, 1};
+int dy[] = {-1, 0, 1, 0, -1, 1, 1, -1};
+const int MAXN = 5e5+5;
+const int N = 5e5+5;
+int n, m;
 
 const ll K = 2;
 
@@ -56,26 +65,25 @@ matrix pow(matrix A, ll p) {
 }
 
 // returns the N-th term of Fibonacci sequence
-ll fib(ll N) {
+int fib(int N) {
     // create vector F1
-    vector<ll> F1(K+1);
+    vector<int> F1(K+1);
     F1[1] = 1;
-    F1[2] = 1;
+    F1[0] = 0;
 
     // create matrix T
-    matrix T(K+1, vector<ll>(K+1));
+    matrix T(K+1, vector<int>(K+1));
     T[1][1] = 1, T[1][2] = 1;
     T[2][1] = 1, T[2][2] = 0;
 
-    // raise T to the (N-1)th power
-    if (N == 1)
-        return 1;
-    if (N == 2)
-        return 1;
-    T = pow(T, N-2);
+    if (N == 0) return 0;
+    if (N == 1) return 1;
 
-    // the answer is the first row of T . F1
-    ll res = 0;
+    // raise T to the (N-1)th power
+    T = pow(T, N-1);
+
+    // the answer is the first row of T.F1
+    int res = 0;
     loop(i,1, K)
         res = (res + T[1][i] * F1[i]) % MOD;
     return res;
@@ -89,7 +97,9 @@ void solve() {
  
 int32_t main() {
 	IOS
+	int T = 1;
+	cin >> T;
+	while(T--)
 	solve();
-	cerr<<"Time elapsed : "<<clock()*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n'; 
 	return 0;
 }
