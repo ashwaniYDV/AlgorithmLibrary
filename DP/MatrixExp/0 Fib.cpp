@@ -47,10 +47,10 @@ int n, m;
 const int K = 2;
 
 matrix mul(matrix A, matrix B) {
-    matrix C(K+1, vector<int>(K+1));
-    loop(i,1, K)
-    	loop(j,1, K)
-    		loop(k,1, K)
+    matrix C(K, vector<int>(K));
+    f(i, K)
+    	f(j, K)
+    		f(k, K)
         		C[i][j] = (C[i][j] + A[i][k] * B[k][j]) % MOD;
     return C;
 }
@@ -67,25 +67,26 @@ matrix pow(matrix A, int p) {
 // returns the N-th term of Fibonacci sequence
 int fib(int N) {
     // create vector F1
-    vector<int> F1(K+1);
+    vector<int> F1(K);
     F1[1] = 1;
     F1[0] = 0;
 
     // create matrix T
-    matrix T(K+1, vector<int>(K+1));
-    T[1][1] = 1, T[1][2] = 1;
-    T[2][1] = 1, T[2][2] = 0;
+    matrix T(K, vector<int>(K));
+    T[0][0] = 1, T[0][1] = 1;
+    T[1][0] = 1, T[1][1] = 0;
 
     if (N == 0) return 0;
     if (N == 1) return 1;
 
     // raise T to the (N-1)th power
-    T = pow(T, N-1);
+    T = pow(T, N);
 
     // the answer is the first row of T.F1
     int res = 0;
-    loop(i,1, K)
-        res = (res + T[1][i] * F1[i]) % MOD;
+    f(i, K) {
+        res = (res + T[0][i] * F1[i]) % MOD;
+    }
     return res;
 }
 
