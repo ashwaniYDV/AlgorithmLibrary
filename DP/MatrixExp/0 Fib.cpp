@@ -1,3 +1,11 @@
+/*
+| F[x] |  =  | 1 1 | | F[x-1] |
+|F[x-1]|  =  | 1 0 |.| F[x-2] |
+
+| F[n] |  =  | 1 1 |^(n-1) | 1 |
+|F[n-1]|  =  | 1 0 |      .| 0 |
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
  
@@ -68,7 +76,7 @@ matrix pow(matrix A, int p) {
 int fib(int N) {
 	if (N == 0) return 0;
     if (N == 1) return 1;
-    
+
     // create vector F1
     vector<int> F1(K);
     F1[0] = 1;
