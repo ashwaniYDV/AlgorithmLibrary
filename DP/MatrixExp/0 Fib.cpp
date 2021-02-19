@@ -66,21 +66,21 @@ matrix pow(matrix A, int p) {
 
 // returns the N-th term of Fibonacci sequence
 int fib(int N) {
+	if (N == 0) return 0;
+    if (N == 1) return 1;
+    
     // create vector F1
     vector<int> F1(K);
-    F1[1] = 1;
-    F1[0] = 0;
+    F1[0] = 1;
+    F1[1] = 0;
 
     // create matrix T
     matrix T(K, vector<int>(K));
     T[0][0] = 1, T[0][1] = 1;
     T[1][0] = 1, T[1][1] = 0;
 
-    if (N == 0) return 0;
-    if (N == 1) return 1;
-
     // raise T to the (N-1)th power
-    T = pow(T, N);
+    T = pow(T, N-1);
 
     // the answer is the first row of T.F1
     int res = 0;
