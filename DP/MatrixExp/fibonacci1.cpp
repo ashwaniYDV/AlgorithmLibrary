@@ -90,7 +90,6 @@ int fib(int N) {
 }
 
 void solve() {
-	ll k, x, y, u, v, p, q;
     cin >> n;
     cout << fib(n) << endl;
 }
@@ -98,7 +97,7 @@ void solve() {
 int32_t main() {
 	IOS
 	int T = 1;
-	cin >> T;
+	// cin >> T;
 	while(T--)
 	solve();
 	return 0;
