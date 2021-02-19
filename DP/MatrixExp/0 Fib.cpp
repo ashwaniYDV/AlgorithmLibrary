@@ -44,10 +44,10 @@ const int MAXN = 5e5+5;
 const int N = 5e5+5;
 int n, m;
 
-const ll K = 2;
+const int K = 2;
 
 matrix mul(matrix A, matrix B) {
-    matrix C(K+1, vector<ll>(K+1));
+    matrix C(K+1, vector<int>(K+1));
     loop(i,1, K)
     	loop(j,1, K)
     		loop(k,1, K)
@@ -55,7 +55,7 @@ matrix mul(matrix A, matrix B) {
     return C;
 }
 
-matrix pow(matrix A, ll p) {
+matrix pow(matrix A, int p) {
     if (p == 1)
         return A;
     if (p % 2)
