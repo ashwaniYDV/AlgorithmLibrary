@@ -1,3 +1,6 @@
+// https://codeforces.com/problemset/problem/166/E
+// https://unacademy.com/class/matrix-exponentiation-and-matrix-operations/VOM2NSM6
+
 #include<bits/stdc++.h>
 using namespace std;
  
