@@ -126,15 +126,6 @@ void solve() {
 	cout << fun(n) << endl;
 }
 
-int32_t main() {
-	IOS
-	int T = 1;
-	cin >> T;
-	while(T--)
-	solve();
-	return 0;
-}
-
 
 
 
@@ -159,7 +150,6 @@ int32_t main() {
 // MLE on test 13
 const int N = 1e7+5;
 int n, m;
- 
 int dp[N][2];
  
 int fun(int n, int state) {
@@ -186,4 +176,74 @@ void solve() {
 	memset(dp, -1, sizeof dp);
 	cin >> n;
 	cout << fun(n, 1) << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// AC method 2
+const int N = 1e7+5;
+int n, m;
+const int K = 2;
+
+matrix mul(matrix A, matrix B) {
+    matrix C(K, vector<int>(K));
+    f(i, K)
+    	f(j, K)
+    		f(k, K)
+        		C[i][j] = (C[i][j] + A[i][k] * B[k][j]) % MOD;
+    return C;
+}
+
+matrix pow(matrix A, int p) {
+    if (p == 1)
+        return A;
+    if (p % 2)
+        return mul(A, pow(A, p-1));
+    matrix X = pow(A, p/2);
+    return mul(X, X);
+}
+
+int fun(int N) {
+    // create vector F1
+    vector<int> F1 = {1, 
+    				  0};
+
+    // create matrix T
+    matrix T = {{0, 3}, 
+    			{1, 2}};
+
+    // raise T to the (N-1)th power
+    T = pow(T, N);
+
+    // the answer is the first row of T.F1
+    int res = 0;
+    f(i, K) {
+        res = (res + T[0][i] * F1[i]) % MOD;
+    }
+    return res;
+}
+
+void solve() {
+	cin >> n;
+	cout << fun(n) << endl;
 }
