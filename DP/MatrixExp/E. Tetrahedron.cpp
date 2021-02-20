@@ -113,7 +113,7 @@ int fun(int N) {
     // raise T to the (N-1)th power
     T = pow(T, N);
 
-    // the answer is the first row of T.F1
+    // the answer is the fourth row of T.F1
     int res = 0;
     f(i, K) {
         res = (res + T[3][i] * F1[i]) % MOD;
