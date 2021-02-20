@@ -1,6 +1,36 @@
 // https://codeforces.com/problemset/problem/166/E
 // https://unacademy.com/class/matrix-exponentiation-and-matrix-operations/VOM2NSM6
 
+/*
+DP[n][X] means we are on state X and we have n steps to go to D
+
+DP[n][A] = DP[n-1][B] + DP[n-1][C] + DP[n-1][D]
+DP[n][B] = DP[n-1][A] + DP[n-1][C] + DP[n-1][D]
+DP[n][C] = DP[n-1][A] + DP[n-1][B] + DP[n-1][D]
+DP[n][D] = DP[n-1][A] + DP[n-1][B] + DP[n-1][C]
+
+DP[0][A] = 0 (We are on A and we have 0 steps to go to D)
+DP[0][B] = 0
+DP[0][C] = 0
+DP[0][D] = 1  (We are already on D and we have 0 steps to go to D)
+
+
+| DP[n][A] |  =  | 0 1 1 1 | | DP[n-1][A] |
+| DP[n][B] |  =  | 1 0 1 1 | | DP[n-1][B] |
+| DP[n][C] |  =  | 1 1 0 1 | | DP[n-1][C] |
+| DP[n][D] |  =  | 1 1 1 0 |.| DP[n-1][D] |
+
+| DP[n][A] |  =  | 0 1 1 1 |^n | DP[0][A] |
+| DP[n][B] |  =  | 1 0 1 1 |   | DP[0][B] |
+| DP[n][C] |  =  | 1 1 0 1 |   | DP[0][C] |
+| DP[n][D] |  =  | 1 1 1 0 |  .| DP[0][D] |
+
+| DP[n][A] |  =  | 0 1 1 1 |^n | 0 |
+| DP[n][B] |  =  | 1 0 1 1 |   | 0 |
+| DP[n][C] |  =  | 1 1 0 1 |   | 0 |
+| DP[n][D] |  =  | 1 1 1 0 |  .| 1 |
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
  
