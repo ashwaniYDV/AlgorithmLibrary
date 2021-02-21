@@ -1,22 +1,24 @@
+// https://unacademy.com/class/matrix-exponentiation-and-matrix-operations/VOM2NSM6
+
 /*
 Special Sequence
 ---------------------------------------
-F[n] = 4*F[n-1] + 3*F[n-2] + 1
+F[n] = 4*F[n-1] + 3*F[n-2] + 4
 
 Given:
 F[0] = 1, F[1] = 2
 
 | F[x] |  =  | 4 3 1 | | F[x-1] |
 |F[x-1]|  =  | 1 0 0 | | F[x-2] |
-|  1   |  =  | 0 0 1 | |    1   |
+|   4  |  =  | 0 0 1 | |    4   |
 
 | F[n] |  =  | 4 3 1 |^(n-1) | F[1] |
 |F[n-1]|  =  | 1 0 0 |       | F[0] |
-|   1  |  =  | 0 0 1 |      .|   1  |
+|   4  |  =  | 0 0 1 |      .|   4  |
 
 | F[n] |  =  | 4 3 1 |^(n-1) | 2 |
 |F[n-1]|  =  | 1 0 0 |       | 1 |
-|   1  |  =  | 0 0 1 |      .| 1 |
+|   4  |  =  | 0 0 1 |      .| 4 |
 */
 
 #include<bits/stdc++.h>
@@ -96,7 +98,7 @@ int fun(int N) {
     // create vector F1
     vector<int> F1 = {2,
     				  1,
-    				  1};
+    				  4};
 
     // create matrix T
     matrix T = {{4, 3, 1}, 
