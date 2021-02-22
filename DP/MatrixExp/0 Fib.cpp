@@ -60,9 +60,9 @@ const int K = 2;
 matrix mul(matrix A, matrix B) {
     matrix C(K, vector<int>(K));
     f(i, K)
-    	f(j, K)
-    		f(k, K)
-        		C[i][j] = (C[i][j] + A[i][k] * B[k][j]) % MOD;
+        f(j, K)
+            f(k, K)
+                C[i][j] = (C[i][j] + A[i][k] * B[k][j]) % MOD;
     return C;
 }
 
@@ -77,18 +77,20 @@ matrix pow(matrix A, int p) {
 
 // returns the N-th term of Fibonacci sequence
 int fib(int N) {
-	if (N == 0) return 0;
+    if (N == 0) return 0;
     if (N == 1) return 1;
 
     // create vector F1
-    vector<int> F1(K);
-    F1[0] = 1;
-    F1[1] = 0;
+    vector<int> F1 = {
+        1,
+        0
+    };
 
     // create matrix T
-    matrix T(K, vector<int>(K));
-    T[0][0] = 1, T[0][1] = 1;
-    T[1][0] = 1, T[1][1] = 0;
+    matrix T = {
+        {1, 1},
+        {1, 0}
+    };
 
     // raise T to the (N-1)th power
     T = pow(T, N-1);
@@ -107,12 +109,12 @@ void solve() {
 }
  
 int32_t main() {
-	IOS
-	int T = 1;
-	// cin >> T;
-	while(T--)
-	solve();
-	return 0;
+    IOS
+    int T = 1;
+    cin >> T;
+    while(T--)
+    solve();
+    return 0;
 }
 
 
