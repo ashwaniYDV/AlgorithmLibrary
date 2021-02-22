@@ -276,10 +276,6 @@ Matrix pw(Matrix a, int p){
  
 void solve(){
     cin >> n;
-    if(n == 0 || n == 1) {
-        cout << n << " " << n << endl;
-        return;
-    }
     
     vector<vector<int>> T = {
         {4, 3, 5, 9, 7, 3}, 
