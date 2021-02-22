@@ -18,24 +18,26 @@ __builtin_ctz(num)
 
 */
 
+// O(n*log(log(n))) 
 bool prime[N+5]; 
 vector<int> primesVec;
 void SieveOfEratosthenes(ll n) {
 	memset(prime, true, sizeof(prime));
 	prime[0] = prime[1] = false;
-	for(ll p=2; p*p<=n; p++){ 
-		if (prime[p] == true){
+	for(ll p=2; p*p<=n; p++) { 
+		if (prime[p] == true) {
 			for(ll i=p*p;i<=n;i+=p) 
 			prime[i] = false; 
 		} 
 	} 
-	for(ll p=2; p<=n; p++){
+	for(ll p=2; p<=n; p++) {
 		if (prime[p]) {
 			primesVec.push_back(p);
 		}
 	}
 }
 
+// O(n*log(log(n))) 
 ll spf[N];
 void SPF() { 
 	spf[1] = 1; 
@@ -56,6 +58,7 @@ void SPF() {
 		} 
 	} 
 }
+// O(log(n)) 
 vector<int> getFactorization(int x) { 
     vector<int> ret; 
     while (x != 1) { 
