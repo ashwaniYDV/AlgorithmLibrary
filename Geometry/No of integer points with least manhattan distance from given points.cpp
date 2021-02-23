@@ -5,6 +5,9 @@
 NOTE: The median minimizes the sum of absolute deviations.
 If there are two medians m1, m2, then all the points between m1, m2 (inclusive), [m1, m1+1, ..., m2] will give the same deviations
 If there is only one median m1, then there is only one solution in this coordiante.
+
+If array length n is even then there will be 2 medians m1, m2
+If array length n is odd then there will be only 1 median m1
 */
 
 /*
