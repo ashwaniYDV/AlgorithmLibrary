@@ -28,7 +28,7 @@ So now we only need to sort the array and find the elements on positions ⌊(n+1
 int solve(vector<int> x) {
     sort(x.begin(), x.end());
     int n = x.size();
-    return x[n/2] - x[(n-1)/2] + 1;
+    return x[n/2] - x[n/2 - 1] + 1;
 }
  
 void solve() {
@@ -37,6 +37,10 @@ void solve() {
     vector<int> x(n), y(n);
     for (int i = 0; i < n; ++i) {
         cin >> x[i] >> y[i];
+    }
+    if(n % 2 == 1) {
+        cout << 1 << endl;
+        return;
     }
     cout << solve(x) * solve(y) << '\n';
 }
