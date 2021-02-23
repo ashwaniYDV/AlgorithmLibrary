@@ -1,4 +1,5 @@
 // https://codeforces.com/contest/1486/problem/B
+
 /*
 Hint1:
 Is problem really two dimensional?
