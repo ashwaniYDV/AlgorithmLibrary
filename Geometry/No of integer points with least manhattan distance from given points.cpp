@@ -1,4 +1,11 @@
 // https://codeforces.com/contest/1486/problem/B
+// https://math.stackexchange.com/questions/113270/the-median-minimizes-the-sum-of-absolute-deviations-the-ell-1-norm
+
+/*
+NOTE: The median minimizes the sum of absolute deviations.
+If there are two medians m1, m2, then all the points between m1, m2 (inclusive), [m1, m1+1, ..., m2] will give the same deviations
+If there is only one median m1, then there is only one solution in this coordiante.
+*/
 
 /*
 Hint1:
