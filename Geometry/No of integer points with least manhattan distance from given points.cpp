@@ -11,6 +11,20 @@ If array length n is odd then there will be only 1 median m1
 */
 
 /*
+// https://cses.fi/book/index.php
+
+Case 1: To minimize this
+|a1 - x| + |a2 - x| + |a3 - x| + ... + |an - x|
+The optimum choice is to select x as median (i.e. the middle number of a1, a2, ..., an after sorting)  
+[=> the two sub cases are if n is even or odd as discussed above]
+
+
+Case 2: To minimize this
+(a1 - x)^2 + (a2 - x)^2 + (a3 - x)^2 + ... + (an - x)^2
+The optimum choice is to select x as mean of a1, a2, ..., an
+*/
+
+/*
 Hint1:
 Is problem really two dimensional?
 
