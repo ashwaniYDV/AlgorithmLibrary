@@ -1,4 +1,9 @@
-// https://www.geeksforgeeks.org/find-shortest-distance-guard-bank/
+// https://www.geeksforgeeks.org/find-shortest-distance-guard-bank
+
+/*
+Multi Source Shortest Path in Unweighted Graph:
+https://www.geeksforgeeks.org/multi-source-shortest-path-in-unweighted-graph/
+*/
 
 #include<bits/stdc++.h>
 using namespace std;
