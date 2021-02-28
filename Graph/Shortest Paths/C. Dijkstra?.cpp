@@ -4,7 +4,7 @@
 
 const int N = 1e5+5;
 int n, m;
-int arrival[N], departure[N], vis[N], parent[N];
+int arrival[N], departure[N], parent[N];
 vector<pair<int, int> > g[N];
  
 void dijkstra(int source, int destination) {
@@ -13,18 +13,17 @@ void dijkstra(int source, int destination) {
 		departure[i] = 1e18;
 		parent[i] = -1;
 	}
-
+ 
 	arrival[source] = 0;
 	set<pair<int, int>> s;
 	s.insert({0, source});
-
+ 
 	while(!s.empty()) {
 		auto x = *(s.begin());
 		s.erase(x);
 		int u = x.second;
-		vis[u] = 1;
 		departure[u] = arrival[u];
-
+ 
 		for(auto it: g[u]) {
 			int v = it.first;
 			int w = it.second;
@@ -36,12 +35,12 @@ void dijkstra(int source, int destination) {
 			}
 		}
 	}
-
-	if(!vis[destination]) {
+ 
+	if(departure[destination] == 1e18) {
 		cout << "-1";
 		return;
 	}
-
+ 
 	int node = destination;
 	vector<int> ans;
 	while(parent[node] != -1) {
@@ -97,7 +96,7 @@ void solve() {
 
 const int N = 1e5+5;
 int n, m;
-int dis[N], vis[N], parent[N];
+int dis[N], parent[N];
 vector<pair<int, int> > g[N];
  
 void dijkstra(int source, int destination) {
@@ -105,17 +104,16 @@ void dijkstra(int source, int destination) {
 		dis[i] = 1e18;
 		parent[i] = -1;
 	}
-
+ 
 	dis[source] = 0;
 	set<pair<int, int>> s;
 	s.insert({0, source});
-
+ 
 	while(!s.empty()) {
 		auto x = *(s.begin());
 		s.erase(x);
 		int u = x.second;
-		vis[u] = 1;
-
+ 
 		for(auto it: g[u]) {
 			int v = it.first;
 			int w = it.second;
@@ -127,12 +125,12 @@ void dijkstra(int source, int destination) {
 			}
 		}
 	}
-
-	if(!vis[destination]) {
+ 
+	if(dis[destination] == 1e18) {
 		cout << "-1";
 		return;
 	}
-
+ 
 	int node = destination;
 	vector<int> ans;
 	while(parent[node] != -1) {
@@ -187,7 +185,7 @@ void solve() {
 
 const int N = 1e5+5;
 int n, m;
-int dis[N], vis[N], parent[N];
+int dis[N], parent[N];
 vector<pair<int, int> > g[N];
  
 void dijkstra(int source, int destination) {
@@ -204,7 +202,6 @@ void dijkstra(int source, int destination) {
 		auto x = pq.top();
 		pq.pop();
 		int u = x.second;
-		vis[u] = 1;
 
 		for(auto it: g[u]) {
 			int v = it.first;
@@ -217,7 +214,7 @@ void dijkstra(int source, int destination) {
 		}
 	}
 
-	if(!vis[destination]) {
+	if(dis[destination] == 1e18) {
 		cout << "-1";
 		return;
 	}
