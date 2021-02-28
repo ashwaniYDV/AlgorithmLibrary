@@ -56,7 +56,7 @@ int dist[N];
 vector<int> g[N];
 vector<int> parent[N];
  
-void bfs(int source, int destination) {
+void bfs(int source) {
 	for(int i = 1; i <= n; i++) {
 		dist[i] = 1e18;
 	}
@@ -132,10 +132,14 @@ void solve() {
 		g[v].push_back(u);
 	}
 
-	int source = 1, destination = n;
-	
-	bfs(source, destination);
-	printPaths(source, destination);
+	int source = 1;
+	bfs(source);
+
+	loop(i, 1, n) {
+		int destination = i;
+		printPaths(source, destination);
+		cout << endl;
+	}
 }
  
 int32_t main() {
@@ -159,6 +163,17 @@ Input:
 5 6
 
 Output:
+1 
+
+1 2 
+
+1 3 
+
+1 2 4 
+1 3 4 
+
+1 2 5 
+
 1 2 4 6 
 1 3 4 6 
 1 2 5 6 
