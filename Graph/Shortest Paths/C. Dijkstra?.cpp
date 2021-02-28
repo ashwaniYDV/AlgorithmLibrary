@@ -6,7 +6,6 @@ const int N = 1e5+5;
 int n, m;
 int arrival[N], departure[N], vis[N], parent[N];
 vector<pair<int, int> > g[N];
-set<int> times[N];
  
 void dijkstra(int source, int destination) {
 	for(int i = 1; i <= n; i++) {
@@ -100,7 +99,6 @@ const int N = 1e5+5;
 int n, m;
 int dis[N], vis[N], parent[N];
 vector<pair<int, int> > g[N];
-set<int> times[N];
  
 void dijkstra(int source, int destination) {
 	for(int i = 1; i <= n; i++) {
