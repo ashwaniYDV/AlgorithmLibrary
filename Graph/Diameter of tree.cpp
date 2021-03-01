@@ -52,26 +52,26 @@ int n, m;
 vector<int> g[N];
  
 pair<int, int> bfs(int root) {
-	vector<int> dist(n+1, 0);
+	vector<int> depth(n+1, 0);
 	queue<int> q;
 	q.push(root);
-	dist[root] = 0;
+	depth[root] = 0;
  
 	while(!q.empty()) {
 		int u = q.front();
         q.pop();
  
 		for(int v: g[u]) {
-			if(dist[v] || v == root) continue;
-            dist[v] = dist[u] + 1;
+			if(depth[v] || v == root) continue;
+            depth[v] = depth[u] + 1;
             q.push(v);
 		}
 	}
 
 	int pos = 0, mx = 0;
 	for (int i = 1; i <= n; i++) {
-		if(dist[i] > mx) {
-			mx = dist[i];
+		if(depth[i] > mx) {
+			mx = depth[i];
 			pos = i;
 		}
 	}
@@ -79,11 +79,41 @@ pair<int, int> bfs(int root) {
 	return {pos, mx};
 }
 
-void diameterOfTree() {
+void dfs(int u, int par, int d, vector<int>& depth) {
+	depth[u] = d;
+	for(int v: g[u]) {
+		if(v == par) continue;
+		dfs(v, u, d + 1, depth);
+	}
+}
+
+void diameterOfTreeBFS() {
 	pair<int, int> x = bfs(1);
 	int diameter = bfs(x.first).second;
 	cout << diameter << endl;
-	// cout << diameter + 1 << endl;
+	// cout << diameter + 1<< endl;
+}
+
+void diameterOfTreeDFS() {
+	vector<int> depth(n+1, 0);
+	dfs(1, -1, 0, depth);
+	int pos = 0, mx = 0;
+	for(int i = 1; i <= n; i++) {
+		if(depth[i] > mx) {
+			mx = depth[i];
+			pos = i;
+		}
+	}
+	depth.resize(n+1, 0);
+	dfs(pos, -1, 0, depth);
+
+	int diameter = 0;
+	for(int i = 1; i <= n; i++) {
+		diameter = max(diameter, depth[i]);
+	}
+
+	cout << diameter << endl;
+	// cout << diameter +1 << endl;
 }
 
 void solve() {
@@ -94,7 +124,8 @@ void solve() {
 		g[u].push_back(v);
 		g[v].push_back(u);
 	}
-	diameterOfTree();
+	diameterOfTreeBFS();
+	diameterOfTreeDFS();
 }
  
 int32_t main() {
@@ -115,5 +146,6 @@ Input:
 2 5
 
 Output:
+3
 3
 */
