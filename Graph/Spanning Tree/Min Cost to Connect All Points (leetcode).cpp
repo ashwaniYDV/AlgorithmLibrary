@@ -42,24 +42,18 @@ public:
     }
     
     int minCostConnectPoints(vector<vector<int>>& points) {
-        map<int, pair<int, int>> mp;
-        int ct = 1;
-        for(auto i: points) {
-            mp[ct++] = {i[0], i[1]};
-        }
         n = points.size();
 
-        for(int i = 1; i <= n; i++) {
-            for(int j = i+1; j <= n; j++) {
-                if(i == j) continue;
-                auto x = mp[i], y = mp[j];
-                int dist = abs(x.first - y.first) + abs(x.second - y.second);
+        for(int i = 0; i < n; i++) {
+            for(int j = i+1; j < n; j++) {
+                auto x = points[i], y = points[j];
+                int dist = abs(x[0] - y[0]) + abs(x[1] - y[1]);
                 g[i].push_back({j, dist});
                 g[j].push_back({i, dist});
             }
         }
 
-        int root = 1;
+        int root = 0;
         return prims(root);
     }
 };
