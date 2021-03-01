@@ -50,7 +50,7 @@ public:
         n = points.size();
 
         for(int i = 1; i <= n; i++) {
-            for(int j = 1; j <= n; j++) {
+            for(int j = i+1; j <= n; j++) {
                 if(i == j) continue;
                 auto x = mp[i], y = mp[j];
                 int dist = abs(x.first - y.first) + abs(x.second - y.second);
