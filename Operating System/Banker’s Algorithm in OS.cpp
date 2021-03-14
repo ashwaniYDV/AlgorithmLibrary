@@ -1,6 +1,10 @@
 // https://www.geeksforgeeks.org/bankers-algorithm-in-operating-system-2/
 // https://youtu.be/7gMLNiEz3nw
 
+/*
+It is a deadlock avoidance algorithm (or deadlock detection algorithm) and not deadlock prevention algorithm.
+*/
+
 #include <iostream> 
 using namespace std; 
   
