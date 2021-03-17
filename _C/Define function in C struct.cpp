@@ -5,19 +5,19 @@ struct point
     void (*print)(const struct point*);
 };
 
-void print_x(const struct point* p)
+void sum(const struct point* p)
 {
-    cout << "x =" << p->x << endl;
+    cout << "x + y = " << p->x + p->y << endl;
 }
 
-void print_y(const struct point* p)
+void dif(const struct point* p)
 {
-    cout << "y =" << p->y << endl;
+    cout << "x - y = " << p->x - p->y << endl;
 }
 
 void solve() {
-	struct point p1 = { 2, 4, print_x };
-    struct point p2 = { 7, 1, print_y };
+	struct point p1 = { 2, 4, sum };
+    struct point p2 = { 7, 3, dif };
 
     p1.print(&p1);
     p2.print(&p2);
