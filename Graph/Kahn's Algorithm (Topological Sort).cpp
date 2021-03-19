@@ -2,114 +2,87 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-#pragma GCC optimize "03"
-#pragma GCC target("sse4")
-
-#define ll long long int
+#pragma GCC optimize ("O3")
+#pragma GCC target ("avx")
+#pragma GCC optimize("Ofast")
+#pragma GCC optimize ("unroll-loops")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
+ 
+// #include <ext/pb_ds/assoc_container.hpp> 
+// #include <ext/pb_ds/tree_policy.hpp> 
+// using namespace __gnu_pbds;
+// typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+// typedef tree<int,int,less<int>,rb_tree_tag,tree_order_statistics_node_update> ordered_map;
+// methods: find_by_order(k); & order_of_key(k); To make it an ordered_multiset, use pairs of (value, time_of_insertion) to distinguish values which are similar
+ 
+typedef long long int ll;
+#define int long long int
+#define ld long double
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define FRE freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
-#define f(i,n) for(ll i=0;i<n;i++)
-#define fa(i,a,n) for(ll i=a;a<n?i<n:i>=n;a<n?i+=1:i-=1)
-#define loop(i,a, n) for(ll i = a; i <= n; i++)
-#define loopb(i,a, n) for(ll i = a; i >= n; i--)
+#define PRECISION(x) cout << setprecision(x); cout << fixed;
+#define debug(x) cout << #x << " is: " << (x) << endl;
+#define debug2(x,y) cout << (#x) <<", "<<(#y)<< " are: " << (x) <<", "<<(y)<< endl;
+#define debugx(x) cout << #x << " is: " << (x) << endl; exit(0);
+#define kickstart(testcase, res) cout << "Case #" << testcase << ": " << res << endl;
+#define f(i,n) for(int i=0;i<n;i++)
+#define fa(i,a,n) for(int i=a;i<n;i++)
+#define loop(i,a, n) for(int i = a; i <= n; i++)
+#define loopb(i,a, n) for(int i = a; i >= n; i--)
 #define pb push_back
 #define pf push_front
 #define F first
 #define S second
 #define all(x) x.begin(), x.end()
-#define setmem(x, k) memset(x, k, sizeof(x))
-#define clr(x) memset(x, 0, sizeof(x))
-#define sortall(x) sort(all(x))
+#define uniq(v) (v).erase(unique(all(v)),(v).end())
 #define PI 3.1415926535897932384626
 #define MOD 1000000007
+#define MOD2 998244353
+#define INT_INF 1011111111
+#define INF 1000111000111000111LL
+// comment below line in interactive mode (since endl flushes stdout)
+#define endl "\n"
+typedef vector<int> vi;
+typedef vector<pair<int, int>> vpii;
 typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-typedef vector<int>	vi;
-typedef vector<ll> vl;
-typedef vector<pii> vpii;
-typedef vector<pll> vpll;
-typedef vector<vi> vvi;
-typedef vector<vl> vvl;
-typedef long double ld;
-const ll N = 1e5+5;	
-// ll a[N], b[N], dp[N], level[N], vis[N];
+typedef vector<vector<int>> matrix;
+int dx[] = {0, 1, 0, -1, -1, 1, -1, 1};
+int dy[] = {-1, 0, 1, 0, -1, 1, 1, -1};
+const int MAXN = 1e5+5;
+const int N = 2e5+5;
+int n, m; 
 
-ll in[N], out[N];
-vl g[N];
-ll n, m;
-vector<ll> res;
+int in[N];
+vi g[N];
+vector<int> res;
 
-void kahn_in_sorted_order1(ll n) {
-	priority_queue<ll, vector<ll>, greater<ll>> q;
-	for(ll i=1; i<=n; i++){
+void kahn(int n) {
+	queue<int> q;
+	for(int i=1; i<=n; i++){
 		if(in[i] == 0) q.push(i);
 	}
 
 	while(!q.empty()){
-		ll u = q.top();
+		int u = q.front();
 		q.pop();
 		res.pb(u);
-		for(ll v: g[u]){
+		for(int v: g[u]){
 			in[v]--;
 			if(in[v] == 0) q.push(v);
 		}
 	}
 
-	if(res.size() < n) {
-		cout << "Sandro fails.\n";
+	if((int)res.size() < n) {
+		cout << "IMPOSSIBLE\n";
 		return;
 	}
-	for(ll x: res) {
-		cout << x << " ";
-	}
-}
-
-void kahn_in_sorted_order2(ll n) {
-	set<ll> q;
-	for(ll i=1; i<=n; i++){
-		if(in[i] == 0) q.insert(i);
-	}
-
-	while(!q.empty()){
-		ll u = *(q.begin());
-		q.erase(q.begin());
-		res.pb(u);
-		for(ll v: g[u]){
-			in[v]--;
-			if(in[v] == 0) q.insert(v);
-		}
-	}
-
-	cout << "Topological sort: \n";
-	for(ll x: res) {
-		cout << x << " ";
-	}
-}
-
-void kahn(ll n) {
-	queue<ll> q;
-	for(ll i=1; i<=n; i++){
-		if(in[i] == 0) q.push(i);
-	}
-
-	while(!q.empty()){
-		ll u = q.front();
-		q.pop();
-		res.pb(u);
-		for(ll v: g[u]){
-			in[v]--;
-			if(in[v] == 0) q.push(v);
-		}
-	}
-
-	cout << "Topological sort: \n";
-	for(ll x: res) {
+	for(int x: res) {
 		cout << x << " ";
 	}
 }
 
 void solve() {
-	ll x, y, z, p, q, r, u, v;
+	int u, v;
 	cin >> n >> m;
 	f(i, m) {
 		cin >> u >> v;
@@ -118,13 +91,12 @@ void solve() {
 	}
 	kahn(n);
 }
-
-int32_t main() {
+ 
+signed main() {
 	IOS
-	ll T;
+	int T = 1;
 	// cin >> T;
-	// while(T--)
-		solve();
-	cerr<<"Time elapsed : "<<clock()*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n'; 
+	while(T--)
+	solve();
 	return 0;
 }
