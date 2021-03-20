@@ -1,4 +1,8 @@
 // https://youtu.be/MtFPqCcsoeA
+/*
+No cycle or Even cycle graph -> Bipartite
+Odd cycle graph -> Not-Bipartite
+*/
 
 #include <iostream>
 #include<bits/stdc++.h>
