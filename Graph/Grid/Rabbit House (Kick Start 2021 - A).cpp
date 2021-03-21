@@ -75,7 +75,7 @@ void solve(int tc) {
     while(!st.empty()) {
         auto top = *st.begin();
         st.erase(st.begin());
-        int h = -top.first;
+        int height = -top.first;
         x = top.second.first, y = top.second.second;
         
         f(z, 4) {
@@ -84,14 +84,14 @@ void solve(int tc) {
             
             if(!isSafe(nx, ny)) continue;
 
-            if(a[nx][ny] >= h-1) {
+            if(a[nx][ny] == height-1 || a[nx][ny] == height || a[nx][ny] == height+1) {
             	continue;
             }
 
-            int diff = h - 1 - a[nx][ny];
+            int diff = height - 1 - a[nx][ny];
         	res += diff;
         	st.erase({-a[nx][ny], {nx, ny}});
-        	a[nx][ny] = h-1;
+        	a[nx][ny] = height-1;
         	st.insert({-a[nx][ny], {nx, ny}});
         }
     }
