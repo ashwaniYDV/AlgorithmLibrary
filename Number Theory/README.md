@@ -1,4 +1,4 @@
-# Some facts about GCD
+## Some facts about GCD
 
 1) If G is the GCD of n numbers, and if each number is then increased by some positive constant, what is the fastest way of calculating GCD of the numbers after the increment?
    [Quora link](https://www.quora.com/If-G-is-the-GCD-of-n-numbers-and-if-each-number-is-then-increased-by-some-positive-constant-what-is-the-fastest-way-of-calculating-GCD-of-the-numbers-after-the-increment)
@@ -56,3 +56,10 @@
 
    gcd(a1 + bj, a2 + bj, ..., an−1 + bj, an + bj) == gcd(a1 + bj, a2 − a1, ...,an−1 − an−2, an − an−1).
    ```
+   
+## Other
+
+1) Only perfect Squares have an odd number of factors.\
+   For example, 9 has odd number of factors, 1, 3 and 9. 16 also has odd number of factors, 1, 2, 4, 8, 16. The reason for this is, for numbers other than perfect    squares, all factors are in the form of pairs, but for perfect squares, one factor is single and makes the total as odd.
+
+
