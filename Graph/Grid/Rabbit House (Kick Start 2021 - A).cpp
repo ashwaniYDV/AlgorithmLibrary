@@ -53,7 +53,6 @@ const int N = 305;
 int n, m;
 
 int a[N][N];
-int vis[N][N];
 
 bool isSafe(int i, int j) {
     if(i < 0 || i >= n || j < 0 || j>= m) return false;
