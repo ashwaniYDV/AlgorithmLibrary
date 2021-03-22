@@ -1,7 +1,8 @@
 // https://cses.fi/problemset/task/1679
 
 /* 
-We just have to check cycle in directed graph for no topo sort case
+We just have to check cycle in directed graph for no topo sort case.
+Acyclic directed graphs always have a valid topological sort (NOTE: the answer is not unique)
 */
 
 #include<bits/stdc++.h>
