@@ -34,6 +34,7 @@ void solve() {
 
     cout << "Min Cost of path = " << dp[n-1][m-1] << endl;
 
+    // reverse engineering
     queue<node> q;
     q.push({n - 1, m - 1, ""});
 
@@ -42,7 +43,6 @@ void solve() {
     	q.pop();
 
     	if(x.i == 0 && x.j == 0) {
-        // since pathSoFar is in reverse order (i.e from [n-1, m-1] to [0, 0]) but we want to print as [0, 0] to [n-1, m-1] 
     		string path = x.pathSoFar;
     		reverse(all(path));
     		cout << path << endl;
@@ -58,8 +58,11 @@ void solve() {
     		} else {
     			q.push({x.i, x.j - 1, x.pathSoFar + "H" });
     			q.push({ x.i - 1, x.j, x.pathSoFar + "V" });
+
+    			// agar answer ke ordering ka issue aae to "V" wala pehle daal do queue me
+    			// q.push({ x.i - 1, x.j, x.pathSoFar + "V" });
+    			// q.push({x.i, x.j - 1, x.pathSoFar + "H" });
     		}
     	}
     }
-
 }
