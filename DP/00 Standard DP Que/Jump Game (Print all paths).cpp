@@ -46,11 +46,14 @@ void solve() {
 
 }
  
-signed main() {
-	IOS
-	int T = 1;
-	// cin >> T;
-	while(T--)
-	solve();
-	return 0;
-}
+
+/*
+Input:
+10
+3 3 0 2 1 2 4 2 0 0
+
+Output:
+Min number of jumps = 4
+0->3->5->6->9
+0->3->5->7->9
+*/
