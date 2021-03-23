@@ -1,4 +1,31 @@
-// https://leetcode.com/problems/jump-game-ii/
+/*
+https://leetcode.com/problems/jump-game/
+https://leetcode.com/problems/jump-game-ii/
+*/
+
+// Jump game I
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+        int maxIndex = 0;
+        
+        for(int i = 0; i < n; i++) {
+            if(i > maxIndex) {
+                return false;
+            }
+            int reach = i + nums[i];
+            maxIndex = max(maxIndex, reach);
+        }
+        return true;
+    }
+};
+
+
+
+
+
+
 
 // Jump game II - Method 1
 class Solution {
