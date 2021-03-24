@@ -5,6 +5,7 @@ return the number of distinct subsequences of s which equals t.
 Concept of standard "Edit Distance" DP problem is used
 */
 
+// Bottom Up 1
 class Solution {
 public:
     int numDistinct(string s, string t) {
@@ -30,7 +31,7 @@ public:
 
 
 
-
+// Bottom Up 2
 class Solution {
 public:
     int numDistinct(string s, string t) {
@@ -55,6 +56,46 @@ public:
         }
         
         return dp[n][m];
+    }
+};
+
+
+
+
+
+
+
+
+// Top Down
+class Solution {
+public:
+    int n, m;
+    string s, t;
+    
+    int go(int si, int ti, vector<vector<long>>& dp) {
+        if(ti == m && si <= n) {
+            return 1;
+        }
+        if(si >= n) {
+            return 0;
+        }
+        
+        if(dp[si][ti] != -1) return dp[si][ti];
+        
+        int res = 0;
+
+        if(s[si] == t[ti]) {
+            res += go(si+1, ti+1, dp);
+        }
+        res += go(si + 1, ti, dp);
+
+        return dp[si][ti] = res;
+    }
+    int numDistinct(string s, string t) {
+        this->s = s, this->t = t;
+        n = s.size(), m = t.size();
+        vector<vector<long>> dp(n + 1, vector<long>(m + 1, -1));
+        return go(0, 0, dp);
     }
 };
 
