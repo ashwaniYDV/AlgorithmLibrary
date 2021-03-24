@@ -38,8 +38,8 @@ public:
         return dp[si][ti] = res;
     }
     
-    int minDistance(string s, string t) {
-        this->s = s, this->t = t;
+    int minDistance(string word1, string word2) {
+        s = word1, t = word2;
         n = s.size(), m = t.size();
         vector<vector<int>> dp(N, vector<int>(N, -1));
         
@@ -55,3 +55,30 @@ public:
 
 
 // Method 2
+class Solution {
+public:
+    int minDistance(string word1, string word2) {
+        int n = word1.size(), m = word2.size();
+        
+        int dp[n + 1][m + 1];
+        
+        // if word2 is empty we have to remove all characters from word1
+        for(int i = 0; i <= n; i++) dp[i][0] = i;
+        
+        // if word1 is empty we have to add all characters to word1
+        for(int j = 0; j <= m; j++) dp[0][j] = j;
+        
+        // we have three cases replace, delete, insert
+        for(int i = 1; i <= n; i++) {
+            for(int j = 1; j <= m; j++) {
+                if(word1[i - 1] == word2[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    // 1 + min(replace, delete, insert)
+                    dp[i][j] = 1 + min(dp[i - 1][j - 1], min(dp[i - 1][j], dp[i][j - 1]));
+                }
+            }
+        }
+        return dp[n][m];
+    }
+};
