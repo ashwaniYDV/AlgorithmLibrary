@@ -35,6 +35,7 @@ class Solution {
         int n = s.size();
         
         stack<int> st;
+        // -1 is inserted to tackle this type of case s = ((()))
     	st.push(-1);
     	int res = 0;
     
