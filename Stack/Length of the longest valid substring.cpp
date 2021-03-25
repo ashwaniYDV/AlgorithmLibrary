@@ -31,7 +31,6 @@ The first element of the stack is a special element that provides index before t
 class Solution {
     public:
         int findMaxLen(string s) {
-            // code here
             int n = s.size();
 
             stack < int > st;
