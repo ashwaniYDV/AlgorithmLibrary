@@ -1,4 +1,6 @@
+// https://www.geeksforgeeks.org/length-of-the-longest-valid-substring/
 // https://practice.geeksforgeeks.org/problems/valid-substring0624/1
+// https://leetcode.com/problems/longest-valid-parentheses/
 
 /*
 An Efficient Solution can solve this problem in O(n) time. 
