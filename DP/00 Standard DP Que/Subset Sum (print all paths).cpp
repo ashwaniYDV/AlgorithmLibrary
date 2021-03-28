@@ -86,7 +86,7 @@ void solve() {
     	node x = q.front();
     	q.pop();
 
-    	if(x.i == 0) {
+    	if(x.i == 0 || x.j == 0) {
     		cout << x.pathSoFar << endl;
     		continue;
     	}
