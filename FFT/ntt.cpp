@@ -1,3 +1,9 @@
+/*
+A lot of you guys have issues with ntt in case of different mod. 
+I have covered a detail implementation of everything except CRT. 
+Do check it out. This solves a lot of things :stuck_out_tongue:
+*/
+
 #define _CRT_SECURE_NO_DEPRECATE
 #pragma GCC optimize("O3")
 #pragma GCC target("sse4")
