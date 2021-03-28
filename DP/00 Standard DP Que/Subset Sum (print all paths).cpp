@@ -1,3 +1,5 @@
+// https://youtu.be/qtqMTgmDpQg
+
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
