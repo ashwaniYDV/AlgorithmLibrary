@@ -53,7 +53,7 @@ int n, m;
 int dp[N][N];
 string str, pat;
 
-bool go(int s = 0, int p = 0) {
+int go(int s = 0, int p = 0) {
     if(p == pat.length()) {
         return dp[s][p] = (s == str.length());
     }
