@@ -100,8 +100,6 @@ void solve() {
     		q.push({x.i - 1, x.j - a[x.i - 1], to_string(a[x.i - 1]) + " " + x.pathSoFar});
     	}
     }
-
-
 }
 
 signed main() {
