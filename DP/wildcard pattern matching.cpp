@@ -66,6 +66,8 @@ bool go(int s = 0, int p = 0) {
         return (dp[s][p] = 1);
     }
 
+    if(dp[s][p] != -1) return dp[s][p];
+
     // ? -> match one
     if(pat[p] == '?' or pat[p] == str[s]) {
         return dp[s][p] = go(s+1, p+1);
