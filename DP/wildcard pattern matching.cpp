@@ -1,6 +1,3 @@
-// https://youtu.be/dzMdbWulRII
-// interview important
-
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
@@ -9,68 +6,81 @@ using namespace std;
 #pragma GCC optimize ("unroll-loops")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
  
+// #include <ext/pb_ds/assoc_container.hpp> 
+// #include <ext/pb_ds/tree_policy.hpp> 
+// using namespace __gnu_pbds;
+// typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+// typedef tree<int,int,less<int>,rb_tree_tag,tree_order_statistics_node_update> ordered_map;
+// methods: find_by_order(k); & order_of_key(k); To make it an ordered_multiset, use pairs of (value, time_of_insertion) to distinguish values which are similar
+ 
 typedef long long int ll;
 #define int long long int
+#define ld long double
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define FRE freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
+#define PRECISION(x) cout << setprecision(x); cout << fixed;
 #define debug(x) cout << #x << " is: " << (x) << endl;
-#define f(i,n) for(ll i=0;i<n;i++)
-#define fa(i,a,n) for(ll i=a;i<n;i++)
-#define loop(i,a, n) for(ll i = a; i <= n; i++)
-#define loopb(i,a, n) for(ll i = a; i >= n; i--)
+#define debug2(x,y) cout << (#x) <<", "<<(#y)<< " are: " << (x) <<", "<<(y)<< endl;
+#define debugx(x) cout << #x << " is: " << (x) << endl; exit(0);
+#define kickstart(testcase, res) cout << "Case #" << testcase << ": " << res << endl;
+#define f(i,n) for(int i=0;i<n;i++)
+#define fa(i,a,n) for(int i=a;i<n;i++)
+#define loop(i,a, n) for(int i = a; i <= n; i++)
+#define loopb(i,a, n) for(int i = a; i >= n; i--)
 #define pb push_back
 #define pf push_front
 #define F first
 #define S second
 #define all(x) x.begin(), x.end()
-#define setmem(x, k) memset(x, k, sizeof(x))
-#define clr(x) memset(x, 0, sizeof(x))
-#define sortall(x) sort(all(x))
+#define uniq(v) (v).erase(unique(all(v)),(v).end())
 #define PI 3.1415926535897932384626
 #define MOD 1000000007
+#define MOD2 998244353
+#define INT_INF 1011111111
 #define INF 1000111000111000111LL
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
+// comment below line in interactive mode (since endl flushes stdout)
+#define endl "\n"
 typedef vector<int> vi;
-typedef vector<ll> vl;
-typedef long double ld;
-typedef vector<vector<ll>> matrix;
-ll dx[] = {0, 1, 0, -1};
-ll dy[] = {-1, 0, 1, 0};
-const ll N = 1e5+1;
-// ll a[N], b[N], dp[N], level[N], vis[N], in[N], out[N];
-// vl g[N];
-ll n, m;
+typedef vector<pair<int, int>> vpii;
+typedef pair<int, int> pii;
+typedef vector<vector<int>> matrix;
+int dx[] = {0, 1, 0, -1, -1, 1, -1, 1};
+int dy[] = {-1, 0, 1, 0, -1, 1, 1, -1};
+const int MAXN = 1e5+5;
+const int N = 1e3+5;
+int n, m;
 
-unordered_map<string, bool> mp;
-bool go(string str, string pat, ll s = 0, ll p = 0) {
-    string temp = to_string(s) + "|" + to_string(p);
+int dp[N][N];
+string str, pat;
 
-    if(mp.count(temp)) return mp[temp];
-
-    if(p == pat.length()){
-        return mp[temp] = (s == str.length());
+bool go(int s = 0, int p = 0) {
+    if(p == pat.length()) {
+        return dp[s][p] = (s == str.length());
     }
-    if(s == str.length()){
-        for(ll i = p; i < pat.length(); i++)
-            if(pat[i] != '*')
-                return (mp[temp]=false);
-        return (mp[temp] = true);
+    if(s == str.length()) {
+        for(int i = p; i < pat.length(); i++) {
+            if(pat[i] != '*') {
+                return (dp[s][p] = 0);
+            }
+        }
+        return (dp[s][p] = 1);
     }
 
     // ? -> match one
-    if(pat[p] == '?' or pat[p] == str[s])
-        return mp[temp] = go(str, pat, s+1, p+1);
+    if(pat[p] == '?' or pat[p] == str[s]) {
+        return dp[s][p] = go(s+1, p+1);
+    }
 
     // * -> match all or match none
-    if(pat[p] == '*')
-        return mp[temp] = go(str, pat, s+1, p) or go(str, pat, s, p+1);
+    if(pat[p] == '*') {
+        return dp[s][p] = go(s+1, p) or go(s, p+1);
+    }
 
-    return mp[temp] = false;
+    return dp[s][p] = 0;
 }
 
-ll dp_sol(string str, string pat, ll n, ll m){
-    ll dp[n + 1][m + 1];
+int dp_sol(int n, int m) {
+    int dp[n + 1][m + 1];
 
     // empty pattern can only match with empty string 
     if (m == 0) return (n == 0); 
@@ -81,14 +91,14 @@ ll dp_sol(string str, string pat, ll n, ll m){
     dp[0][0] = 1;
 
     // Only '*' can match with empty string 
-    for (ll j = 1; j <= m; j++) {
+    for (int j = 1; j <= m; j++) {
         if (pat[j - 1] == '*') 
             dp[0][j] = dp[0][j - 1];
     }
 
     // fill the table in bottom-up fashion 
-    for (ll i = 1; i <= n; i++) { 
-        for (ll j = 1; j <= m; j++) { 
+    for (int i = 1; i <= n; i++) { 
+        for (int j = 1; j <= m; j++) { 
             // Two cases if we see a '*' 
             // a) We ignore ‘*’ character and move to next character in pattern, 
             // i.e., ‘*’ indicates an empty sequence. 
@@ -113,32 +123,18 @@ ll dp_sol(string str, string pat, ll n, ll m){
 }
 
 void solve() {
-    ll t, k, d, x, y, z;
-    string s, pattern;
-    cin >> s >> pattern;
-    n = s.size(), m = pattern.size();
-    cout << dp_sol(s, pattern, n, m);
-    // cout << go(s, pattern) << endl;
+    cin >> str >> pat;
+    n = str.size(), m = pat.size();
+    memset(dp, -1, sizeof dp);
+    cout << go(0, 0) << endl;
+    cout << dp_sol(n, m) << endl;
 }
 
-
-
-int32_t main() {
+signed main() {
     IOS
-    clock_t begin = clock();
-    ll T = 1;
+    int T = 1;
     // cin >> T;
-    while(T--)
-    solve();
-    cerr<<"Time elapsed : "<<(clock()-begin)*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n';
+    while (T--)
+    	solve();
     return 0;
 }
-
-/*
-INPUT:
-asdfgh
-*s*f?*
-
-OUTPUT:
-1 (True)
-*/
