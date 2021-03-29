@@ -32,6 +32,8 @@ public:
         if(dp[start][end] != -1) return dp[start][end];
         
         int res = 0;
+      
+        // making i as the root for each i from start to end
         for(int i = start; i <= end; i++) {
             int left = helper(start, i-1, dp);
             int right = helper(i+1, end, dp);
@@ -39,7 +41,8 @@ public:
             res += left * right;
         }
         
-        return dp[start][end] = res;   
+        return dp[start][end] = res;
+        
     }
     int numTrees(int n) {
         if(n == 0) return 0;
