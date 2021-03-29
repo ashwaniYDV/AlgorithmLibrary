@@ -30,7 +30,6 @@ public:
             dp[i][0] = 0;
         }
 
-        // fill the table in bottom-up fashion 
         for (int i = 1; i <= n; i++) { 
             for (int j = 1; j <= m; j++) { 
                 if (pat[j - 1] == '*') {
