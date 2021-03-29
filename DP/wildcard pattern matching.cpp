@@ -98,6 +98,11 @@ int dp_sol(int n, int m) {
             dp[0][j] = dp[0][j - 1];
     }
 
+    // String cannot match with empty pattern 
+    for (int i = 1; i <= n; i++) {
+        dp[i][0] = 0;
+    }
+
     // fill the table in bottom-up fashion 
     for (int i = 1; i <= n; i++) { 
         for (int j = 1; j <= m; j++) { 
