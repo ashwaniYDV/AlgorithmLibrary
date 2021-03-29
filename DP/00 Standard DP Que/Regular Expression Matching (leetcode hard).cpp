@@ -5,10 +5,6 @@ class Solution {
 public:
     bool isMatch(string str, string pat) {
         int n = str.size(), m = pat.size();
-
-        // empty pattern can only match with empty string 
-        if (m == 0) return (n == 0); 
-        
         vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
 
         // empty pattern can match with empty string 
