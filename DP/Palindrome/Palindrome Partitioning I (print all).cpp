@@ -3,24 +3,25 @@
 class Solution {
 public:
     int n;
+    string s;
     vector<vector<string> > res;
     
-    bool isPalindrome(string s, int start, int end) {
+    bool isPalindrome(int start, int end) {
         while(start <= end) {
             if(s[start++] != s[end--]) return false;
         }
         return true;
     }
     
-    void fun(int pos, string s, vector<string> path) {
+    void fun(int pos, vector<string> path) {
         if(pos == n) {
             res.push_back(path);
             return;
         }
         for(int i = pos; i < n; ++i) {
-            if(isPalindrome(s, pos, i)) {
+            if(isPalindrome(pos, i)) {
                 path.push_back(s.substr(pos, i - pos + 1));
-                fun(i+1, s, path);
+                fun(i+1, path);
                 path.pop_back();
             }
         }
@@ -28,8 +29,9 @@ public:
     
     vector<vector<string>> partition(string s) {
         n = s.size();
+        this->s = s;
         vector<string> path;
-        fun(0, s, path);
+        fun(0, path);
         return res;
     }
 };
