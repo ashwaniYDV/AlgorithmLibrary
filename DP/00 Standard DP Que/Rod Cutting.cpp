@@ -2,6 +2,11 @@
 // https://www.geeksforgeeks.org/cutting-a-rod-dp-13/
 // https://practice.geeksforgeeks.org/problems/rod-cutting0840/1
 
+/*
+Given a rod of length n inches and an array of prices that contains prices of all pieces of size 1 to n. 
+Determine the maximum value obtainable by cutting up the rod and selling the pieces
+*/
+
 // Method 1
 int go(int pos, int n, int price[], vector<int>& dp) {
 	if(pos == n) return 0;
