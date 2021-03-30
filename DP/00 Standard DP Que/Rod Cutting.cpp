@@ -31,6 +31,7 @@ int cutRod(int price[], int n) {
 
 // Method 2
 int cutRod(int price[], int n) {
+    // dp[i] denotes the max value of rod length i, so answer = dp[n]
     vector<int> dp(n+1, 0);
     
     dp[0] = 0; // when no element is included
