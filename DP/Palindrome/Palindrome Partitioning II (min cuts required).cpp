@@ -53,7 +53,7 @@ public:
         int n = s.size();
         vector<int> dp(n+1, INT_MAX);
         
-        dp[0] = 0;
+        dp[0] = 0;  // dp[0] denotes empty string
         dp[1] = 1;
         
         for(int i = 2; i <= n; i++) {
