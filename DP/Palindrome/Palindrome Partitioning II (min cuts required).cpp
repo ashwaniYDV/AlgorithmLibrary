@@ -1,6 +1,7 @@
 // https://leetcode.com/problems/palindrome-partitioning-ii/
+// https://youtu.be/qmTtAbOTqcg
 
-// Method 1 (accepted)
+// Method 1 (O(n^3))  [can be made O(n^2) by precomputing isPalindrome using gap strategy as shown in the next method]
 class Solution {
 public:
     int n;
@@ -49,26 +50,44 @@ public:
 
 
 
-// Method 2 (TLE)
+// Method 2 (O(n^2))
 class Solution {
 public:
-    bool isPalindrome(int start, int end, string s) {
-        while(start <= end) {
-            if(s[start++] != s[end--]) return false;
+    vector<vector<bool>> isPalindrome;
+    
+    void precomputeIsPalindrome(string s) {
+        int n = s.size();
+        isPalindrome.resize(n, vector<bool>(n));
+        for(int gap = 0; gap < n; gap++) {
+            for(int i=0, j=gap;  j<n;  i++, j++) {
+                isPalindrome[i][j] = false;
+                if(gap == 0) {
+                    isPalindrome[i][j] = true;
+                } else if(gap == 1) {
+                    if(s[i] == s[j]) isPalindrome[i][j] = true;
+                    else isPalindrome[i][j] = false;
+                } else {
+                    if(s[i] == s[j] && isPalindrome[i + 1][j - 1]) {
+                        isPalindrome[i][j] = true;
+                    } else {
+                        isPalindrome[i][j] = false;
+                    }
+                }
+            }
         }
-        return true;
     }
     
     int minCut(string s) {
         int n = s.size();
+        precomputeIsPalindrome(s);
         vector<int> dp(n+1, INT_MAX);
         
-        dp[0] = 0;  // dp[0] denotes empty string
+        dp[0] = 0; // dp[0] denotes empty string
         dp[1] = 1;
         
         for(int i = 2; i <= n; i++) {
             for(int j = 0; j < i; j++) {
-                if(isPalindrome(j, i - 1, s)) {
+                if(isPalindrome[j][i - 1]) {
                     dp[i] = min(dp[i], dp[j] + 1);
                 }
             }
