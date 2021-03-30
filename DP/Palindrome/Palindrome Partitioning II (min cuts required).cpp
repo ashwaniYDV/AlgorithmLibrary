@@ -63,7 +63,7 @@ public:
                 }
             }
         }
-        
+        // no of cuts = no of palin strings - 1
         return dp[n] - 1;
     }
 };
