@@ -19,15 +19,14 @@ public:
                 } else if(gap == 2) {
                     dp[i][j] = values[i] * values[i+1] * values[i + 2];
                 } else {
-                    int mn = 1e9;
+                    dp[i][j] = 1e9;
                     for (int k = i+1; k <= j-1; k++) {
                         int curTriangle = values[i] * values[k] * values[j];
                         int left = dp[i][k];
                         int right = dp[k][j];
 
-                        mn = min(mn, curTriangle + left + right);
+                        dp[i][j] = min(dp[i][j], curTriangle + left + right);
                     }
-                    dp[i][j] = mn;
                 }
             }
         }
