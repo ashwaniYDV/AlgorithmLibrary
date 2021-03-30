@@ -33,6 +33,7 @@ public:
         n = s.size();
         this->s = s;
         vector<int> dp(n+1, -1);
+        // no of cuts = no of palin strings - 1
         return fun(0, dp) - 1;
     }
 };
