@@ -45,7 +45,7 @@ class Solution {
     public:
     
     static bool compare(vector<int>& a, vector<int>& b) {
-        return a[0]*a[1] > b[0]*b[1];
+        return a[0]*a[1] < b[0]*b[1];
     }
     
     int maxHeight(int height[],int width[],int length[],int n) {
@@ -67,7 +67,7 @@ class Solution {
         
         for(int i = 1; i < m; i++) {
             for(int j = 0; j < i; j++) {
-                if(arr[i][0] < arr[j][0] && arr[i][1] < arr[j][1]) {
+                if(arr[i][0] > arr[j][0] && arr[i][1] > arr[j][1]) {
                     dp[i] = max(dp[i], dp[j] + arr[i][2]);
                 }
             }
