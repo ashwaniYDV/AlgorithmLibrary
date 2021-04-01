@@ -1,12 +1,14 @@
 /*
-Queestion: n = 6
-Answer:
-1 -> 1;
-2 -> 1, 2
-3 -> 1, 3
-4 -> 1, 2, 4
-5 -> 1, 5
-6 -> 1, 2, 3, 6
+Input:
+6
+
+Output:
+Factors of 1 -> 1 
+Factors of 2 -> 1 2 
+Factors of 3 -> 1 3 
+Factors of 4 -> 1 2 4 
+Factors of 5 -> 1 5 
+Factors of 6 -> 1 2 3 6 
 */
 
 // O(n*log(n))
