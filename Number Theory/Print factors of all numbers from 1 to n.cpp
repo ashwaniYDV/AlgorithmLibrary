@@ -11,6 +11,11 @@ Factors of 5 -> 1 5
 Factors of 6 -> 1 2 3 6 
 */
 
+/*
+Important Property:
+For any number x, the total number of factors of x is of the order cuberoot(x)
+*/
+
 // O(n*log(n))
 void solve() {
     cin >> n;
