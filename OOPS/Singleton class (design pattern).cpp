@@ -55,6 +55,7 @@ int main() {
 // Note that constructor is called only once.
 /*
 Output:
+Private Constructor
 0
 100
 100
