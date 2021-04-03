@@ -45,3 +45,10 @@ int main(){
    cout << s->getData() << endl;
    return 0;
 }
+
+
+/*
+Output:
+0
+100
+*/
