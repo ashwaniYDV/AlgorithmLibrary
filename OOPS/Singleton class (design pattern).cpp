@@ -20,6 +20,7 @@ private:
    // Private constructor so that no objects can be created.
     Singleton() {
         data = 0;
+        cout << "Private Constructor\n";
     }
 
 public:
@@ -51,7 +52,7 @@ int main() {
    return 0;
 }
 
-
+// Note that constructor is called only once.
 /*
 Output:
 0
