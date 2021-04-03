@@ -1,5 +1,6 @@
 // https://www.tutorialspoint.com/Explain-Cplusplus-Singleton-design-pattern
 // sunny singleton class design pattern google doc
+// https://youtu.be/OlHJ-uhEoKM
 
 /*
 Singleton design pattern is a software design principle that is used to restrict the instantiation of a class to one object. 
