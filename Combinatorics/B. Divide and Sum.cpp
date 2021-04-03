@@ -1,5 +1,10 @@
 // https://codeforces.com/problemset/problem/1444/B
 
+/*
+Important Property:
+No matter how we split the array, the cost of a partition will always be the same.
+So answer = CostOfPartition * binomialCoefficient(2nCn)
+*/
 
 
 #include<bits/stdc++.h>
