@@ -1,5 +1,15 @@
 // https://leetcode.com/problems/shortest-bridge/
 
+/*
+The idea I used in this problem is that. (Note that there is exactly two group of islands).
+(1) I will traverse one group of island by DFS and mark this group from number 1 to number 2
+    So now the grid has one group of island with number 2 and the other group of island with number 1 and the rest of the grid is number 0.
+(2) Now I will do multisource BFS from all the grid[i][j] with value as 2.
+(3) Now the final answer will be minimum of all the distances of grid[i][j] with value 1.
+(4) So minimum number of flips required is (mn - 1).
+*/
+
+
 // Method 1
 class Solution {
 public:
@@ -76,6 +86,15 @@ public:
         return 0;
     }
 };
+
+
+
+
+
+
+
+
+
 
 
 
