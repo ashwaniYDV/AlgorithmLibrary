@@ -19,7 +19,7 @@ public:
     }
 };
 
-/*
+
 class Solution {
 public:
     int scoreOfParentheses(string s) {
@@ -38,4 +38,3 @@ public:
         return res;
     }
 };
-*/
