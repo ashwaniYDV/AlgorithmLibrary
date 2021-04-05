@@ -1,5 +1,15 @@
 // https://leetcode.com/problems/shortest-bridge/
 
+/*
+The idea I used in this problem is that. (Note that there is exactly two group of islands).
+(1) I will traverse one group of island by DFS and mark this group from number 1 to number 2
+    So now the grid has one group of island with number 2 and the other group of island with number 1 and the rest of the grid is number 0.
+(2) Now I will do 0-1 BFS from one of the number 2 grid [i][j].
+    Distance between any two adjacent 2-2 is 0, 2-1 is 1 and 2-0 is 1.
+(3) Now the final answer will be minimum of all the distances of grid value 1.
+(4) So minimum number of flips required is (mn - 1).
+*/
+
 class Solution {
 public:
     int n, m;
