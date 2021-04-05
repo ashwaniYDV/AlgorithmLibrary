@@ -61,13 +61,13 @@ public:
         return mn - 1;
     }
     
-    bool isSafe(int i, int j, vector<vector<int>>& A) {
+    bool isSafeDFS(int i, int j, vector<vector<int>>& A) {
         if(i < 0 || i >= n || j < 0 || j >= m || A[i][j] == 0 || A[i][j] == 2) 
             return false;
         return true;
     }
     void dfs(int i, int j, vector<vector<int>>& A) {
-        if (!isSafe(i, j, A)) {
+        if (!isSafeDFS(i, j, A)) {
             return;
         }
         
@@ -92,6 +92,12 @@ public:
         return 0;
     }
 };
+
+
+
+
+
+
 
 
 
@@ -142,16 +148,16 @@ public:
             }
         }
 
-        return 1;
+        return 0;
     }
     
-    bool isSafe(int i, int j, vector<vector<int>>& A) {
+    bool isSafeDFS(int i, int j, vector<vector<int>>& A) {
         if(i < 0 || i >= n || j < 0 || j >= m || A[i][j] == 0 || A[i][j] == 2) 
             return false;
         return true;
     }
     void dfs(int i, int j, vector<vector<int>>& A) {
-        if (!isSafe(i, j, A)) {
+        if (!isSafeDFS(i, j, A)) {
             return;
         }
         
