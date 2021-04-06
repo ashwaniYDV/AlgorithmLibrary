@@ -1,3 +1,10 @@
+// https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
+
+/*
+gcc -pthread main.c -o main
+./main
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
