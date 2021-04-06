@@ -61,6 +61,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
+    // for child process
     if (pid == 0) {
         x++;
     }
