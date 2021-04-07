@@ -8,12 +8,12 @@
 
 pthread_mutex_t mutex;
 
-void* routine_lock(void* arg) {
-    pthread_mutex_lock(&mutex);
-    printf("Got lock\n");
-    sleep(1);
-    pthread_mutex_unlock(&mutex);
-}
+// void* routine_lock(void* arg) {
+//     pthread_mutex_lock(&mutex);
+//     printf("Got lock\n");
+//     sleep(1);
+//     pthread_mutex_unlock(&mutex);
+// }
 
 void* routine_trylock(void* arg) {
     // If trylock == 0 that means it was not locked, so it locks itself  then enters the critical section
