@@ -1,6 +1,11 @@
 // https://youtu.be/oq29KUy29iQ
 
 /*
+NOTE:
+Race condition can only occur on a multi-core processor. (Nowadays, 99% CPU's out there are multi-core)
+*/
+
+/*
 int mails = 0;
 int lock = 0;
 
