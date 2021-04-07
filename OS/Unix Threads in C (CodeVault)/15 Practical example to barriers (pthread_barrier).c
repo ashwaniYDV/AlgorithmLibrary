@@ -11,10 +11,10 @@ Each thread prints a message with whether or not they won or lost.
 #include <string.h>
 #include <time.h>
 
-#define NUM_THREAD 8
+#define THREAD_NUM 8
 
-int dice_values[NUM_THREAD];
-int status[NUM_THREAD] = { 0 };
+int dice_values[THREAD_NUM];
+int status[THREAD_NUM] = { 0 };
 
 pthread_barrier_t barrierRolledDice;
 pthread_barrier_t barrierCalculated;
@@ -36,12 +36,12 @@ void* roll(void* args) {
 
 int main(int argc, char *argv[]) {
     srand(time(NULL));
-    pthread_t th[NUM_THREAD];
+    pthread_t th[THREAD_NUM];
     int i;
-    // NUM_THREAD + 1 means all the NUM_THREAD + main thread
-    pthread_barrier_init(&barrierRolledDice, NULL, NUM_THREAD + 1);
-    pthread_barrier_init(&barrierCalculated, NULL, NUM_THREAD + 1);
-    for (i = 0; i < NUM_THREAD; i++) {
+    // THREAD_NUM + 1 means all the THREAD_NUM + main thread
+    pthread_barrier_init(&barrierRolledDice, NULL, THREAD_NUM + 1);
+    pthread_barrier_init(&barrierCalculated, NULL, THREAD_NUM + 1);
+    for (i = 0; i < THREAD_NUM; i++) {
         int* a = malloc(sizeof(int));
         *a = i;
         if (pthread_create(&th[i], NULL, &roll, (void*) a) != 0) {
@@ -53,13 +53,13 @@ int main(int argc, char *argv[]) {
         pthread_barrier_wait(&barrierRolledDice);
         // Calculate winner
         int max = 0;
-        for (i = 0; i < NUM_THREAD; i++) {
+        for (i = 0; i < THREAD_NUM; i++) {
             if (dice_values[i] > max) {
                 max = dice_values[i];
             }
         }
 
-        for (i = 0; i < NUM_THREAD; i++) {
+        for (i = 0; i < THREAD_NUM; i++) {
             if (dice_values[i] == max) {
                 status[i] = 1;
             } else {
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
         pthread_barrier_wait(&barrierCalculated);
     }
 
-    for (i = 0; i < NUM_THREAD; i++) {
+    for (i = 0; i < THREAD_NUM; i++) {
         if (pthread_join(th[i], NULL) != 0) {
             perror("Failed to join thread");
         }
