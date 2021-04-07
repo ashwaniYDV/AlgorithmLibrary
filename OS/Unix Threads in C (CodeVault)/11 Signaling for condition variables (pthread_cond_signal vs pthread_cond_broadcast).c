@@ -1,3 +1,4 @@
+// 1 fuel tank and 5 cars
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,7 +81,7 @@ int main(int argc, char* argv[]) {
 
 
 
-
+// 2 fuel tank and 4 cars
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
