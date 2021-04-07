@@ -1,3 +1,15 @@
+/*
+The trick is with the pthread_cond_wait call, behind the scenes it actually does the following:
+pthread_mutex_unlock
+wait_for_signal
+pthread_mutex_lock
+
+i.e.
+pthread_mutex_unlock(&mutexFuel);
+wait for signal on condFuel
+pthread_mutex_lock(&mutexFuel);
+*/
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
