@@ -1,3 +1,22 @@
+// https://youtu.be/oq29KUy29iQ
+
+/*
+int mails = 0;
+int lock = 0;
+
+void* routine() {
+    for (int i = 0; i < 1000000; i++) {
+        if (lock == 1) {
+            // wait until the lock is 0
+        }
+        
+        lock = 1;
+        mails++; // read mails, increment, write mails
+        lock = 0;
+    }
+}
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
