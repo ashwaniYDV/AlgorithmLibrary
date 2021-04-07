@@ -1,0 +1,82 @@
+/*
+Every thread rolls a dice, saved its value in an array.
+The main thread calculates the winner then.
+Each thread prints a message with whether or not they won or lost. 
+*/
+
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <time.h>
+
+#define NUM_THREAD 8
+
+int dice_values[NUM_THREAD];
+int status[NUM_THREAD] = { 0 };
+
+pthread_barrier_t barrierRolledDice;
+pthread_barrier_t barrierCalculated;
+
+void* roll(void* args) {
+    int index = *(int*)args;
+    while (1) {
+        dice_values[index] = rand() % 6 + 1;
+        pthread_barrier_wait(&barrierRolledDice);
+        pthread_barrier_wait(&barrierCalculated);
+        if (status[index] == 1) {
+            printf("(%d rolled %d) I won\n", index, dice_values[index]);
+        } else {
+            printf("(%d rolled %d) I lost\n", index, dice_values[index]);
+        }
+    }
+    free(args);
+}
+
+int main(int argc, char *argv[]) {
+    srand(time(NULL));
+    pthread_t th[NUM_THREAD];
+    int i;
+    // NUM_THREAD + 1 means all the NUM_THREAD + main thread
+    pthread_barrier_init(&barrierRolledDice, NULL, NUM_THREAD + 1);
+    pthread_barrier_init(&barrierCalculated, NULL, NUM_THREAD + 1);
+    for (i = 0; i < NUM_THREAD; i++) {
+        int* a = malloc(sizeof(int));
+        *a = i;
+        if (pthread_create(&th[i], NULL, &roll, (void*) a) != 0) {
+            perror("Failed to create thread");
+        }
+    }
+
+    while (1) {
+        pthread_barrier_wait(&barrierRolledDice);
+        // Calculate winner
+        int max = 0;
+        for (i = 0; i < NUM_THREAD; i++) {
+            if (dice_values[i] > max) {
+                max = dice_values[i];
+            }
+        }
+
+        for (i = 0; i < NUM_THREAD; i++) {
+            if (dice_values[i] == max) {
+                status[i] = 1;
+            } else {
+                status[i] = 0;
+            }
+        }
+        sleep(1);
+        printf("==== New round starting ====\n");
+        pthread_barrier_wait(&barrierCalculated);
+    }
+
+    for (i = 0; i < NUM_THREAD; i++) {
+        if (pthread_join(th[i], NULL) != 0) {
+            perror("Failed to join thread");
+        }
+    }
+    pthread_barrier_destroy(&barrierRolledDice);
+    pthread_barrier_destroy(&barrierCalculated);
+    return 0;
+}
