@@ -1,3 +1,15 @@
+// https://www.geeksforgeeks.org/graph-coloring-set-2-greedy-algorithm/
+
+/*
+Graph coloring is widely used. Unfortunately, there is no efficient algorithm available 
+for coloring a graph with minimum number of colors as the problem is a known NP Complete problem. 
+
+There are approximate algorithms to solve the problem though. 
+Following is the basic Greedy Algorithm to assign colors. 
+It doesn’t guarantee to use minimum colors, but it guarantees an upper bound on the number of colors. 
+The basic algorithm never uses more than d+1 colors where d is the maximum degree of a vertex in the given graph.
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 
