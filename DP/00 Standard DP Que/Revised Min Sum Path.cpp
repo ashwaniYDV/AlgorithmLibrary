@@ -13,11 +13,17 @@ Depending on the row you choose to start with, cost of tile A[0] or B[0] is init
 then depending on the jumps made, the cost of each chosen tile is added. 
 There is one small problem though, if you jump from a tile in row A to a tile in row B, or vice-versa, 
 an additional cost of D is incurred for changing rows (i.e if you jump from A[i] to any element from B[1+1] to B[i+C] 
-or from B[i] to any element from A[1+1] to A[i-tC]). 
-If you make the jump in the same array, no extra cost will be incurred (i.e jumping from A[i] to any element from AP+1] to AD+C] 
-or from B[i] to any element iTOT 13[1.1] to B[i+C]). 
-Find the minimum cost needed to reach from the starting tiles to the ending tiles. NOTE: As the answer can be very Large, return your answer MOD 1n-7. 
-Problem Constraints 1 v N v 106 0 <= A[i] <-= 105 o <= <-= 106 1 v C 106 0<-=-D<=106 
+or from B[i] to any element from A[1+1] to A[i+C]). 
+If you make the jump in the same array, no extra cost will be incurred (i.e jumping from A[i] to any element from A[i+1] to A[i+C] 
+or from B[i] to any element iTOT B[i+1] to B[i+C]). 
+Find the minimum cost needed to reach from the starting tiles to the ending tiles. 
+NOTE: As the answer can be very Large, return your answer MOD 10^9+7. 
+Problem Constraints 
+1 <= N <= 10^6 
+0 <= A[i] <= 10^6 
+0 <= B[i] <= 10^6 
+1 <= C <= 10^6 
+0 <= D <= 10^6 
 
 */
 
