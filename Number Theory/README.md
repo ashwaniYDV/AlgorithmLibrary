@@ -66,7 +66,9 @@
    [Euler's totient function](https://cp-algorithms.com/algebra/phi-function.html) \
    [Number of divisors / sum of divisors](https://cp-algorithms.com/algebra/divisors.html)
    
-3) **Number of divisors** \
+3) **Number of divisors: d (N)** \
    If the prime factorization of n is p1^e1⋅p2^e2...pk^ek, (where pi are distinct prime numbers), \
    then the number of divisors is: \
    d(n) = (e1+1)⋅(e2+1)...(ek+1)
+4) **Sum of divisors: σ(n)**
+   σ(n) = [(p1^(e1+1) - 1) / (p1 - 1)]⋅[(p12(e2+1) - 1) / (p2 - 1)]...[(pk^(ek+1) - 1) / (pk - 1)]
