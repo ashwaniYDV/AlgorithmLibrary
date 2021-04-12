@@ -72,6 +72,6 @@
    then the number of divisors is: \
    d(n) = (e1+1)⋅(e2+1)...(ek+1)
 4) **Sum of divisors: σ(n)** \
-   σ(n) = [(p1^(e1+1) - 1) / (p1 - 1)]⋅[(p2(e2+1) - 1) / (p2 - 1)]...[(pk^(ek+1) - 1) / (pk - 1)]
+   σ(n) = [(p1^(e1+1) - 1) / (p1 - 1)]⋅[(p2(e2+1) - 1) / (p2 - 1)]...[(pk^(ek+1) - 1) / (pk - 1)] \
    Problems: \
    (a) https://codeforces.com/contest/1512/problem/G
