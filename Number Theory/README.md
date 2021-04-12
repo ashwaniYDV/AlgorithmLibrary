@@ -62,16 +62,20 @@
 1) Only perfect Squares have an odd number of factors.\
    For example, 9 has odd number of factors, 1, 3 and 9. 16 also has odd number of factors, 1, 2, 4, 8, 16. The reason for this is, for numbers other than perfect    squares, all factors are in the form of pairs, but for perfect squares, one factor is single and makes the total as odd.
 
-2) **Number-theoretic functions:** \
+## Number-theoretic functions (multiplicative functions)
+
+1) **Number-theoretic functions:** \
    [Euler's totient function](https://cp-algorithms.com/algebra/phi-function.html) \
    [Number of divisors / sum of divisors](https://cp-algorithms.com/algebra/divisors.html) \
+   A multiplicative function is a function f(x) which satisfies => f(a⋅b)=f(a)⋅f(b)
    Both d(n) and σ(n) are multiplicative functions.
    
-3) **Number of divisors: d (N)** \
+2) **Number of divisors: d (N)** \
    If the prime factorization of n = p1^e1⋅p2^e2...pk^ek, (where pi are distinct prime numbers), \
    then the number of divisors is: \
    d(n) = (e1+1)⋅(e2+1)...(ek+1)
-4) **Sum of divisors: σ(n)** \
+
+3) **Sum of divisors: σ(n)** \
    n = p1^e1⋅p2^e2...pk^ek \
    σ(n) = [1+p1+p1^2+P1^3+...+p1^e1]⋅[1+p2+p2^2+P2^3+...+p2^e2]...[1+pk+pk^2+Pk^3+...+pk^ek] \
    σ(n) = [(p1^(e1+1) - 1) / (p1 - 1)]⋅[(p2(e2+1) - 1) / (p2 - 1)]...[(pk^(ek+1) - 1) / (pk - 1)] \
