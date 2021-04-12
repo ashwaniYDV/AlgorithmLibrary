@@ -64,7 +64,8 @@
 
 2) **Number-theoretic functions:** \
    [Euler's totient function](https://cp-algorithms.com/algebra/phi-function.html) \
-   [Number of divisors / sum of divisors](https://cp-algorithms.com/algebra/divisors.html)
+   [Number of divisors / sum of divisors](https://cp-algorithms.com/algebra/divisors.html) \
+   Both d(n) and σ(n) are multiplicative functions.
    
 3) **Number of divisors: d (N)** \
    If the prime factorization of n is p1^e1⋅p2^e2...pk^ek, (where pi are distinct prime numbers), \
