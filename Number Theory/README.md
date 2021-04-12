@@ -62,4 +62,6 @@
 1) Only perfect Squares have an odd number of factors.\
    For example, 9 has odd number of factors, 1, 3 and 9. 16 also has odd number of factors, 1, 2, 4, 8, 16. The reason for this is, for numbers other than perfect    squares, all factors are in the form of pairs, but for perfect squares, one factor is single and makes the total as odd.
 
-
+2) Number-theoretic functions: \
+   [Euler's totient function](https://cp-algorithms.com/algebra/phi-function.html) \
+   [Number of divisors / sum of divisors](https://cp-algorithms.com/algebra/divisors.html)
