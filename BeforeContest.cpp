@@ -114,4 +114,23 @@ int nPrMod(int n, int r, int mod) {
 	int inv = modInverse(den, mod);
 	return (num * inv) % mod;
 }
+
+int spf[N+5];
+bool prime[N+5];
+void SieveAndSPF() {
+	memset(prime, true, sizeof(prime));
+	prime[0] = prime[1] = false;
+
+	// marking smallest prime factor for every number to be itself.
+	for (int i = 1; i < N; i++) spf[i] = i;
+	
+	for(int p=2; p*p<=N; p++) { 
+		if (prime[p] == true) {
+			for(int i=p*p;i<=N;i+=p) {
+				prime[i] = false; 
+				spf[i] = min(spf[i], p);
+			}
+		} 
+	}
+}
 /*------------------------------------------------------*/
