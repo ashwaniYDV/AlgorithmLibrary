@@ -80,4 +80,5 @@
    σ(n) = [1+p1+p1^2+P1^3+...+p1^e1]⋅[1+p2+p2^2+P2^3+...+p2^e2]...[1+pk+pk^2+Pk^3+...+pk^ek] \
    σ(n) = [(p1^(e1+1) - 1) / (p1 - 1)]⋅[(p2(e2+1) - 1) / (p2 - 1)]...[(pk^(ek+1) - 1) / (pk - 1)] \
    Problems: \
-   (a) https://codeforces.com/contest/1512/problem/G
+   (a) https://codeforces.com/contest/1512/problem/G \
+   (b) https://www.spoj.com/problems/COMDIV/
