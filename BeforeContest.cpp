@@ -21,16 +21,16 @@ __builtin_ctz(num)
 // O(n*log(log(n))) 
 bool prime[N+5]; 
 vector<int> primesVec;
-void SieveOfEratosthenes(ll n) {
+void SieveOfEratosthenes(int N) {
 	memset(prime, true, sizeof(prime));
 	prime[0] = prime[1] = false;
-	for(ll p=2; p*p<=n; p++) { 
+	for(int p = 2; p*p <= N; p++) { 
 		if (prime[p] == true) {
-			for(ll i=p*p;i<=n;i+=p) 
+			for(int i = p*p; i <= N; i+=p) 
 			prime[i] = false; 
 		} 
 	} 
-	for(ll p=2; p<=n; p++) {
+	for(int p=2; p <= N; p++) {
 		if (prime[p]) {
 			primesVec.push_back(p);
 		}
