@@ -61,6 +61,7 @@
 
 1) Only perfect Squares have an odd number of factors.\
    For example, 9 has odd number of factors, 1, 3 and 9. 16 also has odd number of factors, 1, 2, 4, 8, 16. The reason for this is, for numbers other than perfect    squares, all factors are in the form of pairs, but for perfect squares, one factor is single and makes the total as odd.
+2) Goldbach’s conjecture: Every even integer greater than 2 can be expressed as the sum of two primes.
 
 ## Number-theoretic functions (multiplicative functions)
 
