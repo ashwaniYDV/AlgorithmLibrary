@@ -1,5 +1,21 @@
 // https://codeforces.com/problemset/problem/855/B
 
+/*
+Create a dynamic programming table of size n·3. 
+In this, dp[i][0] stores maximum of value p·ax for x between 1 and i. 
+Similarly dp[i][1] stores the maximum value of p·ax + q·ay such that x ≤ y ≤ i 
+and dp[i][2] stores maximum value of p·ax + q·ay + r·az for x ≤ y ≤ z ≤ i.
+
+To calculate the dp:
+
+dp[i][0] = max(dp[i - 1][0], p·ai)
+
+dp[i][1] = max(dp[i - 1][1], dp[i][0] + q·ai)
+
+dp[i][2] = max(dp[i - 1][2], dp[i][1] + r·ai)
+
+The answer will be stored in dp[n][2]
+*/
 
  vi a, p;
 // int dp[100005][5];
