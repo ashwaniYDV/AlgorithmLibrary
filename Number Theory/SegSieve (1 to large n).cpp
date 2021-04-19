@@ -1,4 +1,9 @@
 // https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435a5b/000000000077a8e6
+// https://www.geeksforgeeks.org/segmented-sieve/
+
+/*
+Tested for n from 1 to 1e9 (it works)
+*/
 
 #include<bits/stdc++.h>
 using namespace std;
