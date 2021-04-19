@@ -1,5 +1,17 @@
 // https://www.geeksforgeeks.org/detecting-negative-cycle-using-floyd-warshall/
 
+/*
+We are given a directed graph. We need compute whether the graph has negative cycle or not. 
+A negative cycle is one in which the overall sum of the cycle comes negative.
+
+In this post, Floyd Warshall Algorithm based solution is discussed that works for both connected and disconnected graphs.
+
+Distance of any node from itself is always zero. 
+But in some cases, as in this example, when we traverse further from 4 to 1, the distance comes out to be -2, i.e. distance of 1 from 1 will become -2. 
+This is our catch, we just have to check the nodes distance from itself and if it comes out to be negative, 
+we will detect the required negative cycle.
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
