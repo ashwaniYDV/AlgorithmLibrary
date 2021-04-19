@@ -7,14 +7,7 @@ using namespace std;
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize ("unroll-loops")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
- 
-// #include <ext/pb_ds/assoc_container.hpp> 
-// #include <ext/pb_ds/tree_policy.hpp> 
-// using namespace __gnu_pbds;
-// typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
-// typedef tree<int,int,less<int>,rb_tree_tag,tree_order_statistics_node_update> ordered_map;
-// methods: find_by_order(k); & order_of_key(k); To make it an ordered_multiset, use pairs of (value, time_of_insertion) to distinguish values which are similar
- 
+
 typedef long long int ll;
 #define int long long int
 #define ld long double
@@ -51,91 +44,6 @@ int dy[] = {-1, 0, 1, 0, -1, 1, 1, -1};
 const int MAXN = 2e6+5;
 const int N = 1e5+5;
 int n, m;
- 
-/*------------------------------------------------------*/
-int binpow(int n, int p) {
-    int res = 1;
-    while (p > 0) {
-        if (p & 1) res = res * n;
-        n = n * n;
-        p >>= 1;
-    }
-    return res;
-}
-int power(int n, int p) {
-    int res = 1;
-    n %= MOD;
-    while (p > 0) {
-        if (p & 1) res = (res * n) % MOD;
-        n = (n * n) % MOD;
-        p >>= 1;
-    }
-    return res;
-}
-int modInverse(int n, int p) { 
-    return power(n, p - 2);
-} 
- 
-int fact[MAXN], inv[MAXN], invfact[MAXN];
-void initFactorials() {
-    fact[0] = 1;
-      for (int i = 1; i < MAXN; i++) {
-        fact[i] = (fact[i - 1] * i * 1LL) % MOD;
-    }
-
-    //calculate inverses of [1,N] mod p
-	inv[1]=1;
-	for(int i=2;i<MAXN;i++)inv[i]=inv[MOD%i]*(MOD-MOD/i)%MOD;
- 
-	invfact[0]=1;
-	for(int i=1;i<MAXN;i++)invfact[i]=(invfact[i-1]*inv[i])%MOD;
-}
- 
-int nCrMod(int n, int r) {
-    if (n < r) return 0;
-    if (r == 0) return 1;
-    int num = fact[n], den = (fact[r] * fact[n-r]) % MOD;
-    int inv = modInverse(den, MOD);
-    return (num * inv) % MOD;
-}
-
-// bool prime[N+5]; 
-// vector<int> primesVec;
-// void SieveOfEratosthenes(int N) {
-// 	memset(prime, true, sizeof(prime));
-// 	prime[0] = prime[1] = false;
-// 	for(int p = 2; p*p <= N; p++) { 
-// 		if (prime[p] == true) {
-// 			for(int i = p*p; i <= N; i+=p) 
-// 			prime[i] = false; 
-// 		} 
-// 	} 
-// 	for(int p=2; p <= N; p++) {
-// 		if (prime[p]) {
-// 			primesVec.push_back(p);
-// 		}
-// 	}
-// }
-
-// int spf[N+5];
-// bool prime[N+5];
-// void SieveAndSPF() {
-// 	memset(prime, true, sizeof(prime));
-// 	prime[0] = prime[1] = false;
-
-// 	// marking smallest prime factor for every number to be itself.
-// 	for (int i = 1; i < N; i++) spf[i] = i;
-	
-// 	for(int p=2; p*p<=N; p++) { 
-// 		if (prime[p] == true) {
-// 			for(int i=p*p;i<=N;i+=p) {
-// 				prime[i] = false; 
-// 				spf[i] = min(spf[i], p);
-// 			}
-// 		} 
-// 	}
-// }
-/*------------------------------------------------------*/
 
 vector<int> prGlobal;
 
