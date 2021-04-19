@@ -2,7 +2,7 @@
 // https://www.geeksforgeeks.org/segmented-sieve/
 
 /*
-Tested for n from 1 to 1e9 (it works)
+Tested for finding primes from 1 to 1e9
 */
 
 #include<bits/stdc++.h>
