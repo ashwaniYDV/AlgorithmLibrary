@@ -12,7 +12,14 @@ using namespace std;
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize ("unroll-loops")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
-
+ 
+// #include <ext/pb_ds/assoc_container.hpp> 
+// #include <ext/pb_ds/tree_policy.hpp> 
+// using namespace __gnu_pbds;
+// typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+// typedef tree<int,int,less<int>,rb_tree_tag,tree_order_statistics_node_update> ordered_map;
+// methods: find_by_order(k); & order_of_key(k); To make it an ordered_multiset, use pairs of (value, time_of_insertion) to distinguish values which are similar
+ 
 typedef long long int ll;
 #define int long long int
 #define ld long double
@@ -149,7 +156,8 @@ void segmentedSieve(int n) {
 
 vector<int> pref;
 void precalc() {
-	int n = 1000000531;
+	// int n = 1000000531;
+	int n = 1000000009+1;
 	segmentedSieve(n);
 	for(int i = 0; i < prGlobal.size() - 1; i++) {
 		pref.push_back(prGlobal[i] * prGlobal[i+1]);
