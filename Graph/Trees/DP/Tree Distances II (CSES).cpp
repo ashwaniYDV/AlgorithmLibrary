@@ -128,7 +128,6 @@ signed main() {
 
 
 // Method 2 (kartik arora)
-
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
