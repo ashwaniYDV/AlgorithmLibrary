@@ -31,21 +31,30 @@ public:
     }
     
     int getKthAncestor(int node, int k) {
-        while(k) {
-            int i = log2(k);
-            node = LCA[node][i];
-            if(node == -1) return -1;
-            k -= (1 << i);
+        // method 1
+        // while(k) {
+        //     int i = log2(k);
+        //     node = LCA[node][i];
+        //     if(node == -1) return -1;
+        //     k -= (1 << i);
+        // }
+        
+        // method 2
+        for(int i = 0; i < 20; i++) {
+            if(k & (1 << i)) {
+                node = LCA[node][i];
+                if(node == -1) return -1;
+            }
         }
         
-        // // method 2
-        // for(int i = 0; i < 20; i++) {
+        // method 3
+        // for(int i = 20-1; i >= 0; i--) {
         //     if(k & (1 << i)) {
         //         node = LCA[node][i];
         //         if(node == -1) return -1;
         //     }
         // }
-
+        
         return node;
     }
 };
