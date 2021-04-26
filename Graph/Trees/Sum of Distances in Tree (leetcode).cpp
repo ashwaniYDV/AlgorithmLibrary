@@ -1,5 +1,11 @@
 // https://leetcode.com/problems/sum-of-distances-in-tree/
 
+/*
+Find sum of distances from one node to all the other nodes for all the nodes 1...n
+and return an array as answer where asn[i] = sum of distances from node i to all the other nodes 
+*/
+
+
 class Solution {
 public:
     int n;
