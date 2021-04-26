@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/kth-ancestor-of-a-tree-node/
+
 /*
 sparse table(LCA array) and binary lifting
 log2(5*1e4) = 15.609 === 20
