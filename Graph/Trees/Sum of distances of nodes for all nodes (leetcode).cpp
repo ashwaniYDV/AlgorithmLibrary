@@ -23,7 +23,8 @@ public:
     void getRes(int u, int par, vector<int>& subtreeSize, vector<vector<int>>& g, vector<int>& res) {
         for(int v: g[u]) {
             if(v == par) continue;
-            res[v] = res[u] + n - 2 * subtreeSize[v];
+            res[v] = res[u] + (n - subtreeSize[v]) - subtreeSize[v];
+            // res[v] = res[u] + n - 2 * subtreeSize[v];
             getRes(v, u, subtreeSize, g, res);
         }
     }
