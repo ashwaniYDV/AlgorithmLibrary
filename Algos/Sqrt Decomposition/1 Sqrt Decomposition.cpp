@@ -32,20 +32,20 @@ void pointUpdate(int idx, int oldValue, int newValue) {
 
 void query(int l, int r) {
     int sum = 0;
-    int c_l = l / len,  c_r = r / len;
+    int leftBlock = l / len,  rightBlock = r / len;
 
-    if (c_l == c_r) {
+    if (leftBlock == rightBlock) {
         for (int i=l; i<=r; ++i) {
             sum += a[i];
         }
     } else {
-        for (int i=l; i <= (c_l+1)*len-1; ++i) {
+        for (int i=l; i <= (leftBlock+1)*len-1; ++i) {
             sum += a[i];
         }
-        for (int i=c_l+1; i<=c_r-1; ++i) {
+        for (int i=leftBlock+1; i<=rightBlock-1; ++i) {
             sum += b[i];
         }
-        for (int i=c_r*len; i<=r; ++i) {
+        for (int i=rightBlock*len; i<=r; ++i) {
             sum += a[i];
         }
     }
@@ -137,20 +137,20 @@ void pointUpdate(int idx) {
 
 void query(int l, int r) {
     int mn = INT_MAX;
-    int c_l = l / len,  c_r = r / len;
+    int leftBlock = l / len,  rightBlock = r / len;
 
-    if (c_l == c_r) {
+    if (leftBlock == rightBlock) {
         for (int i=l; i<=r; ++i) {
             mn = min(mn, a[i]);
         }
     } else {
-        for (int i=l; i <= (c_l+1)*len-1; ++i) {
+        for (int i=l; i <= (leftBlock+1)*len-1; ++i) {
             mn = min(mn, a[i]);
         }
-        for (int i=c_l+1; i<=c_r-1; ++i) {
+        for (int i=leftBlock+1; i<=rightBlock-1; ++i) {
             mn = min(mn, b[i]);
         }
-        for (int i=c_r*len; i<=r; ++i) {
+        for (int i=rightBlock*len; i<=r; ++i) {
             mn = min(mn, a[i]);
         }
     }
