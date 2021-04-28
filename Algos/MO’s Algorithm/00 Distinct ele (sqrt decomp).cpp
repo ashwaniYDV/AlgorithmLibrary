@@ -7,7 +7,14 @@ using namespace std;
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize ("unroll-loops")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
-
+ 
+// #include <ext/pb_ds/assoc_container.hpp> 
+// #include <ext/pb_ds/tree_policy.hpp> 
+// using namespace __gnu_pbds;
+// typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+// typedef tree<int,int,less<int>,rb_tree_tag,tree_order_statistics_node_update> ordered_map;
+// methods: find_by_order(k); & order_of_key(k); To make it an ordered_multiset, use pairs of (value, time_of_insertion) to distinguish values which are similar
+ 
 typedef long long int ll;
 #define int long long int
 #define ld long double
@@ -80,13 +87,13 @@ bool compare(query a, query b) {
 void add(int pos) {
 	freq[ar[pos]]++;
 	if(freq[ar[pos]] == 1)
-	cnt++;
+		cnt++;
 }
  
 void remove(int pos) {
 	freq[ar[pos]]--;
 	if(freq[ar[pos]] == 0)
-	cnt--;
+		cnt--;
 }
 
  
@@ -95,7 +102,7 @@ void solve() {
 	cin >> n;
 	f(i, n) cin >> ar[i];
 	cin >> q;
-	f(i, q){
+	f(i, q) {
 		cin >> Q[i].l >> Q[i].r;
 		Q[i].i = i;
 		Q[i].l--, Q[i].r--;
@@ -103,26 +110,26 @@ void solve() {
 	sort(Q, Q + q, compare);
 
 	int ML = 0 , MR = -1;
-	f(i, q){
+	f(i, q) {
 		int L = Q[i].l;
 		int R = Q[i].r;
  		
  		// Its always suggested to use in this method : R A A R 
 
  		// contraction
-		while(ML < L){
+		while(ML < L) {
 			remove(ML) , ML++;
 		}
  		// expansion
-		while(ML > L){
+		while(ML > L) {
 			ML-- , add(ML);
 		}
 		// expansion
-		while(MR < R){
+		while(MR < R) {
 			MR++ , add(MR);
 		}
  		// contraction
-		while(MR > R){
+		while(MR > R) {
 			remove(MR) , MR--;
 		}
  
