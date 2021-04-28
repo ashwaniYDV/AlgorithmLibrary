@@ -1,6 +1,18 @@
 // https://cses.fi/problemset/task/2079/
 // https://youtu.be/0DJwKePjweQ
 
+/*
+Centroid of a Tree is a node which if removed from the tree would split it into a 'forest', 
+such that any tree in the forest would have at most half the number of vertices in the original tree. 
+
+NOTE: 
+1) A tree may have one centroid or may have two centroids (at most 2 centroids). 
+If it has two centroids, they are always connected (otherwise, the tree can't have n vertices).
+
+2) In a tree only two Centroid possible (from Jordan Theorem). 
+If there are two centroids you can take any cause those two centroids will look like the same.
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
