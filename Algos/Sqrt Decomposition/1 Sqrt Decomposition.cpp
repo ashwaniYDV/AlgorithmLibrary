@@ -144,10 +144,10 @@ void query(int l, int r) {
             mn = min(mn, a[i]);
         }
     } else {
-        for (int i=l; i <= (LB+1)*BLK-1; ++i) {
+        for (int i=l; i < (LB+1)*BLK; ++i) {
             mn = min(mn, a[i]);
         }
-        for (int i=LB+1; i<=RB-1; ++i) {
+        for (int i=LB+1; i<RB; ++i) {
             mn = min(mn, b[i]);
         }
         for (int i=RB*BLK; i<=r; ++i) {
