@@ -39,7 +39,7 @@ void query(int l, int r) {
             sum += a[i];
         }
     } else {
-        for (int i=l, end=(c_l+1)*len-1; i<=end; ++i) {
+        for (int i=l; i <= (c_l+1)*len-1; ++i) {
             sum += a[i];
         }
         for (int i=c_l+1; i<=c_r-1; ++i) {
@@ -144,7 +144,7 @@ void query(int l, int r) {
             mn = min(mn, a[i]);
         }
     } else {
-        for (int i=l, end=(c_l+1)*len-1; i<=end; ++i) {
+        for (int i=l; i <= (c_l+1)*len-1; ++i) {
             mn = min(mn, a[i]);
         }
         for (int i=c_l+1; i<=c_r-1; ++i) {
