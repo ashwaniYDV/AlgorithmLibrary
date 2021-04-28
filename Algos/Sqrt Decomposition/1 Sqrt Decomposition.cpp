@@ -13,39 +13,39 @@ using namespace std;
 
 const int N = 1e5;
 int a[N];
-int n, len;
+int n, BLK;
 vector<int> b;
 
 // preprocessing
 void Sqrt_Decomposition() {
-    len = (int) sqrt (n + .0) + 1; // size of the block and the number of blocks
-    b.resize(len);
+    BLK = (int) sqrt (n + .0) + 1; // size of the block and the number of blocks
+    b.resize(BLK);
 
     for (int i=0; i<n; ++i) {
-        b[i / len] += a[i];
+        b[i / BLK] += a[i];
     }
 }
 
 void pointUpdate(int idx, int oldValue, int newValue) {
-    b[idx / len] += (newValue - oldValue);
+    b[idx / BLK] += (newValue - oldValue);
 }
 
 void query(int l, int r) {
     int sum = 0;
-    int leftBlock = l / len,  rightBlock = r / len;
+    int LB = l / BLK,  RB = r / BLK;
 
-    if (leftBlock == rightBlock) {
+    if (LB == RB) {
         for (int i=l; i<=r; ++i) {
             sum += a[i];
         }
     } else {
-        for (int i=l; i <= (leftBlock+1)*len-1; ++i) {
+        for (int i=l; i <= (LB+1)*BLK-1; ++i) {
             sum += a[i];
         }
-        for (int i=leftBlock+1; i<=rightBlock-1; ++i) {
+        for (int i=LB+1; i<=RB-1; ++i) {
             sum += b[i];
         }
-        for (int i=rightBlock*len; i<=r; ++i) {
+        for (int i=RB*BLK; i<=r; ++i) {
             sum += a[i];
         }
     }
@@ -118,39 +118,39 @@ using namespace std;
 
 const int N = 1e5;
 int a[N];
-int n, len;
+int n, BLK;
 vector<int> b;
 
 // preprocessing
 void Sqrt_Decomposition() {
-    len = (int) sqrt (n + .0) + 1; // size of the block and the number of blocks
-    b.resize(len, INT_MAX);
+    BLK = (int) sqrt (n + .0) + 1; // size of the block and the number of blocks
+    b.resize(BLK, INT_MAX);
 
     for (int i=0; i<n; ++i) {
-        b[i / len] = min(b[i / len], a[i]);
+        b[i / BLK] = min(b[i / BLK], a[i]);
     }
 }
 
 void pointUpdate(int idx) {
-    b[idx / len] = min (b[idx / len], a[idx]);
+    b[idx / BLK] = min (b[idx / BLK], a[idx]);
 }
 
 void query(int l, int r) {
     int mn = INT_MAX;
-    int leftBlock = l / len,  rightBlock = r / len;
+    int LB = l / BLK,  RB = r / BLK;
 
-    if (leftBlock == rightBlock) {
+    if (LB == RB) {
         for (int i=l; i<=r; ++i) {
             mn = min(mn, a[i]);
         }
     } else {
-        for (int i=l; i <= (leftBlock+1)*len-1; ++i) {
+        for (int i=l; i <= (LB+1)*BLK-1; ++i) {
             mn = min(mn, a[i]);
         }
-        for (int i=leftBlock+1; i<=rightBlock-1; ++i) {
+        for (int i=LB+1; i<=RB-1; ++i) {
             mn = min(mn, b[i]);
         }
-        for (int i=rightBlock*len; i<=r; ++i) {
+        for (int i=RB*BLK; i<=r; ++i) {
             mn = min(mn, a[i]);
         }
     }
