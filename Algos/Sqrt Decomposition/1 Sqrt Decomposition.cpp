@@ -26,6 +26,10 @@ void Sqrt_Decomposition() {
     }
 }
 
+void pointUpdate(int idx, int oldValue, int newValue) {
+    b[idx / len] += (newValue - oldValue);
+}
+
 void query(int l, int r) {
     int sum = 0;
     int c_l = l / len,  c_r = r / len;
@@ -45,7 +49,7 @@ void query(int l, int r) {
             sum += a[i];
         }
     }
-    
+
     cout << sum << endl;
 }
 
@@ -55,11 +59,38 @@ int main() {
 
     Sqrt_Decomposition();
 
-    int q, l, r;
+    int q, l, r, type, idx, oldValue, newValue;
     cin >> q;
     while (q--) {
-        cin >> l >> r;
-        query(l, r);
+        cin >> type;
+        if (type == 0) {
+            cin >> l >> r;
+            query(l, r);
+        } else {
+            cin >> idx >> newValue;
+            oldValue = a[idx];
+            a[idx] = newValue;
+            pointUpdate(idx, oldValue, newValue);
+        }
     }
     return 0;
 }
+
+
+
+/*
+10
+1 2 3 4 5 6 7 8 9 10
+5
+0 0 3
+1 0 5
+0 0 4
+1 1 4
+0 2 6
+
+
+
+10
+19
+25
+*/
