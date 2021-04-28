@@ -88,6 +88,15 @@ int main() {
 
 
 
+
+
+
+
+
+
+
+
+
 // Range minimum and point update
 #include<bits/stdc++.h>
 using namespace std;
