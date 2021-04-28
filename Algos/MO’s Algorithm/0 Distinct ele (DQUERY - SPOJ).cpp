@@ -1,6 +1,13 @@
 // https://blog.anudeep2011.com/mos-algorithm/
 // https://www.spoj.com/problems/DQUERY/
 
+/*
+note: Why ML=0 and MR=-1 ?
+It is because the lets say u have a query 0,0  so the left pointer will be as it is and the right pointer will shift one step rightwards, 
+so when right pointer moves right --> then it is actually expansion which means addition of that element into our set
+because 0,0 involves the 0th index and we need the info of that index .
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
