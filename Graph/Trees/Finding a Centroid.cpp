@@ -47,39 +47,39 @@ const int MAXN = 1e4+5;
 const int N = 2e5+5;
 int n, m;
 
-vector<int> g[N];
+vector < int > g[N];
 int subtreeSize[N];
 
 void getSubtreeSize(int u, int par) {
-	subtreeSize[u] = 1;
-    for(int v: g[u]) {
-        if(v == par) continue;
+    subtreeSize[u] = 1;
+    for (int v: g[u]) {
+        if (v == par) continue;
         getSubtreeSize(v, u);
         subtreeSize[u] += subtreeSize[v];
     }
 }
 
 int centroid(int u, int par) {
-    for(int v: g[u]) {
-        if(v != par && subtreeSize[v] > (n/2)) return centroid(v, u);
+    for (int v: g[u]) {
+        if (v != par && subtreeSize[v] > (n / 2)) return centroid(v, u);
     }
     return u;
 }
 
 void solve() {
-	int u, v;
-	cin >> n;
-	f(i, n-1) cin >> u >> v, g[u].pb(v), g[v].pb(u);
+    int u, v;
+    cin >> n;
+    f(i, n - 1) cin >> u >> v, g[u].pb(v), g[v].pb(u);
 
-	getSubtreeSize(1, -1);
+    getSubtreeSize(1, -1);
     cout << centroid(1, -1) << endl;
 }
- 
+
 signed main() {
-	IOS
-	int t = 1;
-	// cin >> t;
-	while(t--) {
-		solve();
-	}
-} 
+    IOS
+    int t = 1;
+    // cin >> t;
+    while (t--) {
+        solve();
+    }
+}
