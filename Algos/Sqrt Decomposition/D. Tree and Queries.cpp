@@ -78,6 +78,7 @@ int ans[N];
 int timer = 1;
  
 int getBlock(int idx) {
+	// using 1 based index otherwise, return idx / BLK;
 	return (idx + BLK - 1) / BLK;
 }
  
