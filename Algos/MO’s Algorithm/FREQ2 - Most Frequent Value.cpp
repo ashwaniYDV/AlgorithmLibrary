@@ -1,4 +1,5 @@
 // https://www.spoj.com/problems/FREQ2/
+// https://youtu.be/JrHInjwFXrI
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -95,10 +96,8 @@ void remove(int pos) {
 	freqOfFreq[prevFreq]--;
 	freqOfFreq[curFreq]++;
 
-	if (curFreq < maxFreq) {
-		while(freqOfFreq[maxFreq] == 0) {
-			maxFreq--;
-		}
+	while(freqOfFreq[maxFreq] == 0) {
+		maxFreq--;
 	}
 }
 
