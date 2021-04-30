@@ -1,3 +1,6 @@
+// https://youtu.be/gGhQRhVbu2E
+// https://codeforces.com/problemset/problem/375/D
+
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
