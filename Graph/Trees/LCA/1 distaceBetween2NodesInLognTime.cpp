@@ -31,7 +31,7 @@ typedef long long int ll;
 #define MOD 1000000007
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
-typedef vector<int>	vi;
+typedef vector<int> vi;
 typedef vector<ll> vl;
 typedef long double ld;
 typedef vector<vector<ll>> matrix;
@@ -49,82 +49,82 @@ ll height=(ll)ceil(log2(N));
 ll LCA[N][(ll)ceil(log2(N))+1];
 
 void dfs(ll u, ll lvl, ll par) {
-	level[u] = lvl;
-	LCA[u][0] = par;
+    level[u] = lvl;
+    LCA[u][0] = par;
 
-	for(auto v: g[u]) {
-		if(v != par) {
-			dfs(v, lvl + 1, u);
-		}
-	}
+    for(auto v: g[u]) {
+        if(v != par) {
+            dfs(v, lvl + 1, u);
+        }
+    }
 }
 
 void init() {
-	// initializing parent and level of each node
-	dfs(1, 0, -1);
+    // initializing parent and level of each node
+    dfs(1, 0, -1);
 
-	for(ll i = 1; i <= height; i++) {
-		for(ll node = 1; node <= n; node++) {
-			if(LCA[node][i-1] != -1) {
-				ll parNode = LCA[node][i - 1];
-				LCA[node][i] = LCA[parNode][i - 1];
-			}else{
-				LCA[node][i] = -1;
-			}
-		}
-	}
+    for(ll i = 1; i <= height; i++) {
+        for(ll node = 1; node <= n; node++) {
+            if(LCA[node][i-1] != -1) {
+                ll parNode = LCA[node][i - 1];
+                LCA[node][i] = LCA[parNode][i - 1];
+            }else{
+                LCA[node][i] = -1;
+            }
+        }
+    }
 }
 
 ll getLCA(ll a, ll b) {
-	if(level[b] < level[a]) swap(a, b);
+    if(level[b] < level[a]) swap(a, b);
 
-	ll d = level[b] - level[a];
+    ll d = level[b] - level[a];
 
-	// method 1
-	// for(ll i = 18; i >= 0; i--){
-	// 	if(d & (1<<i)) b = LCA[b][i];
-	// }
+    // method 1
+    // for(ll i = height; i >= 0; i--){
+    //     if(d & (1<<i)) b = LCA[b][i];
+    // }
 
-	// method 2
-	while(d) {
-		ll i = log2(d);
-		b = LCA[b][i];
-		d -= (1 << i);
-	}
+    // method 2
+    while(d) {
+        ll i = log2(d);
+        b = LCA[b][i];
+        d -= (1 << i);
+    }
 
-	if(a == b) return a;
+    if(a == b) return a;
 
-	for(ll i = height; i >= 0; i--){
-		if(LCA[a][i] != LCA[b][i]){
-			a = LCA[a][i];
-			b = LCA[b][i];
-		}
-	}
-	// parent of a or b
-	return LCA[a][0];
+    for(ll i = height; i >= 0; i--){
+        if(LCA[a][i] != LCA[b][i]){
+            a = LCA[a][i];
+            b = LCA[b][i];
+        }
+    }
+    // parent of a or b
+    return LCA[a][0];
 }
 
 ll getDistance(ll a, ll b) {
-	ll lca = getLCA(a, b);
-	return (level[a] + level[b] - 2 * level[lca]);
+    ll lca = getLCA(a, b);
+    return (level[a] + level[b] - 2 * level[lca]);
 }
  
 void solve() {
-	ll u, v;
-	cin >> n;
-	f(i, n-1) cin >> u >> v, g[u].pb(v), g[v].pb(u);
+    ll u, v;
+    cin >> n;
+    f(i, n-1) cin >> u >> v, g[u].pb(v), g[v].pb(u);
 
-	init();
-	cout << getLCA(7, 4) << endl;
-	cout << getDistance(7, 4) << endl;
+    init();
+    cout << getLCA(7, 4) << endl;
+    cout << getDistance(7, 4) << endl;
 
 }
  
 int32_t main() {
-	IOS
-	solve();
-	cerr<<"Time elapsed : "<<clock()*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n'; 
-	return 0;
+    IOS
+    solve();
+    cerr<<"Time elapsed : "<<clock()*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n'; 
+    return 0;
 }
 
 /*
