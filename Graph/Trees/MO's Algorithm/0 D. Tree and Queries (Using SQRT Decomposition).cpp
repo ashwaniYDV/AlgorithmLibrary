@@ -1,6 +1,10 @@
 // https://youtu.be/gGhQRhVbu2E
 // https://codeforces.com/problemset/problem/375/D
 
+/*
+Subtree query question
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
