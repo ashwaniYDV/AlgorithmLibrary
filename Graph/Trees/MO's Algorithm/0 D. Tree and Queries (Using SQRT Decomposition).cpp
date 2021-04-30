@@ -76,8 +76,8 @@ vector<int> g[N];
  
 // strt time, terminating time, flat tree, color
 int S[N], T[N], FT[2*N], col[N];
-// node freq, ele freq (freq of color), freq of freq, sqrtDecomp Array
-int nodeF[N], eleF[N], FF[N], sqrtDecomp[N];
+// node freq, color freq, freq of freq, sqrtDecomp Array
+int nodeF[N], colorF[N], FF[N], sqrtDecomp[N];
 int ans[N];
 int timer = 1;
  
@@ -107,13 +107,13 @@ void add(int idx) {
 	nodeF[node]++;
 	
 	if(nodeF[node] == 2) {
-		FF[eleF[c]]--;
-		sqrtDecomp[getBlock(eleF[c])]--;
+		FF[colorF[c]]--;
+		sqrtDecomp[getBlock(colorF[c])]--;
  
-		eleF[c]++;
+		colorF[c]++;
  
-		FF[eleF[c]]++;
-		sqrtDecomp[getBlock(eleF[c])]++;
+		FF[colorF[c]]++;
+		sqrtDecomp[getBlock(colorF[c])]++;
 	}
 	
 }
@@ -124,13 +124,13 @@ void remove(int idx) {
 	nodeF[node]--;
 	
 	if(nodeF[node] == 1) {
-		FF[eleF[c]]--;
-		sqrtDecomp[getBlock(eleF[c])]--;
+		FF[colorF[c]]--;
+		sqrtDecomp[getBlock(colorF[c])]--;
  
-		eleF[c]--;
+		colorF[c]--;
 		
-		FF[eleF[c]]++;
-		sqrtDecomp[getBlock(eleF[c])]++;
+		FF[colorF[c]]++;
+		sqrtDecomp[getBlock(colorF[c])]++;
 	}
 	
 }
