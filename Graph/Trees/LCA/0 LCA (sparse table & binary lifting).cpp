@@ -43,11 +43,13 @@ ll n, m;
  
 ll level[N];
 
-// (Sparse Table) or LCA[i][j] represents 2^(j)th parent of node i
-ll LCA[N][(ll)ceil(log2(N))+1];
-
 // height is not the height of tree but log2(N) of nodes
-ll height=(ll)ceil(log2(N));
+// ll height=(ll)ceil(log2(N));
+// (Sparse Table) or LCA[i][j] represents 2^(j)th parent of node i
+// ll LCA[N][(ll)ceil(log2(N))+1];
+
+const ll height = 21;
+ll LCA[N][height+5];
 
 void dfs(ll u, ll lvl, ll par) {
     level[u] = lvl;
@@ -86,7 +88,7 @@ ll getLCA(ll a, ll b) {
     ll d = level[b] - level[a];
 
     // method 1
-    // for(ll i = 18; i >= 0; i--){
+    // for(ll i = height; i >= 0; i--){
     //  if(d & (1<<i)) b = LCA[b][i];
     // }
 
