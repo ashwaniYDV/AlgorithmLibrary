@@ -1,3 +1,6 @@
+## Quick points
+BIT works by increment and decrement using update(pos, +delta) or update(pos, -delta).
+
 ## Resources
 
 CF Blog: https://codeforces.com/blog/entry/61364
