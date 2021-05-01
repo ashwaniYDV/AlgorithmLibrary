@@ -194,11 +194,13 @@ void solve() {
 
 		int lca = getLCA(a , b);
 
-		//first type of query
+		// first type of query (LCA = a is already included from source to destination node)
 		if(a == lca) {
 			Q[i].l = S[a], Q[i].r = S[b], Q[i].lca = -1;
 		}
-		//second type of query
+		// second type of query 
+		// the path from a to b goes through 2 branches of LCA but LCA is not included from source to destination in flatenned tree
+		// therefore explicitly adding LCA to the path
 		else {
 			Q[i].l = T[a], Q[i].r = S[b], Q[i].lca = lca;
 		}
