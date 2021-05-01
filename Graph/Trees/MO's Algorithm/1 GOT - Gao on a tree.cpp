@@ -1,6 +1,10 @@
 // https://www.spoj.com/problems/GOT/
 // https://youtu.be/Psfxu9E6jtw
 
+/*
+Path query question
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
@@ -185,6 +189,7 @@ void solve() {
 	for(int i=1; i <= q; i++) {
 		cin >> a >> b >> c;
 		
+		// since we are assuming a to be source node and b to be destination node
 		if(S[a] > S[b]) swap(a , b);
 
 		int lca = getLCA(a , b);
