@@ -49,7 +49,7 @@ void solve() {
 
 
 
-const int N = 1e5+5;
+const int N = 1e5 + 5;
 int n, m;
 int BIT[N], a[N];
 
@@ -81,7 +81,7 @@ void solve() {
 
     f(i, n) {
         cin >> a[i];
-        x = query(a[i] - 1);
+        x = query(a[i]);
         update(a[i], x + 1);
         LIS = max(LIS, x + 1);
     }
