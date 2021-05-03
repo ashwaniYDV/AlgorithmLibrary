@@ -1,4 +1,5 @@
 // https://www.geeksforgeeks.org/longest-increasing-subsequence-using-bit/
+// https://leetcode.com/problems/longest-increasing-subsequence/
 
 /*
 Approach:  
@@ -11,84 +12,79 @@ Approach:
    Let this value be x. If x + 1 is greater than the current element in BIT, update the BIT.
 */
 
-// Method 1
-#include <bits/stdc++.h>
-using namespace std;
+// Method 1 (GFG)
+class Solution {
+public:
+    int n;
+    
+    // Function to map numbers using coordinate compression
+    void coordinateCompression(vector<int>& nums) {
+        set<int> s;
+        for (int i = 0; i < n; i++) {
+            s.insert(nums[i]);
+        }
 
-int n;
+        // Map will store the new elements
+        int index = 1;
+        map<int, int> mp;
+        for (auto it: s) {
+            mp[it] = index++;
+        }
 
-// Function to map numbers using coordinate compression
-void coordinateCompression(vector<int>& arr) {
-    set<int> s;
-    for (int i = 0; i < n; i++) {
-        s.insert(arr[i]);
+        for (int i = 0; i < n; i++) {
+            // now change the current element to range 1 to N.
+            nums[i] = mp[nums[i]];
+        }
     }
 
-    // Map will store the new elements
-    int index = 1;
-    map<int, int> mp;
-    for (auto it: s) {
-        mp[it] = index++;
+    // Function to calculate length of maximum increasing sequence till i'th index
+    int query(vector<int>& BIT, int index) {
+        int ans = 0;
+        while (index > 0) {
+            ans = max(ans, BIT[index]);
+            index -= index & (-index);
+        }
+        return ans;
     }
 
-    for (int i = 0; i < n; i++) {
-        // now change the current element to range 1 to N.
-        arr[i] = mp[arr[i]];
-    }
-}
+    // Function for updating BIT array for maximum increasing sequence till i'th index
+    void update(vector<int>& BIT, int index) {
 
-// Function to calculate length of maximum increasing sequence till i'th index
-int query(vector<int>& BIT, int index) {
-    int ans = 0;
-    while (index > 0) {
-        ans = max(ans, BIT[index]);
-        index -= index & (-index);
-    }
-    return ans;
-}
+        // If 4 is inserted in BIT,
+        // check for maximum length
+        // subsequence till element 3.
+        // Let this subsequence length be x.
+        // If x + 1 is greater than
+        // the current element in BIT,
+        // update the BIT array
+        int x = query(BIT, index - 1);
+        int value = x + 1;
+        while (index <= n) {
 
-// Function for updating BIT array for maximum increasing sequence till i'th index
-void update(vector<int>& BIT, int index) {
+            // Store maximum length subsequence length till index
+            // Here index is the coordinate compressed element
+            BIT[index] = max(BIT[index], value);
 
-    // If 4 is inserted in BIT,
-    // check for maximum length
-    // subsequence till element 3.
-    // Let this subsequence length be x.
-    // If x + 1 is greater than
-    // the current element in BIT,
-    // update the BIT array
-    int x = query(BIT, index - 1);
-    int value = x + 1;
-    while (index <= n) {
-
-        // Store maximum length subsequence length till index
-        // Here index is the coordinate compressed element
-        BIT[index] = max(BIT[index], value);
-
-        // Go to child node and update that node
-        index += index & (-index);
-    }
-}
-
-// Driver code
-int main() {
-    vector<int> arr = { 6, 5, 6, 1, 1, 1, 3, 2, 4, 8, 7 };
-    n = arr.size();
-
-    coordinateCompression(arr);
-    vector<int> BIT(n+1, 0);
-
-    for (int i = 0; i < n; i++) {
-        // Add elements from left to right in BIT
-        update(BIT, arr[i]);
+            // Go to child node and update that node
+            index += index & (-index);
+        }
     }
 
-    int ans = query(BIT, n);
+    int lengthOfLIS(vector<int>& nums) {
+        n = nums.size();
 
-    cout << ans << endl;
+        coordinateCompression(nums);
+        vector<int> BIT(n+1, 0);
 
-    return 0;
-}
+        for (int i = 0; i < n; i++) {
+            // Add elements from left to right in BIT
+            update(BIT, nums[i]);
+        }
+
+        int ans = query(BIT, n);
+        return ans;
+    }
+};
 
 
 
@@ -111,7 +107,6 @@ int main() {
 
 
 // Method 2
-// https://leetcode.com/problems/longest-increasing-subsequence/
 class Solution {
 public:
     static const int N = 1e5+5;
