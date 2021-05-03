@@ -48,6 +48,21 @@ public:
 // O(nlog(n))          [Increasing Subsequence]
 class Solution {
 public:
+    int lower_bound(vector<int>& seq, int x) {
+        int n = seq.size();
+        int ans = n;
+        int l = 0, r = n-1;
+        while(l <= r) {
+            int mid = (l + r) / 2;
+            if(seq[mid] >= x) {
+                ans = mid;
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return ans;
+    }
     int lengthOfLIS(vector<int>& nums) {
         int n = nums.size();
         if(n == 0) return 0;
@@ -59,7 +74,8 @@ public:
             if(nums[i] > seq.back()) {
                 seq.push_back(nums[i]);
             } else {
-                int idx = lower_bound(seq.begin(), seq.end(), nums[i]) - seq.begin();
+                // int idx = lower_bound(seq.begin(), seq.end(), nums[i]) - seq.begin();
+                int idx = lower_bound(seq, nums[i]);
                 seq[idx] = nums[i];
             }
         }
