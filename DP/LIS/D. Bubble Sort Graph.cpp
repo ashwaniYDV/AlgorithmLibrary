@@ -54,37 +54,37 @@ int n, m;
 int BIT[N], a[N];
 
 void update(int i, int val) {
-    while(i <= N) {
+    while (i <= n) {
         BIT[i] = max(BIT[i], val);
-        i += (i&-i);
+        i += (i & -i);
     }
 }
 
 int query(int i) {
-	if(i == 0) return 0;
+    if (i == 0) return 0;
 
     int mx = 0;
-    while(i > 0) {
+    while (i > 0) {
         mx = max(mx, BIT[i]);
-        i -= (i&-i);
+        i -= (i & -i);
     }
     return mx;
 }
 
 void solve() {
-	int x, y, z;
+    int x, y, z;
 
-	cin >> n;
-	vi a(n);
+    cin >> n;
+    vi a(n);
 
-	int LIS = 0;
+    int LIS = 0;
 
-	f(i, n) {
-		cin >> a[i];
-		x = query(a[i] - 1);
-		update(a[i], x + 1);
-		LIS = max(LIS, x + 1);
-	}
-    
+    f(i, n) {
+        cin >> a[i];
+        x = query(a[i] - 1);
+        update(a[i], x + 1);
+        LIS = max(LIS, x + 1);
+    }
+
     cout << LIS << endl;
 }
