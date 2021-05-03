@@ -4,6 +4,8 @@
 Standard O(NlogN) LIS since N = 10^5
 */
 
+int n, m;
+
 void solve() {
     cin >> n;
     vi a(n);
@@ -22,4 +24,67 @@ void solve() {
     }
 
     cout << seq.size() << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const int N = 1e5+5;
+int n, m;
+int BIT[N], a[N];
+
+void update(int i, int val) {
+    while(i <= N) {
+        BIT[i] = max(BIT[i], val);
+        i += (i&-i);
+    }
+}
+
+int query(int i) {
+	if(i == 0) return 0;
+
+    int mx = 0;
+    while(i > 0) {
+        mx = max(mx, BIT[i]);
+        i -= (i&-i);
+    }
+    return mx;
+}
+
+void solve() {
+	int x, y, z;
+
+	cin >> n;
+	vi a(n);
+
+	int LIS = 0;
+
+	f(i, n) {
+		cin >> a[i];
+		x = query(a[i] - 1);
+		update(a[i], x + 1);
+		LIS = max(LIS, x + 1);
+	}
+    
+    cout << LIS << endl;
 }
