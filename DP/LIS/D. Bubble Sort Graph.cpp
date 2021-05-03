@@ -81,7 +81,7 @@ void solve() {
 
     f(i, n) {
         cin >> a[i];
-        x = query(a[i]);
+        x = query(a[i] - 1);
         update(a[i], x + 1);
         LIS = max(LIS, x + 1);
     }
