@@ -106,8 +106,8 @@ void solve() {
         }
     }
 
-    f(i, n) {
-        f(j, i) { 
+    for(int i = 1; i < n; i++) {
+        for(int j = 0; j < i; j++) { 
             dp[i][a[j]] = max(1 + dp[j][a[i]], dp[i][a[j]]);
         }
     }
