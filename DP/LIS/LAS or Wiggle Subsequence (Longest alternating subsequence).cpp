@@ -6,6 +6,55 @@
 
 
 // Method 1 
+// Time Complexity: O(n^2), Auxiliary Space: O(n)
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
+        int n = nums.size();
+        
+        // las[i][0] = Length of the LAS ending at index i and last element is greater than its previous element
+        // las[i][1] = Length of the LAS ending at index i and last element is smaller than its previous element
+        
+        int las[n][2];
+
+        for(int i = 0; i < n; i++)
+            las[i][0] = las[i][1] = 1;
+
+        int res = 1;
+
+        for(int i = 1; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                // If arr[i] is greater, then check with las[j][1]
+                if (nums[j] < nums[i])
+                    las[i][0] = max(las[i][0], las[j][1] + 1);
+
+                if(nums[j] > nums[i])
+                    las[i][1] = max(las[i][1], las[j][0] + 1);
+            }
+            res = max({res, las[i][0], las[i][1]});
+        }
+        
+        return res;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 2
 // Time Complexity: O(n), Auxiliary Space: O(n)
 class Solution {
 public:
@@ -49,7 +98,7 @@ public:
 
 
 
-// Method 2
+// Method 3
 // Time Complexity: O(n), Auxiliary Space: O(1)
 class Solution {
 public:
