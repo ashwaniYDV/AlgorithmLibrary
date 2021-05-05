@@ -1,6 +1,17 @@
 // https://youtu.be/hxbqUX7IIvw
 // Hackerearth - Benny and the broken odometer
 // https://www.hackerearth.com/problem/algorithm/benny-and-the-broken-odometer/
+
+/*
+One fine day, Benny decided to calculate the number of kilometers that she traveled by her bicycle. 
+Therefore, she bought an odometer and installed it onto her bicycle. But the odometer was broken. 
+It was not able to display the digit 3. This would precisely mean, that the odometer won't be able to display the numbers having one of their digits as 3.
+
+For example, after the number 1299, the odometer will show 1400.
+
+Benny was traveling a lot and now she wants to know the number of kilometers that she has traveled. 
+You will be given only the number that Benny saw on the odometer. Your task is to determine the real distance.
+*/
  
 #include<bits/stdc++.h>
 using namespace std;
