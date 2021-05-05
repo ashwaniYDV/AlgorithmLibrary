@@ -217,6 +217,9 @@ You can do as many transactions as you like but
 after you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)
 */
 
+// Share my DP solution (By State Machine Thinking)
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/75928/Share-my-DP-solution-(By-State-Machine-Thinking)
+
 class Solution {
 public:
     int n;
