@@ -210,15 +210,15 @@ public:
 
 
 
+
+
+
 /*
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 
 You can do as many transactions as you like but 
 after you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)
 */
-
-// Share my DP solution (By State Machine Thinking)
-// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/75928/Share-my-DP-solution-(By-State-Machine-Thinking)
 
 class Solution {
 public:
@@ -243,4 +243,31 @@ public:
         //passing here buy=1 because we will first buy then sell 
         return fun(0, 1, prices, dp);
     }
+};
+
+
+// Share my DP solution (By State Machine Thinking)
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/75928/Share-my-DP-solution-(By-State-Machine-Thinking)
+class Solution {
+public:
+	int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+		if (n <= 1) 
+            return 0;
+        
+		vector<int> s0(n, 0);
+		vector<int> s1(n, 0);
+		vector<int> s2(n, 0);
+        
+		s1[0] = -prices[0];
+		s0[0] = 0;
+		s2[0] = INT_MIN;
+        
+		for (int i = 1; i < n; i++) {
+			s0[i] = max(s0[i - 1], s2[i - 1]);
+			s1[i] = max(s1[i - 1], s0[i - 1] - prices[i]);
+			s2[i] = s1[i - 1] + prices[i];
+		}
+		return max(s0[n - 1], s2[n - 1]);
+	}
 };
