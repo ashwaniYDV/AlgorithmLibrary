@@ -72,6 +72,7 @@ public:
 
 
 // https://leetcode.com/problems/ugly-number-iii/
+// https://leetcode.com/problems/ugly-number-iii/discuss/387539/cpp-Binary-Search-with-picture-and-Binary-Search-Template
 
 /*
 For every integer N, 
