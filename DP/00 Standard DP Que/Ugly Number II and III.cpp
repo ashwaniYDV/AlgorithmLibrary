@@ -50,3 +50,64 @@ public:
         return a[n-1];
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// https://leetcode.com/problems/ugly-number-iii/
+
+/*
+For every integer N, 
+F(N) = (total number of positive integers <= N which are divisible by a or b or c.)
+
+F(N) = a + b + c - a ∩ c - a ∩ b - b ∩ c + a ∩ b ∩ c
+
+F(N) = N/a + N/b + N/c - N/lcm(a, b) - N/lcm(b, c) - N/lcm(c, a) + N/lcm(a, b, c)
+*/
+
+class Solution {
+public:
+    #define ll long long
+    int nthUglyNumber(int n, int A, int B, int C) {
+        ll a = (ll)(A);
+        ll b = (ll)(B);
+        ll c = (ll)(C);
+        
+        // ll lcm_ab = (a*b)/(__gcd(a, b));
+        ll lcm_ab = (a / __gcd(a, b)) * b;
+        ll lcm_bc = (b / __gcd(b, c)) * c;
+        ll lcm_ac = (a / __gcd(a, c)) * c;
+        // ll lcm_abc = (a * lcm_bc) / __gcd(a, lcm_bc));
+        ll lcm_abc = (a / __gcd(a, lcm_bc)) * lcm_bc;
+        
+        int lo = 1, hi = 2 * (int) 1e9;
+        
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            int cnt = mid/a + mid/b + mid/c - mid/lcm_ab - mid/lcm_bc - mid/lcm_ac + mid/lcm_abc;
+            if(cnt < n) 
+                lo = mid + 1;
+            else
+			   //the condition: F(N) >= n
+                hi = mid;
+        }
+        return lo;
+    }
+};
