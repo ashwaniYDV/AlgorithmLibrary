@@ -2,6 +2,26 @@
 
 class Solution {
 public:
+    int factorial(int x) {
+        int f = 1;
+        for(int i = 1; i <= x; i++) f *= i;
+        return f;
+    }
+    int countVowelStrings(int n) {
+        return (n + 1) * (n + 2) * (n + 3) * (n + 4) / factorial(4);
+    }
+};
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
     int n;
     int dp[60][5];
     int go(int pos, int state) {
@@ -50,6 +70,16 @@ public:
         //     dp[i][2] = dp[i][1] + dp[i-1][2];
         //     dp[i][3] = dp[i][2] + dp[i-1][3];
         //     dp[i][4] = dp[i][3] + dp[i-1][4];
+        // }
+        
+        // Method 3
+        // for(int i = 1; i < n; i++) {
+        //     for(int j = 0; j < 5; j++) {
+        //         if(j == 0)
+        //             dp[i][j] = dp[i-1][j];
+        //         else
+        //             dp[i][j] = dp[i][j-1] + dp[i-1][j];
+        //     }
         // }
         
         int res = 0;
