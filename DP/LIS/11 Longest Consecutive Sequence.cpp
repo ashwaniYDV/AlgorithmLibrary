@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/longest-consecutive-sequence/
 
+// O(nlogn)
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
@@ -22,6 +23,86 @@ public:
         return mx;
     }
 };
+
+
+
+
+
+// O(n)
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_map<int, int> dp;
+        int res = 0;
+        for (int x : nums) {
+            if (dp[x]) continue;
+            dp[x] = dp[x + dp[x + 1]] = dp[x - dp[x - 1]] = dp[x + 1] + dp[x - 1] + 1;
+            res = max(res, dp[x]);
+        }
+        return res;
+    }
+};
+
+
+
+// Explanation of above O(n) soln
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_map<int,int> dp;
+        int res = 0;
+        for(int x: nums) {
+
+            //it is in the middle of some consecutive sequence OR we can say it is already visited earlier
+            //therefore it does not contribute to a longer sequence
+            if(dp[x]) continue; 
+
+            //we cannot find adjacent sequences to x, therefore it is a single element sequence by itself
+            if(dp.find(x-1) == dp.end() && dp.find(x+1) == dp.end()){ // 
+                res = max(res, dp[x] = 1);
+                continue;
+            }
+
+            //found a sequence at x+1, we can safely extend the length by 1
+            if(dp.find(x-1) == dp.end()){ 
+
+                //we want to maintain the TWO boundaries of the sequence
+                //the new length of the sequence is the original length m[x+1] incremented by 1
+                //left boundary dp[x] = dp[x+1] +1;
+                //right boundary dp[x+dp[x+1]] = dp[x+1]+1;
+                //why x+dp[x+1]? it is equal to dp[x+1]+(x+1)-1 
+                //meaning the old left boundary x+1 plus the old length dp[x+1] minus 1
+                //e.g. for sequence 3,4,5,6 dp[3] = 4, and right boundary 6 = 3+dp[3]-1 (here x+1 == 3);
+                int r = dp[x] = dp[x+dp[x+1]] = dp[x+1]+1;
+                res = max(res, r);
+                continue;
+            }
+
+            //this is similar to the above case just extend to the right
+            if(dp.find(x+1) == dp.end()){
+                int r = dp[x] = dp[x-dp[x-1]] = dp[x-1]+1;
+                res = max(res,r);
+                continue;
+            }
+
+            //here, we found both sequences at x+1 and x-1, for reasons we explained,
+            //the sequences have no overlap.
+            //Now, we just need to add the length of current element x (which is 1) to both left and right boundaries
+            //the new length will be :  
+            //old length of left sequence (dp[x-1]) + old length of right sequence (dp[x+1]) + 1
+            //We also need to mark dp[x] as visited, here we can either mark it with 1 or the new length;
+            int r = dp[x-dp[x-1]] = dp[x+dp[x+1]] = 1+ dp[x+1]+ dp[x-1];
+            dp[x] = 1; //basically we just need to mark m[n] as any non-zero number
+            // or we can write
+            //int r = dp[x] = dp[x-dp[x-1]] = dp[x+dp[x+1]] = 1 + dp[x+1]+ dp[x-1];
+            res = max(res,r);
+        }
+        return res;
+    }
+};
+
+
+
 
 
 
