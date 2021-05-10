@@ -91,10 +91,7 @@ public:
             //the new length will be :  
             //old length of left sequence (dp[x-1]) + old length of right sequence (dp[x+1]) + 1
             //We also need to mark dp[x] as visited, here we can either mark it with 1 or the new length;
-            int r = dp[x-dp[x-1]] = dp[x+dp[x+1]] = 1+ dp[x+1]+ dp[x-1];
-            dp[x] = 1; //basically we just need to mark m[n] as any non-zero number
-            // or we can write
-            //int r = dp[x] = dp[x-dp[x-1]] = dp[x+dp[x+1]] = 1 + dp[x+1]+ dp[x-1];
+            int r = dp[x] = dp[x-dp[x-1]] = dp[x+dp[x+1]] = 1 + dp[x+1]+ dp[x-1];
             res = max(res,r);
         }
         return res;
