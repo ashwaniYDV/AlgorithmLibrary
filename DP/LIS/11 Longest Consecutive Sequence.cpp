@@ -1,5 +1,35 @@
 // longest_increasing_subsequence_of_consecutive_numbers
 
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        int n = nums.size();
+        if (n <= 1) return n;
+        sort(nums.begin(), nums.end());
+        
+        int mx = 1, mxSoFar = 1;
+        for(int i = 1; i < n; i++) {
+            if(nums[i] == nums[i-1] + 1) {
+                mxSoFar++;
+            } else if(nums[i] == nums[i-1]) {
+                // do nothing
+            } else {
+                mxSoFar = 1;
+            }
+            mx = max(mx, mxSoFar);
+        }
+        
+        return mx;
+    }
+};
+
+
+
+
+
+
+
+
 #include<bits/stdc++.h>
 #include<vector>
 using namespace std;
