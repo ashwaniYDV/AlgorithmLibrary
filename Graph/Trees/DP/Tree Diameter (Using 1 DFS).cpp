@@ -1,6 +1,17 @@
 // https://youtu.be/l6aA9a_x3gE
 // https://cses.fi/problemset/task/1131/
 
+/*
+Diameter of binary tree concept:
+
+The question can be solved by small modification to program of Height of tree.
+The idea is max value of Height(leftSubtree)+Height(rightSubtree) (at any node ) is the diameter. 
+Keep track of maxium diameter duing traversal and find the height of the tree.
+
+So although the longest path doesn't have to go through the root node, it has to pass the root node of some subtree of the tree 
+(because it has to be from one leaf node to another leaf node, otherwise we can extend it for free). 
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
