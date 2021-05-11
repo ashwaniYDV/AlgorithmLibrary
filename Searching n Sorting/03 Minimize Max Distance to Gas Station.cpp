@@ -20,11 +20,11 @@ public:
      */
 
     int ok(double x, vector <int>& stations){
-        int ret = 0;
+        int newStations = 0;
         for (int i = 0; i < stations.size() - 1; i++) {
-            ret += ceil((stations[i + 1] - stations[i]) / x) - 1;
+            newStations += ceil((stations[i + 1] - stations[i]) / x) - 1;
         }
-        return ret;
+        return newStations;
     }
     
     double minmaxGasDist(vector<int> &stations, int k) {
