@@ -55,10 +55,11 @@
    gcd(a1 + k, a2 + k, ..., an−1 + k, an + k) == gcd(a1 + k, a2 − a1, a3 - a2, a4 - a3, ..., an−1 − an−2, an − an−1)
 
    gcd(a1 + bj, a2 + bj, ..., an−1 + bj, an + bj) == gcd(a1 + bj, a2 − a1, ...,an−1 − an−2, an − an−1).
-   
-3) gcd(n, n+1) = 1  [Always try to utilize this property when que is like given an array and you can take any pair of numbers to make gcd 1 and so on]
    ```
    
+3) gcd(n, n+1) = 1  [Always try to utilize this property when que is like given an array and you can take any pair of numbers to make gcd 1 and so on]
+   
+
 ## Other
 
 1) Only perfect Squares have an odd number of factors.\
