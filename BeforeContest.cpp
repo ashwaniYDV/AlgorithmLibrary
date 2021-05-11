@@ -162,6 +162,11 @@ void SieveAndSPF() {
 
 
 
+
+
+
+
+
 /*********************************************************/
 template <class A>
 ostream& operator << (ostream& out, const vector<A> &v) {
