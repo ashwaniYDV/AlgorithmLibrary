@@ -200,7 +200,7 @@ int query(int BIT[], int i) {
 // and relative order of smaller and greater elements remains same.
 // For example, {7, -90, 100, 1} is converted to {3, 1, 4 ,2 }
 void convert(int a[], int n) {
-    // Create a copy of arrp[] in temp and sort the temp array in increasing order
+    // Create a copy of a[] in temp and sort the temp array in increasing order
     int temp[n];
     for (int i = 0; i < n; i++) {
         temp[i] = a[i];
@@ -209,7 +209,7 @@ void convert(int a[], int n) {
  
     // Traverse all array elements
     for (int i = 0; i < n; i++) {
-        // lower_bound() Returns pointer to the first element greater than or equal to arr[i]
+        // lower_bound() Returns pointer to the first element greater than or equal to a[i]
         a[i] = lower_bound(temp, temp + n, a[i]) - temp + 1;
     }
 } 
