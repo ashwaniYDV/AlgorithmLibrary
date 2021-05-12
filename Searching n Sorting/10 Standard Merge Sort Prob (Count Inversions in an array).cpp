@@ -148,3 +148,96 @@ void solve() {
  
     cout << invcount << endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 3: (Using BIT)
+// https://www.geeksforgeeks.org/count-inversions-array-set-3-using-bit/
+int n, m;
+
+void update(int BIT[], int n, int i, int val) {
+    while(i <= n) {
+        BIT[i] += val;
+        i += (i&-i);
+    }
+}
+
+int query(int BIT[], int i) {
+    int sum = 0;
+    while(i > 0) {
+        sum += BIT[i];
+        i -= (i&-i);
+    }
+    return sum;
+}
+
+// Converts an array to an array with values from 1 to n
+// and relative order of smaller and greater elements remains same.
+// For example, {7, -90, 100, 1} is converted to {3, 1, 4 ,2 }
+void convert(int a[], int n) {
+    // Create a copy of arrp[] in temp and sort the temp array in increasing order
+    int temp[n];
+    for (int i = 0; i < n; i++) {
+        temp[i] = a[i];
+    }
+    sort(temp, temp + n);
+ 
+    // Traverse all array elements
+    for (int i = 0; i < n; i++) {
+        // lower_bound() Returns pointer to the first element greater than or equal to arr[i]
+        a[i] = lower_bound(temp, temp + n, a[i]) - temp + 1;
+    }
+} 
+
+void solve() {
+    cin >> n;
+    int a[n];
+    f(i, n) cin >> a[i];
+
+    convert(a, n);
+    
+    int invcount = 0; // Initialize result
+ 
+    // Find maximum element in a[]
+    int maxElement = 0;
+    for (int i = 0; i < n; i++) {
+        maxElement = max(maxElement, a[i]);
+    }
+ 
+    // Create a BIT with size equal to maxElement+1 (Extra one is used so that elements can be directly be used as index)
+    int BIT[maxElement + 1];
+    for (int i = 1; i <= maxElement; i++) {
+        BIT[i] = 0;
+    }
+ 
+    // Traverse all elements from right.
+    for (int i = n - 1; i >= 0; i--) {
+        // Get count of elements smaller than a[i]
+        invcount += query(BIT, a[i] - 1);
+ 
+        // Add current element to BIT
+        update(BIT, maxElement, a[i], 1);
+    }
+ 
+    cout << invcount << endl;
+}
