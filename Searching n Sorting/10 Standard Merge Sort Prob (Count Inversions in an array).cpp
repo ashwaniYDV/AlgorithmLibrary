@@ -21,6 +21,7 @@ http://www.geeksforgeeks.org/count-inversions-array-set-3-using-bit/ 121
 
 
 
+// Method 1 (Merge Sort)
 int n, m;
 int res = 0;
 
@@ -64,4 +65,86 @@ void solve() {
     
     mergeSort(a, 0, n - 1);
     cout << res << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 2 (Using BIT)
+// https://www.geeksforgeeks.org/count-inversions-array-set-3-using-bit/
+// It only works for whole numbers as array elements and for smaller value of elements
+int n, m;
+
+void update(int BIT[], int n, int i, int val) {
+    while(i <= n) {
+        BIT[i] += val;
+        i += (i&-i);
+    }
+}
+
+int query(int BIT[], int i) {
+    int sum = 0;
+    while(i > 0) {
+        sum += BIT[i];
+        i -= (i&-i);
+    }
+    return sum;
+}
+ 
+void solve() {
+    cin >> n;
+    int a[n];
+    f(i, n) cin >> a[i];
+    
+    int invcount = 0; // Initialize result
+ 
+    // Find maximum element in a[]
+    int maxElement = 0;
+    for (int i = 0; i < n; i++) {
+        maxElement = max(maxElement, a[i]);
+    }
+ 
+    // Create a BIT with size equal to maxElement+1 (Extra one is used so that elements can be directly be used as index)
+    int BIT[maxElement + 1];
+    for (int i = 1; i <= maxElement; i++) {
+        BIT[i] = 0;
+    }
+ 
+    // Traverse all elements from right.
+    for (int i = n - 1; i >= 0; i--) {
+        // Get count of elements smaller than a[i]
+        invcount += query(BIT, a[i] - 1);
+ 
+        // Add current element to BIT
+        update(BIT, maxElement, a[i], 1);
+    }
+ 
+    cout << invcount << endl;
 }
