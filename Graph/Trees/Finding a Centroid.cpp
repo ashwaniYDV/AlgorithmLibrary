@@ -12,6 +12,8 @@ If it has two centroids, they are always connected (otherwise, the tree can't ha
 
 2) In a tree only two Centroid possible (from Jordan Theorem). 
 If there are two centroids you can take any cause those two centroids will look like the same.
+
+3) A tree with odd number of vertices will always have one centroid. 
 */
 
 
