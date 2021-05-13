@@ -1,6 +1,12 @@
 // https://www.hackerrank.com/contests/101feb14/challenges/coloring-tree
 
 /*
+// https://cses.fi/problemset/task/1139/
+You are given a rooted tree consisting of n nodes. The nodes are numbered 1,2,...,n, and node 1 is the root. Each node has a color.
+Your task is to determine for each node the number of distinct colors in the subtree of the node.
+*/
+
+/*
 What optimization we are going to use?
 You might have already studied it but we can also apply on tree as well. The optimization is the path optimization that we studied in DSU.
 There are two path optimizations in DSU and one of them is Union by Rank. This is the exact optimization we are going to apply here. 
