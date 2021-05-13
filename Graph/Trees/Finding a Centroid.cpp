@@ -81,6 +81,10 @@ void solve() {
 
 
 
+/*
+If you just want to find 'a' centroid of a dynamic tree, you can implement this in the following way:
+This is very fast, because it returns a centroid shortly after it finds a centroid for the first time.
+*/
 
 // Method 2: (It can only find one centroid)
 // CodeNCode
