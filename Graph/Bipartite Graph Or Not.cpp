@@ -82,11 +82,17 @@ void solve() {
 		cin >> u >> v, g[u].pb(v), g[v].pb(u);
 	}
 
-	if (isBipartite(1, 0)) {
-		cout << "YES\n";
-		return;
+	bool check = true;
+	loop(i, 1, n) {
+		if(!vis[i]) 
+			check = check && isBipartite(i, 1);
 	}
-	cout << "NO\n";
+
+	if(check)
+		cout<<"Graph is bipartite.";
+	else
+		cout<<"Graph is not bipartite.";
+
 }
 
 signed main() {
