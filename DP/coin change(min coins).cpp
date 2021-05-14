@@ -45,14 +45,29 @@ https://cses.fi/problemset/task/1634/
 This problem can only be solved by this method
 */
 // order m space
-ll fun(ll a[], ll sum){
+ll fun(ll a[], ll sum) {
     ll dp[sum + 1];
     f(i, sum + 1) dp[i] = INF;
     // for sum = 0, coins requires = 0;
     dp[0] = 0;
-    for(ll j = 1; j <= sum; j++){
-        for(ll i = 0; i < n; i++){
-            if(j >= a[i] && dp[j - a[i]] != INF) {
+    for (ll j = 1; j <= sum; j++) {
+        for (ll i = 0; i < n; i++) {
+            if (j >= a[i] && dp[j - a[i]] != INF) {
+                dp[j] = min(dp[j], dp[j - a[i]] + 1);
+            }
+        }
+    }
+    return dp[sum];
+}
+// or this way
+ll fun(ll a[], ll sum) {
+    ll dp[sum + 1];
+    f(i, sum + 1) dp[i] = INF;
+    // for sum = 0, coins requires = 0;
+    dp[0] = 0;
+    for (ll i = 0; i < n; i++) {
+        for (ll j = 1; j <= sum; j++) {
+            if (j >= a[i] && dp[j - a[i]] != INF) {
                 dp[j] = min(dp[j], dp[j - a[i]] + 1);
             }
         }
@@ -70,7 +85,7 @@ void solve() {
     ll dp[n + 1][sum + 1];
     for(ll i = 0; i <= n; i++) dp[i][0] = 0;
     for(ll j = 1; j <= sum; j++) dp[0][j] = INF;
-
+    
     for(ll i = 1; i <= n; i++){
         for(ll j = 1; j <= sum; j++){
             if(j < a[i - 1]){
