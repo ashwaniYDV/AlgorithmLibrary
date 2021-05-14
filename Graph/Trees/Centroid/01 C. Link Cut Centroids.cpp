@@ -1,5 +1,17 @@
 // https://codeforces.com/problemset/problem/1406/C
 // https://www.youtube.com/watch?v=ZWd1SbJeBV0
+// Medium Level Graph Problems (also singing) - Utkarsh Gupta
+
+/*
+When tree size is odd then we can only have 1 cebtroid. So we dont have to do anything. We will add and remove the same edge for answer.
+
+When tree size is even we will detach a leaf node from the tree so we will get a new tree of odd size. We will calculate new centroid for this odd size tree 
+(this centroid will be unique as tree size is odd).
+And we will add the leaf node to this centroid. This will guarantee that there will be only one centroid again.
+
+NOTE: Even size tree can have 1 (if tree is unsymmetric) or 2 (if tree is symmetric) centroid.
+So the above solution will work for both the cases of even size tree.
+*/
 
 
 const int N = 2e5 + 5;
