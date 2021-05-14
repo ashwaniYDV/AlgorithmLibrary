@@ -57,7 +57,7 @@ ll n, m;
 // }
 // cout << fun(a, sum, n - 1)
 
-// order of n memory
+// order of m memory
 ll fun(ll a[], ll sum){
     ll dp[sum + 1] = {0};
     // for sum = 0, no of ways = 1;
