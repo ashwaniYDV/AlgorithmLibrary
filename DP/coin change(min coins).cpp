@@ -51,9 +51,9 @@ ll fun(ll a[], ll sum){
     // for sum = 0, coins requires = 0;
     dp[0] = 0;
     for(ll j = 1; j <= sum; j++){
-        for(ll k = 0; k < n; k++){
-            if(j >= a[k] && dp[j - a[k]] != INF){
-                dp[j] = min(dp[j], dp[j - a[k]] + 1);
+        for(ll i = 0; i < n; i++){
+            if(j >= a[i] && dp[j - a[i]] != INF) {
+                dp[j] = min(dp[j], dp[j - a[i]] + 1);
             }
         }
     }
