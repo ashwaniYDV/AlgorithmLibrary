@@ -71,6 +71,20 @@ ll fun(ll a[], ll sum){
     }
     return dp[sum];
 }
+// or this way
+ll fun(ll a[], ll sum) {
+    ll dp[sum + 1] = {0};
+    // for sum = 0, no of ways = 1;
+    dp[0] = 1;
+    for (ll j = 1; j <= sum; j++) {
+        for (ll i = 0; i < n; i++) {
+            if (j >= a[i]) {
+                dp[j] += dp[j - a[i]];
+            }
+        }
+    }
+    return dp[sum];
+}
 
 // order of n*m memory
 void solve() {
