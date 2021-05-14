@@ -39,7 +39,12 @@ const ll N = 1e5+1;
 // vl g[N];
 ll n, m;
 
-// order n space
+
+/*
+https://cses.fi/problemset/task/1634/
+This problem can only be solved by this method
+*/
+// order m space
 ll fun(ll a[], ll sum){
     ll dp[sum + 1];
     f(i, sum + 1) dp[i] = INF;
