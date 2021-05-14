@@ -2,11 +2,6 @@
 // https://www.geeksforgeeks.org/minimum-number-platforms-required-railwaybus-station/
 
 /*
-Minimum Number of Platforms Required for a Railway/Bus Station
-*/
-
-
-/*
 Method 1:
 O(n^2)
 
@@ -16,7 +11,7 @@ Finally, return the maximum value.
 */
 #include <algorithm> 
 #include <iostream> 
-  
+ 
 using namespace std; 
   
 // Returns minimum number of platforms reqquired 
@@ -114,3 +109,60 @@ int main()
     cout << "Minimum Number of Platforms Required = " << findPlatform(arr, dep, n); 
     return 0; 
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 3 (if method 2 does not work)
+void solve() {
+    int n;
+    cin >> n;
+    int arr[n], dep[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    for (int i = 0; i < n; i++) {
+        cin >> dep[i];
+    }
+
+    // Sort arrival and departure arrays
+    sort(arr, arr + n);
+    sort(dep, dep + n);
+
+    // plat_needed indicates number of platforms needed at a time
+    int plat_needed = 1, result = 1;
+    int i = 1, j = 0;
+
+    // Similar to merge in merge sort to process all events in sorted order
+    while (i < n && j < n) {
+        // If next event in sorted order is arrival, increment count of platforms needed
+        if (arr[i] < dep[j]) {
+            plat_needed++;
+            i++;
+        }
+        // Else decrement count of platforms needed
+        else {
+            plat_needed--;
+            j++;
+        }
+
+		result = max(result, plat_needed);
+    }
+
+    cout << result << endl;
+}
