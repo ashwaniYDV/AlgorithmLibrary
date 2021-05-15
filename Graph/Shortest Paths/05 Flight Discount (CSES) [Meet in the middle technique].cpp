@@ -90,7 +90,7 @@ void dijkstra(int source, vector<int>& dist) {
 	    s.erase(s.begin());
 	    for (auto v : g[u]) {
 	        int a = v.first, b = v.second;
-	        if (dp[a] == INF || dp[a] > dp[u] + b) {
+	        if (dp[a] > dp[u] + b) {
 	        	s.erase({dp[a], a});
 	        	dp[a] = dp[u] + b;
 	        	s.insert({dp[a], a});
