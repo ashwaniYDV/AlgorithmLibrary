@@ -1,10 +1,17 @@
 // https://cses.fi/problemset/task/1195/
 
 /*
-Question:
-Your task is to find a minimum-price flight route from city 1 to city N. 
+Question: (NOTE: edges are directed)
+Your task is to find a minimum-price flight route from city 1 to city n. 
 You have one discount coupon, using which you can halve the price of any single flight during the route. 
 However, you can only use the coupon once.
+
+The first input line has two integers n and m: 
+the number of cities and flight connections. The cities are numbered 1,2,...,n.
+After this there are m lines describing the flights. 
+Each line has three integers a, b, and c: a flight begins at city a, ends at city b, and its price is c. 
+Each flight is unidirectional.
+You can assume that it is always possible to get from city 1 to city n.
 */
 
 /*
