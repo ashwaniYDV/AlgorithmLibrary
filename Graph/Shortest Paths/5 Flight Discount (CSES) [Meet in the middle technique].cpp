@@ -102,18 +102,17 @@ void dijkstra(int source, vector<int>& dist) {
 }
  
 void solve() {
-	int u, v, w;
-	cin >> n >> m;
+    int u, v, w;
+    cin >> n >> m;
 
-	vector<pair<int, pair<int, int>>> edges;
+    vector < pair < int, pair < int, int >>> edges;
     f(i, m) {
-    	cin >> u >> v >> w, g[u].pb({v, w});
-    	edges.pb({w, {u, v}});
+        cin >> u >> v >> w, g[u].pb({v, w});
+        edges.pb({w, {u, v}});
     }
 
-    vector<int> dist1(n+1);
+    vector < int > dist1(n + 1);
     dijkstra(1, dist1);
-
 
     // createing a new graph by reversing the directed edges
     /*
@@ -122,30 +121,29 @@ void solve() {
     	we are interested in weight only 
     */
     loop(i, 1, n) g[i].clear();
-    for(auto i: edges) {
-    	int w = i.F;
- 		int u = i.S.F, v = i.S.S;
-    	g[v].pb({u, w});
+    for (auto i: edges) {
+        int w = i.F;
+        int u = i.S.F, v = i.S.S;
+        g[v].pb({u, w});
     }
 
-    vector<int> distN(n+1);
+    vector < int > distN(n + 1);
     dijkstra(n, distN);
-
 
     // applying "Meet in the middle search technique"
 
     // calculating answer for original graph girected adges u->v
     int ans = dist1[n];
-    for(auto i: edges) {
-    	int w = i.F;
- 		int u = i.S.F, v = i.S.S;
- 
- 		if(dist1[u] != INF && distN[v] != INF) {
- 			ans = min(ans, dist1[u] + distN[v] + w / 2);
- 		}	
- 	}
+    for (auto i: edges) {
+        int w = i.F;
+        int u = i.S.F, v = i.S.S;
 
- 	cout << ans << endl;
+        if (dist1[u] != INF && distN[v] != INF) {
+            ans = min(ans, dist1[u] + distN[v] + w / 2);
+        }
+    }
+
+    cout << ans << endl;
 }
 
 
