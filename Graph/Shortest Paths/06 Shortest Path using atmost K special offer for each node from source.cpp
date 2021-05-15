@@ -17,20 +17,18 @@ we can select at-most K roads and we will not be charged for using those roads.
 Can you now find the minimum charge that we have to pay to deliver essential items for each city.
 
 (Remember we require to provide answers for each destination city separately i.e. we have K offers for every city and not as a whole)
-
 */
 
 /*
-Since the value of K is small, we can use Dynamic Programming Here.
+Approach:
 
+Since the value of K is small, we can use Dynamic Programming Here.
 We will modify Dijikstra Algorithm to incorporate at most K special offers.
 
 At every step of Dijikstra Algorithm, we can decide whether we wish to use a special offer or not.
-
 So, recurrence can be like , where dp[i][j] represents the minimum charge required to reach city i if we use j special offers.
 
 At a particular iteration of Dijikstra, assume we have node u currently, so
-
 Case 1: If we do not use offer
 dp[v][j] = weight of edge(u, v) + dp[u][j]
 
@@ -53,6 +51,7 @@ const int N = 5e5+5;
 int n, m;
 vector<pair<int,int>> g[N];
 int k;
+// dp[i][j] = the minimum charge required to reach city i from source if we use j special offers
 int dp[N][20];
 
 void dijkstra() {
