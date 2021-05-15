@@ -31,9 +31,10 @@ So, recurrence can be like , where dp[i][j] represents the minimum charge requir
 
 At a particular iteration of Dijikstra, assume we have node u currently, so
 
+Case 1: If we do not use offer
 dp[v][j] = weight of edge(u, v) + dp[u][j]
 
-// since weight of edge(u, v) is set as 0 by using offer
+Case 2: If we use offer (i.e. weight of edge(u, v) is set as 0 by using offer)
 dp[v][j+1] = dp[u][j]
 */
 
