@@ -40,6 +40,9 @@ NOTE: Most optimal answer is minimum value of path length
 Thus PathLength = Summation(Paths) - Max(Path) + Min(Path)
 Thus dijkstra hame optimal answer tabhi dega jab Max(Path) khud max value hogi and Min(Path) khud sabse min value hogi
 tabhi PathLength optimal aaega
+
+Thus we will add and subtract every possible combination and dijkstra hame final optimal answer tabhi dega jab 
+sabse max subtract hui ho and sabse min add hui ho kyuki tabhi sabse min pathlength milegi.
 */
 
 /*
