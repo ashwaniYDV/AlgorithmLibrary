@@ -42,6 +42,16 @@ Thus dijkstra hame optimal answer tabhi dega jab Max(Path) khud max value hogi a
 tabhi PathLength optimal aaega
 */
 
+/*
+For visualiztion of Dijkstra:
+These nodes can be visualized for old and new graph as shown below.
+Thus if we have N nodes in old graph then in new graph we will have = N * 2 * 2 = 4N nodes 
+
+In old graph                                                     In new graph
+
+   [u]                                         [u, 0, 0] , [u, 0, 1], [u, 1, 0], [u, 1, 1]
+*/
+
 
 const int N = 2e5+5;
 int n, m;
