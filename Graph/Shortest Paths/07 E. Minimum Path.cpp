@@ -1,4 +1,5 @@
 // https://codeforces.com/contest/1473/problem/E
+// https://unacademy.com/class/tricky-variations-of-dijkstra-algorithm/TA76JSGL
 
 /*
 Let's consider a problem where you can subtract the weight of any edge (not only the maximum one) 
@@ -34,6 +35,11 @@ i = mxCount and j = mnCount
 
            w + w - w
 [u, i, j] ---------->  [v, i + 1, j + 1]      (both add and subtract)
+
+NOTE: Most optimal answer is minimum value of path length
+Thus PathLength = Summation(Paths) - Max(Path) + Min(Path)
+Thus dijkstra hame optimal answer tabhi dega jab Max(Path) khud max value hogi and Min(Path) khud sabse min value hogi
+tabhi PathLength optimal aaega
 */
 
 
@@ -41,7 +47,7 @@ const int N = 2e5+5;
 int n, m;
 
 vector<pair<int, int>> g[N];
-// [node][mxCount][mnCount]
+// [node][isSubtracted][isAdded]
 int dp[N][2][2];
 
 void dijkstra() {
@@ -55,7 +61,7 @@ void dijkstra() {
 
     dp[source][0][0] = 0;
 
-    // {distance, {node, mx, mn}}, where mx = (0 or 1) and mn = (0 or 1)
+    // {distance, {node, isSubtracted, isAdded}}, where isSubtracted = (0 or 1) and isAdded = (0 or 1)
     set<pair<int, array<int, 3>>> st;
     st.insert({dp[source][0][0], {source, 0, 0}});
 
@@ -63,43 +69,43 @@ void dijkstra() {
 		auto it = *st.begin();
 		st.erase(it);
 	    int u = it.second[0];
-	    int mx = it.second[1];
-	    int mn = it.second[2];
+	    int isSubtracted = it.second[1];
+	    int isAdded = it.second[2];
 
 	    for (auto x : g[u]) {
 	    	int v = x.first, w = x.second;
 
 	    	// neither add nor subtract
-	        if (dp[v][mx][mn] > (dp[u][mx][mn] + w)) {
-          		st.erase({dp[v][mx][mn], {v, mx, mn}});
-        		dp[v][mx][mn] = (dp[u][mx][mn] + w);
-        		st.insert({dp[v][mx][mn], {v, mx, mn}});
+	        if (dp[v][isSubtracted][isAdded] > (dp[u][isSubtracted][isAdded] + w)) {
+          		st.erase({dp[v][isSubtracted][isAdded], {v, isSubtracted, isAdded}});
+        		dp[v][isSubtracted][isAdded] = (dp[u][isSubtracted][isAdded] + w);
+        		st.insert({dp[v][isSubtracted][isAdded], {v, isSubtracted, isAdded}});
       		}
 
       		// subtract only
-      		if(mx == 0) {
-      			if (dp[v][mx + 1][mn] > (dp[u][mx][mn] + w) - w) {
-	          		st.erase({dp[v][mx + 1][mn], {v, mx + 1, mn}});
-	        		dp[v][mx + 1][mn] = (dp[u][mx][mn] + w) - w;
-	        		st.insert({dp[v][mx + 1][mn], {v, mx + 1, mn}});
+      		if(isSubtracted == 0) {
+      			if (dp[v][isSubtracted + 1][isAdded] > (dp[u][isSubtracted][isAdded] + w) - w) {
+	          		st.erase({dp[v][isSubtracted + 1][isAdded], {v, isSubtracted + 1, isAdded}});
+	        		dp[v][isSubtracted + 1][isAdded] = (dp[u][isSubtracted][isAdded] + w) - w;
+	        		st.insert({dp[v][isSubtracted + 1][isAdded], {v, isSubtracted + 1, isAdded}});
 	      		}
       		}
 
       		// add only
-      		if(mn == 0) {
-      			if (dp[v][mx][mn + 1] > (dp[u][mx][mn] + w) + w) {
-	          		st.erase({dp[v][mx][mn + 1], {v, mx, mn + 1}});
-	        		dp[v][mx][mn + 1] = (dp[u][mx][mn] + w) + w;
-	        		st.insert({dp[v][mx][mn + 1], {v, mx, mn + 1}});
+      		if(isAdded == 0) {
+      			if (dp[v][isSubtracted][isAdded + 1] > (dp[u][isSubtracted][isAdded] + w) + w) {
+	          		st.erase({dp[v][isSubtracted][isAdded + 1], {v, isSubtracted, isAdded + 1}});
+	        		dp[v][isSubtracted][isAdded + 1] = (dp[u][isSubtracted][isAdded] + w) + w;
+	        		st.insert({dp[v][isSubtracted][isAdded + 1], {v, isSubtracted, isAdded + 1}});
 	      		}
       		}
 
       		// both add and subtract
-      		if(mn == 0 && mx == 0) {
-      			if (dp[v][mx + 1][mn + 1] > (dp[u][mx][mn] + w) + w - w) {
-	          		st.erase({dp[v][mx + 1][mn + 1], {v, mx + 1, mn + 1}});
-	        		dp[v][mx + 1][mn + 1] = (dp[u][mx][mn] + w) + w - w;
-	        		st.insert({dp[v][mx + 1][mn + 1], {v, mx + 1, mn + 1}});
+      		if(isAdded == 0 && isSubtracted == 0) {
+      			if (dp[v][isSubtracted + 1][isAdded + 1] > (dp[u][isSubtracted][isAdded] + w) + w - w) {
+	          		st.erase({dp[v][isSubtracted + 1][isAdded + 1], {v, isSubtracted + 1, isAdded + 1}});
+	        		dp[v][isSubtracted + 1][isAdded + 1] = (dp[u][isSubtracted][isAdded] + w) + w - w;
+	        		st.insert({dp[v][isSubtracted + 1][isAdded + 1], {v, isSubtracted + 1, isAdded + 1}});
 	      		}
       		}
 	    }
