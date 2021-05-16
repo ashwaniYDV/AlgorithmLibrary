@@ -18,3 +18,6 @@ Print any solution or say it is impossible.
 Solution 1: \
 Use the inequalities as directed edges (x > y means edge y->x and a < x means edge a->x) and do topo sort. \
 Now assign values as 1 to n to the sorted variables (where n = res vector length)
+
+Let res vector = [c, a, x, b, y] \
+Then possible solution can be: c = 1, a = 2, x = 3, b = 4, y = 5
