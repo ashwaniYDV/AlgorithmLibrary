@@ -53,7 +53,7 @@ int n, m;
 vector<int> g[N];
 vector<pair<int, int>> bridge;
 int in[N], low[N];
-int timer = 0;
+int timer;
 
 void dfs(int u, int par) {
     in[u] = low[u] = ++timer;
@@ -80,7 +80,8 @@ void solve() {
     f(i, m) cin >> u >> v, g[u].pb(v), g[v].pb(u);
 
     loop(i, 1, n) in[i] = -1, low[i] = -1;
-
+    timer = 0;
+    
     loop(i, 1, n) {
         if(in[i] == -1) {
             dfs(i, -1);
