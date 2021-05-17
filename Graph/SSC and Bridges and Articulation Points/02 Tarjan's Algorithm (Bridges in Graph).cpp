@@ -67,7 +67,7 @@ void dfs(int u, int par) {
 
             if(low[v] > in[u]) bridge.pb({u, v});
         }
-        // back edge (for back edge v is ancestor)
+        // back edge (for back edge v is ancestor; back edge introduces a cycle)
         else {
             low[u] = min(low[u], in[v]);
         }
