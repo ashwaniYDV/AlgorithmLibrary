@@ -2,8 +2,10 @@
 
 /*
 A O(V+E) algorithm to find all Articulation Points (APs)
-In DFS, we follow vertices in tree form called DFS tree. I
-n DFS tree, a vertex u is parent of another vertex v, if v is discovered by u (obviously v is an adjacent of u in graph). 
+In DFS, we follow vertices in tree form called DFS tree.
+
+In DFS tree, a vertex u is parent of another vertex v, if v is discovered by u (obviously v is an adjacent of u in graph). 
+
 In DFS tree, a vertex u is articulation point if one of the following two conditions is true:-
 1) u is root of DFS tree and it has at least two children.
 2) u is not root of DFS tree and it has a child v such that no vertex in subtree rooted with v has a back edge to one of the ancestors (in DFS tree) of u.
@@ -76,7 +78,7 @@ void dfs(int u, int par) {
     }
 
     //Case-1: u is root
-    if(par == -1 && children > 1) isArticulation[u] = 1;
+    if(par == -1 && children >= 2) isArticulation[u] = 1;
 }
 
 void solve() {
