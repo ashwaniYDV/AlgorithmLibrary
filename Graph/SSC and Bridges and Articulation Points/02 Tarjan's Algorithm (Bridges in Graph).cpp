@@ -60,13 +60,15 @@ void dfs(int u, int par) {
 
     for(int v: g[u]) {
         if(v == par) continue;
-        //If v is not visited
+        //If v is not visited (forward edge)
         if(in[v] == -1) {
             dfs(v, u);
             low[u] = min(low[u], low[v]);
 
             if(low[v] > in[u]) bridge.pb({u, v});
-        } else {
+        }
+        // back edge
+        else {
             low[u] = min(low[u], in[v]);
         }
     }
