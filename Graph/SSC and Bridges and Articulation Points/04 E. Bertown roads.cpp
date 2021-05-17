@@ -24,6 +24,7 @@ If bridge edge is directed in this way, then B component nodes can reach A compo
 Thus if there is a bridge then the answer is simply NO.
 
 Otherwise we have answers and the question is just to direct these edges in any correct possible way.
+Since back edge always introduces a cycle thus this new directed graph becomes cyclic and we can reach from any node to any other node.
 */
 
 
@@ -52,7 +53,7 @@ void dfs(int u, int par) {
 
             resEdges.pb({u, v});
         }
-        // back edge (for back edge v is ancestor)
+        // back edge (for back edge v is ancestor; back edge introduces a cycle)
         else {
             low[u] = min(low[u], in[v]);
 
