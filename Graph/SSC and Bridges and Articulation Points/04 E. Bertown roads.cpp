@@ -59,10 +59,11 @@ void dfs(int u, int par) {
 
             resEdges.pb({u, v});
         }
-        // back edge (for back edge v is ancestor; back edge introduces a cycle)
+        // back edge (for back edge either v or u is ancestor; if(in[u] > in[v]) then v is ancestor; back edge introduces a cycle)
         else {
             low[u] = min(low[u], in[v]);
-
+            
+            // checking if u is descendant and v is ancestor
             if(in[u] > in[v]) {
                 resEdges.pb({u, v});
             }
