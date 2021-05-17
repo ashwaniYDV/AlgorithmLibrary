@@ -24,7 +24,13 @@ If bridge edge is directed in this way, then B component nodes can reach A compo
 Thus if there is a bridge then the answer is simply NO.
 
 Otherwise we have answers and the question is just to direct these edges in any correct possible way.
+First of all we direct the edges as formed by the DFS tree from parent to child (i.e u->v).
+Now we are only left to direct the back edges.
+We will direct the back-edges from child to ancestor (u->v, where v is ancestor; see code for insight).
 Since back edge always introduces a cycle thus this new directed graph becomes cyclic and we can reach from any node to any other node.
+
+Claim 1: There is path from root node (node 1) to any other node (DFS Tree property)
+Claim 2: There is a path from every other node to root node via some back-edge
 */
 
 
