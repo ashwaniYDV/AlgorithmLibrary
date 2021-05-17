@@ -36,6 +36,7 @@ This is the DFS tree of our graph:
 1) The back-edges of the graph all connect a vertex with its descendant in the spanning tree. This is why DFS tree is so useful.
 2)  A span-edge (forward-edge) uv is a bridge if and only if there exists no back-edge that connects a descendant of uv with an ancestor of uv. In other words, a span-edge uv is a bridge if and only if there is no back-edge that "passes over" uv.
 3)  A back-edge is never a bridge.
+4)  In DFS tree an edge (u, v) is bridge if there does not exist any other alternative to reach u or an ancestor of u from subtree rooted with v. 
 
 
 
