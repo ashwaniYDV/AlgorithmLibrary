@@ -1,6 +1,11 @@
 // https://www.codechef.com/problems/CHEFRRUN
 // https://youtu.be/s1pYDKbYtmo
 
+/*
+In general SCC of size >= 2 contribues to answer.
+But we can have SCC of size 1 (i.e. only one node) and if it contains self loop then this size = 1 also contribues to answer.
+*/
+
 const int N = 1e6+5;
 int n, m;
 
