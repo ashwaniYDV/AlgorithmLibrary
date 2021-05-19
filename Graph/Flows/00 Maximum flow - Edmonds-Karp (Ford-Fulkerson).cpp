@@ -4,14 +4,17 @@
 // Download Speed CSES
 
 /*
+Ford-Fulkerson Method: Time complexity is dependent on Max Flow
+
+Edmonds-Karp is just implementation of Ford-Fulkerson Method that uses BFS to find augmented path
 Time Complexity = O(VE^2)
+Time Complexity is independent of Max Flow
 */
 
 int n;
 vector<vector<int>> capacity;
 vector<vector<int>> g;
 
-// finds augmented path
 int bfs(int s, int t, vector<int>& parent) {
     fill(parent.begin(), parent.end(), -1);
     parent[s] = -2;
