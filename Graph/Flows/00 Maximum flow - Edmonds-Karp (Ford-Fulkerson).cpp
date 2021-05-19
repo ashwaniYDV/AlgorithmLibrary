@@ -9,6 +9,8 @@ Ford-Fulkerson Method: Time complexity is dependent on Max Flow
 Edmonds-Karp is just implementation of Ford-Fulkerson Method that uses BFS to find augmented path
 Time Complexity = O(VE^2)
 Time Complexity is independent of Max Flow
+
+NOTE: When working with Edmonds-Karp algorithm we assume that the graph is undirected (includes imaginary reverse edges)
 */
 
 int n;
