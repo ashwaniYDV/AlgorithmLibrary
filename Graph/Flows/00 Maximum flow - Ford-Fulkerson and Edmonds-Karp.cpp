@@ -3,11 +3,15 @@
 // https://cses.fi/problemset/task/1694/
 // Download Speed CSES
 
+/*
+Time Complexity = O(VE^2)
+*/
 
 int n;
 vector<vector<int>> capacity;
 vector<vector<int>> g;
 
+// finds augmented path
 int bfs(int s, int t, vector<int>& parent) {
     fill(parent.begin(), parent.end(), -1);
     parent[s] = -2;
