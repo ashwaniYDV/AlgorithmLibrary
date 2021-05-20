@@ -3,7 +3,6 @@
 
 
 
-const int N = 2e5+5;
 int n, m;
 
 ld prob[3000];
