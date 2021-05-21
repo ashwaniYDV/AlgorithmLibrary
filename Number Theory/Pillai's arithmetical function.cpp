@@ -4,7 +4,7 @@
 Given multiple queries, compute 
 gcd(1,n)+gcd(2,n)+gcd(3,n)+...+gcd(n,n)
 for each query n
-           n
+             n
 Pillai(n) =  Σ  gcd(k, n) = gcd(1,n)+gcd(2,n)+gcd(3,n)+...+gcd(n,n)
             k=1
 */ 
