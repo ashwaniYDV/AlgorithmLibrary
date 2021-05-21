@@ -14,7 +14,7 @@ Some properties of multiplicative functions:
    Put n = 1 \
    f(m) = f(m) * f(1) \
    f(m) * (1 - f(1)) = 0 \
-   But f(m) is not zero; therefore f(1) = 1 \
+   But f(m) is not zero; therefore f(1) = 1
   
 2) h(n) = f(n) * g(n),  where f(n) and g(n) are multiplicative functions, \
    then h(n) is also multiplicative function \
