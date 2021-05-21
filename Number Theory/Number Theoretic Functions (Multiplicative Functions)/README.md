@@ -17,7 +17,7 @@ Some properties of multiplicative functions:
    But f(m) is not zero; therefore f(1) = 1
   
 2) h(n) = f(n) * g(n),  where f(n) and g(n) are multiplicative functions, \
-   then h(n) is also multiplicative function \
+   then h(n) is also multiplicative function
    
    Proof: \
    To proove => h(a * b) = h(a) * h(b) \
