@@ -40,16 +40,16 @@ void SieveAndSPF() {
 }
 
 void d_of_n() {
-	Dn[1] = 1;
-	for(int i = 2; i <= n; i++) {
-        if(prime[i]) {
-        	// no of divisors of prime i = 2
+    Dn[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        if (prime[i]) {
+            // no of divisors of prime i = 2
             Dn[i] = 2;
             continue;
         }
         int x = i, y = spf[x];
         int tempDn = 1;
-        while(x % y == 0) {
+        while (x % y == 0) {
             x /= y;
             tempDn++;
         }
@@ -59,23 +59,23 @@ void d_of_n() {
         Dn[i] = tempDn;
     }
 
-    for(int i = 1; i <= n; i++) {
+    for (int i = 1; i <= n; i++) {
         cout << Dn[i] << " ";
     }
     cout << endl;
 }
 
 void sigma_of_n() {
-	sigma[1] = 1;
-	for(int i = 2; i <= n; i++) {
-        if(prime[i]) {
-        	// divisors of prime i = (1 and i)
+    sigma[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        if (prime[i]) {
+            // divisors of prime i = (1 and i)
             sigma[i] = 1 + i;
             continue;
         }
         int x = i, y = spf[x], z = y;
         int tempSigma = 1;
-        while(x % y == 0) {
+        while (x % y == 0) {
             x /= y;
             tempSigma += z;
             z *= y;
@@ -86,7 +86,7 @@ void sigma_of_n() {
         sigma[i] = tempSigma;
     }
 
-    for(int i = 1; i <= n; i++) {
+    for (int i = 1; i <= n; i++) {
         cout << sigma[i] << " ";
     }
     cout << endl;
