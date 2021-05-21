@@ -9,7 +9,7 @@ Euler's Totient Function is multiplicative \
 
 Some properties of multiplicative functions:
 
-1) f(1) = 1
+1) f(1) = 1 \
    Proof: f(m * n) = f(m) * f(n) \
    Put n = 1 \
    f(m) = f(m) * f(1) \
