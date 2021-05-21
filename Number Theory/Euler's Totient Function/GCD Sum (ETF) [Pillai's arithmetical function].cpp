@@ -1,4 +1,8 @@
 /*
+Pillai's arithmetical function
+*/
+
+/*
 GCD Sum using Euler Totient Function
 Que: Given q queries with integer n,
 gcd(1, n) + gcd(2, n) + gcd(3, n) + ... + gcd(n, n) = ______ 
@@ -35,6 +39,7 @@ Numbers in range [1, 12] whose GCD with 12 is:
 12 is {12}
 So answer is; 1*4 + 2*2 + 3*2 + 4*2 + 6*1 + 12*1 = 40.
 */
+
 
 
 // Method 1: CodeNCode
