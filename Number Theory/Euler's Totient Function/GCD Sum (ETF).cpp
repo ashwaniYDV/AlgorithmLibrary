@@ -9,9 +9,31 @@ Overal for q queries, time = O(Nlog(log(N)) + Q.sqrt(N))
 */
 
 /*
-Naive Approach: 
+Naive Approach: (Time Complexity: O(N * log N))
 A simple solution is to iterate over all numbers from 1 to N and find their gcd with N itself and keep on adding them.
 
+Efficient Approach: 
+To optimize the above-mentioned approach, we need to observe that GCD(i, N) gives one of the divisors of N. 
+So if divisors of N are = d1, d2, ..., dm
+Then GCD(i, N) = belongs to one of {d1, d2, ..., dm}
+So, instead of running a loop from 1 to N, we can check for each divisor of N that how many numbers are there with GCD(i, N) same as that divisor.
+
+So we have to find the number of integers from 1 to N with GCD d, where d is a divisor of N. 
+Let us consider x1, x2, x3,..., xn as the different integers from 1 to N such that their GCD with N is d.
+Since, GCD(xi, N) = d, then GCD(xi/d, N/d) = 1
+So, count of integers from 1 to N whose GCD with N is d is Euler Totient Function of (N/d).
+
+Illustration: 
+For example N = 12, its divisors are 1, 2, 3, 4, 6, 12. 
+Numbers in range [1, 12] whose GCD with 12 is:
+
+1 are {1, 5, 7, 11}
+2 are {2, 10}
+3 are {3, 9}
+4 are {4, 8}
+6 is {6}
+12 is {12}
+So answer is; 1*4 + 2*2 + 3*2 + 4*2 + 6*1 + 12*1 = 40.
 */
 
 #include<bits/stdc++.h>
