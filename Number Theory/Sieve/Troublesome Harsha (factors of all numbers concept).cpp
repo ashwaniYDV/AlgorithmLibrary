@@ -1,4 +1,28 @@
 // https://www.codechef.com/problems/COWA19C
+// https://unacademy.com/class/sieve-of-eratosthenes/GVMRBBT5
+
+/*
+Let array = [a1, a2, a3]
+We want sum of product of all numbers
+i.e Res = (a1) + (a2) + (a3) + (a1*a2) + (a1*a3) + (a2*a3) + (a1*a2*a3)
+        = (1 + a1) * (1 + a2) * (1 + a3)
+
+A beautiful concept
+Res = (1 + a1) * (1 + a2) * (1 + a3)
+
+(1 + ax) means we have included 2 cases: 
+Case 1 - we take ax in multiplication 
+Case 2: we dont take ax in multiplication
+
+TLE approach is also given at last.
+*/
+
+/*
+Thus if divisors of n = [d1, d2, d3, ...]
+them 
+res = (d1) + (d2) + (d3) + (d1*d2) + (d1*d3) + (d2*d3) + ...
+    = (1 + d1) * (1 + d2) * (1 + d3) * ...
+*/
 
 // Method 1
 // O(n*log(n))
