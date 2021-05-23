@@ -287,7 +287,6 @@ vector<bool> segmentedSieve(int L, int R) {
                 mark[j] = false;
         }
     }
-
     for (int i = 2; i <= lim; ++i) {
         if(mark[i])
             primes.emplace_back(i);
