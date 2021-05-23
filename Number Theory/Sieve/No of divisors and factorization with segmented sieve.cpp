@@ -1,6 +1,21 @@
 // https://www.codechef.com/problems/PRETNUM
 // Yet Another Cute Girl
 
+/*
+Problem:
+
+Goven range L to R.
+Find numbers with prime number of divisors in this range.
+1 ≤ T ≤ 5
+1 ≤ L ≤ R ≤ 10^12
+0 ≤ R - L ≤ 10^6
+*/
+
+/*
+Let n = p1^x1 * p2^x2 * ... * pm^xm
+Then no of divisors of n = (1 + x1) * (1 + x2) * ... * (1 + xm)
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize ("O3")
@@ -54,7 +69,7 @@ const int MAXN = 1e5+5;
 const int N = 1e6+5;
 int n, m;
 
-bool isPrime[N+5]; // N = 1e5 order 
+bool isPrime[N+5];
 vector<int> primes;
 void sieve() {
     memset(isPrime, true, sizeof(isPrime));
@@ -96,7 +111,11 @@ void segmentedSieve(int L, int R) {
 
     int ans = 0;
     for(int i = 0; i < n; i++) {
-        int d = divisors[i] * (nums[i] > 1 ? 2 : 1);
+        int d = divisors[i];
+        // if remaining nums[i] is a prime number then it contributes to (1 + 1) while mutiplication process to get number of divisors
+        if(nums[i] > 1) {
+            d *= 2;
+        }
         if(isPrime[d]) 
             ans++;
     }
