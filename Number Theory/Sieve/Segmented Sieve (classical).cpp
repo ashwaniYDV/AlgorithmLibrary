@@ -2,7 +2,103 @@
 // https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html#toc-tgt-7
 
 
+
+
+
 // Method 1
+const int N = 1e5+5;
+int n, m;
+
+bool prime[N+5]; // N = 1e5 order 
+vector<int> primes;
+void sieve() {
+    memset(prime, true, sizeof(prime));
+    prime[0] = prime[1] = false;
+    for(int p = 2; p*p <= N; p++) { 
+        if (prime[p] == true) {
+            for(int i = p*p; i <= N; i+=p) 
+                prime[i] = false; 
+        } 
+    } 
+    for(int p=2; p <= N; p++) {
+        if (prime[p]) {
+            primes.push_back(p);
+        }
+    }
+}
+
+
+// Time = (R-L+1)loglog(R) + √R.loglog(√R)
+vector<bool> segmentedSieve(int L, int R) {
+    // generate all primes up to sqrt(R)
+    int lim = sqrt(R);
+    vector<bool> isPrime(R - L + 1, true);
+
+    for (int i : primes) {
+        // if( i*i <= R) {
+        if( i <= lim) {
+            for (int j = max(i * i, (L + i - 1) / i * i); j <= R; j += i) {
+                isPrime[j - L] = false;
+            }
+        }
+    }
+
+    if (L == 1)
+        isPrime[0] = false;
+
+    return isPrime;
+}
+
+void solve() {
+    int x, y, z, l, r;
+    cin >> l >> r;
+    vector<bool> isPrime = segmentedSieve(l, r);
+    f(i, isPrime.size()) {
+        if(isPrime[i])
+            cout << i + l << endl;
+    }
+    cout << endl;
+}
+ 
+signed main() {
+    IOS
+    sieve();
+    int t = 1;
+    cin >> t;
+    while(t--) {
+        solve();
+    }
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 2
 const int N = 1e5+5;
 int n, m;
 
@@ -76,89 +172,6 @@ signed main() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Method 2
-const int N = 1e5+5;
-int n, m;
-
-bool prime[N+5]; // N = 1e5 order 
-vector<int> primes;
-void sieve() {
-    memset(prime, true, sizeof(prime));
-    prime[0] = prime[1] = false;
-    for(int p = 2; p*p <= N; p++) { 
-        if (prime[p] == true) {
-            for(int i = p*p; i <= N; i+=p) 
-                prime[i] = false; 
-        } 
-    } 
-    for(int p=2; p <= N; p++) {
-        if (prime[p]) {
-            primes.push_back(p);
-        }
-    }
-}
-
-
-// Time = (R-L+1)loglog(R) + √R.loglog(√R)
-vector<bool> segmentedSieve(int L, int R) {
-    // generate all primes up to sqrt(R)
-    int lim = sqrt(R);
-    vector<bool> isPrime(R - L + 1, true);
-
-    for (int i : primes) {
-        // if( i*i <= R) {
-        if( i <= lim) {
-            for (int j = max(i * i, (L + i - 1) / i * i); j <= R; j += i) {
-                isPrime[j - L] = false;
-            }
-        }
-    }
-
-    if (L == 1)
-        isPrime[0] = false;
-
-    return isPrime;
-}
-
-void solve() {
-    int x, y, z, l, r;
-    cin >> l >> r;
-    vector<bool> isPrime = segmentedSieve(l, r);
-    f(i, isPrime.size()) {
-        if(isPrime[i])
-            cout << i + l << endl;
-    }
-    cout << endl;
-}
- 
-signed main() {
-    IOS
-    sieve();
-    int t = 1;
-    cin >> t;
-    while(t--) {
-        solve();
-    }
-} 
 
 
 
