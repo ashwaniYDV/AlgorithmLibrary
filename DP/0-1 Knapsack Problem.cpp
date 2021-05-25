@@ -72,6 +72,49 @@ ll knapSack(ll n, ll W, ll weight[], ll value[]) {
    return dp[n][W]; 
 }
 
+// Another Case: When W is very large but totalValue is small
+void dpfun(int n, int W, vector<int>& weight, vector<int>& value) {
+    int totalValue = 0;
+    
+    f(i, n) {
+        totalValue += value[i];
+    }
+
+    // dp[i][j] denotes the least weight to get a value of j from the first i objects
+    ll dp[n+1][totalValue+1];
+
+    // It takes 0 weight here
+    for(int i = 0; i <= n; i++) { 
+        dp[i][0] = 0;
+    }
+    // Just set it arbitrarily large because we want to calculate min value of weight
+    for(int i = 1; i <= totalValue; i++) {   
+        dp[0][i] = 1e18;
+    }
+
+    int ans = 0;
+    
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= totalValue; j++) {
+            // If I choose this object the value will go over j
+            if(j < value[i - 1]) {
+                dp[i][j] = dp[i - 1][j];
+            } else {
+                // Either don't choose this object(dp[i][j]) or choose this object
+                dp[i][j] = min(dp[i - 1][j], weight[i - 1] + dp[i - 1][j - value[i - 1]]);
+            }
+
+           // Is it possible to get value of j in less than w weight
+            if(dp[i][j] <= W) {
+                // Find maximum such j
+                ans = max(ans, j);
+            }
+        }
+    }
+
+    cout << ans << endl;
+}
+
 void solve() {
     ll t, k, x, y;
 
