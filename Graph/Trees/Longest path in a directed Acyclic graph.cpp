@@ -54,60 +54,6 @@ const int MAXN = 20;
 const int N = 1e5+5;
 int n, m;
  
-/************************************************************************************/
-int binpow(int n, int p) {
-    int res = 1;
-    while (p > 0) {
-        if (p & 1) res = res * n;
-        n = n * n;
-        p >>= 1;
-    }
-    return res;
-}
-int power(int n, int p) {
-    int res = 1;
-    n %= MOD;
-    while (p > 0) {
-        if (p & 1) res = (res * n) % MOD;
-        n = (n * n) % MOD;
-        p >>= 1;
-    }
-    return res;
-}
-int modInverse(int n, int p) { 
-    return power(n, p - 2);
-} 
- 
-int fact[MAXN], inv[MAXN], invfact[MAXN];
-void initFactorials() {
-    fact[0] = 1;
-      for (int i = 1; i < MAXN; i++) {
-        fact[i] = (fact[i - 1] * i * 1LL) % MOD;
-    }
- 
-    //calculate inverses of [1,N] mod p
-    inv[1]=1;
-    for(int i=2;i<MAXN;i++)inv[i]=inv[MOD%i]*(MOD-MOD/i)%MOD;
- 
-    invfact[0]=1;
-    for(int i=1;i<MAXN;i++)invfact[i]=(invfact[i-1]*inv[i])%MOD;
-}
- 
-int nCrMod(int n, int r) {
-    if (n < r) return 0;
-    if (r == 0) return 1;
-    int num = fact[n], den = (fact[r] * fact[n-r]) % MOD;
-    int inv = modInverse(den, MOD);
-    return (num * inv) % MOD;
-}
- 
-/*
-Rotate Left by rotL
-rotate(v.begin(), v.begin()+rotL, v.end());
-Rotate Right by rotR
-rotate(v.begin(), v.begin()+ n-rotR, v.end());
-*/
-/************************************************************************************/
 
 vi g[N];
 int vis[N];
