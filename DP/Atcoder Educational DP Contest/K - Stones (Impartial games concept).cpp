@@ -70,6 +70,8 @@ for (int x: a) {
 */
 
 
+const int N = 1e5+5;
+int n, m;
 int dp[N];
 
 void solve() {
