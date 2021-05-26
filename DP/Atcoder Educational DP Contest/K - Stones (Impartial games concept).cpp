@@ -100,13 +100,3 @@ void solve() {
         cout << "Second\n";
     }
 }
-
-signed main() {
-    IOS
-    int t = 1;
-    PRECISION(10)
-    // cin >> t;
-    f(i, t) {
-        solve();
-    }
-}
