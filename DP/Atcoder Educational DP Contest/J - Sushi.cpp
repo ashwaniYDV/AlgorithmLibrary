@@ -1,4 +1,5 @@
 // https://atcoder.jp/contests/dp/tasks/dp_j
+// https://youtu.be/XRVCU2Ys9Mk
 
 /*
 NOTE: The order in which dishes are places is of no use to us.
