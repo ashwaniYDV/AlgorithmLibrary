@@ -38,6 +38,19 @@ dp[x][y][z] * (1 - p0)         = 1 + p3 * dp[x-1][y+1][z] + p2 * dp[x][y-1][z+1]
 dp[x][y][z]                    = (1 + p3 * dp[x-1][y+1][z] + p2 * dp[x][y-1][z+1] + p1 * dp[x][y][z-1]) / (1 - p0)
 */
 
+/*
+NOTE: In both the methods the correct transition of DP will be as follows because state goes from 3 -> 2 -> 1 -> 0 
+since when dish with 3 shushies is eaten it transforms to dish with 2 shushies and so on.
+
+for (int three = 0; three <= n; three++) {
+        for (int two = 0; two <= n; two++) {
+            for (int one = 0; one <= n; one++) {
+            
+            }
+        }
+}
+*/
+
 
 // Method 1
 ld dp[305][305][305];
