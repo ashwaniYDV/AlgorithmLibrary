@@ -19,10 +19,25 @@ dp[x][y][z] = answer when we have (x = count of dishes with 3 shushies,
                                     z = count of dishes with 1 shushies)
 Count of dishes with 0 shushies = n - x - y - z
 
+
+
+
+
+
 Base case:
+------------
 dp[0][0][0] = 0
 Since expected number of times the operation is performed before all the pieces of sushi are eaten = 0.
 
+
+
+
+
+
+
+
+Transitions:
+------------
 p0 = probability of picking a dish with 0 shushy
 p1 = probability of picking a dish with 1 shushy
 p2 = probability of picking a dish with 2 shushies
@@ -42,6 +57,11 @@ dp[x][y][z]                    = (1 + p3 * dp[x-1][y+1][z] + p2 * dp[x][y-1][z+1
 NOTE: In both the methods the correct transition of DP will be as follows because state goes from 3 -> 2 -> 1 -> 0 
 since when dish with 3 shushies is eaten it transforms to dish with 2 shushies and so on.
 
+
+
+
+Order of evaluation:
+--------------------
 for (int three = 0; three <= n; three++) {
         for (int two = 0; two <= n; two++) {
             for (int one = 0; one <= n; one++) {
