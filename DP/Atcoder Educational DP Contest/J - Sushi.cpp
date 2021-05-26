@@ -60,7 +60,7 @@ since when dish with 3 shushies is eaten it transforms to dish with 2 shushies a
 
 
 
-Order of evaluation:
+Order of Evaluation:
 --------------------
 for (int three = 0; three <= n; three++) {
         for (int two = 0; two <= n; two++) {
