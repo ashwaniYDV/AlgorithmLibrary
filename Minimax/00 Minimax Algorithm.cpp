@@ -1,3 +1,10 @@
+/*
+Minimax Algorithm
+-----------------
+Time Complexity : Best, Average and Worst Case : O(b^d)
+Space Complexity : O(n)
+*/
+
 // https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/
 // https://youtu.be/Ntu8nNBL28o
 // https://youtu.be/l-hh51ncgDI   (minimax and alpha-beta pruning)
