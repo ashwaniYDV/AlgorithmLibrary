@@ -61,12 +61,3 @@ void solve() {
     int res = minimax(0, 0, true, scores, h);
     cout << "The optimal value is : " << res << endl;
 }
-
-signed main() {
-    IOS
-    int t = 1;
-    // cin >> t;
-    f(i, t) {
-        solve();
-    }
-}
