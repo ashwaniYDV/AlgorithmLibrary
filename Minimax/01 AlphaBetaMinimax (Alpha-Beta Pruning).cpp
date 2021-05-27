@@ -1,8 +1,8 @@
 /*
 Alpha-Beta Pruning Algorithm
 ----------------------------
-Time Complexity : Best Case : O(b^(d/2))
-				  Worst Case : O(b^d)
+Time Complexity : Best Case : O(b^(d/2)),  Worst Case : O(b^d)
+		  where b = branching factor and d = depth or height
 Space Complexity : O(n)
 */
 
