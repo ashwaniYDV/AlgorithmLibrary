@@ -1,7 +1,7 @@
 /*
 Minimax Algorithm
 -----------------
-Time Complexity : Best, Average and Worst Case : O(b^d)
+Time Complexity : Best, Average and Worst Case : O(b^d), where b = branching factor and d = depth or height
 Space Complexity : O(n)
 */
 
