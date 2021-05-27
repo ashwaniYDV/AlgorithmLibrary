@@ -6,6 +6,7 @@ Time Complexity : Best Case : O(b^(d/2)),  Worst Case : O(b^d)
 Space Complexity : O(n)
 */
 
+// https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-4-alpha-beta-pruning/
 // https://youtu.be/l-hh51ncgDI
 
 int alpha_beta_minimax(int depth, int nodeIndex, bool isMax, vector<int>& scores, int alpha, int beta, int h) {
