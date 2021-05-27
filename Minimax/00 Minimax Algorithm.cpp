@@ -1,5 +1,6 @@
 // https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/
 // https://youtu.be/Ntu8nNBL28o
+// https://youtu.be/l-hh51ncgDI   (minimax and alpha-beta pruning)
 
 /*
 Minimax is a kind of backtracking algorithm that is used in decision making and game theory to find the optimal move for a player, 
