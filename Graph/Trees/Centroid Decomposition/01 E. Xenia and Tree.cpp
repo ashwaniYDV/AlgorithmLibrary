@@ -84,7 +84,7 @@ int dfs0(int u, int par) {
     subTreeSize[u] = 1;
     for(int v: g[u]) {
         if(v != par)
-            subTreeSize[u] += dfs0(v , u);
+            subTreeSize[u] += dfs0(v, u);
     }
     return subTreeSize[u];
 }
@@ -113,7 +113,7 @@ void decompose(int u, int par) {
 void update(int u) {
     int curr = u;
     while(curr != -1) {
-        res[curr] = min(res[curr], getDistance(curr , u));
+        res[curr] = min(res[curr], getDistance(curr, u));
         curr = parent[curr];
     }
 }
@@ -122,7 +122,7 @@ int query(int node) {
     int curr = node;
     int ans = INF;
     while(curr != -1) {
-        ans = min(ans, res[curr] + getDistance(node , curr));
+        ans = min(ans, res[curr] + getDistance(curr, node));
         curr = parent[curr];
     }
     return ans;
