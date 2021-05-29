@@ -1,6 +1,6 @@
 // https://cses.fi/problemset/task/1137/
 
-
+// Method 1: Segment Tree
 const int N = 2e5+5;
 int n, m;
 vi g[N];
@@ -25,7 +25,7 @@ void dfs(int u, int par) {
     }
 }
 
-/*************** ST ********************************/
+/*************** ST *************************/
 int st[2 * N];
 
 void build(int si, int ss, int se) {
@@ -69,7 +69,7 @@ int query(int si, int ss, int se, int qs, int qe) {
     
     return L + R;
 }
-/***************************************************/
+/********************************************/
 
 
 void solve() {
@@ -92,6 +92,120 @@ void solve() {
         } else {
             cin >> u;
             cout << query(1, 1, n, in[u], in[u] + subtreeSize[u] - 1) << endl;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 2: BIT
+const int N = 2e5+5;
+int n, m;
+
+vi g[N];
+int arr[N];
+int nodeV[N];
+int subtreeSize[N];
+int in[N];
+int _timer;
+
+// Euler Tour Technique (ETT)
+void dfs(int u, int par) {
+    in[u] = _timer;
+    arr[in[u]] = nodeV[u];
+    _timer++;
+    subtreeSize[u] = 1;
+    
+    for(int v: g[u]) {
+        if(v == par) continue;
+        dfs(v, u);
+        subtreeSize[u] += subtreeSize[v];
+    }
+}
+
+/*************** BIT **************************/
+int BIT[N];
+void update(int i, int val) {
+    while(i < N) {
+        BIT[i] += val;
+        i += (i&-i);
+    }
+}
+int query(int i) {
+    int sum = 0;
+    while(i > 0) {
+        sum += BIT[i];
+        i -= (i&-i);
+    }
+    return sum;
+}
+int getAns(int l, int r) {
+    return query(r) - query(l-1);
+}
+/********************************************/
+
+void solve() {
+    int q, u, v, x, type;
+    cin >> n >> q;
+    
+    loop(i, 1, n) cin >> nodeV[i];
+    loop(i, 1, n-1) cin >> u >> v, g[u].pb(v), g[v].pb(u);
+    
+    _timer = 1;
+    dfs(1 , -1);
+    
+    // build BIT
+    loop(u, 1, n) {
+        // update(in[u], nodeV[u]);
+        update(in[u], arr[in[u]]);
+    }
+    
+    while(q--) {
+        cin >> type;
+        if(type == 1) {
+            cin >> u >> x;
+            update(in[u], x - arr[in[u]]);
+            arr[in[u]] = x;
+        } else {
+            cin >> u;
+            cout << getAns(in[u], in[u] + subtreeSize[u] - 1) << endl;
         }
     }
 }
