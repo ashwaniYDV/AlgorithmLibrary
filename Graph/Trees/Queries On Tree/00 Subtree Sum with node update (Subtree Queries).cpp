@@ -28,6 +28,7 @@ void dfs(int u, int par) {
     }
 }
 
+/*************** ST ********************************/
 void build(int si, int ss, int se) {
     if(ss == se) {
         st[si] = arr[ss];
@@ -69,6 +70,7 @@ int query(int si, int ss, int se, int qs, int qe) {
     
     return L + R;
 }
+/***************************************************/
 
 
 void solve() {
