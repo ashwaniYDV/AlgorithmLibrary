@@ -100,6 +100,7 @@ int query(int i) {
 }
 /*************************/
 
+// Euler Tour Technique (ETT)
 void dfs(int u, int par) {
 	S[u] = timer;
 	FT[timer] = u;
