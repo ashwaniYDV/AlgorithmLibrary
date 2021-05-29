@@ -1,4 +1,20 @@
 // https://codeforces.com/contest/342/problem/E
+// https://youtu.be/33K59_WrWZs
+
+/*
+Problem:
+
+Xenia the programmer has a tree consisting of n nodes from 1 to n.
+We will consider the node 1 to be initially painted red, and the other nodes — to be painted blue.
+
+The distance between two tree nodes v and u is the number of edges in the shortest path between v and u.
+
+Xenia needs to learn how to quickly execute queries of two types:
+1) paint a specified blue node in red
+2) calculate which red node is the closest to the given one and print the shortest distance to the closest red node.
+
+Your task is to write a program which will execute the described queries.
+*/
 
 
 const int N = 2e5+5;
