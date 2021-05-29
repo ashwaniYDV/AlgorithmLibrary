@@ -3,6 +3,9 @@
 
 /*
 Path query question
+
+There's a tree, with each vertex assigned a number. For each query (a, b, c), you are asked whether 
+there is a vertex on the path from a to b, which is assigned number c?
 */
 
 #include<bits/stdc++.h>
