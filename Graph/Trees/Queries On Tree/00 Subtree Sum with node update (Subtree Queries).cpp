@@ -7,9 +7,6 @@ vi g[N];
  
 int arr[N];
 int nodeV[N];
- 
-int st[2 * N];
- 
 int subtreeSize[N];
 int in[N];
 int _timer;
@@ -29,6 +26,8 @@ void dfs(int u, int par) {
 }
 
 /*************** ST ********************************/
+int st[2 * N];
+
 void build(int si, int ss, int se) {
     if(ss == se) {
         st[si] = arr[ss];
