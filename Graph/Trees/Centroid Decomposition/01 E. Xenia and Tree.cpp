@@ -1,5 +1,6 @@
 // https://codeforces.com/contest/342/problem/E
 
+
 const int N = 2e5+5;
 int n, m;
  
@@ -79,7 +80,6 @@ int getDistance(int a, int b) {
 
 
 /************* Decomposition Part ****************/
-// get subtreesize
 int dfs0(int u, int par) {
     subTreeSize[u] = 1;
     for(int v: g[u]) {
@@ -89,18 +89,17 @@ int dfs0(int u, int par) {
     return subTreeSize[u];
 }
 
-// get centroid
-int dfs(int u, int par, int n) {
+int getCentroid(int u, int par, int n) {
     for(int v: g[u]) {
         if(v != par && subTreeSize[v] > n/2)
-            return dfs(v, u, n);
+            return getCentroid(v, u, n);
     }
     return u;
 }
  
 void decompose(int u, int par) {
     int stSize = dfs0(u, -1);
-    int centroid = dfs(u, par, stSize);
+    int centroid = getCentroid(u, par, stSize);
     parent[centroid] = par;
  
     for(int v : g[centroid]) {
@@ -126,7 +125,6 @@ int query(int node) {
         ans = min(ans, res[curr] + getDistance(node , curr));
         curr = parent[curr];
     }
- 
     return ans;
 }
  
