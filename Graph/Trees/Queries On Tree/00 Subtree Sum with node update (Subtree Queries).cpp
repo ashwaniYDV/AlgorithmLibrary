@@ -81,6 +81,8 @@ void solve() {
     
     _timer = 1;
     dfs(1 , -1);
+ 
+    // build ST
     build(1 , 1 , n);
     
     while(q--) {
