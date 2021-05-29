@@ -5,3 +5,4 @@
 
 ### Videos
 1) [Height & Structure of Centroid Decomposition | Queries on Tree](https://youtu.be/rW7uBM-fK7A)
+2) [Decomposing the tree (C++ Implementation) | Queries On Tree](https://youtu.be/HslIHMbL7zQ)
