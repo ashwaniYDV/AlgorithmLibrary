@@ -1,4 +1,5 @@
 // https://cses.fi/problemset/task/1137/
+// https://youtu.be/zSB4pInjIa8
 
 // Method 1: Segment Tree
 const int N = 2e5+5;
