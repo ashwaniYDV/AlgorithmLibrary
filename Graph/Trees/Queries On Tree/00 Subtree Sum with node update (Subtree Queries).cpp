@@ -14,7 +14,7 @@ int _timer;
 // Euler Tour Technique (ETT)
 void dfs(int u, int par) {
     in[u] = _timer;
-    arr[_timer] = nodeV[u];
+    arr[in[u]] = nodeV[u];
     _timer++;
     subtreeSize[u] = 1;
     
