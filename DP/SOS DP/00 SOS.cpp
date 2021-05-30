@@ -65,6 +65,50 @@ void solve() {
 
 
 
+// iterative version
+void solve() {
+    int x, y, z;
+    cin >> n;
+    int size = (1 << n);
+    int a[size];
+    for(int mask = 0; mask < size; mask++) 
+        cin >> a[mask];
+
+    int f[size];
+    int dp[size][n];
+
+    for(int mask = 0; mask < size; mask++) {
+        dp[mask][-1] = a[mask]; // handle base case separately (leaf states)
+        for(int i = 0;i < n; i++) {
+            // case 1: ith bit is set
+            if(mask & (1 << i)) {
+                dp[mask][i] = dp[mask][i-1] + dp[mask ^ (1 << i)][i-1];
+            }
+            // case 2: ith bit is off
+            else {
+                dp[mask][i] = dp[mask][i-1];
+            }
+        }
+        f[mask] = dp[mask][n-1];
+    }
+
+    for(int mask = 0; mask < size; mask++) {
+        cout << f[mask] << " ";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -91,7 +135,6 @@ void solve() {
         }
     }
 
-    cout << endl;
     for(int mask = 0; mask < size; mask++) {
         cout << f[mask] << " ";
     }
