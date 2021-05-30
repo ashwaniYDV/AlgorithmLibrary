@@ -1,4 +1,5 @@
 // https://codeforces.com/blog/entry/45223
+// https://www.geeksforgeeks.org/sum-subsets-dynamic-programming/
 // https://unacademy.com/class/sum-over-subsets-dp-sos-dp/5QHT2VC0
 
 /*
