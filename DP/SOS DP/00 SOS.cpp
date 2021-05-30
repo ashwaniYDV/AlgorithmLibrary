@@ -5,7 +5,12 @@
 /*
 Time  = O(n * 2^n)
 Space = O(n * 2^n)
+
+https://www.codechef.com/ICPCIN19/problems/PENS
+https://www.codechef.com/problems/COVERING
+https://www.codechef.com/SNFL16MR/problems/BEAUTY
 */
+
 
 // iterative version
 void solve() {
