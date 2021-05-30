@@ -7,6 +7,7 @@ Time  = O(n * 2^n)
 Space = O(n * 2^n)
 */
 
+// iterative version
 void solve() {
     int x, y, z;
     cin >> n;
@@ -41,6 +42,56 @@ void solve() {
         f[mask] = dp[mask][n];
     }
 
+    for(int mask = 0; mask < size; mask++) {
+        cout << f[mask] << " ";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// memory optimized, super easy to code.
+void solve() {
+    int x, y, z;
+    cin >> n;
+    int size = (1 << n);
+    int a[size];
+    for(int mask = 0; mask < size; mask++) 
+        cin >> a[mask];
+
+    int f[size];
+
+    for(int mask = 0; mask < size; mask++) {
+        f[mask] = a[mask];
+    }
+    for(int i = 0; i < n; ++i) {
+        for(int mask = 0; mask < size; mask++) {
+            if(mask & (1 << i)) {
+                f[mask] += f[mask^(1 << i)];
+            }
+        }
+    }
+
+    cout << endl;
     for(int mask = 0; mask < size; mask++) {
         cout << f[mask] << " ";
     }
