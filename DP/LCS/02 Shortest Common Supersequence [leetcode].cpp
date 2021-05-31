@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/shortest-common-supersequence/
+
+
 class Solution {
 public:    
     string lcs(string s1, string s2) {
@@ -41,10 +44,14 @@ public:
         int i = 0, j = 0;
         string SCS = "";
         for(char c: lcs(s1, s2)) {
-            while (s1[i] != c)
-                SCS += s1[i++];
-            while (s2[j] != c)
-                SCS += s2[j++];
+            while (s1[i] != c) {
+                SCS += s1[i];
+                i++;
+            }
+            while (s2[j] != c) {
+                SCS += s2[j];
+                j++;
+            }
             SCS += c;
             i++, j++;
         }
@@ -53,3 +60,53 @@ public:
         return SCS;
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// leetcode.com/lee215
+string shortestCommonSupersequence(string& A, string& B) {
+    int i = 0, j = 0;
+    string res = "";
+    for (char c : lcs(A, B)) {
+        while (A[i] != c)
+            res += A[i++];
+        while (B[j] != c)
+            res += B[j++];
+        res += c, i++, j++;
+    }
+    return res + A.substr(i) + B.substr(j);
+}
+
+string lcs(string& A, string& B) {
+    int n = A.size(), m = B.size();
+    vector<vector<string>> dp(n + 1, vector<string>(m + 1, ""));
+    for (int i = 0; i < n; ++i)
+        for (int j = 0; j < m; ++j)
+            if (A[i] == B[j])
+                dp[i + 1][j + 1] = dp[i][j] + A[i];
+            else
+                dp[i + 1][j + 1] = dp[i + 1][j].size() > dp[i][j + 1].size() ?  dp[i + 1][j] : dp[i][j + 1];
+    return dp[n][m];
+}
