@@ -1,5 +1,9 @@
 // https://leetcode.com/problems/shortest-common-supersequence/
 
+/*
+Given two strings s1 and s2, return the shortest string that has both s1 and s2 as subsequences.
+If multiple answers exist, you may return any of them.
+*/
 
 class Solution {
 public:    
