@@ -1,6 +1,6 @@
 ### Some Techniques
 
-1) Print all the subsets of a mask (SOS DP suboptimal solution concept)
+1) Print all the subsets of a mask, i.e submasks (SOS DP suboptimal solution concept)
 
 ```
 void solve() {
