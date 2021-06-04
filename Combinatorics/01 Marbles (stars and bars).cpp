@@ -2,16 +2,19 @@
 
 /*
 a1 + a2 + a3 + ... + ak = n
-Non negative solutions = (n+k-1)C(k-1) = (n+k-1)C(n)
-
 Stars = n
 Bars = k-1
+Non negative solutions = (n+k-1)C(k-1) = (n+k-1)C(n)
 
 
 Non negative non zero solutions = (n-1)C(k-1) = (n-1)C(n)
 Derivation:
 a1+1 + a2+1 + a3+1 + ... + ak+1 = n
 a1 + a2 + a3 + ... + ak = n - k
+
+Stars = n-k
+Bars = k-1
+
 Thus ((n-k) + k-1)C(k-1) = (n-1)C(k-1)
 */
 
