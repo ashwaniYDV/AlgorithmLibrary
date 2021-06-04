@@ -1,7 +1,9 @@
 // https://www.spoj.com/problems/MARBLES/
 
+// https://cp-algorithms.com/combinatorics/stars_and_bars.html
+
 /*
-a1 + a2 + a3 + ... + ak = n
+x1 + x2 + x3 + ... + xk = n
 Stars = n
 Bars = k-1
 Non negative solutions = (n+k-1)C(k-1) = (n+k-1)C(n)
@@ -9,8 +11,8 @@ Non negative solutions = (n+k-1)C(k-1) = (n+k-1)C(n)
 
 Non negative non zero solutions = (n-1)C(k-1) = (n-1)C(n)
 Derivation:
-a1+1 + a2+1 + a3+1 + ... + ak+1 = n
-a1 + a2 + a3 + ... + ak = n - k
+x1+1 + x2+1 + x3+1 + ... + xk+1 = n
+x1 + x2 + x3 + ... + xk = n - k
 
 Stars = n-k
 Bars = k-1
