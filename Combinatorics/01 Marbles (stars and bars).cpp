@@ -4,6 +4,9 @@
 a1 + a2 + a3 + ... + ak = n
 Non negative solutions = (n+k-1)C(k-1) = (n+k-1)C(n)
 
+Stars = n
+Bars = k-1
+
 
 Non negative non zero solutions = (n-1)C(k-1) = (n-1)C(n)
 Derivation:
