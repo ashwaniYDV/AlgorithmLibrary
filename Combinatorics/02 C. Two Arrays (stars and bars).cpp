@@ -1,4 +1,5 @@
 // https://codeforces.com/problemset/problem/1288/C
+// https://youtu.be/v069aWK21wA
 
 /*
 Problem:
