@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/k-similar-strings/
+// https://www.youtube.com/watch?v=SAe1UqL2n-o
 
 /*
 Logical Thinking:
