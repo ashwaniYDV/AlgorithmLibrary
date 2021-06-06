@@ -1,6 +1,7 @@
 // https://leetcode.com/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/
 
 /*
+Problem:
 You are given an m * n matrix, mat, and an integer k, which has its rows sorted in non-decreasing order.
 You are allowed to choose exactly 1 element from each row to form an array. 
 Return the Kth smallest array sum among all possible arrays.
@@ -11,6 +12,9 @@ To understand this problem, first look at - Find K Pairs with Smallest Sums (htt
 The function kSmallestPairs can be taken directly from above problem.
 
 So we start merging two rows at a time by using the function kSmallestPairs, m-1 times, keeping each time the size of the res at most k.
+
+The time complexity of kSmallestPairs each time it is called is k * logk.
+Since it is called m-1 times, so we have total time complexity = k * logk * (m-1) = O(m * k * logk)
 */
 
 class Solution {
