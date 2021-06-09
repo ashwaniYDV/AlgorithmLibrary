@@ -26,7 +26,7 @@ Final runtime looks something like O(18278n) or O(n) depending on how you implem
 
 
 
-Case 1:
+Case 2:
 |S| ≤ 100000
 
 Let’s brute force check all substrings of length <= 4.
@@ -63,7 +63,17 @@ void solve() {
  
     cin >> n;
     cin >> s;
-    
+ 
+    /*
+      Case 1:
+      |S| ≤ 1000
+      size = 1 to 3
+
+      Case 2:
+      |S| ≤ 100000
+      size = 1 to 4
+    */
+ 
     // generating substrings of length size before hand and putting in a set one by one for all size
     for(int size = 1; size <= 3; size++) {
         subStrs.clear();
