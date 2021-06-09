@@ -1,5 +1,6 @@
 // https://cp-algorithms.com/string/string-hashing.html
 
+// Calculation of the hash of a string
 long long compute_hash(string const& s) {
     const int p = 31;
     const int m = 1e9 + 9;
@@ -17,7 +18,7 @@ long long compute_hash(string const& s) {
 
 
 
-
+// Search for duplicate strings in an array of strings
 vector<vector<int>> group_identical_strings(vector<string> const& s) {
     int n = s.size();
     vector<pair<long long, int>> hashes(n);
@@ -44,7 +45,7 @@ vector<vector<int>> group_identical_strings(vector<string> const& s) {
 
 
 
-
+// Determine the number of different substrings in a string
 int count_unique_substrings(string const& s) {
     int n = s.size();
 
