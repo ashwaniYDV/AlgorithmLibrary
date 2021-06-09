@@ -13,6 +13,9 @@ long long compute_hash(string const& s) {
     return hash_value;
 }
 
+/*
+Precomputing the powers of p might give a performance boost.
+*/
 
 
 
@@ -42,8 +45,10 @@ vector<vector<int>> group_identical_strings(vector<string> const& s) {
 
 
 
-
-
+/*
+Problem:
+Given a list of n strings si, each no longer than m characters, find all the duplicate strings and divide them into groups.
+*/
 
 // Determine the number of different substrings in a string
 int count_unique_substrings(string const& s) {
