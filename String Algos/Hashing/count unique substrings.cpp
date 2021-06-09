@@ -1,4 +1,4 @@
-// // https://youtu.be/wh1APrnUfF8
+// https://youtu.be/wh1APrnUfF8
 
 /* 
 Similar questions which can be solved:-
