@@ -1,5 +1,10 @@
 // https://www.spoj.com/problems/NHAY/
+// A Needle in the Haystack [SPOJ]
 
+/*
+Write a program that finds all occurences of a given pattern in a given input string. 
+This is often referred to as finding a needle in a haystack.
+*/
 
 struct Hash_Str {
     /**********************************/
