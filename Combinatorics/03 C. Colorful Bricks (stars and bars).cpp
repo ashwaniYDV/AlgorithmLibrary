@@ -15,10 +15,12 @@ Because the answer might be quite big, you only need to output the number of way
 /*
 Solution:
 We need k+1 partitions of n number of bricks.
+Let x1 + x2 + .... x(k+1) = n
 
-    |  |  |  |  |  |  |  | 
 
-So the 1st set of bricks can be colored in any of (m) colors, 2d set of bricks in any of (m-1) colors, 3rd set of bricks in any of (m-1) colors...
+    | x1 bricks | x2 bricks | ... | ... | x(k) bricks | x(k+1) bricks | 
+
+So the 1st set of x1 bricks can be colored in any of (m) colors, 2d set of x2 bricks in any of (m-1) colors, 3rd set x3 of bricks in any of (m-1) colors...
 and the (k+1)th set of bricks in any of (m-1) colors.
 
 
