@@ -1,18 +1,49 @@
 // https://www.geeksforgeeks.org/count-binary-strings-k-times-appearing-adjacent-two-set-bits/
 
 /*
-Let there be an array dp[i][j][2] where dp[i][j][0]
-denotes number of binary strings with length i having
-j number of two adjacent 1's and ending with 0.
-Similarly dp[i][j][1] denotes the same binary strings
-with length i and j adjacent 1's but ending with 1.
-Then: 
-    dp[1][0][0] = 1 and dp[1][0][1] = 1
-    For all other i and j,
-        dp[i][j][0] = dp[i-1][j][0] + dp[i-1][j][1]
-        dp[i][j][1] = dp[i-1][j][0] + dp[i-1][j-1][1]
+Problem:
+Given two integers n and k, count the number of binary strings of length n with k as number of times adjacent 1’s appear.
 
-Then, output dp[n][k][0] + dp[n][k][1]
+Examples:
+
+Input  : n = 5, k = 2
+Output : 6
+Explanation:
+Binary strings of length 5 in which k number of times
+two adjacent set bits appear.
+00111  
+01110
+11100
+11011
+10111
+11101
+
+Input  : n = 4, k = 1
+Output : 3
+Explanation:
+Binary strings of length 3 in which k number of times
+two adjacent set bits appear.
+0011  
+1100
+0110
+*/
+
+/*
+Solution:
+
+Let there be an array dp[i][j][2] where 
+dp[i][j][0] = number of binary strings with length i having j number of two adjacent 1's and ending with 0.
+dp[i][j][1] = number of binary strings with length i and j adjacent 1's but ending with 1.
+
+Base case:
+dp[1][0][0] = 1 and dp[1][0][1] = 1
+
+Transition: 
+dp[i][j][0] = dp[i-1][j][0] + dp[i-1][j][1]
+dp[i][j][1] = dp[i-1][j][0] + dp[i-1][j-1][1]
+
+Result:
+dp[n][k][0] + dp[n][k][1]
 */
 
 #include<bits/stdc++.h>
