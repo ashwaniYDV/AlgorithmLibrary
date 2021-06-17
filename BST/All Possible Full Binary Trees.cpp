@@ -42,6 +42,7 @@ public:
             
             for(TreeNode* l: left) {
                 for(TreeNode* r: right) {
+                    // condition for full binary tree
                     if((r && l) || (!r && !l)) {
                         TreeNode* root = new TreeNode(0);
                         root->left = l;
