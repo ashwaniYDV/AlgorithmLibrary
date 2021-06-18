@@ -1,5 +1,6 @@
 // https://cp-algorithms.com/string/prefix-function.html
 // https://youtu.be/eKOMXcmKF7w
+// https://youtu.be/My4eYV2sDfY
 
 /*
 KMP algorithm depends on prefix function (PI array) for its implementation
@@ -65,6 +66,7 @@ if (s[pi[i - 1]] == s[i]) {
 vector<int> prefix_function(string &s) {
     int n = (int)s.length();
     vector<int> pi(n);
+    pi[0] = 0;
     for (int i = 1; i < n; i++) {
         int j = pi[i-1];
         while (j > 0 && s[i] != s[j]) {
