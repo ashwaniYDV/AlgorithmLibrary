@@ -3,18 +3,17 @@
 
 /*
 Problem:
-Find a substring t in the given string s such that t appears in begining, in middle and in back of s as substring (i.e t is longest prefix, suffix and infix of s).
+Find a substring t in the given string s such that t appears in begining, in middle and in back of s as substring 
+(i.e t is longest prefix, suffix and infix of s).
 Besides, from all acceptable variants find the longest one.
 
-You are given string s. 
-Find the substring t or determine that such substring does not exist.
+You are given string s. Find the substring t or determine that such substring does not exist.
 
 NOTE:
 The front, middle and back part can overlap but no two should overlap fully.
 Exapmle:
 Input   = aaaaaaaa
 Outpput = aaaaaa
-
 */
 
 int z[1000000+5];
