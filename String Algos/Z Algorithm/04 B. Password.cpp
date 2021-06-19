@@ -22,6 +22,7 @@ int z[1000000+5];
 void z_function(string s) {
     int n = s.size();
     int l = 0, r = 0;
+    memset(z, 0, sizeof z);
     z[0] = 0;
     for(int i = 1; i < n; i++) {
         if(i > r) {
