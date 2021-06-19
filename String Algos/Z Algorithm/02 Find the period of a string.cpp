@@ -37,6 +37,7 @@ int z[100005];
 void z_algo(string s) {
     ll n = s.size();
     ll l = 0, r = 0;
+    memset(z, 0, sizeof z);
     z[0] = 0;
     for(ll i = 1; i < n; i++) {
         if(i > r) {
