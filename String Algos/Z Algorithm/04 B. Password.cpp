@@ -3,7 +3,7 @@
 
 /*
 Problem:
-Find a substring t in the given string s such that t appears in begining, in middle and in back of s as substring.
+Find a substring t in the given string s such that t appears in begining, in middle and in back of s as substring (i.e t is longest prefix, suffix and infix of s).
 Besides, from all acceptable variants find the longest one.
 
 You are given string s. 
