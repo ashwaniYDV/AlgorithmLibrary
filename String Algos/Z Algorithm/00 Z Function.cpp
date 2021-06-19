@@ -1,4 +1,5 @@
-// https://youtu.be/uFPSFsOlklE
+// faadcoder = https://youtu.be/uFPSFsOlklE
+// codencode = https://youtu.be/hDKTCWWGIxk
 
 /*
 In Z algo z[0] doesn't matter. It can be anything
