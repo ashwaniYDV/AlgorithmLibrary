@@ -22,7 +22,7 @@ vector<ll> z_function(string s){
 	return z;
 }
 
-auto z_algo(string s) {
+auto z_function(string s) {
 	ll n = s.size();
 	ll l = 0, r = 0;
 	vector<ll> z(n, 0);
@@ -55,6 +55,6 @@ void solve() {
 	ll k, q, t;
 	string s;
 	cin >> s;
-	auto z = z_algo(s);
+	auto z = z_function(s);
 	for(auto x: z) cout << x << " ";
 }
