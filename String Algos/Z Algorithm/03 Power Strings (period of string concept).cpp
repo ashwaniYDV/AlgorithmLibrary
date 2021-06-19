@@ -14,15 +14,16 @@ The length of s will be at least 1 and will not exceed 2000000 characters.
 A line containing a period (.) follows the last test case.
 
 Output
-For each s you should print the largest n such that s=an for some string a.
+For each s you should print the largest n such that s=a^n for some string a.
 */
 
 
 int z[2000005];
 
-void z_algo(string s) {
+void z_function(string s) {
     ll n = s.size();
     ll l = 0, r = 0;
+    memset(z, 0, sizeof z);
     z[0] = 0;
     for(ll i = 1; i < n; i++) {
         if(i > r) {
@@ -50,7 +51,7 @@ void z_algo(string s) {
 
 void solve(string s) {
     n = s.length();
-    z_algo(s);
+    z_function(s);
 
     int period = 0;
     f(i, n) {
