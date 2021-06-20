@@ -55,14 +55,3 @@ void solve() {
     }
     cout << dp[n][sum] << endl;
 }
-
-int32_t main() {
-    IOS
-    clock_t begin = clock();
-    ll T = 1;
-    // cin >> T;
-    while(T--)
-    solve();
-    cerr<<"Time elapsed : "<<(clock()-begin)*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n';
-    return 0;
-}
