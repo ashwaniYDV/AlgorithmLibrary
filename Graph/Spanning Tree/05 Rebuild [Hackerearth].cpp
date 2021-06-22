@@ -50,12 +50,14 @@ void unionSet(int a, int b){
 
 
 /*--------------------KRUSKAL'S BEGIN-----------------------------*/
+// NOTE: src should be less then dest
 struct Edge {
     int src;
     int dest;
     int weight;
 };
 
+// NOTE: src should be less then dest
 bool compare(Edge e1, Edge e2) {
     if(e1.weight == e2.weight) {
         if(e1.src == e2.src) {
@@ -192,12 +194,14 @@ void unionSet(int a, int b){
 
 
 /*--------------------KRUSKAL'S BEGIN-----------------------------*/
+// NOTE: src should be less then dest
 struct Edge {
     int src;
     int dest;
     int weight;
 };
 
+// NOTE: src should be less then dest
 bool compare(Edge e1, Edge e2) {
     if(e1.weight == e2.weight) {
         if(e1.src == e2.src) {
