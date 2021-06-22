@@ -1,5 +1,7 @@
 // https://github.com/Ashishgup1/Competitive-Coding/blob/master/Prim's%20MST.cpp
 
+// Pepcoding = https://youtu.be/Vw-sktU1zmc
+
 const int N = 1e5 + 5;
 int n, m;
 vector < pair < int, int >> g[N];
