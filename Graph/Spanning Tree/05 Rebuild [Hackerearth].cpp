@@ -1,4 +1,5 @@
 // https://www.hackerearth.com/practice/algorithms/graphs/minimum-spanning-tree/practice-problems/algorithm/rebuild/
+// https://youtu.be/hvY3hhYMd20
 
 /*
 Given a weighted graph find MST and keep the degree of lower nodes as minimum as possible.
