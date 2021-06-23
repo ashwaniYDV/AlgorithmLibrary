@@ -6,5 +6,6 @@
 * Target Sum (+- wali) 
 
 #### Unbounded Knpsack type
-* Subset sum
-* Equal sum partition
+* Rod cutting
+* Coin change: max no of ways
+* Coin change: min no of coins
