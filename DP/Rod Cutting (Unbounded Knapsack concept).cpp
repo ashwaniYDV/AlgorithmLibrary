@@ -14,7 +14,7 @@ ________________________________________________________________________________
 */
 
 
-// Method 1: Unbounded Knapsack concept
+// Method 1: Unbounded Knapsack concept O(n*m) memory
 class Solution{
   public:
     int cutRod(int price[], int n) {
@@ -46,7 +46,42 @@ class Solution{
 
 
 
-// Method 2: O(m) memory
+
+
+
+// Method 2: Unbounded Knapsack concept O(m) memory
+class Solution{
+  public:
+    int cutRod(int price[], int n) {
+        int length[n];
+        for(int i = 0; i < n; i++) length[i] = i + 1;
+        
+        int mxLength = n;
+        int dp[mxLength + 1] = {0};
+        
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j <= mxLength; j++) {
+                if(j >= length[i]) {
+                    dp[j] = max(dp[j], dp[j - length[i]] + price[i]);
+                }
+            }
+        }
+        return dp[mxLength];
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 3: O(m) memory
 class Solution{
   public:
     int cutRod(int price[], int n) {
@@ -79,8 +114,7 @@ class Solution{
 
 
 
-
-// Method 3
+// Method 4: Memoised
 class Solution{
   public:
     int go(int pos, int n, int price[], vector<int>& dp) {
