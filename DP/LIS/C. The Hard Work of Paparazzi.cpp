@@ -150,7 +150,17 @@ void solve() {
 
 
 
+/*
+The optimization we have used here is:
+The maximum manhattan distance can be 2*r.
 
+That means kisi bhi 2 point ke beech me mujhe 2*r se jyada time nhi lagega.
+Sice ti < ti+1, that means 2*r units of timeframe me sirf max 2*r celebrities ho sakte h.
+Therefore mujhe kewal inhi 2*r celebrities ko check karna padega kyuki 2*r se pehle walo pe to mai already pahuch sakta hu 
+sice their time difference will be >= 2*r but manhattan distance between them will be <= 2*r.
+Thus un baki sabka max mai directly le lunga.
+And baki ka calculate kr lunga.
+*/
 
 
 // https://youtu.be/XRNJ8ybb37Y
@@ -180,6 +190,7 @@ void solve() {
             if (dist <= t[i] - t[j])
                 dp[i] = max(dp[i], 1 + dp[j]);
         }
+        // in sab ka max mai directly le lunga kyuki inme to mai gauranteed pahuch hi sakta hu bcoz manhattan distance <= delta time
         if (i - 2*r > 0) dp[i] = max(dp[i], 1 + res[i - 2*r]);
  
         res[i] = max(dp[i], res[i-1]);
