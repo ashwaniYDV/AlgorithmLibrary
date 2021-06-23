@@ -9,3 +9,5 @@
 * Rod cutting
 * Coin change: max no of ways
 * Coin change: min no of coins
+
+NOTE: Unbounded kanpsack type problems can also be solved in O(m) memory only.
