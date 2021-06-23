@@ -1,6 +1,24 @@
 // https://codeforces.com/contest/1427/problem/C
 
 /*
+Problem: 
+You are a paparazzi working in Manhattan.
+Manhattan has r south-to-north streets, denoted by numbers 1,2,...,r in order from west to east, 
+and r west-to-east streets, denoted by numbers 1,2,...,r in order from south to north. 
+Each of the r south-to-north streets intersects each of the r west-to-east streets; 
+the intersection between the x-th south-to-north street and the y-th west-to-east street is denoted by (x,y). 
+In order to move from the intersection (x,y) to the intersection (x′,y′) you need |x−x′|+|y−y′| minutes.
+
+You know about the presence of n celebrities in the city and you want to take photos of as many of them as possible. 
+More precisely, for each i=1,...,n, you know that the i-th celebrity will be at the intersection (xi,yi) in exactly ti minutes from now 
+(and he will stay there for a very short time, so you may take a photo of him only if at the ti-th minute from now you are at the intersection (xi,yi)). 
+You are very good at your job, so you are able to take photos instantaneously. You know that ti < ti+1 for any i=1,2,...,n-1.
+
+Currently you are at your office, which is located at the intersection (1,1). 
+If you plan your working day optimally, what is the maximum number of celebrities you can take a photo of?
+*/
+
+/*
 This is a classical dynamic-programming task with a twist. 
 
 We say that two celebrities i < j are compatible if it is possible to take a photo of both, that is
