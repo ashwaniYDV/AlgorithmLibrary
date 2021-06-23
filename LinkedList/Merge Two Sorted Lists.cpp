@@ -36,49 +36,8 @@ public:
     }
 };
  
- 
-// naive solution (not memory efficient)
-class Solution {
-public:
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        if(!l1) return l2;
-        if(!l2) return l1;
-        if(!l1 && !l2) return NULL;
-        
-        ListNode *curr = new ListNode();
-        ListNode *ans = curr, *prev = NULL;
-        
-        while(l1 != NULL && l2 != NULL) {
-            if(l1->val < l2->val) {
-                curr->val = l1->val;
-                l1 = l1->next;
-                
-            } else {
-                curr->val = l2->val;
-                l2 = l2->next;
-            }
-            prev = curr;
-            curr->next = new ListNode();
-            curr = curr->next;
-        }
-        while(l1 != NULL) {
-            curr->val = l1->val;
-            prev = curr;
-            curr->next = new ListNode();
-            curr = curr->next;
-            l1 = l1->next;
-        }
-        while(l2 != NULL) {
-            curr->val = l2->val;
-            prev = curr;
-            curr->next = new ListNode();
-            curr = curr->next;
-            l2 = l2->next;
-        }
-        prev->next = NULL;
-        return ans;
-    }
-};
+
+
 
 
 // naive solution (not memory efficient)
@@ -114,5 +73,38 @@ public:
             l2 = l2->next;
         }
         return res->next;
+    }
+};
+
+
+
+
+
+
+// naive solution (not memory efficient)
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* node = NULL;
+        if(!l1 && !l2) return node;
+        else if(!l1) {
+            node = new ListNode(l2->val);
+            node->next = mergeTwoLists(l1, l2->next);
+        }
+        else if(!l2) {
+            node = new ListNode(l1->val);
+            node->next = mergeTwoLists(l1->next, l2);
+        }
+        else {
+            if(l1->val <= l2->val) {
+                node = new ListNode(l1->val);
+                node->next = mergeTwoLists(l1->next, l2);
+            } else {
+                node = new ListNode(l2->val);
+                node->next = mergeTwoLists(l1, l2->next);
+            }
+        }
+        return node;
+        
     }
 };
