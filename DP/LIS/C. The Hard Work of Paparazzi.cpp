@@ -93,12 +93,67 @@ void solve() {
 
 
 
+// TLE Soln
+int t[N];
+int x[N], y[N];
+int dp[N];
+ 
+void solve() {
+    int r;
+    t[0] = 0;
+    x[0] = 1, y[0] = 1;
+ 
+    cin >> r >> n;
+    for (int i = 1; i <= n; i++) {
+        cin >> t[i] >> x[i] >> y[i];
+        dp[i] = -INF;
+    }
+
+    int res = 0;
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j < i; j++) {
+            int dist = abs(x[i]-x[j]) + abs(y[i]-y[j]);
+            if (dist <= t[i] - t[j])
+                dp[i] = max(dp[i], 1 + dp[j]);
+        }
+        res = max(res, dp[i]);
+    }
+    cout << res << "\n";
+}
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// https://youtu.be/XRNJ8ybb37Y
 // AC Soln
 const int N = 1e5+5;
 int n, m;
