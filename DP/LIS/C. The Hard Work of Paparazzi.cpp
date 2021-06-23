@@ -65,3 +65,69 @@ void solve() {
 
     cout << res << endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// AC Soln
+const int N = 1e5+5;
+int n, m;
+
+int t[N];
+int x[N], y[N];
+int dp[N];
+int res[N];
+ 
+void solve() {
+    int r;
+    t[0] = 0;
+    x[0] = 1, y[0] = 1;
+ 
+    cin >> r >> n;
+    for (int i = 1; i <= n; i++) {
+        cin >> t[i] >> x[i] >> y[i];
+        dp[i] = -INF;
+    }
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = max(i-2*r, 0LL); j < i; j++) {
+            int dist = abs(x[i]-x[j]) + abs(y[i]-y[j]);
+            if (dist <= t[i] - t[j])
+                dp[i] = max(dp[i], 1 + dp[j]);
+        }
+        if (i - 2*r > 0) dp[i] = max(dp[i], 1 + res[i - 2*r]);
+ 
+        res[i] = max(dp[i], res[i-1]);
+    }
+    cout << res[n] << "\n";
+}
