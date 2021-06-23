@@ -27,6 +27,9 @@ We say that two celebrities i < j are compatible if it is possible to take a pho
 
 
 // TLE Solution using LIS concept
+const int N = 1e5+5;
+int n, m;
+
 struct node {
     int time, x, y;
 };
@@ -93,7 +96,10 @@ void solve() {
 
 
 
-// TLE Soln
+// TLE Soln O(n^2)
+const int N = 1e5+5;
+int n, m;
+
 int t[N];
 int x[N], y[N];
 int dp[N];
@@ -164,7 +170,7 @@ And baki ka calculate kr lunga.
 
 
 // https://youtu.be/XRNJ8ybb37Y
-// AC Soln
+// AC Soln O(n*r)
 const int N = 1e5+5;
 int n, m;
 
