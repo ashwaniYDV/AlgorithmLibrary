@@ -3,8 +3,11 @@
 /*
 Given two strings s1 and s2, return the shortest string that has both s1 and s2 as subsequences.
 If multiple answers exist, you may return any of them.
+
+NOTE: Length of SCS = n1 + n2 - LCS
 */
 
+// Length of SCS = n1 + n2 - LCS
 class Solution {
 public:    
     string lcs(string s1, string s2) {
