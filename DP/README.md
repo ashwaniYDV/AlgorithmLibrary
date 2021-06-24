@@ -12,7 +12,7 @@
 
 NOTE: Unbounded kanpsack type problems can also be solved in O(m) memory only.
 
-#### LCS
+#### Longest Common Subsequence (LCS)
 * Longest common subsequence
 * Print LCS
 * Shortest Common Supersequence
