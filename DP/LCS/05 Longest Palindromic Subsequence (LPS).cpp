@@ -1,7 +1,7 @@
 // https://leetcode.com/problems/longest-palindromic-subsequence/
 
 /*
-Answer = LCS(s, reverse(s)
+LPS(s) = LCS(s, reverse(s))
 */
 
 // Method 1 (LCS method)
