@@ -1,5 +1,9 @@
 // https://leetcode.com/problems/longest-palindromic-subsequence/
 
+/*
+Answer = LCS(s, reverse(s)
+*/
+
 // Method 1 (LCS method)
 class Solution {
 public:
