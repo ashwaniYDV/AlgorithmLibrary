@@ -41,10 +41,14 @@ dp[0][n-1] = total no. of palindromic subsequences for whole string s
 
 /*
 NOTE:
-This solution does not count unique non-empty palindromic subsequences. It counts all the non-empty palindromic subsequences.
+This solution does not count different (unique) non-empty palindromic subsequences. It counts all the non-empty palindromic subsequences.
 Example: s = bccb
 Asn = 9
 But there are 6 different non-empty palindromic subsequences = 'b', 'c', 'bb', 'cc', 'bcb', 'bccb'.
+
+
+https://leetcode.com/problems/count-different-palindromic-subsequences
+This leetcode problem is asking "Count Different Palindromic Subsequences".
 */
 
 void AllPalindromicSubsequences(string s){
