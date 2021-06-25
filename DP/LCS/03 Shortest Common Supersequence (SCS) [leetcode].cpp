@@ -11,7 +11,6 @@ Length of SCS = (n1 - LCS) + (n2 - LCS) + LCS
               = n1 + n2 - LCS
 */
 
-// Length of SCS = n1 + n2 - LCS
 class Solution {
 public:    
     string lcs(string s1, string s2) {
