@@ -1,6 +1,11 @@
 // https://leetcode.com/problems/palindrome-partitioning-ii/
 // https://youtu.be/qmTtAbOTqcg
 
+/*
+Given a string s, partition s such that every substring of the partition is a palindrome.
+Return the minimum cuts needed for a palindrome partitioning of s.
+*/
+
 // Method 1 (O(n^3))  [can be made O(n^2) by precomputing isPalindrome using gap strategy as shown in the next method]
 class Solution {
 public:
