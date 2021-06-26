@@ -1,10 +1,11 @@
 // Exact same code of [06 Min no of deletions to make a string palindrome.cpp]
 
+// https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/
 // https://practice.geeksforgeeks.org/problems/form-a-palindrome1455/1
 // https://www.geeksforgeeks.org/minimum-insertions-to-form-a-palindrome-dp-28/
 
 class Solution {
-  public:
+public:
     int lcs(string s1, string s2) {
         int n1 = s1.size(), n2 = s2.size();
         int dp[n1 + 1][n2 + 1];
@@ -26,7 +27,7 @@ class Solution {
         reverse(s2.begin(), s2.end());
         return lcs(s, s2);
     }
-    int countMin(string s) { 
+    int minInsertions(string s) { 
         int n = s.size();
         return n - longestPalindromeSubseq(s);
     } 
