@@ -29,4 +29,9 @@ NOTE: Unbounded kanpsack type problems can also be solved in O(m) memory only.
 
 #### Matrix Chain Multiplication (MCM)
 * MCM
-* 
+* Print MCM
+* Evaluate expression to true / Boolean parenthesization
+* Min/Max value of an expression
+* Palindrome Partitioning
+* Scramble string
+* Egg dropping problem
