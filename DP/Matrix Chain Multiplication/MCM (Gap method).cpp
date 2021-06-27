@@ -18,6 +18,7 @@ Given an array p[] which represents the chain of matrices such that the ith matr
 We need to write a function MatrixChainOrder() that should return the minimum number of multiplications needed to multiply the chain. 
 */
 
+// Method 1
 class Solution {
 public:
     int matrixMultiplication(int n, int a[]) {
@@ -30,6 +31,41 @@ public:
                     dp[i][j] = 0;
                 } else if(gap == 1) {
                     dp[i][j] = a[i] * a[j] * a[j+1];
+                } else {
+                	dp[i][j] = INT_MAX;
+                    for(int k = i; k < j; k++) {
+                    	int leftCost = dp[i][k];
+                    	int rightCost = dp[k+1][j];
+                    	int multiplyCost = a[i] * a[k+1] * a[j+1];
+    
+                    	dp[i][j] = min(dp[i][j], leftCost + rightCost + multiplyCost);
+                    }
+                }
+            }
+        }
+    
+        return dp[0][m-1];
+    }
+};
+
+
+
+
+
+
+
+
+// Method 2
+class Solution {
+public:
+    int matrixMultiplication(int n, int a[]) {
+        int m = n - 1;
+        int dp[m][m];
+        
+        for(int gap = 0; gap < m; gap++) {
+            for(int i=0, j=gap;  j < m;  i++, j++) {
+                if(gap == 0) {
+                    dp[i][j] = 0;
                 } else {
                 	dp[i][j] = INT_MAX;
                     for(int k = i; k < j; k++) {
