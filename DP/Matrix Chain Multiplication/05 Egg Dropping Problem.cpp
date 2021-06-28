@@ -1,3 +1,9 @@
+// https://practice.geeksforgeeks.org/problems/egg-dropping-puzzle-1587115620/1
+// https://www.geeksforgeeks.org/egg-dropping-puzzle-dp-11/
+
+// https://youtu.be/UvksR0hR9nA
+
+
 class Solution {
 public:
     //Function to find minimum number of attempts needed in order to find the critical floor.
