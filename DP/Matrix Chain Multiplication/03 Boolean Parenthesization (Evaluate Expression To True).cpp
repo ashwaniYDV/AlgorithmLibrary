@@ -24,6 +24,137 @@ F ^ T = T
 F ^ F = F
 */
 
+
+// Method 1: memoized
+class Solution{
+public:
+    const int mod = 1003;
+    int dp[205][205][2];
+    string expr, oper;
+    int n;
+
+    int go(int i, int j, int isTrue) {
+        // Base Condition
+        if (i == j) {
+            if (isTrue == 1) {
+                return expr[i] == 'T';
+            } else {
+                return expr[i] == 'F';
+            }
+        }
+     
+        if (dp[i][j][isTrue] != -1) return dp[i][j][isTrue];
+        
+        int res = 0;
+        for (int k = i; k < j; k++) {
+            int leftT, leftF, rightT, rightF;
+
+            // Count no. of T in left partition
+            if (dp[i][k][1] == -1) {
+                leftT = go(i, k, 1);
+            } else {
+                leftT = dp[i][k][1];
+            }
+     
+            // Count no. of T in right partition
+            if (dp[k + 1][j][1] == -1) {
+                rightT = go(k + 1, j, 1);
+            } else {
+                rightT = dp[k + 1][j][1];
+            }
+     
+            // Count no. of F in left partition
+            if (dp[i][k][0] == -1) {
+                leftF = go(i, k, 0);
+            } else {
+                leftF = dp[i][k][0];
+            }
+     
+            // Count no. of F in right partition
+            if (dp[k + 1][j][0] == -1) {
+                rightF = go(k + 1, j, 0);
+            } else {
+                rightF = dp[k + 1][j][0];
+            }
+
+            if (oper[k] == '&') {
+                if (isTrue == 1)
+                    res += leftT * rightT;
+                else
+                    res += leftF * rightF + leftT * rightF + leftF * rightT;
+            }
+            
+            if (oper[k] == '|') {
+                if (isTrue == 1)
+                    res += leftT * rightT + leftT * rightF + leftF * rightT;
+                else
+                    res += leftF * rightF;
+            }
+            
+            if (oper[k] == '^') {
+                if (isTrue == 1)
+                    res += leftF * rightT + leftT * rightF;
+                else
+                    res += leftT * rightT + leftF * rightF;
+            }
+
+            res = (res + mod) % mod;
+        }
+
+        return dp[i][j][isTrue] = res % mod;
+    }
+
+    int countWays(int n, string s) {
+        for(int i = 0; i < s.size(); i++) {
+            if(s[i] == 'T' || s[i] == 'F') {
+                expr.push_back(s[i]);
+            } else {
+                oper.push_back(s[i]);
+            }
+        }
+
+        n = expr.size();
+        this->n = n;
+        memset(dp, -1, sizeof dp);
+        return go(0, expr.size() - 1, 1);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 2: gap method
 class Solution {
 public:
     const int mod = 1003;
