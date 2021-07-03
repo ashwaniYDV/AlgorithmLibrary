@@ -1,6 +1,12 @@
 // https://cp-algorithms.com/graph/01_bfs.html
 // https://www.geeksforgeeks.org/0-1-bfs-shortest-path-binary-graph/
 
+/*
+Given a graph where every edge has weight as either 0 or 1. 
+A source vertex is also given in the graph. 
+Find the shortest path from source vertex to every other vertex.
+*/
+
 const int N = 300000+5;
 int n, m;
 vector<pair<int, int>> g[N];
