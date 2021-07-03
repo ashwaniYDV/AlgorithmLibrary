@@ -1,6 +1,15 @@
 // https://cses.fi/problemset/task/1137/
 // https://youtu.be/zSB4pInjIa8
 
+/*
+You are given a rooted tree consisting of n nodes. The nodes are numbered 1,2,...,n, and node 1 is the root. Each node has a value.
+
+Your task is to process following types of queries:
+1) change the value of node s to x
+2) calculate the sum of values in the subtree of node s
+*/
+
+
 // Method 1: Segment Tree
 const int N = 2e5+5;
 int n, m;
