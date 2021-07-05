@@ -1,5 +1,12 @@
-// Method 1: Trie + DFS + Backtracking
+// https://leetcode.com/problems/word-search-ii/
 
+/*
+Given an m x n board of characters and a list of strings words, return all words on the board.
+Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. 
+The same letter cell may not be used more than once in a word.
+*/
+
+// Method 1: Trie + DFS + Backtracking
 class Solution {
     int n, m;
     vector<string> ans;
@@ -108,7 +115,6 @@ static int fastio = []() {
 
 
 // Method 2: DFS + Backtracking
-
 class Solution {
 public:
     int dx[4] = {0, 1, 0, -1};
@@ -147,7 +153,7 @@ public:
         n = board.size();
         m = board[0].size();
         vector<string> ans;
-        for(string str: words){
+        for(string str: words) {
             len = str.size();
             this->word = str;
             int flag = 0;
