@@ -101,6 +101,7 @@ public:
 
 
 
+
 // Method 2
 class Trie {
     struct Trienode {
@@ -164,6 +165,98 @@ public:
                 return false;
             }
             curr = curr->child[index];
+        }
+        return (curr->count > 0);
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 3
+class Trie {
+    struct Trienode {
+        char val;
+        int count;
+        int endsHere;
+        map<char, Trienode*> child;
+        
+        Trienode(char value) {
+            val = value;
+            count = endsHere = 0;
+        }
+    };
+    
+    Trienode *root;
+    
+public:
+    /** Initialize your data structure here. */
+    Trie() {
+        root = new Trienode('/');
+    }
+    
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        Trienode *curr = root;
+        for(char ch: word) {
+            if(!curr->child[ch]) {
+                curr->child[ch] = new Trienode(ch);
+            }
+            curr = curr->child[ch];
+            curr->count++;
+        }
+        curr->endsHere++;
+    }
+    
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        Trienode *curr = root;
+        for(char ch: word) {
+            if(!curr->child[ch]) {
+                return false;
+            }
+            curr = curr->child[ch];
+        }
+        return (curr->endsHere > 0);
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        Trienode *curr = root;
+        for(char ch: prefix) {
+            if(!curr->child[ch]){
+                return false;
+            }
+            curr = curr->child[ch];
         }
         return (curr->count > 0);
     }
