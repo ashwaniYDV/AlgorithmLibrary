@@ -6,15 +6,15 @@ Count the number of words with given prefix using Trie
 
 // Method 1
 class Trie {
-    struct Trienode {
+    struct TrieNode {
         char val;
         int count;
         int endsHere;
-        Trienode *child[26];
+        TrieNode *child[26];
     };
     
-    Trienode *getNode(char value) {
-        Trienode *newnode = new Trienode;
+    TrieNode *getNode(char value) {
+        TrieNode *newnode = new TrieNode;
         newnode->val = value;
         newnode->count = newnode->endsHere = 0;
         for(int i=0;i<26;++i)
@@ -22,7 +22,7 @@ class Trie {
         return newnode;
     }
     
-    Trienode *root;
+    TrieNode *root;
     
 public:
     /** Initialize your data structure here. */
@@ -32,7 +32,7 @@ public:
     
     /** Inserts a word into the trie. */
     void insert(string word) {
-        Trienode *curr = root;
+        TrieNode *curr = root;
         int index;
         for(char ch: word) {
             index = ch - 'a';
@@ -47,7 +47,7 @@ public:
     
     /** Returns if the word is in the trie. */
     bool search(string word) {
-        Trienode *curr = root;
+        TrieNode *curr = root;
         int index;
         for(char ch: word) {
             index = ch - 'a';
@@ -61,7 +61,7 @@ public:
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix) {
-        Trienode *curr = root;
+        TrieNode *curr = root;
         int index;
         for(char ch: prefix) {
             index = ch - 'a';
@@ -108,13 +108,13 @@ public:
 
 // Method 2
 class Trie {
-    struct Trienode {
+    struct TrieNode {
         char val;
         int count;
         int endsHere;
-        Trienode *child[26];
+        TrieNode *child[26];
         
-        Trienode(char value) {
+        TrieNode(char value) {
             val = value;
             count = endsHere = 0;
             for(int i=0;i<26;++i)
@@ -122,22 +122,22 @@ class Trie {
         }
     };
     
-    Trienode *root;
+    TrieNode *root;
     
 public:
     /** Initialize your data structure here. */
     Trie() {
-        root = new Trienode('/');
+        root = new TrieNode('/');
     }
     
     /** Inserts a word into the trie. */
     void insert(string word) {
-        Trienode *curr = root;
+        TrieNode *curr = root;
         int index;
         for(char ch: word) {
             index = ch - 'a';
             if(!curr->child[index]) {
-                curr->child[index] = new Trienode(ch);
+                curr->child[index] = new TrieNode(ch);
             }
             curr->child[index]->count++;
             curr = curr->child[index];
@@ -147,7 +147,7 @@ public:
     
     /** Returns if the word is in the trie. */
     bool search(string word) {
-        Trienode *curr = root;
+        TrieNode *curr = root;
         int index;
         for(char ch: word) {
             index = ch - 'a';
@@ -161,7 +161,7 @@ public:
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix) {
-        Trienode *curr = root;
+        TrieNode *curr = root;
         int index;
         for(char ch: prefix) {
             index = ch - 'a';
@@ -208,32 +208,32 @@ public:
 
 // Method 3
 class Trie {
-    struct Trienode {
+    struct TrieNode {
         char val;
         int count;
         int endsHere;
-        map<char, Trienode*> child;
+        map<char, TrieNode*> child;
         
-        Trienode(char value) {
+        TrieNode(char value) {
             val = value;
             count = endsHere = 0;
         }
     };
     
-    Trienode *root;
+    TrieNode *root;
     
 public:
     /** Initialize your data structure here. */
     Trie() {
-        root = new Trienode('/');
+        root = new TrieNode('/');
     }
     
     /** Inserts a word into the trie. */
     void insert(string word) {
-        Trienode *curr = root;
+        TrieNode *curr = root;
         for(char ch: word) {
             if(!curr->child[ch]) {
-                curr->child[ch] = new Trienode(ch);
+                curr->child[ch] = new TrieNode(ch);
             }
             curr = curr->child[ch];
             curr->count++;
@@ -243,7 +243,7 @@ public:
     
     /** Returns if the word is in the trie. */
     bool search(string word) {
-        Trienode *curr = root;
+        TrieNode *curr = root;
         for(char ch: word) {
             if(!curr->child[ch]) {
                 return false;
@@ -255,7 +255,7 @@ public:
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix) {
-        Trienode *curr = root;
+        TrieNode *curr = root;
         for(char ch: prefix) {
             if(!curr->child[ch]){
                 return false;
