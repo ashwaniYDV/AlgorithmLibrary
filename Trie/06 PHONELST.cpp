@@ -19,6 +19,17 @@ Output
 For each test case, output “YES” if the list is consistent, or “NO” otherwise.
 */
 
+
+
+
+/*
+Two checks required:
+Case 1: 
+If current inserted number is bigger in number of digits than already inserted ones.
+Case 2: 
+If current inserted number is smaller in number of digits than already inserted ones.
+*/
+
 int check = 1;
 
 struct TrieNode {
@@ -32,6 +43,7 @@ struct TrieNode {
 void insert(TrieNode *root,  string word) {
     TrieNode *cur = root;
     for (char ch: word) {
+        // Case 1 check
         if(cur->children[ch] && cur->children[ch]->isLeaf) {
             check = 0;
         }
@@ -41,6 +53,7 @@ void insert(TrieNode *root,  string word) {
         cur = cur->children[ch];
     }
     cur->isLeaf = true;
+    // Case 2 check
     if(cur->children.size()) {
         check = 0;
     }
