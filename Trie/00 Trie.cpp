@@ -11,7 +11,7 @@ struct TrieNode{
 void insert(TrieNode *root, string word){
     TrieNode *current=root;
     for(char ch: word){
-        if(!current->children.count(ch)){
+        if(!current->children[ch]){
             current->children[ch] = new TrieNode();
         }
         current = current->children[ch];
