@@ -9,7 +9,7 @@
  
 // trie node
 struct TrieNode {
-    struct TrieNode *children[ALPHABET_SIZE];
+    TrieNode *children[ALPHABET_SIZE];
     bool isWordEnd;
     TrieNode() {
         isWordEnd = false;
