@@ -55,3 +55,37 @@ private:
         return t;
     }
 };
+
+
+
+
+
+
+
+/*
+Great answer! I have made several improvements of your code. The new answer takes 52ms
+
+use auto& rather then auto to avoid unnecessary copy
+use std::move() to steal vector from map
+use vector.reserve() to avoid reallocate
+*/
+
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        int n = strs.size();
+        unordered_map<string, vector<string>> mp;
+        vector<vector<string>> res;
+        for (const auto& s: strs) {
+            string t = s;
+            sort(t.begin(), t.end());
+            mp[t].push_back(s);
+        }
+        
+        res.reserve(mp.size());
+        for (auto& it : mp) {
+            res.push_back(move(it.second));
+        }
+        return res;
+    }
+};
