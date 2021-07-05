@@ -3,7 +3,7 @@
 class WordDictionary {
 public:
     struct TrieNode{
-        unordered_map<char, TrieNode*> mp;
+        unordered_map<char, TrieNode*> child;
         bool eow;
         TrieNode(){
             eow = false;
@@ -21,27 +21,27 @@ public:
     void addWord(string word) {
         TrieNode *current = root;
         for(char ch: word){
-            if(!current->mp[ch]){
-                current->mp[ch] = new TrieNode();
+            if(!current->child[ch]){
+                current->child[ch] = new TrieNode();
             }
-            current = current->mp[ch];
+            current = current->child[ch];
         }
         current->eow = true;
     }
     
-    bool searchFun(string word, int pos, TrieNode *root){  
-        if(pos == word.size()){
-            if(root->eow == true)
-                return true;
-            return false;
+    bool searchFun(string word, int pos, TrieNode *root){
+        if(!root) return false;
+        
+        if(pos == word.size()) {
+            return root->eow;
         }
-        if(word[pos] != '.'){
-            if(!root->mp.count(word[pos]))
-                return false;
-            return searchFun(word, pos + 1, root->mp[word[pos]]);
+        
+        if(word[pos] != '.') {
+            if(!root->child[word[pos]]) return false;
+            return searchFun(word, pos + 1, root->child[word[pos]]);
         }
 
-        for(auto x: root->mp){
+        for(auto x: root->child) {
             if(searchFun(word, pos + 1, x.second)) {
                 return true;
             }
