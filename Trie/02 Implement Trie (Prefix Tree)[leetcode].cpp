@@ -1,56 +1,52 @@
 // https://leetcode.com/problems/implement-trie-prefix-tree/submissions/
 
-
-#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-
 class Trie {
-    struct Trienode{
+    struct Trienode {
         char val;
         int count;
         int endsHere;
         Trienode *child[26];
     };
-    Trienode *root;
     
-    Trienode *getNode(int index){
+    Trienode *getNode(char value) {
         Trienode *newnode = new Trienode;
-        newnode->val = 'a'+index;
+        newnode->val = value;
         newnode->count = newnode->endsHere = 0;
         for(int i=0;i<26;++i)
             newnode->child[i] = NULL;
         return newnode;
     }
     
+    Trienode *root;
+    
 public:
     /** Initialize your data structure here. */
     Trie() {
-        IOS
-        // root value = '/' (I dont the ascii value of '/'. So this is a hack :p)
-        root = getNode('/'-'a');
+        root = getNode('/');
     }
     
     /** Inserts a word into the trie. */
     void insert(string word) {
         Trienode *curr = root;
         int index;
-        for(int i = 0; word[i] != '\0'; i++) {
-            index = word[i]-'a';
-            if(curr->child[index] == NULL) {
-                curr->child[index] = getNode(index);
+        for(char ch: word) {
+            index = ch - 'a';
+            if(!curr->child[index]) {
+                curr->child[index] = getNode(ch);
             }
-            curr->child[index]->count +=1;
+            curr->child[index]->count++;
             curr = curr->child[index];
         }
-        curr->endsHere +=1;
+        curr->endsHere++;
     }
     
     /** Returns if the word is in the trie. */
     bool search(string word) {
         Trienode *curr = root;
         int index;
-        for(int i=0; word[i] != '\0'; i++) {
-            index = word[i]-'a';
-            if(curr->child[index] == NULL) {
+        for(char ch: word) {
+            index = ch - 'a';
+            if(!curr->child[index]) {
                 return false;
             }
             curr = curr->child[index];
@@ -62,9 +58,9 @@ public:
     bool startsWith(string prefix) {
         Trienode *curr = root;
         int index;
-        for(int i = 0; prefix[i] != '\0'; i++) {
-            index = prefix[i] - 'a';
-            if(curr->child[index] == NULL){
+        for(char ch: prefix) {
+            index = ch - 'a';
+            if(!curr->child[index]){
                 return false;
             }
             curr = curr->child[index];
@@ -92,17 +88,17 @@ public:
 
 
 
-#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+
 
 class Trie {
-    struct Trienode{
+    struct Trienode {
         char val;
         int count;
         int endsHere;
         Trienode *child[26];
         
-        Trienode(int index) {
-            val = 'a'+index;
+        Trienode(char value) {
+            val = value;
             count = endsHere = 0;
             for(int i=0;i<26;++i)
                 child[i] = NULL;
@@ -114,33 +110,31 @@ class Trie {
 public:
     /** Initialize your data structure here. */
     Trie() {
-        IOS
-        // root value = '/' (I dont the ascii value of '/'. So this is a hack :p)
-        root = new Trienode('/'-'a');
+        root = new Trienode('/');
     }
     
     /** Inserts a word into the trie. */
     void insert(string word) {
         Trienode *curr = root;
         int index;
-        for(int i = 0; word[i] != '\0'; i++) {
-            index = word[i]-'a';
-            if(curr->child[index] == NULL) {
-                curr->child[index] = new Trienode(index);
+        for(char ch: word) {
+            index = ch - 'a';
+            if(!curr->child[index]) {
+                curr->child[index] = new Trienode(ch);
             }
-            curr->child[index]->count +=1;
+            curr->child[index]->count++;
             curr = curr->child[index];
         }
-        curr->endsHere +=1;
+        curr->endsHere++;
     }
     
     /** Returns if the word is in the trie. */
     bool search(string word) {
         Trienode *curr = root;
         int index;
-        for(int i=0; word[i] != '\0'; i++) {
-            index = word[i]-'a';
-            if(curr->child[index] == NULL) {
+        for(char ch: word) {
+            index = ch - 'a';
+            if(!curr->child[index]) {
                 return false;
             }
             curr = curr->child[index];
@@ -152,9 +146,9 @@ public:
     bool startsWith(string prefix) {
         Trienode *curr = root;
         int index;
-        for(int i = 0; prefix[i] != '\0'; i++) {
-            index = prefix[i] - 'a';
-            if(curr->child[index] == NULL){
+        for(char ch: prefix) {
+            index = ch - 'a';
+            if(!curr->child[index]){
                 return false;
             }
             curr = curr->child[index];
