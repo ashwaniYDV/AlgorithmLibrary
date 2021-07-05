@@ -163,6 +163,7 @@ void solve() {
 
 
 // Method 2
+
 struct TrieNode {
     map<char, TrieNode*> children;
     bool isWordEnd;
@@ -170,7 +171,6 @@ struct TrieNode {
         isWordEnd = false;
     }
 };
-
 
 void insert(TrieNode *root,  const string key) {
     TrieNode *cur = root;
@@ -180,8 +180,6 @@ void insert(TrieNode *root,  const string key) {
         }
         cur = cur->children[ch];
     }
- 
-    // mark last node as leaf
     cur->isWordEnd = true;
 }
  
@@ -194,17 +192,13 @@ bool search(TrieNode *root, const string key) {
         }
         cur = cur->children[ch];
     }
- 
     return (cur && cur->isWordEnd);
 }
  
 // Returns 0 if current node has a child
 // If all children are NULL, return 1.
-bool isLastNode(TrieNode* root) {
-    for (auto it: root->children) {
-        if (it.second) return 0;
-    }
-    return 1;
+bool isLastNode(TrieNode* node) {
+    return node->children.size() ? 0 : 1;
 }
  
 // Recursive function to print auto-suggestions for given node.
@@ -214,19 +208,14 @@ void suggestionsRec(TrieNode* root, string currPrefix) {
         cout << currPrefix << endl;
     }
  
-    // All children struct node pointers are NULL
-    if (isLastNode(root)) return;
- 
     for (auto it: root->children) {
-        if (it.second) {
-            // append current character to currPrefix string
-            currPrefix.push_back(it.first);
+        // append current character to currPrefix string
+        currPrefix.push_back(it.first);
 
-            // recur over the rest
-            suggestionsRec(it.second, currPrefix);
-            // remove last character
-            currPrefix.pop_back();
-        }
+        // recur over the rest
+        suggestionsRec(it.second, currPrefix);
+        // remove last character
+        currPrefix.pop_back();
     }
 }
  
@@ -246,7 +235,6 @@ int printAutoSuggestions(TrieNode* root, const string query) {
  
     // If prefix is present as a word.
     bool isWord = (cur->isWordEnd == true);
- 
     // If prefix is last node of tree (has no children)
     bool isLast = isLastNode(cur);
  
@@ -257,8 +245,7 @@ int printAutoSuggestions(TrieNode* root, const string query) {
         return -1;
     }
  
-    // If there are are nodes below last
-    // matching character.
+    // If there are are nodes below last matching character.
     if (!isLast) {
         string prefix = query;
         suggestionsRec(cur, prefix);
