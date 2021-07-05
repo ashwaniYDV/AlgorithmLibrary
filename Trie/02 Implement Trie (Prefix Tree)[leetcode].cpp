@@ -1,4 +1,8 @@
-// https://leetcode.com/problems/implement-trie-prefix-tree/submissions/
+// https://leetcode.com/problems/implement-trie-prefix-tree/
+
+/*
+Count the number of words with given prefix using Trie
+*/
 
 // Method 1
 class Trie {
