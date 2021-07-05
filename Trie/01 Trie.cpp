@@ -14,7 +14,7 @@ void insert(trie*& head, string str){
     }
     trie* curr = head;
     for(char x: str){
-        if(!curr->map.count(x)){
+        if(!curr->map[x]){
             curr->map[x] = new trie();
         }
         curr = curr->map[x];
@@ -26,7 +26,7 @@ bool search(trie* head, string str){
     if(head == nullptr) return false;
     trie* curr = head;
     for(char x: str){
-        if(curr==nullptr || !curr->map.count(x)){
+        if(curr==nullptr || !curr->map[x]){
             return false;
         }
         curr = curr->map[x];
@@ -47,7 +47,7 @@ bool deletion(trie*& curr, char* str){
     if(curr == nullptr) return false;
 
     if(*str){
-        if(curr!=nullptr && curr->map.count(*str) && deletion(curr->map[*str], str+1) && curr->isLeaf==false){
+        if(curr!=nullptr && curr->map[(*str)] && deletion(curr->map[*str], str+1) && curr->isLeaf==false){
             if(!haveChildren(curr)){
                 delete curr;
                 curr=nullptr;
