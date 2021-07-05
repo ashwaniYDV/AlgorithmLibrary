@@ -43,10 +43,6 @@ public:
         cur->isLeaf = true;
     }
     
-    bool isLastNode(TrieNode* node) {
-        return node->children.size() ? 0 : 1;
-    }
-    
     void suggestionsRec(TrieNode* root, string currPrefix, vector<string>& vec) {
         // found a string in Trie with the given prefix
         if (root->isLeaf) {
@@ -72,26 +68,9 @@ public:
             }
             cur = cur->children[ch];
         }
-     
-        // If prefix is present as a word.
-        bool isWord = (cur->isLeaf == true);
-        // If prefix is last node of tree (has no children)
-        bool isLast = isLastNode(cur);
-     
-        // If prefix is present as a word, 
-        // but there is no subtree below the last matching node.
-        if (isWord && isLast) {
-            vec.push_back(query);
-            return 1;
-        }
-     
-        // If there are are nodes below last
-        // matching character.
-        if (!isLast) {
-            string prefix = query;
-            suggestionsRec(cur, prefix, vec);
-            return 1;
-        }
+        
+        suggestionsRec(cur, query, vec);
+        return 1;
     }
 
     vector<vector<string>> displayContacts(int n, string contact[], string s) {
