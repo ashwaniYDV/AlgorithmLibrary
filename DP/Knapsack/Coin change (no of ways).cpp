@@ -17,34 +17,34 @@ Find number of non negative solutions
 // }
 // cout << fun(a, sum, n - 1)
 
+
+
+
+
+
 // order of m memory
-ll fun(ll a[], ll sum){
-    ll dp[sum + 1] = {0};
-    // for sum = 0, no of ways = 1;
-    dp[0] = 1;
-    for(ll i = 0; i < n; i++){
-        for(ll j = 1; j <= sum; j++){
-            if(j >= a[i]){
-                dp[j] += dp[j - a[i]];
+class Solution {
+public:
+    int change(int sum, vector<int>& coins) {
+        int n = coins.size();
+        vector<int> dp(sum + 1, 0);
+        dp[0] = 1;
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= sum; j++) {
+                if (j >= coins[i]) {
+                    dp[j] += dp[j - coins[i]];
+                }
             }
         }
+        return dp[sum];
     }
-    return dp[sum];
-}
-// or this way
-ll fun(ll a[], ll sum) {
-    ll dp[sum + 1] = {0};
-    // for sum = 0, no of ways = 1;
-    dp[0] = 1;
-    for (ll j = 1; j <= sum; j++) {
-        for (ll i = 0; i < n; i++) {
-            if (j >= a[i]) {
-                dp[j] += dp[j - a[i]];
-            }
-        }
-    }
-    return dp[sum];
-}
+};
+
+
+
+
+
 
 // order of n*m memory
 void solve() {
