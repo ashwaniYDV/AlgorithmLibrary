@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/implement-trie-prefix-tree/submissions/
 
+// Method 1
 class Trie {
     struct Trienode {
         char val;
@@ -90,6 +91,17 @@ public:
 
 
 
+
+
+
+
+
+
+
+
+
+
+// Method 2
 class Trie {
     struct Trienode {
         char val;
