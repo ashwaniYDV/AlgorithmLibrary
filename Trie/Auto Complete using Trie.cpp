@@ -201,7 +201,10 @@ bool search(TrieNode *root, const string key) {
 // Returns 0 if current node has a child
 // If all children are NULL, return 1.
 bool isLastNode(TrieNode* root) {
-    return root->children.size() > 0 ? false : true;
+    for (auto it: root->children) {
+        if (it.second) return 0;
+    }
+    return 1;
 }
  
 // Recursive function to print auto-suggestions for given node.
@@ -215,13 +218,15 @@ void suggestionsRec(TrieNode* root, string currPrefix) {
     if (isLastNode(root)) return;
  
     for (auto it: root->children) {
-        // append current character to currPrefix string
-        currPrefix.push_back(it.first);
+        if (it.second) {
+            // append current character to currPrefix string
+            currPrefix.push_back(it.first);
 
-        // recur over the rest
-        suggestionsRec(it.second, currPrefix);
-        // remove last character
-        currPrefix.pop_back();
+            // recur over the rest
+            suggestionsRec(it.second, currPrefix);
+            // remove last character
+            currPrefix.pop_back();
+        }
     }
 }
  
