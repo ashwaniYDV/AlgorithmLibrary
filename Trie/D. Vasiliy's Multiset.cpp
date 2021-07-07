@@ -1,45 +1,9 @@
 // https://codeforces.com/contest/706/problem/D
 
-#include<bits/stdc++.h>
-using namespace std;
-#pragma GCC optimize ("O3")
-#pragma GCC target ("avx")
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize ("unroll-loops")
-#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
- 
-typedef long long int ll;
-#define int long long int
-#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-#define FRE freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
-#define debug(x) cout << #x << " is: " << (x) << endl;
-#define f(i,n) for(ll i=0;i<n;i++)
-#define fa(i,a,n) for(ll i=a;i<n;i++)
-#define loop(i,a, n) for(ll i = a; i <= n; i++)
-#define loopb(i,a, n) for(ll i = a; i >= n; i--)
-#define pb push_back
-#define pf push_front
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-#define setmem(x, k) memset(x, k, sizeof(x))
-#define clr(x) memset(x, 0, sizeof(x))
-#define sortall(x) sort(all(x))
-#define PI 3.1415926535897932384626
-#define MOD 1000000007
-#define INF 1000111000111000111LL
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-typedef vector<int> vi;
-typedef vector<ll> vl;
-typedef long double ld;
-typedef vector<vector<ll>> matrix;
-ll dx[] = {0, 1, 0, -1};
-ll dy[] = {-1, 0, 1, 0};
-const ll N = 1e5+1;
-// ll a[N], b[N], dp[N], level[N], vis[N], in[N], out[N];
-// vl g[N];
-ll n, m;
+
+// Method 1
+const int N = 1e5+5;
+int n, m;
 
 string numTo32BitBinaryString(ll x){
     string s;
@@ -148,13 +112,222 @@ void solve() {
 }
 
 
-int32_t main() {
-    IOS
-    clock_t begin = clock();
-    ll T = 1;
-    // cin >> T;
-    while(T--)
-    solve();
-    cerr<<"Time elapsed : "<<(clock()-begin)*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n';
-    return 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 2
+const int N = 1e5+5;
+int n, m;
+ 
+typedef struct trie {
+    typedef struct node {
+        node* nxt[2];
+        int cnt = 0;
+        node() {
+            nxt[0] = nxt[1] = NULL;
+            cnt = 0;
+        }
+ 
+    } Node;
+ 
+    Node* head;
+ 
+    trie() {
+        head = new Node();
+    }
+ 
+    void insert(int x) {
+        Node* cur = head;
+        for(int i = 30; i >= 0; i--) {
+            int b = (x >> i) & 1;
+            if(!cur -> nxt[b])
+                cur -> nxt[b] = new Node();
+            cur = cur -> nxt[b];
+            cur -> cnt++;
+        }
+    }
+ 
+    void remove(int x) {
+        Node* cur = head;
+        for(int i = 30; i >= 0; i--) {
+            int b = (x >> i) & 1;
+            cur = cur -> nxt[b];
+            cur -> cnt--;
+        }
+    }
+ 
+    int maxxor(int x) {
+        Node* cur = head;
+        int ans = 0;
+        for(int i = 30; i >= 0; i--) {
+            int b = (x >> i) & 1;
+            if(cur -> nxt[!b] && cur -> nxt[!b] -> cnt > 0) {
+                ans += (1LL << i);
+                cur = cur -> nxt[!b];
+            } else {
+                cur = cur -> nxt[b];
+            }
+        }
+        return ans;
+    }
+} Trie;
+ 
+ 
+Trie t;
+ 
+void solve() {
+    int x, q;
+    cin >> q;
+    t.insert(0);
+ 
+    while(q--) {
+        char ch;
+        cin >> ch;
+        cin >> x;
+        if(ch == '+')
+            t.insert(x);
+        else if(ch == '-')
+            t.remove(x);
+        else
+            cout << t.maxxor(x) << endl;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 3
+const int N = 1e5+5;
+int n, m;
+
+struct Trie {
+    struct Node {
+        Node* nxt[2];
+        int cnt = 0;
+        Node() {
+            nxt[0] = nxt[1] = NULL;
+            cnt = 0;
+        }
+    };
+
+    Node* head;
+
+    Trie() {
+        head = new Node();
+    }
+
+    void insert(int x) {
+        Node* cur = head;
+        for(int i = 30; i >= 0; i--) {
+            int b = (x >> i) & 1;
+            if(!cur -> nxt[b])
+                cur -> nxt[b] = new Node();
+            cur = cur -> nxt[b];
+            cur -> cnt++;
+        }
+    }
+
+    void remove(int x) {
+        Node* cur = head;
+        for(int i = 30; i >= 0; i--) {
+            int b = (x >> i) & 1;
+            cur = cur -> nxt[b];
+            cur -> cnt--;
+        }
+    }
+
+    int maxxor(int x) {
+        Node* cur = head;
+        int ans = 0;
+        for(int i = 30; i >= 0; i--) {
+            int b = (x >> i) & 1;
+            if(cur -> nxt[!b] && cur -> nxt[!b] -> cnt > 0) {
+                ans += (1LL << i);
+                cur = cur -> nxt[!b];
+            } else {
+                cur = cur -> nxt[b];
+            }
+        }
+        return ans;
+    }
+};
+
+void solve() {
+    int x, q;
+    cin >> q;
+    Trie t = Trie();
+    t.insert(0);
+
+    while(q--) {
+        char ch;
+        cin >> ch;
+        cin >> x;
+        if(ch == '+')
+            t.insert(x);
+        else if(ch == '-')
+            t.remove(x);
+        else
+            cout << t.maxxor(x) << endl;
+    }
 }
