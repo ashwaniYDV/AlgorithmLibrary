@@ -1,5 +1,6 @@
 [Aditya Gupta Stack Playlist | Interview Questions](https://www.youtube.com/watch?v=P1bAPZg5uaE&list=PL_z_8CaSLPWdeOezg68SKkeLN4-T_jNHd)
 
+### Questions
 1) Nearest Greater to Left (NGL)
 2) Nearest Greater to Right (NGR)
 3) Nearest Smaller to Left (NSL)
@@ -13,3 +14,11 @@
 11) The celebrity problem
 12) Longest Valid parenthesis
 13) Iterative TOH (Tower of Hanoi)
+
+### Identification
+1) Generally most of the stack questions are having an array
+2) O(n^2) time complexity ho rahi hogi \
+    Something like this \
+    for(int i = 0; i < n; i++)\
+      for(int j = 0; j <= i; j++)
+3) If j loop is dependent on i
