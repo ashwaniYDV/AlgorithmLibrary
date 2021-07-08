@@ -1,7 +1,7 @@
 // https://leetcode.com/problems/largest-rectangle-in-histogram/
 
 /*
-Using NSL and NSR positions. 
+Using NSL and NSR positions concept with slight midifications.
 */
 
 class Solution {
