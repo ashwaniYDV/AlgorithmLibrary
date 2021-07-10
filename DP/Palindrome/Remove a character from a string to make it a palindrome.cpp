@@ -1,5 +1,9 @@
 // https://www.geeksforgeeks.org/remove-character-string-make-palindrome/
 
+/*
+Time Complexity: O(n)
+*/
+
 bool isPalindrome(string s, int low, int high) {
     while (low < high) {
         if (s[low] != s[high])
