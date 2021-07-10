@@ -36,10 +36,3 @@ void solve() {
     f(i, n) cin >> a[i];
     find2UniqueNums(a, n);
 }
-
-int32_t main() {
-	IOS
-	solve();
-	cerr<<"Time elapsed : "<<clock()*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n'; 
-	return 0;
-}
