@@ -13,6 +13,8 @@ There are four ways to split nums into two subarrays. The best way is to split i
 where the largest sum among the two subarrays is only 18.
 */
 
+// FFFFFTTTTT
+
 class Solution {
 public:
     #define ll long long
@@ -35,6 +37,7 @@ public:
         int n = nums.size();
         ll lo = *max_element(nums.begin(), nums.end());
         ll hi = accumulate(nums.begin(), nums.end(), 0);
+        
         while(lo < hi) {
             ll mid = lo + (hi - lo) / 2;
             if(check(mid, nums, m)) {
