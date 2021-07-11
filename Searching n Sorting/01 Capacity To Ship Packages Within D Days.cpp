@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
 
+// FFFFFFTTTTTTTTTT
+
 class Solution {
 public:
     bool check(int mid, int days, vector<int>& weights) {
@@ -33,47 +35,5 @@ public:
             }
         }
         return lo;
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Solution {
-public:
-    int shipWithinDays(vector<int>& weights, int D) {
-        int n = weights.size();
-        int left = 0, right = 0;
-        for (int w: weights){
-            left = max(left, w);
-            right += w;
-        }
-        while(left < right) {
-            int mid = (left + right) / 2;
-            int curr_days = 1, curr_bagsize = 0;
-            for(auto w : weights) {
-                if(curr_bagsize + w > mid) {
-                    curr_days++; 
-                    curr_bagsize = 0;
-                }
-                curr_bagsize += w;
-            }
-            if(curr_days <= D) right = mid;
-            else left = mid + 1;
-        }
-        return left;
     }
 };
