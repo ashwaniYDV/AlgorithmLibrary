@@ -14,7 +14,6 @@ public:
     }
     
     int minEatingSpeed(vector<int>& piles, int H) {
-        int n = piles.size();
         int lo = 1;
         int hi = *max_element(piles.begin(), piles.end());
         
