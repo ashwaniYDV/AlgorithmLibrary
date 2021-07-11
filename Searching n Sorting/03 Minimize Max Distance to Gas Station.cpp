@@ -19,12 +19,12 @@ public:
      * @return: the smallest possible value of D
      */
 
-    int ok(double x, vector <int>& stations){
+    bool check(double x, int k, vector <int>& stations){
         int newStations = 0;
         for (int i = 0; i < stations.size() - 1; i++) {
             newStations += ceil((stations[i + 1] - stations[i]) / x) - 1;
         }
-        return newStations;
+        return newStations <= k;
     }
     
     double minmaxGasDist(vector<int> &stations, int k) {
@@ -33,11 +33,10 @@ public:
         double high = stations[n - 1] - stations[0];
         while (high - low >= 1e-6) {
             double mid = (low + high) / 2.0;
-            int x = ok(mid, stations);
-            if (x > k) {
-                low = mid;
-            } else {
+            if (check(mid, k, stations)) {
                 high = mid;
+            } else {
+                low = mid;
             }
         }
         return low;
