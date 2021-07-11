@@ -2,39 +2,38 @@
 
 class Solution {
 public:
-    int shipWithinDays(vector<int>& weights, int D) {
+    bool check(int mid, int days, vector<int>& weights) {
         int n = weights.size();
-        int left = 0, right = 0;
-        for (int w: weights){
-            left = max(left, w);
-            right += w;
+        int cnt = 0, sum = 0;
+        for(int i = 0; i < n; i++) {
+            if(sum + weights[i] > mid) {
+                cnt++;
+                sum = 0;
+            }
+            sum += weights[i];
         }
+        if(sum) cnt++;
 
-        while(left <= right) {
-            int mid = (left + right) / 2;
-            int cnt = 1, sum = 0;
-            for(int i = 0; i < n; i++) {
-                if(sum + weights[i] > mid) {
-                    cnt++;
-                    sum = 0;
-                }
-                sum += weights[i];
-            }
-            if(cnt > D) {
-                left = mid + 1;
-            }else{
-                right = mid - 1;
+        return cnt <= days;
+    }
+    
+    int shipWithinDays(vector<int>& weights, int days) {
+        int n = weights.size();
+        int lo =  *max_element(weights.begin(), weights.end());
+        int hi = accumulate(weights.begin(), weights.end(), 0);
+
+        while(lo < hi) {
+            int mid = (lo + hi) / 2;
+            
+            if(check(mid, days, weights)) {
+                hi = mid;
+            } else {
+                lo = mid + 1;
             }
         }
-        return left;
+        return lo;
     }
 };
-
-
-
-
-
-
 
 
 
@@ -71,8 +70,8 @@ public:
                 }
                 curr_bagsize += w;
             }
-            if(curr_days > D) left = mid + 1;
-            else right = mid;
+            if(curr_days <= D) right = mid;
+            else left = mid + 1;
         }
         return left;
     }
