@@ -11,6 +11,8 @@ Return the smallest possible value of D.
 4.Answers within 10^-6 of the true value will be accepted as correct.
 */
 
+// FFFFFFFTTTTTTT
+
 class Solution {
 public:
     /**
