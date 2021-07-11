@@ -16,10 +16,10 @@ void solve() {
     while(lo < hi) {
         int mid = (lo + hi + 1) / 2;
 
-        int cnt = 1, left = 0;
+        int cnt = 1, prevPos = 0;
         for(int i = 1; i < n; i++) {
-            if(a[i] - a[left] >= mid) {
-                left = i, cnt++;
+            if(a[i] - a[prevPos] >= mid) {
+                prevPos = i, cnt++;
             }
         }
 
