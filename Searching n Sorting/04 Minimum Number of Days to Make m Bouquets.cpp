@@ -1,74 +1,41 @@
 // https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
 
+// FFFFFFFFTTTTT
+
 class Solution {
 public:
-    int minDays(vector<int>& a, int m, int k) {
-        int n = a.size();
-        if(m * k > n) return -1;
-        
-        int left = 1, right = 1e9;
-        while(left <= right) {
-            int mid = (left + right) / 2;
-            int consecutiveFlowers = 0, noOfBouq = 0;
-            for(int i = 0; i < n; i++) {
-                if(a[i] > mid) {
+    bool check(int mid, vector<int>& bloomDay, int m, int k) {
+        int n = bloomDay.size();
+        int consecutiveFlowers = 0, noOfBouq = 0;
+        for (int i = 0; i < n; i++) {
+            if (bloomDay[i] > mid) {
+                consecutiveFlowers = 0;
+            } else {
+                consecutiveFlowers++;
+                if (consecutiveFlowers == k) {
+                    noOfBouq++;
                     consecutiveFlowers = 0;
-                } else {
-                    consecutiveFlowers++;
-                    if(consecutiveFlowers == k) {
-                        noOfBouq++;
-                        consecutiveFlowers = 0;
-                    }
                 }
             }
-            if(noOfBouq < m) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
         }
-        return left;
+        return noOfBouq >= m;
     }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Solution {
-public:
-    int minDays(vector<int>& a, int m, int k) {
-        int n = a.size(), left = 1, right = 1e9;
+    
+    int minDays(vector<int>& bloomDay, int m, int k) {
+        int n = bloomDay.size();
         if (m * k > n) return -1;
         
-        while (left < right) {
-            int mid = (left + right) / 2, consecutiveFlowers = 0, noOfBouq = 0;
-            for (int i = 0; i < n; i++) {
-                if (a[i] > mid) {
-                    consecutiveFlowers = 0;
-                } else {
-                    consecutiveFlowers++;
-                    if (consecutiveFlowers == k) {
-                        noOfBouq++;
-                        consecutiveFlowers = 0;
-                    }
-                }
-            }
-            if (noOfBouq < m) {
-                left = mid + 1;
+        int lo = 1, hi = *max_element(bloomDay.begin(), bloomDay.end());
+        
+        while (lo < hi) {
+            int mid = (lo + hi) / 2;
+            
+            if (check(mid, bloomDay, m, k)) {
+                hi = mid;
             } else {
-                right = mid;
+                lo = mid + 1;
             }
         }
-        return left;
+        return lo;
     }
 };
