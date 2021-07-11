@@ -12,6 +12,7 @@ public:
             }
             sum += weights[i];
         }
+        // if currently i have some sum, then i require one more day
         if(sum) cnt++;
 
         return cnt <= days;
