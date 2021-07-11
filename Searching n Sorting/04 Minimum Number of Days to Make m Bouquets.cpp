@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
 
-// FFFFFFFFTTTTT
+// FFFFTTTTT
 
 class Solution {
 public:
