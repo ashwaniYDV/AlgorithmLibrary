@@ -87,6 +87,13 @@ public:
 
 
 // O(n) time, O(1) space
+
+/*
+Search from left to right and maintain a max height of left and right separately, which is like a one-side wall of partial container. 
+Fix the higher one and flow water from the lower part. 
+For example, if current height of left is lower, we fill water in the left bin else if current height of right is lower, we fill water in the right bin. 
+Until left pointer meets right pointer, we filled the whole container.
+*/
 class Solution {
 public:
     int trap(vector<int>& height) {
