@@ -26,7 +26,7 @@ public:
                 }
             }
 
-            //if right part is monotonically increasing, or the pivot point is on the left part
+            // If the entire right part is monotonically increasing, which means the pivot point is on the left part
             else {
                 //must use "<=" at here since we need to make sure target is in the right part,
                 //then safely drop the left part
