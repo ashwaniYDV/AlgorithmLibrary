@@ -1,8 +1,7 @@
 // https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+// https://youtu.be/j3187M1P2Xg
 
 /*
-Classic binary search problem.
-
 Looking at subarray with index [lo, hi]. We can find out that if the first member is less than the last member, there's no rotation in the array. 
 So we could directly return the first element in this subarray.
 
