@@ -88,9 +88,10 @@ public:
 
 // O(n) time, O(1) space [Two pointer technique]
 /*
-Search from left to right and maintain a max height of left and right separately, which is like a one-side wall of partial container. 
-Fix the higher one and flow water from the lower part. 
-For example, if current height of left is lower, we fill water in the left bin else if current height of right is lower, we fill water in the right bin. 
+Maintain left_max and right_max on the go using 2 pointer technique.
+Always fill from lower boundary block heights [this will ensure min(left_max, right_max) to be used].
+For example, if current height of left pointer is lower, we fill water in the left bin 
+else if current height of right pointer is lower, we fill water in the right bin. 
 Until left pointer meets right pointer, we filled the whole container.
 */
 class Solution {
@@ -105,7 +106,7 @@ public:
         int lo = 0, hi = n - 1;
         
         while (lo <= hi) {
-            if (height[lo] < height[hi]) {
+            if (height[lo] <= height[hi]) {
                 if (height[lo] <= left_max) {
                     res += left_max - height[lo];
                 }
