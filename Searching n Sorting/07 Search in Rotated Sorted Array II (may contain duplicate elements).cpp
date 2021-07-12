@@ -81,7 +81,7 @@ public:
                 ++left; --right;
             }
             
-            //if left part is monotonically increasing, or the pivot point is on the right part
+            // If the entire left part is monotonically increasing, which means the pivot point is on the right part
             else if (nums[left] <= nums[mid]) {
                 //must use "<=" at here since we need to make sure target is in the left part,
                 //then safely drop the right part
@@ -93,7 +93,7 @@ public:
                 }
             }
 
-            //if right part is monotonically increasing, or the pivot point is on the left part
+            // If the entire right part is monotonically increasing, which means the pivot point is on the left part
             else {
                 //must use "<=" at here since we need to make sure target is in the right part,
                 //then safely drop the left part
