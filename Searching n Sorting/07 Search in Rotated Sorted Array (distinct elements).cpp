@@ -1,6 +1,8 @@
 // https://leetcode.com/problems/search-in-rotated-sorted-array/
 // https://leetcode.com/problems/search-in-rotated-sorted-array/discuss/14436/Revised-Binary-Search/191339
 
+// https://youtu.be/oTfPJKGEHcc
+
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
