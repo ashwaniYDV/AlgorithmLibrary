@@ -2,6 +2,20 @@
 
 // https://youtu.be/j3187M1P2Xg
 
+/*
+Consider case like this
+arr = 3 3 3 3 4 0 1 2 3
+
+lo = 0, hi = n-1
+
+When nums[lo] == nums[mid] == nums[hi]
+so in this trickly case, just updat left and right
+if( (nums[lo] == nums[mid]) && (nums[hi] == nums[mid]) ) {
+    ++lo; --hi;
+}
+and continue the while loop.
+*/
+
 class Solution {
 public:
     int findMin(vector<int>& nums) {
