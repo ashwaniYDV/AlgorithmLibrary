@@ -86,8 +86,7 @@ public:
 
 
 
-// O(n) time, O(1) space
-
+// O(n) time, O(1) space [Two pointer technique]
 /*
 Search from left to right and maintain a max height of left and right separately, which is like a one-side wall of partial container. 
 Fix the higher one and flow water from the lower part. 
