@@ -94,12 +94,10 @@ struct MinStack {
     int pop() {
         if(s.empty()) return -1;
         
-        if(s.top() >= minElement) {
-            s.pop();
-        } else {
+        if(s.top() < minElement) {
             minElement = 2 * minElement - s.top();
-            s.pop();
         }
+        s.pop();
     }
 
     int getMin() {
