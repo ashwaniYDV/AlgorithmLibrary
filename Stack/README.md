@@ -6,14 +6,15 @@
 3) Nearest Greater to Left (NGL)
 4) Nearest Greater to Right (NGR)
 5) Stock Pair Problem
-6) Maximum area in histogram
-7) Maximum area of rectangle in binary matrix
-8) Rain water trapping
-9) Implementing a min stack (using extra space / without using extra space)
-10) Implementing stack using heap
-11) The celebrity problem
-12) Longest Valid parenthesis
-13) Iterative TOH (Tower of Hanoi)
+6) Online Stock Pair Problem
+7) Maximum area in histogram
+8) Maximum area of rectangle in binary matrix
+9) Rain water trapping
+10) Implementing a min stack (using extra space / without using extra space)
+11) Implementing stack using heap
+12) The celebrity problem
+13) Longest Valid parenthesis
+14) Iterative TOH (Tower of Hanoi)
 
 ### Identification
 1) Generally most of the stack questions are having an array
