@@ -1,5 +1,3 @@
-
-
 // https://practice.geeksforgeeks.org/problems/special-stack/1
 
 /*
@@ -8,7 +6,7 @@ and an additional operation getMin() which should return minimum element from th
 Your task is to complete all the functions, using stack data-Structure.
 */
 
-// Method 1: With extra space
+// With extra space
 struct MinStack {
     // normal stack
     stack<int> s;
@@ -72,7 +70,7 @@ void solve() {
 
 
 
-// Method 1: With O(1) space
+// With O(1) space
 struct MinStack {
     // normal stack
     stack<int> s;
