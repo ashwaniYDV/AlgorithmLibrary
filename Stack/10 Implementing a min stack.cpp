@@ -105,6 +105,16 @@ struct MinStack {
         return minElement;
     }
 
+    int top() {
+        if(s.empty()) return -1;
+        
+        if(s.top() < minElement) {
+            return minElement;
+        } else {
+            return s.top();
+        }
+    }
+
     bool isEmpty() {
         return s.empty();
     }
