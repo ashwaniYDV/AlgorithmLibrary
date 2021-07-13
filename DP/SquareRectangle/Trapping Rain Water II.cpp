@@ -1,9 +1,10 @@
+// https://leetcode.com/problems/trapping-rain-water-ii/
 // https://youtu.be/hSUIFPrkOeo
 
-#define node pair<int, pair<int, int>>
-#define f(i,n) for(int i=0;i<n;i++)
 class Solution {
 public:
+    #define node pair<int, pair<int, int>>
+    
     int n, m, x, y;
     int dx[4] = {0, 1, 0, -1};
     int dy[4] = {-1, 0, 1, 0};
@@ -27,14 +28,14 @@ public:
         priority_queue<node, vector<node>, greater<node>> minHeap;
         
         // Pushes column and row boundary in min heap
-        f(i, n) {
+        for(int i = 0; i < n; i++) {
             minHeap.push({heightMap[i][0], {i, 0}});
             vis[i][0] = 1;
             
             minHeap.push({heightMap[i][m-1], {i, m-1}});
             vis[i][m-1] = 1;
         }
-        f(j, m) {
+        for(int j = 1; j < m-1; j++) {
             minHeap.push({heightMap[0][j], {0, j}});
             vis[0][j] = 1;
             
@@ -46,31 +47,31 @@ public:
         while(!minHeap.empty()) {
             node top = minHeap.top();
             minHeap.pop();
-            int h = top.first;
+            int curHeight = top.first;
             x = top.second.first, y = top.second.second;
             
-            f(z, 4) {
+            for(int z = 0; z < 4; z++) {
                 int i = x + dx[z];
                 int j = y + dy[z];
                 
                 if(!isSafe(i, j, vis)) continue;
                 
-                int curHeight = heightMap[i][j];
+                int h = heightMap[i][j];
                 
-                // If water can be trapped (when height of this new element is less than the current weakest link) 
-                if (h > curHeight) {
-                    res += h - curHeight;
-                    water[i][j] = h - curHeight;
+                // If water can be trapped 
+                // (when height of this new element is less than the current weakest link)
+                if (h < curHeight) {
+                    res += curHeight - h;
+                    water[i][j] = curHeight - h;
                 }
                 
-                // If curHeight < h, then water will flow till final height with water becomes h 
-                // otherwise curHeight will be the height as no water will flow
+                // If h < curHeight, then water will flow till final height with water becomes curHeight 
+                // otherwise h will be the height as no water will flow
                 minHeap.push({max(curHeight, h), {i, j}});
                 vis[i][j] = 1;
             }
         }
         
         return res;
-        
     }
 };
