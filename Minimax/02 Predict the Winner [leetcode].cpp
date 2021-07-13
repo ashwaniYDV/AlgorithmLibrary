@@ -6,7 +6,6 @@ Player 1 and player 2 take turns, with player 1 starting first. Both players sta
 At each turn, the player takes one of the numbers from either end of the array 
 (i.e., nums[0] or nums[nums.length - 1]) which reduces the size of the array by 1. 
 The player adds the chosen number to their score. The game ends when there are no more elements in the array.
-
 Return true if Player 1 can win the game. If the scores of both players are equal, then player 1 is still the winner, and you should also return true. 
 You may assume that both players are playing optimally.
 */
@@ -14,15 +13,10 @@ You may assume that both players are playing optimally.
 // Not memoized AC
 class Solution {
 public:
-    int n;
     int minimax(int left, int right, bool isMax, vector<int>& nums) {
         // Terminating condition
-        if (left == right) {
-            if(isMax) {
-                return nums[left];
-            } else {
-                return -nums[left];
-            }
+        if (left > right) {
+            return 0;
         }
         
         //  If current move is maximizer, find the maximum attainable value
@@ -40,7 +34,7 @@ public:
         }
     }
     bool PredictTheWinner(vector<int>& nums) {
-        n = nums.size();
+        int n = nums.size();
         return minimax(0, n - 1, 1, nums) >= 0;
     }
 };
@@ -66,15 +60,10 @@ public:
 // Memoized AC
 class Solution {
 public:
-    int n;
     int minimax(int left, int right, bool isMax, vector<int>& nums, vector<vector<vector<int>>>& dp) {
         // Terminating condition
-        if (left == right) {
-            if(isMax) {
-                return nums[left];
-            } else {
-                return -nums[left];
-            }
+        if (left > right) {
+            return 0;
         }
         
         if(dp[left][right][isMax] != -1) return dp[left][right][isMax];
@@ -94,7 +83,7 @@ public:
         }
     }
     bool PredictTheWinner(vector<int>& nums) {
-        n = nums.size();
+        int n = nums.size();
         vector<vector<vector<int>>> dp(n+5, vector<vector<int>>(n+5, vector<int>(2, -1)));
         return minimax(0, n - 1, 1, nums, dp) >= 0;
     }
