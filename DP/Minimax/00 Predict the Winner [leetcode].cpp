@@ -13,15 +13,10 @@ You may assume that both players are playing optimally.
 // Not memoized AC
 class Solution {
 public:
-    int n;
     int minimax(int left, int right, bool isMax, vector<int>& nums) {
         // Terminating condition
-        if (left == right) {
-            if(isMax) {
-                return nums[left];
-            } else {
-                return -nums[left];
-            }
+        if (left > right) {
+            return 0;
         }
         
         //  If current move is maximizer, find the maximum attainable value
@@ -39,7 +34,7 @@ public:
         }
     }
     bool PredictTheWinner(vector<int>& nums) {
-        n = nums.size();
+        int n = nums.size();
         return minimax(0, n - 1, 1, nums) >= 0;
     }
 };
@@ -65,15 +60,10 @@ public:
 // Memoized AC
 class Solution {
 public:
-    int n;
     int minimax(int left, int right, bool isMax, vector<int>& nums, vector<vector<vector<int>>>& dp) {
         // Terminating condition
-        if (left == right) {
-            if(isMax) {
-                return nums[left];
-            } else {
-                return -nums[left];
-            }
+        if (left > right) {
+            return 0;
         }
         
         if(dp[left][right][isMax] != -1) return dp[left][right][isMax];
@@ -93,7 +83,7 @@ public:
         }
     }
     bool PredictTheWinner(vector<int>& nums) {
-        n = nums.size();
+        int n = nums.size();
         vector<vector<vector<int>>> dp(n+5, vector<vector<int>>(n+5, vector<int>(2, -1)));
         return minimax(0, n - 1, 1, nums, dp) >= 0;
     }
