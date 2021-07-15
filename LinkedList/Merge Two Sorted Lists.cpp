@@ -75,36 +75,3 @@ public:
         return res->next;
     }
 };
-
-
-
-
-
-
-// naive solution (not memory efficient)
-class Solution {
-public:
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode* node = NULL;
-        if(!l1 && !l2) return node;
-        else if(!l1) {
-            node = new ListNode(l2->val);
-            node->next = mergeTwoLists(l1, l2->next);
-        }
-        else if(!l2) {
-            node = new ListNode(l1->val);
-            node->next = mergeTwoLists(l1->next, l2);
-        }
-        else {
-            if(l1->val <= l2->val) {
-                node = new ListNode(l1->val);
-                node->next = mergeTwoLists(l1->next, l2);
-            } else {
-                node = new ListNode(l2->val);
-                node->next = mergeTwoLists(l1, l2->next);
-            }
-        }
-        return node;
-        
-    }
-};
