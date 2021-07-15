@@ -11,6 +11,13 @@ https://www.codechef.com/problems/COVERING
 https://www.codechef.com/SNFL16MR/problems/BEAUTY
 */
 
+/*
+Example Problem:
+Consider the following problem where we will use Sum over subset Dynamic Programming to solve it. 
+Given an array of 2^n integers, we need to calculate function F(x) = ∑Ai such that x&i==i for all x. i.e, i is a bitwise subset of x. 
+i will be a bitwise subset of mask x, if x&i==i.
+*/
+
 
 // iterative version
 void solve() {
