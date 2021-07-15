@@ -26,17 +26,18 @@ public:
             temp = temp->next;
         }
         
-        temp = head;
-        int num = count - n - 1;
-        if(num == -1) {
+        int num = count - n;
+        if(num == 0) {
             head = head->next; 
             return head;
         }
         
+        temp = head;
+        num--;
         while(num--){
             temp = temp->next;
         }
-        if(temp->next != NULL) temp->next = temp->next->next;
+        temp->next = temp->next->next;
         
         return head;
     }
