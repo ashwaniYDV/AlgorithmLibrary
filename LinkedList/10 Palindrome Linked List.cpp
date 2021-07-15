@@ -25,28 +25,31 @@ public:
         }
         return prev;
     }
-    bool isPalindrome(ListNode* head) {
-        if(!head || !head->next) return true;
-        
+    ListNode* middleNode(ListNode* head) {
         ListNode *slow = head, *fast = head;
-        
+
         while(fast->next && fast->next->next) {
             slow = slow->next;
             fast = fast->next->next;
         }
+
+        return slow;
+    }
+    bool isPalindrome(ListNode* head) {
+        if(!head || !head->next) return true;
+        
         // handles both even and odd length of linkedlist
-        slow = slow->next;
+        ListNode *middle = middleNode(head);
         
         // now reverse the right half of linkedlist and get its head
-        ListNode *temp2 = reverse(slow);
+        ListNode *start2 = reverse(middle->next);
         
-        ListNode *temp1 = head;
+        ListNode *start1 = head;
         
-        while(temp2) {
-            if(temp1->val != temp2->val) return false;
-            
-            temp1 = temp1->next;
-            temp2 = temp2->next;
+        while(start2) {
+            if(start1->val != start2->val) return false;
+            start1 = start1->next;
+            start2 = start2->next;
         }
         
         return true;   
