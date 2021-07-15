@@ -49,8 +49,7 @@ public:
         }
         int diff = sizea - sizeb;
         
-        while(diff) {
-            diff--;
+        while(diff--) {
             headA = headA->next;
         }
         
@@ -77,8 +76,8 @@ public:
         // if a and b have different length than we'll stop the loop after second iteration
         while(a != b) {
             // for the end of first iteration, we just reset the pointer to the head of another linkedlist 
-            a = a == NULL ? headB : a->next;
-            b = b == NULL ? headA : b->next;
+            a = (a == NULL) ? headB : a->next;
+            b = (b == NULL) ? headA : b->next;
         }
         
         return a;
