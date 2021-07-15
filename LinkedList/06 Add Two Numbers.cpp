@@ -122,11 +122,9 @@ public:
             }
             
             total += carry;
-            carry = total / 10;
-            
-            ListNode *node = new ListNode(total % 10);
-            curr->next = node;
+            curr->next = new ListNode(total % 10);;
             curr = curr->next;
+            carry = total / 10;
         }
         
         return res->next;
