@@ -3,6 +3,10 @@
 
 // https://youtu.be/8CuVOdIWLfA
 
+/*
+0 based indexing is followed here.
+*/
+
 
 int arr[N];
 
