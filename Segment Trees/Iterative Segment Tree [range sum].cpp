@@ -4,7 +4,8 @@
 // https://youtu.be/8CuVOdIWLfA
 
 /*
-0 based indexing is followed here.
+0 based indexing is followed here for arr, query and update etc.
+But sgt is 1 based indexed.
 */
 
 
