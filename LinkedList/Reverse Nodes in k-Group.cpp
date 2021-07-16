@@ -17,10 +17,9 @@ public:
     ListNode* reverseKGroup(ListNode* head, int k) {
         int count = 0; 
         ListNode *temp = head;
-        while(temp) {
-            count++;
+        while(temp && count < k) {
             temp = temp->next;
-            if(count == k) break;
+            count++;
         }
         
         // if we dont have enought nodes
