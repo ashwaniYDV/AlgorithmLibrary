@@ -2,6 +2,8 @@
 // https://www.geeksforgeeks.org/iterative-segment-tree-range-minimum-query/
 // https://codeforces.com/blog/entry/18051
 
+// https://youtu.be/ljVWVWgs2fQ
+
 int arr[2 * (int)(2e5+5)];
 
 struct segment_tree {
