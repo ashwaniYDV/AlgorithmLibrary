@@ -1,6 +1,8 @@
 // https://codeforces.com/blog/entry/18051
 // https://www.geeksforgeeks.org/iterative-segment-tree-range-minimum-query/
 
+// https://youtu.be/8CuVOdIWLfA
+
 
 int arr[N];
 
