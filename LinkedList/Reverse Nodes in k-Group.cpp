@@ -37,7 +37,7 @@ public:
         }
         
         // if the next segment nodes is not null
-        if(curr) head->next = reverseKGroup(nxt, k);
+        if(curr) head->next = reverseKGroup(curr, k);
         
         return prev;
     }
