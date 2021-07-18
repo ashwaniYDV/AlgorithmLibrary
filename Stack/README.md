@@ -1,5 +1,11 @@
 [Aditya Gupta Stack Playlist | Interview Questions](https://www.youtube.com/watch?v=P1bAPZg5uaE&list=PL_z_8CaSLPWdeOezg68SKkeLN4-T_jNHd)
 
+### Monotonic stack concept
+* Nearest Smaller to Left (NSL)
+* Nearest Smaller to Right (NSR)
+* Nearest Greater to Left (NGL)
+* Nearest Greater to Right (NGR)
+
 ### Questions
 1) Nearest Smaller to Left (NSL)
 2) Nearest Smaller to Right (NSR)

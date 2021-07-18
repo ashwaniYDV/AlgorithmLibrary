@@ -1,16 +1,32 @@
 // faadcoder = https://youtu.be/uFPSFsOlklE
 // codencode = https://youtu.be/hDKTCWWGIxk
 
-/*
-In Z algo z[0] doesn't matter. It can be anything
-*/
 
 /*
-cp-algorithms:
+Suppose we are given a string s of length n. The Z-function for this string is an array of length n where 
+the i-th element is equal to the greatest number of characters starting from the position i that coincide with the first characters of s.
 
-Trivial algorithm (Naive approach)
-Formal definition can be represented in the following elementary O(n^2) implementation.
+In other words, z[i] is the length of the longest common prefix between s and the suffix of s starting at i.
+
+
+The first element of Z-function, z[0], is generally not well defined. 
+In this article we will assume it is zero (although it doesn't change anything in the algorithm implementation).
+
+This article presents an algorithm for calculating the Z-function in O(n) time, as well as various of its applications.
+
+Examples
+For example, here are the values of the Z-function computed for different strings:
+
+"aaaaa" - [0,4,3,2,1]
+"aaabaab" - [0,2,1,0,2,1,0]
+"abacaba" - [0,0,1,0,3,0,1]
 */
+
+
+
+
+
+// Trivial algorithm (Naive approach) - Formal definition can be represented in the following elementary O(n^2) implementation.
 vector<int> z_function_trivial(string s) {
     int n = (int) s.length();
     vector<int> z(n);
@@ -21,11 +37,8 @@ vector<int> z_function_trivial(string s) {
 }
 
 
-/*
-cp-algorithms:
 
-Efficient algorithm to compute the Z-function O(n)
-*/
+// Efficient algorithm to compute the Z-function O(n)
 vector<int> z_function(string s) {
     int n = (int) s.length();
     vector<int> z(n);
@@ -68,7 +81,6 @@ void z_function(string s) {
 
 
 
-// method 2
 auto z_function(string s) {
 	ll n = s.size();
 	ll l = 0, r = 0;

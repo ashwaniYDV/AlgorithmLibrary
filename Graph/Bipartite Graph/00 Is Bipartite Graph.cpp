@@ -1,44 +1,76 @@
+// https://leetcode.com/problems/is-graph-bipartite/
+
 /*
+Note:
+----
 No cycle or Even cycle graph -> Bipartite
 Odd cycle graph -> Not-Bipartite
 */
 
 
-const int N = 2e5+5;
-int n, m;
+// Method 1
+/*
+Using both vis and color array
+colors => { 0 = RED, 1 = BLUE }
+*/
+class Solution {
+public:
+    bool dfs(int u, int c, vector<int>& vis, vector<int>& color, vector<vector<int>>& g) {
+        vis[u] = 1;
+        color[u] = c;
+        for(int v: g[u]) {
+            if(!vis[v]) {
+                if(!dfs(v, c^1, vis, color, g)) return false;
+            } else {
+                if(color[v] == color[u]) return false;
+            }
+        }
+        return true;
+    }
 
-vi g[N];
-int vis[N], color[N];
+    bool isBipartite(vector<vector<int>>& g) {
+        int n = g.size();
+        vector<int> vis(n), color(n);
 
-bool isBipartite(int u, int c) {
-	vis[u] = 1;
-	color[u] = c;
-	for(int v: g[u]) {
-		if(!vis[v]) {
-			if(isBipartite(v, c^1) == false) return false;
-		} else {
-			if(color[v] == color[u]) return false;
-		}
-	}
-	return true;
-}
+        for(int i = 0; i < n; i++) {
+            if(!vis[i] && !dfs(i, 1, vis, color, g)) return false;
+        }
 
-void solve() {
-	int u, v;
-	cin >> n >> m;
-	f(i, m) {
-		cin >> u >> v, g[u].pb(v), g[v].pb(u);
-	}
+        return true;
+    }
+};
 
-	bool check = true;
-	loop(i, 1, n) {
-		if(!vis[i]) 
-			check = check && isBipartite(i, 1);
-	}
 
-	if(check)
-		cout<<"Graph is bipartite.";
-	else
-		cout<<"Graph is not bipartite.";
 
-}
+// Method 2: (space optimized)
+/*
+Using only color array
+colors => { 1 = RED, 2 = BLUE }
+*/
+
+class Solution {
+public:
+    bool dfs(int u, int c, vector<int>& color, vector<vector<int>>& g) {
+        color[u] = c;
+        for(int v: g[u]) {
+            if(color[v] == 0) {
+				if(!dfs(v, c == 1 ? 2 : 1, color, g)) return false;
+				// if(!dfs(v, 3 - c, color, g)) return false;
+            } else {
+                if(color[v] == color[u]) return false;
+            }
+        }
+        return true;
+    }
+
+    bool isBipartite(vector<vector<int>>& g) {
+        int n = g.size();
+        vector<int> color(n);
+
+        for(int i = 0; i < n; i++) {
+            if(color[i] == 0 && !dfs(i, 1, color, g)) return false;
+        }
+
+        return true;
+    }
+};

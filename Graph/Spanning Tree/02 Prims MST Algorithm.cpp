@@ -1,12 +1,15 @@
+// https://www.hackerearth.com/practice/algorithms/graphs/minimum-spanning-tree/tutorial/
 // https://github.com/Ashishgup1/Competitive-Coding/blob/master/Prim's%20MST.cpp
 
 // Pepcoding = https://youtu.be/Vw-sktU1zmc
+
+
 
 const int N = 1e5 + 5;
 int n, m;
 vector < pair < int, int >> g[N];
 
-void prims(int root) {
+int prims(int root) {
     vector < int > dist(n + 1, INF);
     vector < int > parent(n + 1, -1);
     vector < int > vis(n + 1, 0);
@@ -39,17 +42,12 @@ void prims(int root) {
         }
     }
 
-    cout << "Cost: " << cost << endl;
-
-    // Print edges of MST using parent array
-    for (int i = 1; i <= n; ++i) {
-        if (i == root) continue;
-        cout << parent[i] << " " << i << endl;
-    }
+    return cost;
 }
 
+
 void solve() {
-    int u, v, w;
+    int u, v, w, x, y;
     cin >> n >> m;
     f(i, m) {
         cin >> u >> v >> w;
@@ -58,10 +56,8 @@ void solve() {
     }
     // Taking root of MST as 1
     int root = 1;
-    prims(root);
+    cout << prims(root);
 }
-
-
 
 
 

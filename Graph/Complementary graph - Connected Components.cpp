@@ -7,9 +7,16 @@ Time - O(n*log(n))
 */
 
 
-// Problem 1) https://codeforces.com/contest/920/problem/E
-// Method 1 (DFS)
+/*
+Problem 1) https://codeforces.com/contest/920/problem/E
 
+You are given an undirected graph consisting of n vertices and n*(n-1)/2 - m edges. Instead of giving you the edges that exist in the graph, 
+we give you m unordered pairs (x, y) such that there is no edge between x and y, and if some pair of vertices is not listed in the input, 
+then there is an edge between these vertices.
+You have to find the number of connected components in the graph and the size of each component. 
+*/
+
+// Problem 1 - Method 1 (DFS)
 const int N = 2e5+5;
 int n, m;
 set<int> unvisited;
@@ -69,9 +76,7 @@ void solve() {
 
 
 
-// Problem 1) https://codeforces.com/contest/920/problem/E
-// Method 2 (BFS)
-
+// Problem 1 - Method 2 (BFS)
 const int N = 2e5+5;
 int n, m;
 set<int> unvisited;

@@ -1,5 +1,19 @@
 {
     "files.associations": {
-        "functional": "cpp"
+        "vector": "cpp",
+        "iosfwd": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "forward_list": "cpp",
+        "valarray": "cpp",
+        "limits": "cpp",
+        "algorithm": "cpp"
     }
 }

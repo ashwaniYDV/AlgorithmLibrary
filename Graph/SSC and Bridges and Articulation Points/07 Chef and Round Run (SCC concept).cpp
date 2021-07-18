@@ -6,6 +6,7 @@ In general SCC of size >= 2 contribues to answer.
 But we can have SCC of size 1 (i.e. only one node) and if it contains self loop then this size = 1 also contribues to answer.
 */
 
+
 const int N = 1e6+5;
 int n, m;
 
@@ -27,12 +28,11 @@ void dfs(int u) {
 
 void revDfs(int u) {
     vis[u] = 1;
-
+    SCC.pb(u);
+    
     for(int v: transpose_g[u]) {
         if(!vis[v]) revDfs(v);
     }
-
-    SCC.pb(u);
 }
 
 void solve() {
@@ -83,12 +83,3 @@ void solve() {
 
     cout << res << endl;
 }
-
-signed main() {
-    IOS
-    int t = 1;
-    cin >> t;
-    while(t--) {
-        solve();
-    }
-} 

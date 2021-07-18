@@ -12,6 +12,7 @@ This is also called readers-preference, with its solution:
 
 
 READER CODE:
+--------------
 semaphore wrt = 1;
 semaphore mutex = 1;
 readcount = 0;
@@ -31,7 +32,7 @@ signal(mutex);
  
 
 WRITER CODE:
-
+--------------
 wait(wrt);
         . . .
         writing is performed

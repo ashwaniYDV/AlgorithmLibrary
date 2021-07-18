@@ -1,5 +1,9 @@
 // https://youtu.be/qE6ceKCpbj0
 
+/*
+Slope difference = (y2 - y1)/(x2 - x1) - (y3 - y2)/(x3 - x2)
+*/
+
 struct Point {
     int x, y;
 };

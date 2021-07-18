@@ -7,6 +7,16 @@ Ada the Ladybug just got herself a new pet. She was thinking about a name for it
 She thought-up a beautiful name for it already but now she doesn't think this name is "enough". 
 She wants to find a new name, which will contain the original name at least K times as substring (to emphasize its importance). 
 As ada doesn't want the pet's name to be too long, she wants to find the shortest one - can you find the length of it?
+
+
+Input:
+s = ada, k = 3
+
+Output:
+7
+
+Explanation:
+Required string = adadada
 */
 
 

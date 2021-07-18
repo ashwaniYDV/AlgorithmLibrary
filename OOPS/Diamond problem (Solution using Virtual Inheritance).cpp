@@ -138,3 +138,71 @@ Tiger constructor.
 Liger constructor.
 Animal walks.
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Animal {
+public:
+    int age;
+    Animal() {
+        cout << "Animal constructor.\n";
+    }
+    void walk() {
+        cout << "Animal walks.\n";
+    }
+};
+
+class Lion : public Animal {
+public:
+    Lion() {
+        cout << "Lion constructor.\n";
+    }
+};
+
+class Tiger : public Animal {
+public:
+    Tiger() {
+        cout << "Tiger constructor.\n";
+    }
+};
+
+class Liger : public Lion, public Tiger {
+public:
+    Liger() {
+        cout << "Liger constructor.\n";
+    }
+};
+
+int main() {
+    Liger ash;
+    return 0;
+}
+
+/*
+Output:
+Animal constructor.
+Lion constructor.
+Animal constructor.
+Tiger constructor.
+Liger constructor.
+*/

@@ -1,3 +1,15 @@
+### Resources
+
+1) [usaco.guide](https://usaco.guide/gold/toposort?lang=cpp)
+2) [DP Concept of Topological Sort](https://usaco.guide/gold/toposort?lang=cpp#dynamic-programming) \
+   One useful property of directed acyclic graphs is, as the name suggests, that no cycles exist. 
+   If we consider each node in the graph as a state, 
+   we can perform dynamic programming on the graph if we process the states in an order that guarantees for every edge u->v that u is processed before v.
+   Fortunately, this is the exact definition of a topological sort!
+   
+   Eg Problem: Longest Flight Route (CSES), Game Routes (CSES) 
+
+
 ### Important problem which can be seolved using topological sort 
 [Unacademy Pulkit Chhabra (at the end of video)](https://unacademy.com/class/topological-sorting-on-directed-graphs/8IXI7CXE)
 

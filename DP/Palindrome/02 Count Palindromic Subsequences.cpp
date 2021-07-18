@@ -81,21 +81,6 @@ void AllPalindromicSubsequences(string s){
     cout << "Total palindromic subsequences = " << dp[0][n-1] << endl;
 }
 
-void solve() {
-    int x, y;
-    string s;
-    cin >> s;
-    AllPalindromicSubsequences(s);
-}
- 
-int32_t main() {
-    IOS
-    int T = 1;
-    // cin >> T;
-    while(T--)
-    solve();
-    return 0;
-}
  
 /*
 Input:

@@ -1,6 +1,11 @@
 // https://practice.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1
 // https://www.geeksforgeeks.org/minimum-number-deletions-insertions-transform-one-string-another/
 
+/*
+Given two strings ‘str1’ and ‘str2’ of size m and n respectively. 
+The task is to remove/insert the minimum number of characters from/in str1 to transform it into str2. 
+It could be possible that the same character needs to be removed from one point of str1 and inserted to some another point.
+*/
 
 // Method 1
 class Solution {

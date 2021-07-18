@@ -1,4 +1,12 @@
-// dp[i] stores the max sum of increasing subsequence when nums[i] is included
+/*
+Maximum Sum Increasing subsequence is a subsequence of a given list of integers, whose sum is maximum and in the subsequence, 
+all elements are sorted in increasing order.
+*/
+
+/*
+dp[i] stores the max sum of increasing subsequence when nums[i] is included
+*/ 
+
 
 #include<bits/stdc++.h>
 using namespace std;

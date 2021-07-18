@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/trapping-rain-water-ii/
-// https://youtu.be/hSUIFPrkOeo
+// https://youtu.be/fywyCy6Fyoo?si=5b82fc3owy_Z6JtC
 
 class Solution {
 public:
@@ -15,10 +15,7 @@ public:
     }
     
     int trapRainWater(vector<vector<int>>& heightMap) {
-        n = heightMap.size();
-        if(n == 0) return 0;
-        m = heightMap[0].size();
-        if(m == 0) return 0;
+        n = heightMap.size(), m = heightMap[0].size();
         
         vector<vector<int>> vis(n, vector<int>(m, 0));
         

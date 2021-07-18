@@ -15,58 +15,7 @@ __builtin_clz(-num)
 
 // Number of trailing zero's
 __builtin_ctz(num)
-
 */
-
-// O(n*log(log(n))) 
-bool prime[N+5]; 
-vector<int> primesVec;
-void SieveOfEratosthenes(int N) {
-	memset(prime, true, sizeof(prime));
-	prime[0] = prime[1] = false;
-	for(int p = 2; p*p <= N; p++) { 
-		if (prime[p] == true) {
-			for(int i = p*p; i <= N; i+=p) 
-			prime[i] = false; 
-		} 
-	} 
-	for(int p=2; p <= N; p++) {
-		if (prime[p]) {
-			primesVec.push_back(p);
-		}
-	}
-}
-
-// O(n*log(log(n))) 
-ll spf[N];
-void SPF() { 
-	spf[1] = 1; 
-	// marking smallest prime factor for every number to be itself.
-	for (ll i = 2; i < N; i++) spf[i] = i; 
-  
-	// separately marking spf for every even number as 2 
-	for (ll i=4; i<N; i+=2) spf[i] = 2;
-  
-	for (ll i=3; i*i<N; i++) { 
-		// checking if i is prime 
-		if (spf[i] == i) { 
-			// marking SPF for all numbers divisible by i 
-			for (ll j=i*i; j<N; j+=i) 
-				// marking spf[j] if it is not  
-				// previously marked 
-				if (spf[j]==j) spf[j] = i; 
-		} 
-	} 
-}
-// O(log(n)) 
-vector<int> getFactorization(int x) { 
-    vector<int> ret; 
-    while (x != 1) { 
-        ret.push_back(spf[x]); 
-        x = x / spf[x]; 
-    } 
-    return ret; 
-} 
 
 int binpow(int n, int p) {
 	int res = 1;
@@ -115,28 +64,74 @@ int nPrMod(int n, int r, int mod) {
 	return (num * inv) % mod;
 }
 
+
+// O(n*log(log(n))) 
 int spf[N+5];
-bool prime[N+5];
+bool isPrime[N+5];
 void SieveAndSPF() {
-	memset(prime, true, sizeof(prime));
-	prime[0] = prime[1] = false;
+	memset(isPrime, true, sizeof(isPrime));
+	isPrime[0] = isPrime[1] = false;
 
 	// marking smallest prime factor for every number to be itself.
 	for (int i = 1; i < N; i++) spf[i] = i;
 	
-	for(int p=2; p*p<=N; p++) { 
-		if (prime[p] == true) {
-			for(int i=p*p;i<=N;i+=p) {
-				prime[i] = false; 
-				spf[i] = min(spf[i], p);
+	for(int i = 2; i * i <= N; i++) { 
+		if (isPrime[i]) {
+			for(int j = i * i; j <= N; j += i) {
+				isPrime[j] = false; 
+				spf[j] = min(spf[j], i);
 			}
 		} 
 	}
 }
+// O(log(n)) 
+vector<int> getFactorization(int x) { 
+    vector<int> ret; 
+    while (x != 1) { 
+        ret.push_back(spf[x]); 
+        x = x / spf[x]; 
+    } 
+    return ret; 
+} 
 /*------------------------------------------------------*/
 
 
 
+
+
+struct Sieve {
+    vector<bool> isprime;
+    vector<int> spf;
+
+    Sieve(int n) {
+        isprime.resize(n+1, true);
+        spf.resize(n+1);
+
+        for(int i = 0; i <= n; i++) {
+            isprime[i] = true;
+            spf[i] = i;
+        }
+        
+        isprime[0] = isprime[1] = false;
+        for(int i = 2; i * i <= n; i++) {
+            if(isprime[i]) {
+                for(int j = i * i; j <= n; j += i) {
+                    isprime[j] = false;
+                    spf[j] = min(spf[j], i);
+                }
+            }
+        }
+    }
+
+    vector<int> getFactors(int x) {
+        vector<int> v;
+        while(x > 1) {
+            v.push_back(spf[x]);
+            x /= spf[x];
+        }
+        return v;
+    }
+};
 
 
 
@@ -225,41 +220,4 @@ int nCrMod(int n, int r) {
     int inv = modInverse(den, MOD);
     return (num * inv) % MOD;
 }
-
-// bool prime[N+5]; 
-// vector<int> primesVec;
-// void SieveOfEratosthenes(int N) {
-// 	memset(prime, true, sizeof(prime));
-// 	prime[0] = prime[1] = false;
-// 	for(int p = 2; p*p <= N; p++) { 
-// 		if (prime[p] == true) {
-// 			for(int i = p*p; i <= N; i+=p) 
-// 			prime[i] = false; 
-// 		} 
-// 	} 
-// 	for(int p=2; p <= N; p++) {
-// 		if (prime[p]) {
-// 			primesVec.push_back(p);
-// 		}
-// 	}
-// }
-
-// int spf[N+5];
-// bool prime[N+5];
-// void SieveAndSPF() {
-// 	memset(prime, true, sizeof(prime));
-// 	prime[0] = prime[1] = false;
-
-// 	// marking smallest prime factor for every number to be itself.
-// 	for (int i = 1; i < N; i++) spf[i] = i;
-	
-// 	for(int p=2; p*p<=N; p++) { 
-// 		if (prime[p] == true) {
-// 			for(int i=p*p;i<=N;i+=p) {
-// 				prime[i] = false; 
-// 				spf[i] = min(spf[i], p);
-// 			}
-// 		} 
-// 	}
-// }
 /*------------------------------------------------------*/

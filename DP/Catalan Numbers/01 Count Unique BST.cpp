@@ -1,15 +1,22 @@
 // https://leetcode.com/problems/unique-binary-search-trees/
 
+/*
+Given an integer n, return the number of structurally unique BSTs 
+which has exactly n nodes of unique values from 1 to n.
+*/
+
+
 // Method 1: Catalan Number
 class Solution {
-    int catalan_Number(int n) {
+    int catalan_Number(int n){
         int catalan[n+1];
         catalan[0] = catalan[1] = 1;
         
         for(int i = 2; i <= n; ++i) {
             catalan[i] = 0;
-            for(int j = 0; j < i; ++j)
+            for(int j = 0; j < i; ++j) {
                 catalan[i] += catalan[j] * catalan[i-1 - j];
+            }
         }
         return catalan[n];
     }
@@ -18,14 +25,6 @@ public:
         return catalan_Number(n);
     }
 };
-
-
-
-
-
-
-
-
 
 
 // Method 2

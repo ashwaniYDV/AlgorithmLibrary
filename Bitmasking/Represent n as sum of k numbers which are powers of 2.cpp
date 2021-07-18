@@ -13,7 +13,7 @@ void printNum(int n, int k)
     int x = __builtin_popcount(n); 
   
     // Not-possible condition 
-    if (k < x || k > n) { 
+    if (x > k || k > n) { 
         cout << "-1"; 
         return; 
     } 
