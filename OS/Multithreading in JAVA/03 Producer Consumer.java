@@ -5,6 +5,7 @@ Both the producer and consumer run in separate threads.
 The producer continuously fetches data from the API while the consumer writes data to the file as it becomes available in the buffer.
 */
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -14,23 +15,31 @@ import java.util.Random;
 
 interface DataProvider {
     String fetchData();
+    void addData(String data) throws InterruptedException;
 }
 
 class MockApiDataProvider implements DataProvider {
-    private String[] mockData = {
-            "Data 1 from API",
-            "Data 2 from API",
-            "Data 3 from API",
-            "Data 4 from API",
-            "Data 5 from API"
-    };
+
+    ArrayList<String> mockData = new ArrayList<>();
+
+    public MockApiDataProvider() {
+        mockData.add("Data 1");
+        mockData.add("Data 2");
+    }
+
     private Random random = new Random();
 
     @Override
     public String fetchData() {
         // Simulate fetching data from the API (replace with actual API call)
-        int randomIndex = random.nextInt(mockData.length);
-        return mockData[randomIndex];
+        int randomIndex = random.nextInt(mockData.size());
+        return mockData.get(randomIndex);
+    }
+
+    @Override
+    public void addData(String data) throws InterruptedException {
+        mockData.add(data);
+        Thread.sleep(1000);
     }
 }
 
@@ -81,7 +90,7 @@ class Producer {
             while (true) {
                 String data = apiDataProvider.fetchData(); // Fetch data from API
                 buffer.produce(data);
-//                Thread.sleep(1000); // Simulate some work or adjust as needed
+                Thread.sleep(1000); // Simulate some work or adjust as needed
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -105,7 +114,6 @@ class Consumer {
                 writer.write(data);
                 writer.newLine();
                 writer.flush();
-                Thread.sleep(2000); // Simulate some work or adjust as needed
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
@@ -114,7 +122,7 @@ class Consumer {
 }
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SharedBuffer buffer = new SharedBuffer(3); // Set the buffer capacity
         DataProvider apiDataProvider = new MockApiDataProvider(); // Use the mock data provider
         String outputFile = "output.txt";
@@ -127,5 +135,11 @@ public class Main {
 
         producerThread.start();
         consumerThread.start();
+
+        int i = 0;
+        while (true) {
+            i++;
+            apiDataProvider.addData(Integer.toString(i));
+        }
     }
 }
