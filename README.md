@@ -12,6 +12,11 @@
 * https://atcoder.jp/
 * https://www.spoj.com/
 * https://a2oj.netlify.app/
+* https://www.hackerrank.com/
+
+## Special Learning Contests
+* https://www.hackerearth.com/practice/codemonk/
+* https://atcoder.jp/contests/dp/tasks
 
 ### Extras
 * [Open using GitHub1s](https://github1s.com/ashwaniYDV/AlgorithmLibrary)
