@@ -7,6 +7,8 @@
 * https://codeforces.com/
 * https://codechef.com/
 * https://cses.fi/problemset/
+* https://cp-algorithms.com/
+* https://www.hackerearth.com/
 * https://atcoder.jp/
 * https://www.spoj.com/
 * https://a2oj.netlify.app/
