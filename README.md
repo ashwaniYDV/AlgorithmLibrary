@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%231705F7&size=24&lines=Algorithm+Library)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=25&pause=1000&color=F70000&background=FFD07600&width=501&lines=Algorithm+Library)](https://git.io/typing-svg)
 
 ## Algos, DS and my online handle submissions
 * This repo contains my blood & sweat + so many sweet memories to reminisce.
