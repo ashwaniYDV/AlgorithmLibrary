@@ -5,3 +5,11 @@ Algos, DS and my online handle submissions
 [Open using GitHub1s](https://github1s.com/ashwaniYDV/AlgorithmLibrary)
 
 https://readme-typing-svg.herokuapp.com/demo/
+
+## Goldmine
+* https://codeforces.com/
+* https://codechef.com/
+* https://cses.fi/problemset/
+* https://atcoder.jp/
+* https://www.spoj.com/
+* https://a2oj.netlify.app/
