@@ -23,11 +23,10 @@ int Solution::solve(vector<int> &A) {
     
         //  Count of zeros and ones for each bit
         for(int i = 0; i < n; i++){
-            if (A[i] % 2 == 0)
+            if ((A[i] & (1 << j)) == 0)
                 zero++;
             else
                 one++;
-            A[i] /= 2; // unset the jth bit
         }
          
         // calculating individual bit sum
