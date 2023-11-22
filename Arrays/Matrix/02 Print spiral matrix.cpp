@@ -1,18 +1,59 @@
+// https://leetcode.com/problems/spiral-matrix/
 // https://practice.geeksforgeeks.org/problems/spirally-traversing-a-matrix-1587115621/1
 // https://youtu.be/1ZGJzvkcLsA
 
-class Solution {   
-    public: 
-    //Function to return a list of integers denoting spiral traversal of matrix.
-    vector < int > spirallyTraverse(vector < vector < int > > A, int n, int m) {
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& A) {
         // top
         int T = 0;
         // botton
-        int B = n - 1;
+        int B = A.size() - 1;
         // left
         int L = 0;
         // right
-        int R = m - 1;
+        int R = A[0].size() - 1;
+
+        vector < int > ans;
+
+        while (T <= B && L <= R) {
+            if (T <= B && L <= R) {
+                for (int i = L; i <= R; i++)
+                    ans.push_back(A[T][i]);
+                T++;
+            }
+            if (T <= B && L <= R) {
+                for (int i = T; i <= B; i++)
+                    ans.push_back(A[i][R]);
+                R--;
+            }
+            if (T <= B && L <= R) {
+                for (int i = R; i >= L; i--)
+                    ans.push_back(A[B][i]);
+                B--;
+            } 
+            if (T <= B && L <= R) {
+                for (int i = B; i >= T; i--)
+                    ans.push_back(A[i][L]);
+                L++;
+            }
+        }
+        return ans;
+    }
+};
+
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& A) {
+        // top
+        int T = 0;
+        // botton
+        int B = A.size() - 1;
+        // left
+        int L = 0;
+        // right
+        int R = A[0].size() - 1;
         // direction
         int dir = 0;
 
