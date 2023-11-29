@@ -1,11 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
-#pragma GCC optimize ("O3")
-#pragma GCC target ("avx")
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize ("unroll-loops")
-#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
- 
+
+#include <ext/pb_ds/assoc_container.hpp> 
+#include <ext/pb_ds/tree_policy.hpp> 
+using namespace __gnu_pbds;
+typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+
 typedef long long int ll;
 #define int long long int
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
@@ -37,58 +37,12 @@ typedef vector<vector<ll>> matrix;
 ll dx[] = {0, 1, 0, -1};
 ll dy[] = {-1, 0, 1, 0};
 const ll N = 1e5;
-// ll a[N], b[N], dp[N], level[N], vis[N], in[N], out[N];
-// vl g[N];
 ll n, m;
 
-ll F[N];
-
-void factorial() {
-    F[0] = F[1] = 1;
-    fa(i, 2, N){
-        F[i] = ((F[i - 1] % MOD) * (i % MOD)) % MOD;
-    }
-}
-
-ll modular_exp(ll a, ll n, ll mod) {
-    ll res = 1;
-    while(n) {
-        if(n % 2 == 1) {
-            res = ((res % mod) * (a % mod)) % mod;
-            n--;
-        }
-        a = ((a % mod) * (a % mod)) % mod;
-        n /= 2;
-    }
-    return res;
-}
-
-// fermat's little theorem
-ll inverse_modulo(ll base, ll mod) {
-    return modular_exp(base, mod-2, mod);
-}
-
-ll nCr(ll n, ll r) {
-    if(r > n) return 0;
-    // nCr = n!%P / ((r!)%P * (n-r!)%P) = n!%P * (inverse_mod(r!)%P * inverse_mod(n-r!)%P)
-    ll res = F[n];
-    res = (1LL * res * inverse_modulo(F[r], MOD)) % MOD;
-    res = (1LL * res * inverse_modulo(F[n - r], MOD)) % MOD;
-
-    return res;
-}
-
 void solve() {
-    int var;
-    map<int, int> mp;
-    for(int i=1; i<=5; i++) {
-      int x, y;
-      cin >> x >> y;
-      mp[x] = y;
-    }
-    for(auto [x, y]: mp) {
-      cout << x << " " << y << endl;
-    }
+    ordered_set s;
+    for (int i = 0; i < 5; i++) s.insert(5);
+    for (int i = 0; i < 5; i++) cout << *s.begin();
 }
 
 int32_t main() {
