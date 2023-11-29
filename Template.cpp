@@ -43,7 +43,7 @@ ll n, m;
 
 ll F[N];
 
-ll factorial(){
+void factorial() {
     F[0] = F[1] = 1;
     fa(i, 2, N){
         F[i] = ((F[i - 1] % MOD) * (i % MOD)) % MOD;
@@ -79,18 +79,24 @@ ll nCr(ll n, ll r) {
 }
 
 void solve() {
-    ll t, r;
-    factorial();
-    cin >> t;
-    while(t--) {
-        cin >> n >> r;
-        cout << nCr(n, r) << endl;
+    int var;
+    map<int, int> mp;
+    for(int i=1; i<=5; i++) {
+      int x, y;
+      cin >> x >> y;
+      mp[x] = y;
     }
-    
-} 
- 
+    for(auto [x, y]: mp) {
+      cout << x << " " << y << endl;
+    }
+}
+
 int32_t main() {
     IOS
+    #ifndef ONLINE_JUDGE
+      freopen("input.txt", "r", stdin);
+      freopen("output.txt", "w", stdout);
+    #endif
     clock_t begin = clock();
     ll T = 1;
     // cin >> T;
