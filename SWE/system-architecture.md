@@ -143,7 +143,7 @@ public Tuple<String, List<String>> reduce(String key, List<String> value) {
 - Apache Cassandra, for example, uses consistent hashing for data partitioning in the cluster.
 - An alternative is *Rendezvous Hashing*.
 
-![Consistent Hashing](../img/consistent-hashing.png)
+![Consistent Hashing](./img/consistent-hashing.png)
 
 ([source](http://blog.imaginea.com/consistent-hashing-in-cassandra/))
 
