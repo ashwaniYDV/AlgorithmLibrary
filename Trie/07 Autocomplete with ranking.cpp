@@ -23,7 +23,7 @@ using namespace std;
 
 struct TrieNode {
     TrieNode * child[26];
-    vector < pair < int, int >> idx_ans;
+    vector < int> idx_ans;
     bool isend;
 };
 
@@ -44,18 +44,14 @@ void insert(TrieNode * root, string word, int idx, vector < int > & W) {
         }
         temp = temp -> child[chr_val];
         if (temp -> idx_ans.size() < 5) {
-            temp -> idx_ans.push_back({
-                W[idx],
-                idx
-            });
+            temp -> idx_ans.push_back(idx);
         }
     }
     temp -> isend = true;
 }
 
-vector < pair < int, int >> query(TrieNode * root, string prefix, vector < int > & W) {
+vector <int> query(TrieNode * root, string prefix, vector < int > & W) {
     TrieNode * temp = root;
-    vector < pair < int, int >> ans;
     for (int i = 0; i < prefix.size(); i++) {
         int chr_val = prefix[i] - 'a';
         if (temp -> child[chr_val] == NULL) {
@@ -65,7 +61,7 @@ vector < pair < int, int >> query(TrieNode * root, string prefix, vector < int >
         temp = temp -> child[chr_val];
     }
     if (temp == NULL) {
-        return ans;
+        return {};
     }
     return temp -> idx_ans;
 }
@@ -84,12 +80,12 @@ void solve(vector < string > & A, vector < int > & W, vector < string > & B) {
         insert(root, A[v[i].second], v[i].second, W);
     }
     for (int i = 0; i < B.size(); i++) {
-        vector < pair < int, int >> ans = query(root, B[i], W);
+        vector < int> ans = query(root, B[i], W);
         if (ans.size() == 0) {
             cout << "-1 " << endl;
         } else {
             for (int j = 0; j < ans.size(); j++) {
-                cout << A[ans[j].second] << " ";
+                cout << A[ans[j]] << " ";
             }
             cout << endl;
         }
