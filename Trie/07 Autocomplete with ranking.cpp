@@ -2,7 +2,8 @@
 
 /*
 There is a dictionary A of N words and ith word has a unique weight Wi.
-An another string array B of size M contains the prefixes. For every prefix B[i], output atmost 5 words from the dictionary A which start with same prefix.
+An another string array B of size M contains the prefixes. 
+For every prefix B[i], output atmost 5 words from the dictionary A which start with same prefix.
 Output the words in decreasing order of their weight.
 NOTE: If there is no word which start with the given prefix output -1.
 */
