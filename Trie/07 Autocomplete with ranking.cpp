@@ -9,7 +9,7 @@ NOTE: If there is no word which start with the given prefix output -1.
 */
 
 /*
-Create a prefix Trie, but the Node of a Trie will also contain contain an array that will denote the answer for each prefix B[i].
+Create a prefix Trie, but the Node of a Trie will also contain an array that will denote the answer for each prefix B[i].
 How?
 Sort the given dictionary in decreasing order of its weight. 
 Now insert the word in the Trie and update the answer array if its size is less than 5 (Since we need to output atmost 5 words).
