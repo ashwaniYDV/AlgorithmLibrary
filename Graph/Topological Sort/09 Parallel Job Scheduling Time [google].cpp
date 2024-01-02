@@ -216,7 +216,8 @@ void solve() {
 
 
 
-// This method gave wrong output in Time Needed to Inform All Employees [leetcode].cpp
+// This method is incorrect
+// It gave wrong output in Time Needed to Inform All Employees [leetcode].cpp
 const int N = 3e5+5;
 int n, m;
 vi g[N];
