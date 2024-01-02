@@ -106,7 +106,7 @@ private:
     // Recursive heapify-up algorithm
     void heapify_up(int i) {
         // check if the node at index `i` and its parent violate the heap property
-        if (i && A[PARENT(i)] < A[i]) {
+        if (i > 0 && A[PARENT(i)] < A[i]) {
             // swap the two if heap property is violated
             swap(A[i], A[PARENT(i)]);
  
