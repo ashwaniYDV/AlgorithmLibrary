@@ -1,6 +1,10 @@
 // https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/
 
-// Method 1:
+// Method 1: Using normal queue instead of priority_queue
+/*
+priority_queue was giving TLE.
+Since all edge weights are 1, we can use a normal queue.
+*/
 class Solution {
 public:
     #define INF 1e9
