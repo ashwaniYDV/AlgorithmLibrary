@@ -6,7 +6,7 @@
 Note:
 * Balanced BST = A BST is balanced if the depth of the two subtrees of every node never differs by more than 1.
 
-### Abdul Bari
+#### Abdul Bari
 * https://youtu.be/jDM6_TnYIqE?si=yYRvcAM14fwKEx0y
 
 #### Que) What is the worst case possible height of AVL tree?
