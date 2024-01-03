@@ -94,6 +94,11 @@ TreeNode* performrRotation(TreeNode *root) {
     // If the tree had only one node then return
     if (!root) return root;
 
+    TreeNode* left = performrRotation(root->left);        
+    TreeNode* right = performrRotation(root->right);    
+    root->left = left;
+    root->right = right;
+
     // UPDATE HEIGHT OF THE CURRENT NODE
     root->height = 1 + max(height(root->left), height(root->right));
 
@@ -103,24 +108,28 @@ TreeNode* performrRotation(TreeNode *root) {
 
     // Left Left Imbalance
     if (balance > 1 && getBalance(root->left) >= 0) {
-        return rightRotate(root);
+        root = rightRotate(root);
+        return root;
     }
 
     // Left Right Imbalance
     if (balance > 1 && getBalance(root->left) < 0) {
         root->left = leftRotate(root->left);
-        return rightRotate(root);
+        root = rightRotate(root);
+        return root;
     }
 
     // Right Right Imbalance
     if (balance < -1 && getBalance(root->right) <= 0) {
         return leftRotate(root);
+        return root;
     }
 
     // Right Left Imbalance
     if (balance < -1 && getBalance(root->right) > 0) {
         root->right = rightRotate(root->right);
-        return leftRotate(root);
+        root = leftRotate(root);
+        return root;
     }
 
     /* return the (unchanged) node pointer */
