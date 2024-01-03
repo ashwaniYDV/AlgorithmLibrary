@@ -18,6 +18,7 @@ For example, if current height of left pointer is lower, we fill water in the le
 else if current height of right pointer is lower, we fill water in the right bin. 
 Until left pointer meets right pointer, we filled the whole container.
 */
+
 class Solution {
 public:
     int trap(vector<int>& height) {
