@@ -45,6 +45,7 @@ public:
         m = dungeon[0].size();
         vector<vector<int>> dp(n+1, vector<int>(m+1, -1));
         return 1 + (-calculate(0, 0, dungeon, dp));
+        // return 1 + abs(calculate(0, 0, dungeon, dp));
     }
 };
 
