@@ -20,25 +20,19 @@ This question can be generalised for atmost k distinct characters.
 
 class Solution {
 public:
-    /**
-     * @param s: a string
-     * @return: the length of the longest substring T that contains at most 2 distinct characters
-     */
     int lengthOfLongestSubstringTwoDistinct(string &s) {
         int n = s.size();
         int k = 2;
-        set<char> st;
         map<char, int> freq;
         int res = 0;
         
         int l = 0, r = 0;
         while(r < n) {
-            st.insert(s[r]);
             freq[s[r]]++;
-            while(st.size() > k) {
+            while(freq.size() > k) {
                 char ch = s[l];
                 freq[ch]--;
-                if(freq[ch] == 0) st.erase(ch);
+                if(freq[ch] == 0) freq.erase(ch);
                 l++;
             }
 
