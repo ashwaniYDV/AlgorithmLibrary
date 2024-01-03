@@ -3,6 +3,8 @@
 * In an AVL tree, the heights of the two child subtrees of any node differ by at most one.
 * If at any time they differ by more than one, rebalancing is done to restore this property.
 
+![Screenshot 2024-01-03 123057](https://github.com/ashwaniYDV/AlgorithmLibrary/assets/43786728/eb1b9a77-4fd0-4d0a-abb4-279a19936f2c)
+
 Note:
 * Balanced BST = A BST is balanced if the depth of the two subtrees of every node never differs by more than 1.
 
