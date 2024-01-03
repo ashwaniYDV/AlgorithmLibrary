@@ -8,7 +8,6 @@ given that you can eliminate at most k obstacles.
 If it is not possible to find such walk return -1.
 */
 
-
 class Solution {
 public:
     #define INF 1e9
@@ -27,15 +26,15 @@ public:
         n = grid.size(), m = grid[0].size();
         vector<vector<vector<int> > > dist(n, vector<vector<int> >(m, vector<int>(k+1, INF)));
 
-        queue<vector<int>> pq;
-        // distance, row, col, j
-        pq.push({0, 0, 0, 0});
+        queue<vector<int>> q;
+        // row, col, j
+        q.push({0, 0, 0});
         dist[0][0][0] = 0;
 
-        while (!pq.empty()) {
-            auto it = pq.front();
-            pq.pop();
-            int d = it[0], x = it[1], y = it[2], j = it[3];
+        while (!q.empty()) {
+            auto it = q.front();
+            q.pop();
+            int x = it[0], y = it[1], j = it[2];
 
             for (int z = 0; z < 4; z++) {
                 int nx = x + dx[z], ny = y + dy[z];
@@ -44,13 +43,13 @@ public:
                 if(grid[nx][ny] == 0) {
                     if (dist[nx][ny][j] > dist[x][y][j] + 1) {
                         dist[nx][ny][j] = dist[x][y][j] + 1;
-                        pq.push({dist[nx][ny][j], nx, ny, j});
+                        q.push({nx, ny, j});
                     }
                 }
                 if(grid[nx][ny] == 1) {
                     if (j < k && dist[nx][ny][j + 1] > dist[x][y][j] + 1) {
                         dist[nx][ny][j + 1] = dist[x][y][j] + 1;
-                        pq.push({dist[nx][ny][j + 1], nx, ny, j + 1});
+                        q.push({nx, ny, j + 1});
                     }
                 }
             }
