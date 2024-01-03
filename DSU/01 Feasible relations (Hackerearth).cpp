@@ -1,5 +1,10 @@
 // https://www.hackerearth.com/practice/algorithms/graphs/depth-first-search/practice-problems/algorithm/feasible-relations/
 
+/*
+You are given a list of binary relations, equalities and inequalities, like a = b, a != d, b = c etc. 
+Your task is to output YES if you can assign integers to input variables in such a way, that you can satisfy all equalities and inequalities. 
+Otherwise you should output NO.
+*/
 
 const int N = 1e6+5;
 int n, m;
