@@ -16,26 +16,18 @@ Explanation: T = "WORL" or "ORLD"
 
 class Solution {
 public:
-    /**
-     * @param s: A string
-     * @param k: An integer
-     * @return: An integer
-     */
     int lengthOfLongestSubstringKDistinct(string &s, int k) {
-        // write your code here
         int n = s.size();
-        set<char> st;
         map<char, int> freq;
         int res = 0;
         
         int l = 0;
         for(int r = 0; r < n; r++) {
-            st.insert(s[r]);
             freq[s[r]]++;
-            while(st.size() > k) {
+            while(freq.size() > k) {
                 char ch = s[l];
                 freq[ch]--;
-                if(freq[ch] == 0) st.erase(ch);
+                if(freq[ch] == 0) freq.erase(ch);
                 l++;
             }
 
