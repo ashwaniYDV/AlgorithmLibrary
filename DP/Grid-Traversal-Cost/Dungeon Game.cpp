@@ -16,7 +16,34 @@ Note that any room can contain threats or power-ups, even the first room the kni
 abs(DP[i][j]) represents min strength the Knight should have if he starts the game from the (i, j)th point to reach (n-1, m-1)th point
 */ 
 
-// Recursive
+// Method 1.1: Recursive
+class Solution {
+public:
+    int n, m;
+    int calculate(int i, int j, vector<vector<int>>& dungeon, vector<vector<int>>& dp) {
+        // base cases
+        if(i >= n || j >= m) return INT_MIN;
+
+        if (i == n - 1 && j == m - 1) {
+            return min(0, dungeon[i][j]);
+        }
+        
+        if(dp[i][j] != -1) return dp[i][j];
+
+        // max and not min, since dp value is negative
+        // max(dp[i][j + 1], dp[i + 1][j]) since dp value is negative
+        return dp[i][j] = min(0, dungeon[i][j] + max(calculate(i + 1, j, dungeon, dp), calculate(i, j + 1, dungeon, dp)));
+    }
+    int calculateMinimumHP(vector<vector<int>>& dungeon) {
+        n = dungeon.size();
+        m = dungeon[0].size();
+        vector<vector<int>> dp(n+1, vector<int>(m+1, -1));
+        return 1 + (-calculate(0, 0, dungeon, dp));
+        // return 1 + abs(calculate(0, 0, dungeon, dp));
+    }
+};
+
+// Method 1.2: Recursive
 class Solution {
 public:
     int n, m;
@@ -52,7 +79,7 @@ public:
 
 
 
-// DP
+// Method 2: DP
 class Solution {
 public:
     int calculateMinimumHP(vector<vector<int>>& dungeon) {
