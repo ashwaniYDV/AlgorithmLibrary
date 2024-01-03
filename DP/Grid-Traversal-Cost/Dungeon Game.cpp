@@ -23,7 +23,7 @@ public:
     int calculate(int i, int j, vector<vector<int>>& dungeon, vector<vector<int>>& dp) {
         // base cases
         if (i == n - 1 && j == m - 1) {
-            return dp[i][j] = min(0, dungeon[i][j]);
+            return min(0, dungeon[i][j]);
         }
         
         if(dp[i][j] != -1) return dp[i][j];
