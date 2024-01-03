@@ -1,9 +1,9 @@
 // https://leetcode.com/problems/balance-a-binary-search-tree/
 
 
-// Method 1: AVL Tree
+// Method 2: AVL Tree
 
-// Method 2: Using "Sorted array to height-balanced BST" concept
+// Method 1: Using "Sorted array to height-balanced BST" concept
 class Solution {
 public:
     TreeNode* fun(int l, int r, vector<int>& nums) {
