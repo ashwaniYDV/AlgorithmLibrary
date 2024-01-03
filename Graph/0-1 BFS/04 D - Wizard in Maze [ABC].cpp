@@ -7,7 +7,8 @@ There is a magician in (srcX, srcY) . He can do the following two kinds of moves
 Move A: Walk to a road square that is vertically or horizontally adjacent to the square he is currently in. 
 Move B: Use magic to jump himself to a "road square" in the 5 × 5 area centered at the square he is currently in. 
         Note: He cannot jump to a '#'.
-In either case, he cannot go out of the maze. At least how many times does he need to use the magic to reach (destX, destY)?
+In either case, he cannot go out of the maze. 
+At least how many times does he need to use the magic to reach (destX, destY)?
 */
 
 /*
