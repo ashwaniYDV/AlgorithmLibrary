@@ -94,10 +94,8 @@ TreeNode* performrRotation(TreeNode *root) {
     // If the tree had only one node then return
     if (!root) return root;
 
-    TreeNode* left = performrRotation(root->left);        
-    TreeNode* right = performrRotation(root->right);    
-    root->left = left;
-    root->right = right;
+    root->left = performrRotation(root->left);        
+    root->right = performrRotation(root->right);
 
     // UPDATE HEIGHT OF THE CURRENT NODE
     root->height = 1 + max(height(root->left), height(root->right));
@@ -363,6 +361,9 @@ int getBalance(TreeNode *N) {
 TreeNode* performrRotation(TreeNode *root) {
     // If the tree had only one node then return
     if (!root) return root;
+
+    root->left = performrRotation(root->left);        
+    root->right = performrRotation(root->right);
 
     // UPDATE HEIGHT OF THE CURRENT NODE
     root->height = 1 + max(height(root->left), height(root->right));
