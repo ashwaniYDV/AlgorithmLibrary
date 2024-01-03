@@ -37,7 +37,7 @@ public:
             return dp[i][j] = min(0, dungeon[i][j] + calculate(i + 1, j, dungeon, dp));
         }
 
-        // max(calculate(i + 1, j), calculate(i, j + 1)) since dp value is negative
+        // max and not min, since dp value is negative
         return dp[i][j] = min(0, dungeon[i][j] + max(calculate(i + 1, j, dungeon, dp), calculate(i, j + 1, dungeon, dp)));
     }
     int calculateMinimumHP(vector<vector<int>>& dungeon) {
