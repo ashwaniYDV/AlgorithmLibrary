@@ -1,5 +1,4 @@
 // https://practice.geeksforgeeks.org/problems/smallest-window-in-a-string-containing-all-the-characters-of-another-string-1587115621/1
-// https://www.geeksforgeeks.org/find-the-smallest-window-in-a-string-containing-all-characters-of-another-string/
 
 /*
 Given two strings Str and Pat. Find the smallest window in the string Str consisting of all the characters(including duplicates) of the string Pat.  
@@ -64,5 +63,39 @@ public:
 
         // Return substring starting from start_index and length min_len
         return str.substr(start_index, min_len);
+    }
+};
+
+
+
+// https://leetcode.com/problems/minimum-window-substring/submissions/1136671668/
+class Solution {
+public:
+    map<char, int> freqS, freqPat;
+
+    string minWindow(string s, string pat) {
+        int n = s.size();
+        for (char ch : pat) freqPat[ch]++;
+        
+        int res = INT_MAX;
+        int l = 0, start = 0, count = 0;
+
+        for (int r = 0; r < n; r++) {
+            freqS[s[r]]++;
+
+            if(freqS[s[r]] <= freqPat[s[r]]) count++;
+
+            while (freqS[s[l]] > freqPat[s[l]]) {
+                freqS[s[l]]--;
+                l++;
+            }
+
+            if (count == pat.size() && (r - l + 1 < res)) {
+                res = r - l + 1;
+                start = l;
+            }
+        }
+
+        return res == INT_MAX ? "" : s.substr(start, res);
     }
 };
