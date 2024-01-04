@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/dungeon-game/
+// https://www.geeksforgeeks.org/problems/minimum-points-to-reach-destination0540/1
 
 /*
 The demons had captured the princess and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of m x n rooms laid out in a 2D grid. 
@@ -77,6 +78,35 @@ public:
     }
 };
 
+// Method 1.3
+class Solution{
+	public:
+	int n, m;
+	
+	int fun(int i, int j, vector<vector<int>>& points, vector<vector<int>>& dp) {
+	    // base cases
+	    if(i >= n || j >= m) return INT_MIN;
+	    
+        if (i == n - 1 && j == m - 1) {
+            return min(0, points[i][j]);
+        }
+        
+        if(dp[i][j] != -1) return dp[i][j];
+        
+
+        // max and not min, since dp value is negative
+        // max(dp[i][j + 1], dp[i + 1][j]) since dp value is negative
+        int down = fun(i + 1, j, points, dp);
+        int right = fun(i, j + 1, points, dp);
+        return dp[i][j] = min(0, points[i][j] + max(down, right));
+	}
+	
+	int minPoints(vector<vector<int>> points, int M, int N) { 
+	    n = M, m = N;
+	    vector<vector<int>> dp(n+1, vector<int>(m+1, -1));
+	    return 1 - fun(0, 0, points, dp);
+	} 
+};
 
 
 // Method 2: DP
