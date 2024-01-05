@@ -1,6 +1,9 @@
 // https://www.geeksforgeeks.org/length-of-the-longest-valid-substring/
-// https://practice.geeksforgeeks.org/problems/valid-substring0624/1
 // https://leetcode.com/problems/longest-valid-parentheses/
+
+/*
+Given a string containing just the characters '(' and ')', return the length of the longest valid (well-formed) parentheses substring.
+*/
 
 /*
 An Efficient Solution can solve this problem in O(n) time. 
