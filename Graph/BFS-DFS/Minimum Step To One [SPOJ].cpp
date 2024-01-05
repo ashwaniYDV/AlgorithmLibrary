@@ -2,8 +2,7 @@
 // https://www.geeksforgeeks.org/minimum-steps-minimize-n-per-given-condition/
 
 /*
-Problem Statement:
-Problem statement is very easy . On a positive integer, you can perform any one of the following 3 steps.
+On a positive integer, you can perform any one of the following 3 steps.
 1) Subtract 1 from it. ( n = n - 1 ) 
 2) If its divisible by 2, divide by 2. ( if n % 2 == 0 , then n = n / 2  )
 3) If its divisible by 3, divide by 3. ( if n % 3 == 0 , then n = n / 3  )
