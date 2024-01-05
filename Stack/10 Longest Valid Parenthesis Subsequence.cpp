@@ -14,8 +14,7 @@ int maxLength(char s[], int n) {
 		if (s[i] == '(') {
 			// Number of open braces that hasn't been closed yet.
 			invalidOpenBraces++;
-		}
-		else {
+		} else {
 			if (invalidOpenBraces == 0) {
 				// Number of close braces that cannot be mapped to any open brace.
 				invalidCloseBraces++;
