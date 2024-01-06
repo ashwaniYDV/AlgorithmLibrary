@@ -135,8 +135,9 @@ public:
     }
     int maxProfit(vector<int>& prices) {
         n = prices.size();
+        int k = 2;
         //Use 3-D vector -> 3 states {pos, buy/sell, count}
-        vector<vector<vector<int>>> dp(n + 1, vector<vector<int>>(2, vector<int>(2, -1)));
+        vector<vector<vector<int>>> dp(n + 1, vector<vector<int>>(2, vector<int>(k+1, -1)));
         //passing here buy=1 because we will first buy then sell 
         return fun(0, 1, 0, prices, dp);
     }
