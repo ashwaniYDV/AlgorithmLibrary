@@ -42,7 +42,7 @@ public:
             char ch = s[i];
             if(vis[ch]) continue;
 
-            while(!st.empty() && ch < st.top() && lastIdx[st.top()] > i) {
+            while(!st.empty() && st.top() > ch && lastIdx[st.top()] > i) {
                 vis[st.top()] = 0;
                 st.pop();
             }
