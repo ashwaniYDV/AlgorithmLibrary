@@ -143,32 +143,39 @@ public:
     }
 };
 
+/*
+2 stocks need to be buyed and selled.
+Total no of transactions = 4 (0=Buy -> 1=Sell -> 2=Buy -> 3=Sell)
+Buy is done at even transaction index
+Sell is done at odd transaction index 
+*/
+
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-        int n = prices.size();
-        int k = 2;
-        int dp[k + 1][n];
-        for(int i = 0; i < k+1; i++) {
-            int max_el = INT_MIN;
-            for(int j = 0; j < n; j++) {
-                // i = 0 means no of transcations = 0
-                // j = 0 means there is only day 1
-                if(i == 0 || j == 0) {
-                    dp[i][j] = 0;
-                } else {
-                    max_el = max(max_el , dp[i-1][j-1] - prices[j-1]);
-                    // max(we make no transc on jth day, we sell stock on jth day) 
-                    dp[i][j] = max(dp[i][j - 1], prices[j] + max_el);
-                }
-            }
+    int n;
+
+    int fun(int pos, int transaction, vector<int>& prices, vector<vector<int>>& dp) {
+        if(pos >= n || transaction == 4) return 0;
+
+        if(dp[pos][transaction] != -1) return dp[pos][transaction];
+
+        // buy
+        if(transaction % 2 == 0) {
+            return dp[pos][transaction] = max(-prices[pos] + fun(pos + 1, transaction + 1, prices, dp), fun(pos + 1, transaction, prices, dp));
+        } 
+        // sell
+        else {
+            return dp[pos][transaction] = max(prices[pos] + fun(pos + 1, transaction + 1, prices, dp), fun(pos + 1, transaction, prices, dp));
         }
-        return dp[k][n - 1];
+    }
+    int maxProfit(vector<int>& prices) {
+        n = prices.size();
+        //Use 2-D vector -> 2 states {pos, transaction number}
+        vector<vector<int>> dp(n + 1, vector<int>(4, -1));
+        //passing here transaction=0 because we will first buy 
+        return fun(0, 0, prices, dp);
     }
 };
-
-
-
 
 
 
