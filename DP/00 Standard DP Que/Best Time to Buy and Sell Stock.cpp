@@ -144,6 +144,8 @@ public:
 };
 
 /*
+// https://youtu.be/-uQGzhYj8BQ?si=1-X2nK3AjgGZHtdJ
+
 2 stocks need to be buyed and selled.
 Total no of transactions = 4 (0=Buy -> 1=Sell -> 2=Buy -> 3=Sell)
 Buy is done at even transaction index.
