@@ -25,10 +25,6 @@ public:
 
 
 
-
-
-
-
 /*
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 
@@ -104,9 +100,6 @@ public:
 
 
 
-
-
-
 /*
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
 
@@ -117,7 +110,7 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int buy1 = INT_MIN, buy2 = INT_MIN, sell1 = 0, sell2 = 0;
-        for (auto &x : prices) {
+        for (auto x : prices) {
             // Keeping profit in mind that's why -x
             buy1 = max(buy1, -x);
             sell1 = max(sell1, buy1 + x);
@@ -178,11 +171,6 @@ public:
         return dp[k][n - 1];
     }
 };
-
-
-
-
-
 
 
 
@@ -272,12 +260,6 @@ public:
         return dp[k][n - 1];
     }
 };
-
-
-
-
-
-
 
 
 
