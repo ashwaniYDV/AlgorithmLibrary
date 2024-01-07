@@ -1,5 +1,10 @@
 // https://youtu.be/A1tnVMpWHh8?si=8n5zI_s6v3PQLyXc
 
+/*
+* wait() and notify() belongs to Object class.
+* sleep() belongs to Thread class.
+*/
+
 class Resource {
     int num;
     boolean valueSet;
