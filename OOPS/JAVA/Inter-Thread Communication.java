@@ -82,7 +82,7 @@ class Consumer implements Runnable {
 public class Main {
     public static void main(String[] args) {
         Resource res = new Resource(false);
-        new Producer(res);
-        new Consumer(res);
+        Runnable p = new Producer(res);
+        Runnable c = new Consumer(res);
     }
 }
