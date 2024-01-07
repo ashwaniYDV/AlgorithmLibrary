@@ -14,7 +14,7 @@ class Resource {
     }
 
     public synchronized void put(int num) {
-        while (valueSet) {
+        if (valueSet) {
             try {
                 wait();
             } catch (Exception e) {
@@ -28,7 +28,7 @@ class Resource {
     }
 
     public synchronized void get() {
-        while (!valueSet) {
+        if (!valueSet) {
             try {
                 wait();
             } catch (Exception e) {
