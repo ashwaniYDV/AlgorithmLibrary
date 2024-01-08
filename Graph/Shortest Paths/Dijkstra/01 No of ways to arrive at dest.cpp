@@ -1,4 +1,4 @@
-// https://practice.geeksforgeeks.org/problems/number-of-ways-to-arrive-at-destination/1
+// https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
 
 /*
 You are in a city that consists of n intersections numbered from 0 to n - 1 with bi-directional roads between some intersections. 
