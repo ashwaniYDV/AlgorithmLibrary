@@ -1,6 +1,10 @@
 // https://youtu.be/A1tnVMpWHh8?si=8n5zI_s6v3PQLyXc
 
 /*
+Every object in java can be used as a lock.
+*/
+
+/*
 * wait() and notify() belongs to Object class.
 * sleep() belongs to Thread class.
 */
