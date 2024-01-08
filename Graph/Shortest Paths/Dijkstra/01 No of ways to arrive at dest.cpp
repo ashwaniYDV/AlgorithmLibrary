@@ -14,11 +14,12 @@ Since the answer may be large, return it modulo 109 + 7.
 */
 
 
+#define ll long long
 class Solution {
   public:
     const int N = 2e5+5;
     const int MOD = 1e9+7;
-    const int INF = 1e9+7;
+    const ll INF = 1e18+7;
     
     int countPaths(int n, vector<vector<int>>& roads) {
         int u, v, w;
@@ -30,7 +31,7 @@ class Solution {
         }
     
         // djikstra begins
-        int dis[N]; 
+        ll dis[N]; 
         int numOfWays[N];
         int src = 0;
         for(int i = 0; i < n; i++) {
@@ -38,7 +39,7 @@ class Solution {
             numOfWays[i] = 0;
         }
     
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
         
         pq.push({0, src});
         dis[src] = 0;
@@ -48,7 +49,8 @@ class Solution {
             auto it = pq.top();
             pq.pop();
     
-            int cost = it.first, u = it.second;
+            ll cost = it.first;
+            int u = it.second;
     
             // this step is awesome in priority queue method
             if(cost > dis[u]) continue;
