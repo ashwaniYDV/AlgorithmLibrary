@@ -61,9 +61,9 @@ class OurMap<K , V> {
         newEntry.next = head;
         bucket.set(bucketIndex, newEntry);
 
-        double loadFactor = (1.0 * size) / capacity;
-
         System.out.println("inserting key " + key);
+
+        double loadFactor = (1.0 * size) / capacity;
         System.out.println("Load Factor : " + loadFactor);
         if(loadFactor > 0.7) {
             rehash();
@@ -75,8 +75,9 @@ class OurMap<K , V> {
         List<MapNode<K , V>> temp = bucket;
         bucket = new ArrayList<>();
         capacity *= 2;
-        for(int i = 0 ; i < capacity ; i ++)
+        for(int i = 0 ; i < capacity ; i ++) {
             bucket.add(null);
+        }
         size = 0;
 
         for(int i = 0 ; i < temp.size() ; i ++) {
