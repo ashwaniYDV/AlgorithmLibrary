@@ -123,6 +123,11 @@ class Stack {
 }
 
 // Method 3 (Method 2 and 3 are same)
+/*
+For all the synchronized methods of a class, the lock is an instance of this class. 
+Therefore lock is the same for all synchronized methods of this class.
+Thus only one synchronized method will be able to execute by any thread.
+*/
 class Stack {
     private int top;
     private int[] arr;
