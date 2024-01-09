@@ -1,5 +1,7 @@
 // Creating a deadlock
 /*
+Deadlock can be created by making the lock-acquiring steps different for both threads.
+
 thread1 will get lock1 and wait indefinitely for lock2
 thread2 will get lock2 and wait indefinitely for lock1
 */
@@ -45,6 +47,9 @@ public class Main {
 
 
 // solving the deadlock
+/*
+Deadlock can be avoided by making the lock-acquiring steps same for both threads.
+*/
 public class Main {
     public static void main(String[] args) {
         System.out.println("====Main started====");
