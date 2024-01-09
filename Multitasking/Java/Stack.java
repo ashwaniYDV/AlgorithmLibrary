@@ -95,10 +95,7 @@ class Stack {
             if (isFull()) return false;
             top++;
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            }
+            try {Thread.sleep(1000);} catch (InterruptedException e) {}
 
             arr[top] = element;
             return true;
@@ -146,10 +143,7 @@ class Stack {
         if (isFull()) return false;
         top++;
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-        }
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
 
         arr[top] = element;
         return true;
