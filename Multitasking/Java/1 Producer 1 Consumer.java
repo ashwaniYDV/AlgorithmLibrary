@@ -57,7 +57,7 @@ public class Main {
         Thread producer = new Thread(() -> {
             int counter = 0;
             while (++counter <= 10) {
-                System.out.println("Produced: " + bq.add(counter));
+                System.out.println(Thread.currentThread().getName() + " produced: " + bq.add(counter));
             }
         }, "producer");
 
@@ -65,7 +65,7 @@ public class Main {
         Thread consumer = new Thread(() -> {
             int counter = 0;
             while (++counter <= 10) {
-                System.out.println("Consumed: " + bq.remove());
+                System.out.println(Thread.currentThread().getName() + " consumed: " + bq.remove());
             }
         }, "consumer");
 
