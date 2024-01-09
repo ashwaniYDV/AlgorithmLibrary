@@ -1,4 +1,8 @@
 // Creating a deadlock
+/*
+thread1 will get lock1 and wait indefinitely for lock2
+thread2 will get lock2 and wait indefinitely for lock1
+*/
 public class Main {
     public static void main(String[] args) {
         System.out.println("====Main started====");
