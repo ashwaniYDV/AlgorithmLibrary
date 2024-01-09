@@ -73,3 +73,94 @@ public class Main {
         System.out.println("====Main ended====");
     }
 }
+
+
+// Method 2 (Method 2 and 3 are same)
+class Stack {
+    private int top;
+    private int[] arr;
+
+    public Stack(int capacity) {
+        top = -1;
+        arr = new int[capacity];
+    }
+
+    boolean isEmpty() {
+        return (top < 0);
+    }
+
+    boolean isFull() {
+        return (top >= arr.length - 1);
+    }
+
+    public boolean push (int element) {
+        synchronized (this) {
+            if (isFull()) return false;
+            top++;
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+
+            arr[top] = element;
+            return true;
+        }
+    }
+
+    public int pop () {
+        synchronized (this) {
+            if (isEmpty()) return Integer.MIN_VALUE;
+            int element = arr[top];
+            arr[top] = Integer.MIN_VALUE;
+
+            try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
+            top--;
+            return element;
+        }
+    }
+}
+
+// Method 3 (Method 2 and 3 are same)
+class Stack {
+    private int top;
+    private int[] arr;
+
+    public Stack(int capacity) {
+        top = -1;
+        arr = new int[capacity];
+    }
+
+    boolean isEmpty() {
+        return (top < 0);
+    }
+
+    boolean isFull() {
+        return (top >= arr.length - 1);
+    }
+
+    public synchronized boolean push (int element) {
+        if (isFull()) return false;
+        top++;
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+
+        arr[top] = element;
+        return true;
+    }
+
+    public synchronized int pop () {
+        if (isEmpty()) return Integer.MIN_VALUE;
+        int element = arr[top];
+        arr[top] = Integer.MIN_VALUE;
+
+        try {Thread.sleep(1000);} catch (InterruptedException e) {}
+
+        top--;
+        return element;
+    }
+}
