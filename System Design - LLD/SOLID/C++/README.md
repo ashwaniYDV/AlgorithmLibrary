@@ -1,7 +1,7 @@
-### SOLID Design Principless
+### SOLID Design Principles
 
-* SRP – Single Responsibility Principle
-* OCP – Open/Closed Principle
-* LSP – Liskov Substitution Principle
-* ISP – Interface Segregation Principle
-* DIP – Dependency Inversion Principle
+* S – Single Responsibility Principle
+* O – Open/Closed Principle
+* L – Liskov Substitution Principle
+* I – Interface Segregation Principle
+* D – Dependency Inversion Principle
