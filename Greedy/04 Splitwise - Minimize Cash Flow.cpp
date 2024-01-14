@@ -21,7 +21,46 @@ Do following for every person Pi where i is from 0 to n-1.
 */
 
 
+/*
+Source GFG discuss
+-------------------
+Consider:
+Input:
+5 6
+1 4 4
+1 5 1
+2 4 5
+2 5 2
+3 4 3
+3 5 8
 
+Our solution output:
+3 pays-> 4 (amoutn = 11)
+2 pays-> 5 (amoutn = 7)
+1 pays-> 5 (amoutn = 4)
+1 pays-> 4 (amoutn = 1)
+No of transactions: 4
+
+
+Minimum transcation output will look like this
+3 pays-> 4 (amoutn = 11)
+2 pays-> 5 (amoutn = 7)
+1 pays-> 4 (amoutn = 5)
+Minimum no of transactions: 3
+
+Note: 
+Cash Flow in greedy: 11 + 7 + 4 + 1 = 23
+Optimal Solution: 11 + 7 + 5 = 23
+
+The problem is looking to minimize cash flow and not necessarily minimize number of transactions.
+The greedy solution is trying to minimize the cash flow 
+while it may or may not find the most optimal way (min number of transactions) reach the optimal cash flow solution.
+This problem is an overall cash flow minimization problem 
+while OP's answer is looking for overall transaction minimization problem which is an NP-Complete problem.
+*/
+
+
+// Greedy soln. 
 // Given the list of M transacations b/w N people, find out the minimum amount of cash flow required to settle it up!
 #include <bits/stdc++.h>
 using namespace std;
@@ -63,50 +102,3 @@ int main() {
     
     cout << "No of transactions: " << transactions << endl;
 }
-
-
-
-
-
-
-
-
-
-
-/*
-Source GFG discuss
--------------------
-Consider:
-Input:
-5 6
-1 4 4
-1 5 1
-2 4 5
-2 5 2
-3 4 3
-3 5 8
-
-Our solution output:
-3 pays-> 4 (amoutn = 11)
-2 pays-> 5 (amoutn = 7)
-1 pays-> 5 (amoutn = 4)
-1 pays-> 4 (amoutn = 1)
-No of transactions: 4
-
-
-Minimum transcation output will look like this
-3 pays-> 4 (amoutn = 11)
-2 pays-> 5 (amoutn = 7)
-1 pays-> 4 (amoutn = 5)
-Minimum no of transactions: 3
-
-Note: 
-Cash Flow in greedy: 11 + 7 + 4 + 1 = 23
-Optimal Solution: 11 + 7 + 5 = 23
-
-The problem is looking to minimize cash flow and not necessarily minimize number of transactions.
-The greedy solution is trying to minimize the cash flow 
-while it may or may not find the most optimal way (min number of transactions) reach the optimal cash flow solution.
-This problem is an overall cash flow minimization problem 
-while OP's answer is looking for overall transaction minimization problem which is an NP-Complete problem.
-*/
