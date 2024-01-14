@@ -60,7 +60,7 @@ while OP's answer is looking for overall transaction minimization problem which 
 */
 
 
-// Greedy soln. 
+// Method 1: Greedy (Minimize cash flow)
 // Given the list of M transacations b/w N people, find out the minimum amount of cash flow required to settle it up!
 
 int n, m;
@@ -105,4 +105,54 @@ void solve() {
     }
 
     cout << greedy(balance) << endl;
+}
+
+
+
+
+
+// Method 2: Recursive (find min no of transactions)
+// https://youtu.be/6UeDb7ORVPI?si=ut9yXlfZJsngeAVm
+
+int n, m;
+int fun(int i, vector<int> balance) {
+    if(i > n) return 0;
+
+    if(balance[i] == 0) return fun(i + 1, balance);
+
+    int noOfTxns = INT_MAX;
+    int currentVal = balance[i];
+
+
+    for(int j = i + 1; j <= n; j++) {
+        int nextVal = balance[j];
+
+        // opposite sign
+        if(currentVal * nextVal < 0) {
+            balance[j] = currentVal + nextVal;
+            noOfTxns = min(noOfTxns, 1 + fun(i + 1, balance)); 
+
+            // backtrack
+            balance[j] = nextVal;
+        }
+    }
+
+    return noOfTxns;
+}
+
+void solve() {
+    int u, v, w;
+    cin >> n >> m;
+
+    vector<int> balance(n+1, 0);
+
+    for(int i = 0; i < m; i++) {
+        cin >> u >> v >> w;
+        //u has to pay v an amount w
+        balance[u] -= w;
+        balance[v] += w;
+    }
+
+    // 1 based index
+    cout << fun(1, balance) << endl;
 }
