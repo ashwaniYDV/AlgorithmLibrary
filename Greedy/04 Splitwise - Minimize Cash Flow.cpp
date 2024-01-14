@@ -62,22 +62,10 @@ while OP's answer is looking for overall transaction minimization problem which 
 
 // Greedy soln. 
 // Given the list of M transacations b/w N people, find out the minimum amount of cash flow required to settle it up!
-#include <bits/stdc++.h>
-using namespace std;
 
-int main() {
-    int n, m, u, v, w, poorValue, poorGuy, richValue, richGuy;
-    cin >> n >> m;
-
-    vector<int> balance(n+1, 0);
-
-    for(int i = 0; i < m; i++) {
-        cin >> u >> v >> w;
-        //u has to pay v an amount w
-        balance[u] -= w;
-        balance[v] += w;
-    }
-    
+int n, m;
+int greedy(vector<int> balance) {
+    int poorValue, poorGuy, richValue, richGuy;
     multiset<tuple<int, int>> st;
     for(int i = 1; i <= n; i++) {
         if(balance[i] != 0) st.insert(make_tuple(balance[i], i));
@@ -100,5 +88,21 @@ int main() {
         if (richValue) st.insert(make_tuple(richValue, richGuy));
     }
     
-    cout << "No of transactions: " << transactions << endl;
+    return transactions;
+}
+
+void solve() {
+    int u, v, w;
+    cin >> n >> m;
+
+    vector<int> balance(n+1, 0);
+
+    for(int i = 0; i < m; i++) {
+        cin >> u >> v >> w;
+        //u has to pay v an amount w
+        balance[u] -= w;
+        balance[v] += w;
+    }
+
+    cout << greedy(balance) << endl;
 }
