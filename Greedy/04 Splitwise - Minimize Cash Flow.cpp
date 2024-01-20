@@ -129,6 +129,7 @@ int fun(int i, vector<int> balance) {
 
         // opposite sign
         if(currentVal * nextVal < 0) {
+            // we make balance[i] = 0 and remaining balance (currentVal + nextVal) is set for j
             balance[j] = currentVal + nextVal;
             noOfTxns = min(noOfTxns, 1 + fun(i + 1, balance)); 
 
