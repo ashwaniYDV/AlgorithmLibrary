@@ -1,3 +1,5 @@
+// https://www.hackerearth.com/practice/notes/segment-tree-and-lazy-propagation/
+
 // Method 1
 const int N = 1e6+5;
 int n, m;
@@ -18,22 +20,20 @@ void build(int si , int ss , int se) {
 }
 
 void update(int si , int ss , int se , int qs, int qe, int val) {
-    if(lazy[si] != 0){
-        int dx = lazy[si];
-        lazy[si] = 0;
-        st[si] += dx * (se - ss + 1);
+    if(lazy[si] != 0) {
+        st[si] += (se - ss + 1) * lazy[si];
 
         if(ss != se){
-            lazy[2*si] += dx;
-            lazy[2*si + 1] += dx;
+            lazy[2*si] += lazy[si];
+            lazy[2*si + 1] += lazy[si];
         }
+        lazy[si] = 0;
     }
 
     if(qe < ss || qs > se) return;
 
     if(ss >= qs && se <= qe){
-        int dx = (se - ss + 1)*val;
-        st[si] += dx;
+        st[si] += (se - ss + 1) * val;
 
         if(ss != se){
             lazy[2*si] += val;
@@ -51,15 +51,14 @@ void update(int si , int ss , int se , int qs, int qe, int val) {
 }
 
 int query(int si , int ss , int se , int qs , int qe) {
-    if(lazy[si] != 0){
-        int dx = lazy[si];
-        lazy[si] = 0;
-        st[si] += dx * (se - ss + 1);
+    if(lazy[si] != 0) {
+        st[si] += (se - ss + 1) * lazy[si];
 
         if(ss != se){
-            lazy[2*si] += dx;
-            lazy[2*si + 1] += dx;
+            lazy[2*si] += lazy[si];
+            lazy[2*si + 1] += lazy[si];
         }
+        lazy[si] = 0;
     }
 
     if(qe < ss || qs > se) return 0;
@@ -74,19 +73,19 @@ int query(int si , int ss , int se , int qs , int qe) {
 }
 
 void solve() {
-	int q, t, l, r, val;
-	cin >> n >> q;
-	build(1 , 1 , n);
+    int q, t, l, r, val;
+    cin >> n >> q;
+    build(1 , 1 , n);
 
-	while(q--) {
-		cin >> t >> l >> r;
-		if (t == 1){
-			cout << query(1 , 1 , n , l , r)<<endl;
-		} else {
-			cin >> val;
-			update(1, 1, n, l, r, val);
-		}
-	}
+    while(q--) {
+        cin >> t >> l >> r;
+        if (t == 1){
+            cout << query(1 , 1 , n , l , r)<<endl;
+        } else {
+            cin >> val;
+            update(1, 1, n, l, r, val);
+        }
+    }
 }
 
 
@@ -130,14 +129,13 @@ void build(ll si , ll ss , ll se) {
 }
 
 void propagate(int si, int ss, int se) {
-    ll dx = lazy[si];
-    lazy[si] = 0;
-    st[si] += dx * (se - ss + 1);
+    st[si] += (se - ss + 1) * lazy[si];
 
     if(ss != se) {
-        lazy[2*si] += dx;
-        lazy[2*si + 1] += dx;
+        lazy[2*si] += lazy[si];
+        lazy[2*si + 1] += lazy[si];
     }
+    lazy[si] = 0;
 }
 
 void update(ll si , ll ss , ll se , ll qs, ll qe, ll val) {
