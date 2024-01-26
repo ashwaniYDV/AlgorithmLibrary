@@ -9,41 +9,40 @@ NOTE: Here Leaf node is a node which is connected to exactly one different node.
 
 class Solution {
 public:
-    int maxPathSumUtil(struct Node *root, int &res) {
+    int fun(Node *root, int &res) {
+        // Base case
         if (!root) return 0;
 
-        // Find maximum sum in left and right subtree.
-        // i.e. maximum root to leaf sums in left and right subtrees
-        int ls = maxPathSumUtil(root->left, res);
-        int rs = maxPathSumUtil(root->right, res);
-
+        // Find the maximum path sum in the left and right subtrees
+        int ls = fun(root->left, res);
+        int rs = fun(root->right, res);
 
         // If both left and right children exist
         if (root->left && root->right) {
-            // Update result if needed
             res = max(res, ls + rs + root->data);
-
-            // Return maximum possible value for root being on one side
             return max(ls, rs) + root->data;
         }
-
-        // If any of the two children is empty, return root sum for root being on one side
-        if (!root->left) return rs + root->data;
-        if (!root->right) return ls + root->data;
+        
+        // Return the sum of the maximum sum path till the current root node
+        if(!root->left) return rs + root->data;
+        if(!root->right) return ls + root->data;
     }
-
+    
+    // Function to find the maximum path sum
     int maxPathSum(Node *root) {
         int res = INT_MIN;
-
-        int val = maxPathSumUtil(root, res);
-
+        int heightSum = fun(root, res);
+        
+        // Update the result with the maximum sum path from root to leaf
         //--- for test case ---
         //          7
         //         /  \              
         //      Null  -3
-        // value of res will be INT_MIN but the answer is 4 , which is returned by the function maxPathSumUtil().
-
-        if (res == INT_MIN) return val;
+        // value of res will be INT_MIN but the answer is 4, which is returned by fun() as heightSum
+        if (!root->left || !root->right) {
+            res = max(res, heightSum);
+        }
+        
         return res;
     }
 };
