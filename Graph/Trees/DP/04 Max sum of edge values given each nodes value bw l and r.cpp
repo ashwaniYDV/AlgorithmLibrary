@@ -1,17 +1,14 @@
 // https://codeforces.com/contest/1529/problem/C
-// C. Parsa's Humongous Tree
 
 /*
-Problem:
-You have a tree of n vertices.
-On each vertex v he has written two integers lv and rv.
-You wants to assign a number av (lv ≤ av ≤ rv) to each vertex v such that the beauty of the tree is maximized.
-Beauty of the tree = sum of |au−av| over all edges (u,v) of the tree.
+On each vertex v of a tree, two integers lv and rv are written.
+Assign a number av (lv ≤ av ≤ rv) to each vertex v such that the beauty of the tree is maximized.
+Beauty of the tree = sum of |au − av| over all edges (u, v) of the tree.
 Your task is to find the maximum possible beauty of tree.
 */
 
 /*
-The solution is based on the fact that an optimal assignment for a exists such that for each vertex v, av = (lv or rv).
+Intuition: Optimal assignment for a exists such that for each vertex v, av = (lv or rv).
 Thus each node does not have value between lv, rv. Each node value is exactly either lv or rv.
 
 Based on this fact, we can use dynamic programming to find the answer.
