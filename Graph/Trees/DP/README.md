@@ -1,1 +1,2 @@
-Max sum of edge values given each nodes value bw l and r = C. Parsa's Humongous Tree
+### Resources
+* https://www.youtube.com/watch?v=fGznXJ-LTbI&list=PLb3g_Z8nEv1j_BC-fmZWHFe6jmU_zv-8s
