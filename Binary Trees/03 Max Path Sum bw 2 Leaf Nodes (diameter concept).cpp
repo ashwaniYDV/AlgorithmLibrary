@@ -45,3 +45,43 @@ public:
         return res;
     }
 };
+
+
+
+class Solution {
+public:
+    int fun(Node *root, int &res) {
+        if (!root) return 0;
+
+        // Find the maximum path sum in the left and right subtrees
+        int ls = fun(root->left, res);
+        int rs = fun(root->right, res);
+        
+        // case 1
+        if(!root->left) return rs + root->data;
+        // case 2
+        if(!root->right) return ls + root->data;
+
+        // If both left and right children exist
+        res = max(res, ls + rs + root->data);
+        return max(ls, rs) + root->data;
+    }
+    
+    // Function to find the maximum path sum
+    int maxPathSum(Node *root) {
+        int res = INT_MIN;
+        int heightSum = fun(root, res);
+        
+        //--- for test case ---
+        //          7
+        //         /  \              
+        //      Null  -3
+        // value of res will be INT_MIN but the answer is 4, which is returned by fun() as heightSum
+        
+        if (!root->left || !root->right) {
+            res = max(res, heightSum);
+        }
+        
+        return res;
+    }
+};
