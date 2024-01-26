@@ -38,9 +38,8 @@ public:
         //      Null  -3
         // value of res will be INT_MIN but the answer is 4, which is returned by fun() as heightSum
         
-        // if (res == INT_MIN) {
         if (!root->left || !root->right) {
-            return heightSum;
+            res = max(res, heightSum);
         }
         
         return res;
