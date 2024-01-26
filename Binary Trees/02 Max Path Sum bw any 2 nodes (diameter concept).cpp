@@ -16,6 +16,7 @@ Output: 42
 Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 42.
 */
 
+// Method 1
 class Solution {
 public:
     int res = -1e9;
@@ -30,6 +31,30 @@ public:
         
         int heightSum = max(ls, rs) + root->val;
         return max(heightSum, 0);
+    }
+    
+    int maxPathSum(TreeNode* root) {
+        if(!root) return 0;
+        go(root);
+        return res;
+    }
+};
+
+
+// Method 2
+class Solution {
+public:
+    int res = -1e9;
+    
+    int go(TreeNode* root) {
+        if(!root) return 0;
+        
+        int ls = max(0, go(root->left));
+        int rs = max(0, go(root->right));
+        
+        res = max(res, ls + rs + root->val);
+        
+        return max(ls, rs) + root->val;
     }
     
     int maxPathSum(TreeNode* root) {
