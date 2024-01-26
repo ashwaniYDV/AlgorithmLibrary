@@ -10,7 +10,6 @@ NOTE: Here Leaf node is a node which is connected to exactly one different node.
 class Solution {
 public:
     int fun(Node *root, int &res) {
-        // Base case
         if (!root) return 0;
 
         // Find the maximum path sum in the left and right subtrees
