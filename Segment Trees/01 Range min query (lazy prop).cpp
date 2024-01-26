@@ -1,3 +1,5 @@
+// https://www.hackerearth.com/practice/notes/segment-tree-and-lazy-propagation/
+
 ll arr[N], tree[4 * N], lazy[4 * N];
 
 void build(ll node, ll start, ll end) {
