@@ -8,7 +8,6 @@ Return the minimum number of cameras needed to monitor all nodes of the tree.
 */
 
 
-
 class Solution {
 public:
     #define inf 1e9
@@ -28,7 +27,7 @@ public:
             x = 1 + min(fun(root->left, 0, 1), fun(root->left, 1, 1)) + min(fun(root->right, 0, 1), fun(root->right, 1, 1));
         } else {
             if(isParCam) {
-                // child may or may not have camera
+                // child may or may not have camera (since child's children can have cameras)
                 y = min(fun(root->left, 0, 0), fun(root->left, 1, 0)) + min(fun(root->right, 0, 0), fun(root->right, 1, 0));
             } else {
                 // atleast one child must have a camera and other child may or may not have camera
