@@ -27,7 +27,6 @@ void update(ll node, ll start, ll end, ll l, ll r, ll val) {
             lazy[2 * node] += val;
             lazy[2 * node + 1] += val;
         }
-        lazy[node] = 0;
         return;
     }
     ll mid = (start + end) / 2;
