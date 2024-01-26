@@ -1,5 +1,5 @@
 // https://cses.fi/problemset/task/1132/
-// https://youtu.be/Rnv4qvoxsTo - Hitesh Tripathi
+// https://youtu.be/Rnv4qvoxsTo
 // https://usaco.guide/problems/cses-1132-tree-distances-i/solution
 
 /*
