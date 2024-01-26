@@ -32,14 +32,15 @@ public:
         int res = INT_MIN;
         int heightSum = fun(root, res);
         
-        // Update the result with the maximum sum path from root to leaf
         //--- for test case ---
         //          7
         //         /  \              
         //      Null  -3
         // value of res will be INT_MIN but the answer is 4, which is returned by fun() as heightSum
+        
+        // if (res == INT_MIN) {
         if (!root->left || !root->right) {
-            res = max(res, heightSum);
+            return heightSum;
         }
         
         return res;
