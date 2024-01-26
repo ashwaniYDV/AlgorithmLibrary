@@ -3,7 +3,7 @@
 
 /*
 Problem:
-You have a tree on n vertices.
+You have a tree of n vertices.
 On each vertex v he has written two integers lv and rv.
 You wants to assign a number av (lv ≤ av ≤ rv) to each vertex v such that the beauty of the tree is maximized.
 Beauty of the tree = sum of |au−av| over all edges (u,v) of the tree.
