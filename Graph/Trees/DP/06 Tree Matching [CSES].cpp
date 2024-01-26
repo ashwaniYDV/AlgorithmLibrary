@@ -5,12 +5,6 @@
 /*
 You are given a tree consisting of n nodes.
 A matching is a set of edges where each node is an endpoint of at most one edge. What is the maximum number of edges in a matching?
-
-Input:
-The first input line contains an integer n: the number of nodes. The nodes are numbered 1,2,…,n.
-Then there are n-1 lines describing the edges. Each line contains two integers a and b: there is an edge between nodes a and b.
-
-Output:
 Print one integer: the maximum number of pairs.
 */
 
