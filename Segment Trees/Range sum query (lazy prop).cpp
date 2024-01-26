@@ -1,6 +1,3 @@
-// https://youtu.be/wQSnKUs93DU
-
-
 // Method 1
 const int N = 1e6+5;
 int n, m;
