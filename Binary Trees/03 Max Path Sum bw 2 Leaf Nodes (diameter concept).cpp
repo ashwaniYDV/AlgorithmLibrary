@@ -6,7 +6,7 @@ Given a binary tree in which each node element contains a number. Find the maxim
 NOTE: Here Leaf node is a node which is connected to exactly one different node.
 */
 
-
+// Method 1
 class Solution {
 public:
     int fun(Node *root, int &res) {
@@ -16,13 +16,12 @@ public:
         int ls = fun(root->left, res);
         int rs = fun(root->right, res);
 
-        // If both left and right children exist
+        // we can update res only when both left and right child exist
         if (root->left && root->right) {
             res = max(res, ls + rs + root->data);
             return max(ls, rs) + root->data;
         }
         
-        // Return the sum of the maximum sum path till the current root node
         if(!root->left) return rs + root->data;
         if(!root->right) return ls + root->data;
     }
@@ -47,7 +46,7 @@ public:
 };
 
 
-
+// Method 2
 class Solution {
 public:
     int fun(Node *root, int &res) {
@@ -62,7 +61,7 @@ public:
         // case 2
         if(!root->right) return ls + root->data;
 
-        // If both left and right children exist
+        // we can update res only when both left and right child exist
         res = max(res, ls + rs + root->data);
         return max(ls, rs) + root->data;
     }
