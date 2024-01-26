@@ -19,6 +19,7 @@ void build(ll si , ll ss , ll se) {
 	st[si] = min(st[2*si] , st[2*si+1]);
 }
 
+// point update
 void update(ll si , ll ss , ll se , ll qi) {
 	if(ss == se) {
 		// here ss == se == qi
@@ -34,6 +35,7 @@ void update(ll si , ll ss , ll se , ll qi) {
 	st[si] = min(st[2*si], st[2*si + 1]);
 }
 
+// range query
 ll query(ll si , ll ss , ll se , ll qs , ll qe) {
 	if(qe < ss || qs > se)
 		return INT_MAX;
