@@ -23,7 +23,7 @@ Input:
 Output:
 3 1 3 1 1
 */
-
+ 
 const int N = 2e5+5;
 int n, m;
 
@@ -42,10 +42,9 @@ void dfs(int u, int par, int lvl) {
         }
     }
 }
- 
 
 void init() {
-    dfs(1, 0, -1);
+    dfs(1, 0, 0);
 
     for(int i = 1; i <= height; i++) {
         for(int node = 1; node <= n; node++) {
