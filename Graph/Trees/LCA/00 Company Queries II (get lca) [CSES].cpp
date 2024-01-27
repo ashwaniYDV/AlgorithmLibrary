@@ -1,4 +1,5 @@
 // https://cses.fi/problemset/task/1688/
+// https://youtu.be/s9zZOVsF_eo?si=8jIcu5tDx99iepM7
 
 const int N = 2e5+5;
 int n, m;
