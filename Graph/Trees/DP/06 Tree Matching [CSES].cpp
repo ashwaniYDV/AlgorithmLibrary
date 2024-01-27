@@ -47,7 +47,7 @@ void dfs(int u, int par) {
     for(int v: g[u]) {
         if(v == par) continue;
 
-        int x = (dp[v][0] + 1) + (dp[u][0] - max(dp[v][0], dp[v][1]));
+        int x = (1 + dp[v][0]) + (dp[u][0] - max(dp[v][0], dp[v][1]));
         dp[u][1] = max(dp[u][1], x);
     }
 }
