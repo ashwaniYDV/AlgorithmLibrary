@@ -1,6 +1,7 @@
-// https://leetcode.com/problems/kth-ancestor-of-a-tree-node/
 // https://youtu.be/FAfSArGC8KY?si=y7bFFZZD1_qhs2MO
 // https://youtu.be/s9zZOVsF_eo?si=_MWcfhWyDPnd_DQg
+
+// https://leetcode.com/problems/kth-ancestor-of-a-tree-node/
 
 /*
 sparse table(LCA array) and binary lifting
@@ -9,7 +10,7 @@ log2(5*1e4) = 15.609 === 20
 
 class TreeAncestor {
 public:
-    vector<vector<int> > LCA; // LCA[node][i] == [node] 's [2^i]th parent
+    vector<vector<int> > LCA; // LCA[node][i] == [node]'s [2^i]th parent
     TreeAncestor(int n, vector<int>& parent) {
         // initialize
         LCA.resize(n, vector<int>(20));
