@@ -1,3 +1,6 @@
+// https://youtu.be/FAfSArGC8KY?si=y7bFFZZD1_qhs2MO
+// https://youtu.be/s9zZOVsF_eo?si=_MWcfhWyDPnd_DQg
+
 const int N = 2e5+5;
 int n, m;
  
@@ -62,11 +65,6 @@ int getLCA(int a, int b) {
     b = getKthAncestor(b, d);
 
     // method 2
-    // for(int i = height-1; i >= 0; i--) {
-    //     if(d & (1<<i)) b = LCA[b][i];
-    // }
-
-    // method 3
     // while(d) {
     //     int i = log2(d);
     //     b = LCA[b][i];
