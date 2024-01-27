@@ -57,11 +57,6 @@ int getLCA(int a, int b) {
     b = getKthAncestor(b, d);
 
     // method 2
-    // for(int i = height-1; i >= 0; i--) {
-    //     if(d & (1<<i)) b = LCA[b][i];
-    // }
-
-    // method 3
     // while(d) {
     //     int i = log2(d);
     //     b = LCA[b][i];
