@@ -1,4 +1,6 @@
 // https://leetcode.com/problems/kth-ancestor-of-a-tree-node/
+// https://youtu.be/FAfSArGC8KY?si=y7bFFZZD1_qhs2MO
+// https://youtu.be/s9zZOVsF_eo?si=_MWcfhWyDPnd_DQg
 
 /*
 sparse table(LCA array) and binary lifting
