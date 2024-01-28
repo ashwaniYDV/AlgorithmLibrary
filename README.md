@@ -5,6 +5,7 @@
 
 ### Cpp Resources
 * https://github.com/rachitiitr/modern-cpp-tricks
+* https://github.com/rachitiitr/cmake-101
 
 ### Goldmine
 * https://codeforces.com/
