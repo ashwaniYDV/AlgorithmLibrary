@@ -27,30 +27,33 @@ so that I could stop if I went above the node.
 
 class TreeAncestor {
 public:
-    vector<vector<int> > P; // P[node][i] :::: [node] 's [2^i]th parent
+    vector<vector<int> > LCA; // LCA[node][i] :::: [node]'s [2^i]th parent
+    int height = 20;
     TreeAncestor(int n, vector<int>& parent) {
         // initialize
-        P.resize(n, vector<int>(20));
+        LCA.resize(n, vector<int>(height + 1));
         
         // 2^0
         for(int i = 0; i < n; i++){
-            P[i][0] = parent[i];
+            LCA[i][0] = parent[i];
         }
         
         // 2^i
-        for(int i = 1; i < 20; i++){
-            for(int node = 0; node < n; node ++){
-                int nodep = P[node][i-1];
-                if(nodep != -1) P[node][i] = P[nodep][i-1];
-                else P[node][i] = -1;
+        for(int i = 1; i <= height; i++) {
+            for(int node = 0; node < n; node ++) {
+                int parNode = LCA[node][i-1];
+                if(parNode != -1) 
+                    LCA[node][i] = LCA[parNode][i - 1];
+                else 
+                    LCA[node][i] = -1;
             }
         }
     }
     
     int getKthAncestor(int node, int k) {
-        for(int i = 0; i < 20; i++){
+        for(int i = 0; i <= height; i++){
             if(k & (1 << i)){
-                node = P[node][i];
+                node = LCA[node][i];
                 if(node == -1) return -1;
             }
         }
