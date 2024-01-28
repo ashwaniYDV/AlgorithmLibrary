@@ -3,7 +3,10 @@
 ## Algos, DS and my online handle submissions
 * This repo contains my blood & sweat + so many sweet memories to reminisce.
 
-## Goldmine
+### Cpp Resources
+* https://github.com/rachitiitr/modern-cpp-tricks
+
+### Goldmine
 * https://codeforces.com/
 * https://codechef.com/
 * https://cses.fi/problemset/
@@ -17,10 +20,10 @@
 * https://leetcode.com/
 * https://lintcode.com/
 
-## Special Learning Contests
+### Special Learning Contests
 * https://www.hackerearth.com/practice/codemonk/
 * https://atcoder.jp/contests/dp/tasks
 
-### Extras
+#### Extras
 * [Open using GitHub1s](https://github1s.com/ashwaniYDV/AlgorithmLibrary)
 * https://readme-typing-svg.herokuapp.com/demo/
