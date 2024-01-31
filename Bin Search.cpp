@@ -1,3 +1,10 @@
+/*
+Resources
+=========
+1) https://www.topcoder.com/thrive/articles/Binary%20Search
+*/
+
+
 // FFFFFFFFTTTTTTTTTT
 
 void solve() {
