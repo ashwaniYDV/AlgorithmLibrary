@@ -1,3 +1,6 @@
+## Leetcode
+* https://leetcode.com/discuss/general-discussion/662866/dp-for-beginners-problems-patterns-sample-solutions
+
 ## Aditya Verma DP Playlist
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/nqowUJzG-iM/0.jpg)](https://www.youtube.com/watch?v=nqowUJzG-iM&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&ab_channel=AdityaVerma)
 
