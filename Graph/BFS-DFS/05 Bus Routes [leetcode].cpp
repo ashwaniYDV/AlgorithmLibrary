@@ -15,7 +15,7 @@ public:
 
         // start from the buses which pass the bus stop `source`
         queue<int> q;
-        unordered_set<int> bus_taken;
+        unordered_set<int> bus_taken; // visited array
         for (auto& bus : stop2bus[source]) {
             q.push(bus);
             bus_taken.insert(bus);
