@@ -22,6 +22,7 @@ public:
         }
 
         int totalBusTaken = 1;
+        
         while (!q.empty()) {
             int size = q.size();
             for (int i = 0; i < size; i++) {
