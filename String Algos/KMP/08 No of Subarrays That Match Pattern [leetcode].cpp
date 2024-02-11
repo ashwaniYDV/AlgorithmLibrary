@@ -9,6 +9,15 @@ A subarray nums[i..j] of size m + 1 is said to match the pattern if the followin
 Return the count of subarrays in nums that match the pattern.
 */
 
+/*
+Create a second array nums2 such that 
+  nums2[i] = 1 if nums[i + 1] > nums[i], 
+  nums2[i] = 0 if nums[i + 1] == nums[i], and 
+  nums2[i] = -1 if nums[i + 1] < nums[i].
+
+The problem becomes: “Count the number of subarrays in nums2 that are equal to pattern.
+*/
+
 class Solution {
 public:
     vector<int> prefix_function(string& s) {
