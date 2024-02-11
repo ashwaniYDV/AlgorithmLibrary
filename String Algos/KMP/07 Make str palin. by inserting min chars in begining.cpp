@@ -1,5 +1,54 @@
-// https://www.scaler.com/problems/make-string-pallindrome/
+// https://leetcode.com/problems/shortest-palindrome/
 
+/*
+You are given a string s. You can convert s to a palindrome by adding characters in front of it.
+Return the shortest palindrome you can find by performing this transformation.
+
+Input: s = "aacecaaa"
+Output: "aaacecaaa"
+
+Input: s = "abcd"
+Output: "dcbabcd"
+*/
+
+class Solution {
+public:
+    vector<int> prefix_function(string &s) {
+        int n = (int)s.length();
+        vector<int> pi(n);
+        for (int i = 1; i < n; i++) {
+            int j = pi[i-1];
+            while (j > 0 && s[i] != s[j]) {
+                j = pi[j-1];
+            }
+            if (s[i] == s[j]) {
+                j++;
+            }
+            pi[i] = j;
+        }
+        return pi;
+    }
+
+    string shortestPalindrome(string str) {
+        int n = str.size();
+
+        string revStr = str;
+        reverse(revStr.begin(), revStr.end());
+        
+        string concat = str + "$" + revStr;
+        vector < int > lps = prefix_function(concat);
+        
+        int noOfCharsToAddInfront = (n - lps.back());
+        return revStr.substr(0, noOfCharsToAddInfront) + str;
+    }
+};
+
+
+
+
+
+
+// https://www.scaler.com/problems/make-string-pallindrome/
 /*
 Given a string A of size N consisting only of lowercase alphabets. The only operation allowed is to insert characters in the beginning of the string.
 Find and return how many minimum characters are needed to be inserted to make the string a palindrome string.
@@ -9,20 +58,12 @@ Problem Constraints
 
 Input 1:
 A = "abc"
-Output 1:
-2
-Explanation 1:
-Insert 'b' at beginning, string becomes: "babc".
-Insert 'c' at beginning, string becomes: "cbabc".
+Ans = 2
 
 Input 2:
 A = "bb"
-Output 2:
-0
-Explanation 2:
-There is no need to insert any character at the beginning as the string is already a palindrome. 
+Ans = 0
 */
-
 
 vector<int> prefix_function(string &s) {
     int n = (int)s.length();
