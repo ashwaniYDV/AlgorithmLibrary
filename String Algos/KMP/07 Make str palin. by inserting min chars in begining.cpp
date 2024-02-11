@@ -11,6 +11,30 @@ Input: s = "abcd"
 Output: "dcbabcd"
 */
 
+
+/*
+Approach:
+=========
+- we can make a palindrome from a string S in this way:  S = S + reverse(S)
+- but we have to make the shortest palindrome here which can be done by following the given below steps :
+    - first make a string in this manner : palStr= S + "#" + reverse(S)
+    - find suffix string of reverse(S) which is longest prefix string of S. It can be found in this manner:
+           Use kmp algorithm to Build lps (longest prefix Suffix ) array 
+           create a lps array for the palStr string
+           last element of lps array is the longest suffix of reverse(S) which is also a prefix of S
+- remove the longest suffix from the reverse(S)
+- then append reverse(S) to the beginning of S and return that string
+
+Example:
+-S : "abcd"  
+-revStr = "dcba"
+-palStr = "abcd#dcba"
+-lps array for palStr : [0,0,0,0,0,0,0,0,1] . so length of longest suffix is 1 (last element of lps array)
+-after removing the longest suffix from revStr : revStr = "dcb"
+-append revStr to the beginning of S :  ans ="dcbabcd"
+-return ans
+*/
+
 class Solution {
 public:
     vector<int> prefix_function(string &s) {
