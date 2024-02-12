@@ -57,12 +57,3 @@ public:
         } 
     }
 };
-
-
-
-void solve() {
-    string str = "GEEKS FOR GEEKS"; 
-    string pat = "GEEK"; 
-    int q = 101; // A prime number 
-    search(str, pat, q); 
-}
