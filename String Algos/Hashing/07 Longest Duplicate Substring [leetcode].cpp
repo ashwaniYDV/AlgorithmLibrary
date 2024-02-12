@@ -204,10 +204,10 @@ public:
 
             p[0] = 1;
             p_inv[0] = 1;
-            ll pw_inv = power(base, mod - 2, mod);
+            ll base_inv = power(base, mod - 2, mod);
             for(ll i = 1; i < n; i++) {
                 p[i] = mult(p[i - 1], base, mod);
-                p_inv[i] = mult(p_inv[i - 1], pw_inv, mod);
+                p_inv[i] = mult(p_inv[i - 1], base_inv, mod);
             }
 
             // build hash
