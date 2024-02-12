@@ -21,10 +21,10 @@ public:
         return res;
     }
 
-    bool check(int i, string& str, string& pat) {
+    bool check(int startPos, string& str, string& pat) {
         /* Check for characters one by one */
         for (int j = 0; j < pat.size(); j++) { 
-            if (str[i + j] != pat[j]) return false; 
+            if (str[startPos + j] != pat[j]) return false; 
         }
         return true; 
     }
@@ -42,27 +42,25 @@ public:
             hashStr = (hashStr * base + str[i]) % mod; 
         } 
 
-        // Slide the pattern over text one by one 
-        for (int i = 0; i <= n - m; i++) { 
-            // Check the hash values of current window of text and pattern. 
-            // If the hash values match then only check for characters on by one.
-            if ( hashPat == hashStr ) { 
-                if (check(i, str, pat)) return i;
-            } 
-            
+        if ( hashPat == hashStr ) { 
+            if (check(0, str, pat)) return 0;
+        } 
+
+        for (int i = m; i < n; i++) { 
             // Calculate hash value for next window of text: 
             // Remove leading digit, add trailing digit 
-            if (i < n - m) { 
-                hashStr = ((hashStr - (str[i] * base_pow)) * base + str[i+m]) % mod; 
+            hashStr = ((hashStr - (str[i - m] * base_pow)) * base + str[i]) % mod; 
 
-                // We might get negative value of t, converting it to positive 
-                if (hashStr < 0) 
-                    hashStr = (hashStr + mod); 
-            } 
+            if (hashStr < 0) hashStr += mod;
+
+            int startPos = i - m + 1;
+            if (check(startPos, str, pat)) return startPos;
         } 
         return -1;
     }
 };
+
+
 
 
 
