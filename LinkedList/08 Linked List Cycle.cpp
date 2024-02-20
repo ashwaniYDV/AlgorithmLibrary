@@ -57,9 +57,10 @@ public:
 
 
 // https://www.geeksforgeeks.org/problems/find-length-of-loop/1
+// Find the length of a loop in linked list.
 
-Node* getCycleNode(Node *head) {
-    if(!head || !head->next) return NULL;
+int countNodesinLoop(struct Node *head) {
+    if(!head || !head->next) return 0;
     
     Node* slow = head, *fast = head;
     
@@ -69,30 +70,15 @@ Node* getCycleNode(Node *head) {
         
         // for getting the intersection point
         if(slow == fast) {
-            Node* slow = head;
-            while(slow != fast) {
-                slow = slow->next;
-                fast = fast->next;
+            Node* temp = slow->next;
+            int cnt = 1;
+            while(temp != slow) {
+                temp = temp->next;
+                cnt++;
             }
-            return slow;
+            return cnt;
         };
     }
     
-    return NULL;
-}
-
-//Function to find the length of a loop in the linked list.
-int countNodesinLoop(struct Node *head)
-{
-    if (!head) return 0;
-    Node* cycleNode = getCycleNode(head);
-    if (!cycleNode) return 0;
-    
-    Node* temp = cycleNode;
-    int res = 1;
-    while(temp->next != cycleNode) {
-        res++;
-        temp = temp->next;
-    }
-    return res;
+    return 0;
 }
