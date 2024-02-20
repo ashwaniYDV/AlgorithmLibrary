@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/find-the-duplicate-number/
+// https://youtu.be/32Ll35mhWg0?si=5EJ4SQ9zq5pDhArN
 
 /*
 Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
