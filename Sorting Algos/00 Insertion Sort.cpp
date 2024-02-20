@@ -8,13 +8,37 @@ Worst Time = O(n^2)
 
 
 /*
-Algorithm 
-To sort an array of size n in ascending order: 
-1: Iterate from arr[1] to arr[n] over the array. 
-2: Compare the current element (key) to its predecessor. 
-3: If the key element is smaller than its predecessor, compare it to the elements before. 
-   Move the greater elements one position up to make space for the swapped element.
+Insertion sort is based on the idea that one element from the input elements is consumed in each iteration to find its correct position 
+i.e, the position to which it belongs in a sorted array.
+It iterates the input elements by growing the sorted array at each iteration. 
+It compares the current element with the largest value in the sorted array. 
+If the current element is greater, then it leaves the element in its place and moves on to the next element 
+else it finds its correct position in the sorted array and moves it to that position. 
+This is done by shifting all the elements, which are larger than the current element, in the sorted array to one position ahead
 */
+
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        for (int j = i; j > 0; j--) {
+            if(arr[j] < arr[j - 1]) {
+                swap(arr[j], arr[j - 1]);
+            } else {
+                break;
+            }
+        }
+    }
+}
+int main() {
+    int arr[] = { 12, 11, 13, 5, 6 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    insertionSort(arr, n);
+    for (int i = 0; i < n; i++) cout << arr[i] << " ";
+}
+
+
+
+
 
 void insertionSort(int arr[], int n) {
     for (int i = 1; i < n; i++) {
@@ -29,41 +53,9 @@ void insertionSort(int arr[], int n) {
         arr[j] = key;
     }
 }
-
 int main() {
     int arr[] = { 12, 11, 13, 5, 6 };
     int n = sizeof(arr) / sizeof(arr[0]);
     insertionSort(arr, n);
     for (int i = 0; i < n; i++) cout << arr[i] << " ";  
-}
-
-
-
-
-
-
-
-
-
-
-
-
-void insertionSort(int arr[], int n) {
-    for (int i = 1; i < n; i++) {
-        for (int j = i; j > 0; j--) {
-            if(arr[j] < arr[j - 1]) {
-                swap(arr[j], arr[j - 1]);
-            } else {
-                break;
-            }
-        }
-    }
-}
-
-int main() {
-    int arr[] = { 12, 11, 13, 5, 6 };
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    insertionSort(arr, n);
-    for (int i = 0; i < n; i++) cout << arr[i] << " ";
 }
