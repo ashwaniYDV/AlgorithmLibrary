@@ -15,6 +15,7 @@ public:
             fast = fast->next->next;
 
             if (slow == fast) {
+                // case when cycle is at head node
                 if (slow == head) {
                     while (fast->next != slow) {
                         fast = fast->next;
