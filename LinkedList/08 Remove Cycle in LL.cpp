@@ -1,6 +1,8 @@
-// https://practice.geeksforgeeks.org/problems/remove-loop-in-linked-list/1
 // https://www.youtube.com/watch?v=aIR0s1tY2Vk
+// https://youtu.be/wiOo4DC5GGA?si=vt8znZokzn638CIn
+// https://youtu.be/2Kd0KKmmHFc?si=8-Fx-ffv_MO9SFdd
 
+// https://practice.geeksforgeeks.org/problems/remove-loop-in-linked-list/1
 
 class Solution {
 public:
