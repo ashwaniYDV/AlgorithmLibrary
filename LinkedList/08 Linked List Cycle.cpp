@@ -1,6 +1,7 @@
-// https://leetcode.com/problems/linked-list-cycle/
 // https://youtu.be/wiOo4DC5GGA?si=vt8znZokzn638CIn
+// https://youtu.be/2Kd0KKmmHFc?si=8-Fx-ffv_MO9SFdd
 
+// https://leetcode.com/problems/linked-list-cycle/
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
@@ -23,8 +24,6 @@ public:
 
 
 // https://leetcode.com/problems/linked-list-cycle-ii/
-// https://youtu.be/wiOo4DC5GGA?si=vt8znZokzn638CIn
-
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
