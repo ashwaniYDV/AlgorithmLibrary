@@ -2,7 +2,9 @@
 Single source shortest path for weighted graphs
 It fails for negative weights (in that case we can use bellman ford)
 
-Time Complexity = O(E + VLogV)
+TC = O(E + V*logV)
+TC = O(E * logV)
+Worst cace TC = O(E*V) = O(n^2)
 */
 
 
