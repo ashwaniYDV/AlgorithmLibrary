@@ -1,6 +1,6 @@
 /*
 Single source shortest path for weighted graphs
-It fails for negative weights (in that case we can use bellman ford)
+It fails for negative weights (in that case we can use Bellman Ford)
 
 TC = O(E*logV)
 Worst case TC = O(E*V) = O(N^2)
@@ -8,6 +8,7 @@ Worst case TC = O(E*V) = O(N^2)
 Note:
 =====
 * We can use normal queue also instead of priority_queue, but time complexity will be more
+* Dijkstra is a greedy algorithm due to priority_queue
 
 Resources:
 ==========
