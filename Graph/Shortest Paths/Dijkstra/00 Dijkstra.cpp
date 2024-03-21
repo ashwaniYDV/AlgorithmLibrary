@@ -3,14 +3,20 @@ Single source shortest path for weighted graphs
 It fails for negative weights (in that case we can use bellman ford)
 
 TC = O(E*logV)
-Worst cace TC = O(E*V) = O(n^2)
+Worst case TC = O(E*V) = O(N^2)
 
-Resources
-=========
-https://youtu.be/XB4MIexjvY0?si=6RgT8zXWYmrDe7gJ
-https://youtu.be/V6H1qAeB-l4?si=ceG_YhrrftjzU0Ym
-https://youtu.be/PATgNiuTP20?si=47mYXSs_MFKpxSHe
-https://youtu.be/3dINsjyfooY?si=gsmCRxlOgmDbCPOS
+Note:
+=====
+* We can use normal queue also instead of priority_queue, but time complexity will be more
+
+Resources:
+==========
+Abdul bari
+    * https://youtu.be/XB4MIexjvY0?si=6RgT8zXWYmrDe7gJ
+Take u forward (strive)
+    * https://youtu.be/V6H1qAeB-l4?si=ceG_YhrrftjzU0Ym
+    * using set ==> https://youtu.be/PATgNiuTP20?si=47mYXSs_MFKpxSHe
+    * Time complexity ==> https://youtu.be/3dINsjyfooY?si=gsmCRxlOgmDbCPOS
 */
 
 
