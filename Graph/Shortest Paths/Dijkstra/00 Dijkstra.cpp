@@ -2,8 +2,7 @@
 Single source shortest path for weighted graphs
 It fails for negative weights (in that case we can use Bellman Ford)
 
-TC = O(E*logV)
-Worst case TC = O(E*V) = O(N^2)
+TC = O(E*logV) = O(n*logn)
 
 Note:
 =====
