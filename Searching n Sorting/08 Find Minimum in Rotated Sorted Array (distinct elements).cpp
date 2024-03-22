@@ -18,12 +18,12 @@ public:
         int res = INT_MAX;
         
         while (lo <= hi) {
-            int mid = (lo + hi) / 2;
-
             if (nums[lo] <= nums[hi]) {
                 res = min(res, nums[lo]);
                 break;
             }
+
+            int mid = (lo + hi) / 2;
             
             // left part is monotonic thus updating our answer
             if (nums[lo] <= nums[mid]) {
