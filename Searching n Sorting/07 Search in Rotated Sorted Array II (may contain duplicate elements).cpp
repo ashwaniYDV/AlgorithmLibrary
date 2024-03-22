@@ -14,6 +14,7 @@ if( (nums[lo] == nums[mid]) && (nums[hi] == nums[mid]) ) {
 }
 and continue the while loop.
 */
+
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
@@ -31,10 +32,11 @@ public:
             // the only difference from the first one, trickly case, just update left and right
             if( (nums[left] == nums[mid]) && (nums[mid] == nums[right]) ) {
                 ++left; --right;
+                continue;
             }
             
             // If the entire left part is monotonically increasing, which means the pivot point is on the right part
-            else if (nums[left] <= nums[mid]) {
+            if (nums[left] <= nums[mid]) {
                 //must use "<=" at here since we need to make sure target is in the left part,
                 //then safely drop the right part
                 if (nums[left] <= target && target < nums[mid]) {
@@ -87,6 +89,15 @@ public:
             if (target == nums[mid]) {
                 return true;
             }
+
+            if (nums[left] == nums[mid]) {
+                left++;
+                continue;
+            }
+            if (nums[mid] == nums[right]) {
+                right--;
+                continue;
+            }
             
             // If the entire left part is monotonically increasing, which means the pivot point is on the right part
             if (nums[left] < nums[mid]) {
@@ -109,11 +120,6 @@ public:
                 } else {
                     right = mid - 1;
                 }
-            }
-            
-            else {
-                if (nums[left] == nums[mid]) left++;
-                if (nums[mid] == nums[right]) right--;
             }
         }
         return false;
