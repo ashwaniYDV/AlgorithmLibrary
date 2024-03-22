@@ -18,6 +18,7 @@ public:
         int res = INT_MAX;
         
         while (lo <= hi) {
+            // array is already sorted perfectly
             if (nums[lo] <= nums[hi]) {
                 res = min(res, nums[lo]);
                 break;
@@ -25,12 +26,14 @@ public:
 
             int mid = (lo + hi) / 2;
             
-            // left part is monotonic thus updating our answer
+            // left part is monotonic thus updating our answer 
+            // and then we will look for answer in right part (lo = mid + 1)
             if (nums[lo] <= nums[mid]) {
                 res = min(res, nums[lo]);
                 lo = mid + 1;
             } 
             // right part is monotonic thus updating our answer
+            // and then we will look for answer in left part (hi = mid - 1)
             else {
                 res = min(res, nums[mid]);
                 hi = mid - 1;
