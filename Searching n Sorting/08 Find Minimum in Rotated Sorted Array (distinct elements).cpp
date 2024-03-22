@@ -1,5 +1,47 @@
 // https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+// https://youtu.be/nhEMDKMB44g?si=Di0GU4dC1FInJFpQ
 // https://youtu.be/j3187M1P2Xg
+
+/*
+Note:
+* It is not like non-monotonical part will always contains answer. Monotonical part may also contain answer.
+
+if (nums[lo] <= nums[hi]) we can update answer with nums[lo]
+if (nums[lo] <= nums[mid]) we can update answer with nums[lo]
+if (nums[mid] <= nums[hi]) we can update answer with nums[mid]
+*/
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int lo = 0, hi = nums.size() - 1;
+        int res = INT_MAX;
+        
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+
+            if (nums[lo] <= nums[hi]) {
+                res = min(res, nums[lo]);
+                break;
+            }
+            
+            // left part is monotonic thus updating our answer
+            if (nums[lo] <= nums[mid]) {
+                res = min(res, nums[lo]);
+                lo = mid + 1;
+            } 
+            // right part is monotonic thus updating our answer
+            else {
+                res = min(res, nums[mid]);
+                hi = mid - 1;
+            }
+        }
+        
+        return res;
+    }
+};
+
+
 
 /*
 Looking at subarray with index [lo, hi]. We can find out that if the first member is less than the last member, there's no rotation in the array. 
