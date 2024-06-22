@@ -34,11 +34,12 @@ public:
             if (sum == k) {
                 if (A[i] != A[j]) {
                     int a = 1, b = 1;
-                    while (i + 1 < j && A[i] == A[i + 1]) i++, a++;
-                    while (j - 1 > i && A[j] == A[j - 1]) j--, b++;
+                    while (i < j && A[i] == A[i + 1]) i++, a++;
+                    while (i < j && A[j] == A[j - 1]) j--, b++;
+                    
+                    i++, j--;
 
                     res += a * b;
-                    i++, j--;
                 }
                 // equal A[i] == A[j]
                 else {

@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/min-stack/
+// https://youtu.be/V09NfaGf2ao?si=arNP4k92XMZ6Rn8u
 // https://youtu.be/Trz7JM610Uc
 
 /*
@@ -12,7 +13,7 @@ int getMin() retrieves the minimum element in the stack.
 You must implement a solution with O(1) time complexity for each function.
 */
 
-// Method 1: With extra space
+// Method 1.1: Not space optimized
 class MinStack {
     stack<int> st;
     stack<int> minSt; // it is a monotonic stack
@@ -46,82 +47,77 @@ public:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// With O(1) space
-struct MinStack {
-    // normal stack
-    stack<int> s;
-    int minElement;
-
-    void push(int a) {
-        if(s.empty()) {
-            s.push(a);
-            minElement = a;
+// Method 1.2: Not space optimized
+class MinStack {
+    stack<pair<int, int>> st; // {val, min}
+public:
+    MinStack() {
+    }
+    
+    void push(int val) {
+        if(st.empty()) {
+            st.push({val, val});
         } else {
-            if(a >= minElement) {
-                s.push(a);
-            } else {
-                s.push(2*a - minElement);
-                minElement = a;
-            }
+            st.push({val, min(val, st.top().second)});
         }
     }
-
-    int pop() {
-        if(s.empty()) return -1;
-        
-        if(s.top() < minElement) {
-            minElement = 2 * minElement - s.top();
-        }
-        s.pop();
+    
+    void pop() {
+        st.pop();
     }
-
-    int getMin() {
-        if(s.empty()) return -1;
-        return minElement;
-    }
-
+    
     int top() {
-        if(s.empty()) return -1;
-        
-        if(s.top() < minElement) {
-            return minElement;
-        } else {
-            return s.top();
-        }
+        return st.top().first;
     }
-
-    bool isEmpty() {
-        return s.empty();
-    }
-
-    bool isFull(int n) {
-        return s.size() == n;
+    
+    int getMin() {
+        return st.top().second;
     }
 };
 
-void solve() {
-    int x, y, z;
-    MinStack s;
-    s.push(3);
-    s.push(5);
-    cout << s.getMin() << endl;
-    s.push(2);
-    s.push(1);
-    cout << s.getMin() << endl;
-    s.pop();
-    cout << s.getMin() << endl;
-    s.pop();
-}
+
+
+
+
+
+
+// Method 2: Space optimized
+class MinStack {
+    stack<long long> st;
+    long long minEle;
+public:
+    MinStack() {
+    }
+    
+    void push(int val) {
+        if(st.empty()) {
+            st.push(val);
+            minEle = val;
+        } else {
+            if(val < minEle) {
+                st.push(2LL * val - minEle);
+                minEle = val;
+            } else {
+                st.push(val);
+            }
+        }
+    }
+    
+    void pop() {
+        if(st.top() < minEle) {
+            minEle = 2 * minEle - st.top();
+        }
+        st.pop();
+    }
+    
+    int top() {
+        if(st.top() < minEle) {
+            return minEle;
+        }
+        return st.top();
+    }
+    
+    int getMin() {
+        return minEle;
+    }
+};

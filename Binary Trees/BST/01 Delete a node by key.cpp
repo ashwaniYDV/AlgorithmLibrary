@@ -20,7 +20,8 @@ When we delete a node, three possibilities arise:
             40  60   80                       60   80
             
 3) Node to be deleted has two children: 
-Find inorder successor of the node. Copy contents of the inorder successor to the node and delete the inorder successor. 
+Find inorder successor of the node. 
+Copy contents of the inorder successor to the node and delete the inorder successor. 
 Note that inorder predecessor can also be used. 
 
               50                            60
@@ -300,54 +301,9 @@ TreeNode* deleteNode(TreeNode *root, int data) {
 Optimization to above code for two children case: 
 In the above recursive code, we recursively call delete() for the successor. 
 We can avoid recursive calls by keeping track of the parent node of the successor 
-so that we can simply remove the successor by making the child of a parent NULL. We know that the successor would always be a leaf node.
+so that we can simply remove the successor by making the child of a parent NULL. 
+We know that the successor would always be a leaf node.
 */
-
-#include <bits/stdc++.h>
-using namespace std;
-
-struct TreeNode {
-    int data;
-    TreeNode *left, *right;
-    TreeNode(int k) {
-        data = k;
-        left = right = NULL;
-    }
-};
-
-void inorder(TreeNode* root) {
-    if (!root) return;
-    inorder(root->left);
-    cout << root->data << " ";
-    inorder(root->right);
-}
-
-TreeNode* insert(TreeNode *root, int data) {
-    if (!root) {
-        root = new TreeNode(data);
-        return root;
-    }
-    if (data <= root->data) {
-        root->left = insert(root->left, data);
-    } else {
-        root->right = insert(root->right, data);
-    }
-    return root;
-}
-
-
-TreeNode* minValueNode(TreeNode *root) {
-    TreeNode* temp = root;
-
-    while (temp && temp->left) {
-        temp = temp->left;
-    }
-
-    return temp;
-}
-
-/* Given a binary search tree root and a data,
-this function deletes the data and returns the new root */
 TreeNode* deleteNode(TreeNode *root, int data) {
     // base case
     if (!root) return root;
@@ -365,7 +321,8 @@ TreeNode* deleteNode(TreeNode *root, int data) {
     }
 
     // If data is same as root's data, then this is the node to be deleted
-    // Case 1: node has no child
+    
+	// Case 1: node has no child
     if (!root->left and !root->right) {
         delete root;
         return NULL;
@@ -412,48 +369,4 @@ TreeNode* deleteNode(TreeNode *root, int data) {
     // Delete Successor and return root
     delete succ;
     return root;
-}
-
-// Driver Code
-int main() {
-    /*
-    Let us create following BST
-          50
-         /  \
-        30   70
-       / \   / \
-      20 40 60  80
-    */
-    TreeNode* root = NULL;
-    root = insert(root, 50);
-    root = insert(root, 30);
-    root = insert(root, 20);
-    root = insert(root, 40);
-    root = insert(root, 70);
-    root = insert(root, 60);
-    root = insert(root, 80);
-
-    cout << "Inorder traversal:\n";
-    inorder(root);
-    cout << endl;
-
-    cout << "\nDelete 20\n";
-    root = deleteNode(root, 20);
-
-    cout << "Inorder traversal:\n";
-    inorder(root);
-    cout << endl;
-
-    cout << "\nDelete 30\n";
-    root = deleteNode(root, 30);
-
-    cout << "Inorder traversal:\n";
-    inorder(root);
-    cout << endl;
-
-    cout << "\nDelete 50\n";
-    root = deleteNode(root, 50);
-
-    cout << "Inorder traversal:\n";
-    inorder(root);
 }

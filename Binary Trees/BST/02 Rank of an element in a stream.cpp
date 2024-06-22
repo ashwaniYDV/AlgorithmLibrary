@@ -20,7 +20,7 @@ We traverse the tree from root and compare the root values to x.
  
 If root->data == x, return size of left subtree of root.
 If x < root->data, return getRank(root->left)
-If x > root->data, return getRank(root->right) + size of leftSubtree + 1.
+If x > root->data, return size of leftSubtree + 1 + getRank(root->right).
 */
 
 
