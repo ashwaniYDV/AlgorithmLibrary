@@ -1,3 +1,15 @@
+// https://leetcode.com/problems/bus-routes/description/
+
+/*
+You are given an array bus routes where routes[i] is a bus route that the ith bus repeats forever.
+Eg, if routes[0] = [1, 5, 7], this means that 0th bus travels in sequence 1 -> 5 -> 7 -> 1 -> 5 -> 7 -> 1 -> ... forever.
+You will start at bus stop source (You are not on any bus initially), 
+and you want to go to the bus stop target. 
+You can travel between bus stops by buses only.
+Return least number of buses you must take to travel from source to target. 
+Return -1 if it is not possible.
+*/
+
 class Solution {
 public:
     int numBusesToDestination(vector<vector<int>>& routes, int source, int target) {

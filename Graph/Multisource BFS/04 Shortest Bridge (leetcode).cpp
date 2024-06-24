@@ -1,14 +1,17 @@
 // https://leetcode.com/problems/shortest-bridge/
 
 /*
-Problem:
-In a given 2D binary array grid, there are two islands. (An island is a 4-directionally connected group of 1s not connected to any other 1s.)
+In a given 2D binary array grid, there are two islands. 
+(An island is a 4-directionally connected group of 1s not connected to any other 1s.)
 Now, we may change 0s to 1s so as to connect the two islands together to form 1 island.
-Return the smallest number of 0s that must be flipped. (It is guaranteed that the answer is at least 1.)
+Return the smallest number of 0s that must be flipped. 
+(It is guaranteed that the answer is at least 1.)
 */
 
 /*
-The idea I used in this problem is that. (Note that there is exactly two group of islands).
+Intuition
+---------
+Note that there is exactly 2 group of islands.
 (1) I will traverse one group of island by DFS and mark this group from number 1 to number 2
     So now the grid has one group of island with number 2 and the other group of island with number 1 and the rest of the grid is number 0.
 (2) Now I will do multisource BFS from all the grid[i][j] with value as 2.
@@ -17,7 +20,7 @@ The idea I used in this problem is that. (Note that there is exactly two group o
 */
 
 
-// Method 1
+// Method 1.1
 class Solution {
 public:
     int n, m;
@@ -67,19 +70,19 @@ public:
             return false;
         return true;
     }
-    void dfs(int i, int j, vector<vector<int>>& A) {
-        if (!isSafeDFS(i, j, A)) {
-            return;
-        }
-        
-        A[i][j] = 2;
+    void dfs(int x, int y, vector<vector<int>>& A) {
+        A[x][y] = 2;
         for(int z = 0; z < 4; z++) {
-            dfs(i + dx[z], j + dy[z], A);
+            int nx = x + dx[z], ny = y + dy[z];
+            if(!isSafeDFS(nx, ny, A)) continue;
+            dfs(nx, ny, A);
         }
     }
     
     int shortestBridge(vector<vector<int>>& A) {
         n = A.size(), m = A[0].size();
+
+        vector<vector<int>> dis(n, vector<int>(m, 1e9));
         
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
@@ -97,14 +100,7 @@ public:
 
 
 
-
-
-
-
-
-
-
-// Method 1 (modified)
+// Method 1.2
 while (!q.empty()) {
     auto x = q.front();
     q.pop();
@@ -129,9 +125,6 @@ for(int i = 0; i < n; i++) {
 }
 
 return mn - 1;
-    
-
-
 
 
 

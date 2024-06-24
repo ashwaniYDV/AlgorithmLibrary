@@ -45,47 +45,7 @@ public:
 
 
 
-
-
-
-
-// Method 2: O(nlogn)
-class Solution {
-public:
-    // Function to find the minimum number of platforms required at the railway station such that no train waits.
-    int findPlatform(int arr[], int dep[], int n) {
-        vector<pair<int, int> > vec;
-        for (int i = 0; i < n; ++i) {
-            vec.push_back({arr[i], 0});
-            vec.push_back({dep[i], 1});
-        }
-
-        sort(vec.begin(), vec.end());
-
-        int curActive = 0;
-        int res = 0;
-        for (int i = 0; i < vec.size(); i++) {
-            // arrival
-            if (vec[i].second == 0) {
-                curActive++;
-            } else {
-                curActive--;
-            }
-            res = max(res, curActive);
-        }
-
-        return res;
-    }
-};
-
-
-
-
-
-
-
-
-// Method 3.1: Cumulative Sum
+// Method 2.1: Cumulative Sum
 class Solution{
 public:
     // Function to find the minimum number of platforms required at the railway station such that no train waits.
@@ -114,10 +74,9 @@ public:
 
 
 
-// Method 3.2: Cumulative Sum
+// Method 2.2: Cumulative Sum
 class Solution{
 public:
-    // Function to find the minimum number of platforms required at the railway station such that no train waits.
     int findPlatform(int arr[], int dep[], int n) {
         map<int, int> prefix;
     
@@ -125,16 +84,11 @@ public:
             prefix[arr[i]]++;
             prefix[dep[i]+1]--;
         }
-        
-        auto prevItr = prefix.begin();
-        for(auto it = next(prefix.begin()); it != prefix.end(); it++) {
-            prefix[it->first] += prefix[prevItr->first];
-            prevItr = it;
-        }
     
-        int res = 0;
+        int cnt = 0, res = 0;
         for(auto it: prefix) {
-            res = max(res, it.second);
+            cnt += it.second;
+            res = max(res, cnt);
         }
     
         return res;

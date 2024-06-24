@@ -1,13 +1,11 @@
 // https://cses.fi/problemset/task/1194/
 
 /*
-Problem:
-You and some monsters are in a labyrinth. When taking a step to some direction in the labyrinth, each monster may simultaneously take one as well. 
+You and some monsters are in a labyrinth. 
+When taking a step to some direction in the labyrinth, each monster may simultaneously take one as well. 
 Your goal is to reach one of the boundary squares without ever sharing a square with a monster.
 Your task is to find out if your goal is possible, and if it is, print a path that you can follow. 
 Your plan has to work in any situation; even if the monsters know your path beforehand.
-
-Example
 
 Input:
 5 8
@@ -23,14 +21,27 @@ YES
 RRDDR
 */
 
+
 /*
-Because the monsters move optimally, if a monster can reach a location in the maze before A, then A may never move to that spot. 
-Thus for monsters do mutisource BFS to find minimum distances to all locations.
-Now, for A to enter a spot, the distance from that location to A must be less than the distance from that location to the nearest monster. 
-Knowing this, we may BFS to find all locations that are visitable by A.
+Intuition
+---------
+* Because monsters move optimally, if a monster can reach a location in maze before A, 
+  then A may never move to that spot. 
+* Thus for monsters, do mutiSrc BFS to find min distances to all locations.
+* Now, for A to enter a spot, distance from that location to A must be less than distance from that location to nearest monster. 
+* Knowing this, we may BFS to find all locations that are visitable by A.
+
+Note:
+* Instead of checking for all cells that if a monster can reach there before A or not,
+  it is better to check this condition only for boundary cells.
+* This will work because if monter can reach to a inside cell before A, then definitely moster can reach to boundary cell also before A.
 */
 
 
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+const int INF = 1e18;
 const int N = 2e3+5;
 int n, m;
 
@@ -66,8 +77,8 @@ void solve() {
 
     bool flag = false;
 
-    f(i, n) {
-        f(j, m) {
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; j++) {
             cin >> g[i][j];
             dis[i][j] = INF;
             disMonsters[i][j] = INF;
@@ -99,7 +110,7 @@ void solve() {
         qMonsters.pop();
         int x = u.first, y = u.second;
 
-        f(z, 4) {
+        for(int z = 0; z < 4; z++) {
             int nx = x + dx[z], ny = y + dy[z];
             if (!isSafeMonsters(nx, ny)) continue;
 
@@ -109,7 +120,7 @@ void solve() {
         }
     }
 
-    // single source BFS for you
+    // single source BFS for A
     q.push(source);
     vis[source.first][source.second] = 1;
     dis[source.first][source.second] = 0;
@@ -119,7 +130,13 @@ void solve() {
         q.pop();
         int x = u.first, y = u.second;
 
-        f(z, 4) {
+        // reached boundary of grid earlier then any monster
+        if((x == 0 || x == n-1 || y == 0 || y == m-1) && (dis[x][y] < disMonsters[x][y])) {
+            flag = true;
+            dest = {x, y};
+        }
+
+        for(int z = 0; z < 4; z++) {
             int nx = x + dx[z], ny = y + dy[z];
             if (!isSafe(nx, ny)) continue;
 
@@ -127,12 +144,6 @@ void solve() {
             dis[nx][ny] = dis[x][y] + 1;
             previousStep[nx][ny] = z;
             q.push({nx, ny});
-
-            // reached boundary of grid earlier then any monster
-            if((nx == 0 || nx == n-1 || ny == 0 || ny == m-1) && (dis[nx][ny] < disMonsters[nx][ny])) {
-                flag = true;
-                dest = {nx, ny};
-            }
         }
     }
 
@@ -158,3 +169,8 @@ void solve() {
     }
     cout << endl;
 } 
+
+
+int32_t main() {
+    solve();
+}

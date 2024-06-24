@@ -40,34 +40,3 @@ bool Solution::hotel(vector<int> &arr, vector<int> &dep, int K) {
 
     return result <= K;
 }
-
-
-
-
-
-bool Solution::hotel(vector<int> &arrive, vector<int> &depart, int K) {
-    if (K == 0) return false;
-    int n = arrive.size();
-
-    vector<pair<int, int> > vec;
-    for (int i = 0; i < n; ++i) {
-        vec.push_back({arrive[i], 0});
-        vec.push_back({depart[i], 1});
-    }
-
-    sort(vec.begin(), vec.end());
-
-    int curActive = 0;
-    int res = 0;
-    for (int i = 0; i < vec.size(); i++) {
-        // arrival
-        if (vec[i].second == 0) {
-            curActive++;
-        } else {
-            curActive--;
-        }
-        res = max(res, curActive);
-    }
-
-    return res <= K;
-}
