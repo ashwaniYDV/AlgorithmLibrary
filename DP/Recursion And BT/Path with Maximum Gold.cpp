@@ -34,7 +34,6 @@ public:
     
     int getMaximumGold(vector<vector<int>>& mine) {
         n = mine.size(), m = mine[0].size();
-
         vis.resize(n, vector<int>(m, 0));
         
         int res = 0;

@@ -56,3 +56,61 @@ void solve() {
 
     bfs();
 }
+
+
+
+
+
+
+// https://leetcode.com/problems/01-matrix/
+/*
+Given an m x n binary matrix mat, return the distance of the nearest 0 for each cell.
+*/
+
+class Solution {
+public:
+    int n, m;
+    vector<vector<int>> dist;
+    int dx[4] = {0, 1, 0, -1};
+    int dy[4] = {-1, 0, 1, 0};
+    
+    bool isSafe(int i, int j) {
+        return !(i < 0 || i >= n || j < 0 || j >= m);
+    }
+    
+    void bfs(vector<vector<int>>& matrix) {
+        queue<pair<int, int>> q;
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(matrix[i][j] == 0) {
+                    q.push({i, j});
+                    dist[i][j] = 0;
+                }
+            }
+        }
+
+        while(!q.empty()) {
+            auto it = q.front();
+            q.pop();
+            int x = it.first, y = it.second;
+
+            for(int z = 0; z < 4; z++) {
+                int nx = x + dx[z], ny = y + dy[z];
+                if(!isSafe(nx, ny)) continue;
+
+                if(dist[nx][ny] == 1e9) {
+                    dist[nx][ny] = dist[x][y] + 1;
+                    q.push({nx, ny});
+                }
+            }
+        }
+    }
+    
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        n = matrix.size();
+        m = matrix[0].size();
+        dist.resize(n, vector<int>(m, 1e9));
+        bfs(matrix);
+        return dist;
+    }
+};

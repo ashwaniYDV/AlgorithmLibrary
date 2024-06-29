@@ -2,7 +2,8 @@
 
 /*
 You are playing some computer game. One of its levels puts you in a maze consisting of n lines, each of which contains m cells. 
-Each cell either is free or is occupied by an obstacle. The starting cell is in the row r and column c. 
+Each cell either is free or is occupied by an obstacle. 
+The starting cell is in the row r and column c. 
 In one step you can move one square up, left, down or right, if the target cell is not occupied by an obstacle. 
 You can't move beyond the boundaries of the labyrinth.
 

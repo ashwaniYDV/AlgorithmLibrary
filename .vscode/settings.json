@@ -14,6 +14,12 @@
         "forward_list": "cpp",
         "valarray": "cpp",
         "limits": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "__node_handle": "cpp",
+        "array": "cpp",
+        "regex": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp"
     }
 }
