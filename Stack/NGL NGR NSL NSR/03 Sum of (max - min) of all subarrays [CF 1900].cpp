@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/sum-of-subarray-ranges/
 // https://codeforces.com/problemset/problem/817/D
 // D. Imbalanced Array
 // https://youtu.be/ST408u9EnVg
@@ -42,106 +43,102 @@ res = [max(a1) - min(a1)] + [max(a2) - min(a2)] + [max(a3) - min(a3)] + ...
 res = [max(a1) + max(a2) + max(a3) + ...] - [min(a1) + min(a2) + min(a3) + ...]
 */
 
-const int N = 1e5 + 5;
-int n, m;
+class Solution {
+public:
+    long long sumSubarrayMaxs(vector<int>& nums) {
+        int n = nums.size();
+        stack<int> st;
+        // ngl = (NGL+1)th idx, ngr = (NGR - 1)th idx
+        vector<int> ngl(n), ngr(n);
+        
+        // getting number of element strictly smaller than nums[i] on Left.
+        for(int i = 0; i < n; i++) {
+            // here equality is not included
+            while(!st.empty() && nums[st.top()] < nums[i]) {
+                st.pop();
+            }
+            if(!st.empty()) {
+                ngl[i] = st.top() + 1;
+            } else {
+                ngl[i] = 0;
+            }
+            st.push(i);
+        }
+        
+        while(!st.empty()) st.pop();
+        
+        // getting number of element larger or equal to nums[i] on Right.
+        for(int i = n-1; i >= 0; i--) {
+            // here equality is included
+            while(!st.empty() && nums[st.top()] <= nums[i]) {
+                st.pop();
+            }
+            if(!st.empty()) {
+                ngr[i] = st.top() - 1;
+            } else {
+                ngr[i] = n-1;
+            }
+            st.push(i);
+        }
+        
+        long long res = 0;
+        for(int i = 0; i < n; i++) {
+            int left = i - ngl[i] + 1;
+            int right = ngr[i] - i + 1;
+            long long cnt = left * right;
+            res += nums[i] * cnt;
+        }
+        
+        return res;
+    }
 
-int sumSubarrayMaxs(vector<int>& nums) {
-    int n = nums.size();
-    stack<int> st;
-    // ngl = (NGL+1)th idx, ngr = (NGR - 1)th idx
-    vector<int> ngl(n), ngr(n);
-    
-    // getting number of element strictly smaller than nums[i] on Left.
-    for(int i = 0; i < n; i++) {
-        // here equality is not included
-        while(!st.empty() && nums[st.top()] < nums[i]) {
-            st.pop();
+    long long sumSubarrayMins(vector<int>& nums) {
+        int n = nums.size();
+        stack<int> st;
+        // nsl = (NSL+1)th idx, nsr = (NSR - 1)th idx
+        vector<int> nsl(n), nsr(n);
+        
+        // getting number of element strictly larger than nums[i] on Left.
+        for(int i = 0; i < n; i++) {
+            // here equality is not included
+            while(!st.empty() && nums[st.top()] > nums[i]) {
+                st.pop();
+            }
+            if(!st.empty()) {
+                nsl[i] = st.top() + 1;
+            } else {
+                nsl[i] = 0;
+            }
+            st.push(i);
         }
-        if(!st.empty()) {
-            ngl[i] = st.top() + 1;
-        } else {
-            ngl[i] = 0;
+        
+        while(!st.empty()) st.pop();
+        
+        // getting number of element larger or equal to nums[i] on Right.
+        for(int i = n-1; i >= 0; i--) {
+            // here equality is included
+            while(!st.empty() && nums[st.top()] >= nums[i]) {
+                st.pop();
+            }
+            if(!st.empty()) {
+                nsr[i] = st.top() - 1;
+            } else {
+                nsr[i] = n-1;
+            }
+            st.push(i);
         }
-        st.push(i);
+        
+        long long res = 0;
+        for(int i = 0; i < n; i++) {
+            int left = i - nsl[i] + 1;
+            int right = nsr[i] - i + 1;
+            long long cnt = left * right;
+            res += nums[i] * cnt;
+        }
+        
+        return res;
     }
-    
-    while(!st.empty()) st.pop();
-    
-    // getting number of element larger or equal to nums[i] on Right.
-    for(int i = n-1; i >= 0; i--) {
-        // here equality is included
-        while(!st.empty() && nums[st.top()] <= nums[i]) {
-            st.pop();
-        }
-        if(!st.empty()) {
-            ngr[i] = st.top() - 1;
-        } else {
-            ngr[i] = n-1;
-        }
-        st.push(i);
+    long long subArrayRanges(vector<int>& nums) {
+        return sumSubarrayMaxs(nums) - sumSubarrayMins(nums);
     }
-    
-    int res = 0;
-    for(int i = 0; i < n; i++) {
-        int left = i - ngl[i] + 1;
-        int right = ngr[i] - i + 1;
-        int cnt = left * right;
-        res += nums[i] * cnt;
-    }
-    
-    return res;
-}
-
-int sumSubarrayMins(vector<int>& nums) {
-    int n = nums.size();
-    stack<int> st;
-    // nsl = (NSL+1)th idx, nsr = (NSR - 1)th idx
-    vector<int> nsl(n), nsr(n);
-    
-    // getting number of element strictly larger than nums[i] on Left.
-    for(int i = 0; i < n; i++) {
-        // here equality is not included
-        while(!st.empty() && nums[st.top()] > nums[i]) {
-            st.pop();
-        }
-        if(!st.empty()) {
-            nsl[i] = st.top() + 1;
-        } else {
-            nsl[i] = 0;
-        }
-        st.push(i);
-    }
-    
-    while(!st.empty()) st.pop();
-    
-    // getting number of element larger or equal to nums[i] on Right.
-    for(int i = n-1; i >= 0; i--) {
-        // here equality is included
-        while(!st.empty() && nums[st.top()] >= nums[i]) {
-            st.pop();
-        }
-        if(!st.empty()) {
-            nsr[i] = st.top() - 1;
-        } else {
-            nsr[i] = n-1;
-        }
-        st.push(i);
-    }
-    
-    int res = 0;
-    for(int i = 0; i < n; i++) {
-        int left = i - nsl[i] + 1;
-        int right = nsr[i] - i + 1;
-        int cnt = left * right;
-        res += nums[i] * cnt;
-    }
-    
-    return res;
-}
-
-void solve() {
-    cin >> n;
-    vi a(n);
-    f(i, n) cin >> a[i];
-    cout << sumSubarrayMaxs(a) - sumSubarrayMins(a) << endl;
-}
+};

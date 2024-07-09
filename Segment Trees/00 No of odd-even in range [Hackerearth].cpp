@@ -15,128 +15,110 @@ Next line contains an integer Q followed by Q queries.
 2 x y - count the number of odd numbers in range l to r inclusive.
 */
 
-#include<bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
-#pragma GCC optimize "03"
-#pragma GCC target("sse4")
+#define int long long
 
-#define ll long long int
-#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-#define FRE freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
-#define f(i,n) for(ll i=0;i<n;i++)
-#define fa(i,a,n) for(ll i=a;a<n?i<n:i>=n;a<n?i+=1:i-=1)
-#define loop(i,a, n) for(ll i = a; i <= n; i++)
-#define loopb(i,a, n) for(ll i = a; i >= n; i--)
-#define pb push_back
-#define pf push_front
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-#define setmem(x, k) memset(x, k, sizeof(x))
-#define clr(x) memset(x, 0, sizeof(x))
-#define sortall(x) sort(all(x))
-#define PI 3.1415926535897932384626
-#define MOD 1000000007
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-typedef vector<int>	vi;
-typedef vector<ll> vl;
-typedef vector<pii> vpii;
-typedef vector<pll> vpll;
-typedef vector<vi> vvi;
-typedef vector<vl> vvl;
-typedef long double ld;
-const ll N = 1e5+5;
-// ll a[N], b[N], dp[N], level[N], vis[N], in[N], out[N];
-// vl g[N];
-ll n, m;
+struct SegmentTree {
+    int N;
+    vector<array<int, 2>> st;
+    vector<int>& arr;
 
-// {odd, even}
-pair<ll, ll> st[4*N];
-ll arr[N];
+    SegmentTree(int n, vector<int>& a): arr(a) {
+        N = n;
+        st = vector<array<int, 2>>(4 * N + 5, {0, 0});
+    }
 
-void build(ll si , ll ss , ll se) {
-	if(ss == se) {
-		if(arr[ss] % 2 == 0) {
-			st[si] = {1, 0};
-		} else {
-			st[si] = {0, 1};
-		}
-		return;
-	}
- 
-	ll mid = (ss + se)/2;
-	build(2*si , ss , mid);
-	build(2*si+1 , mid+1 , se);
- 
-	st[si].F = st[2*si].F + st[2*si+1].F;
-	st[si].S = st[2*si].S + st[2*si+1].S;
-}
+    void build() {
+        build(1, 1, N);
+    }
+    
+    void build(int si, int ss, int se) {
+        if(ss == se) {
+            if(arr[ss] % 2 == 0) {
+                st[si] = {1, 0};
+            } else {
+                st[si] = {0, 1};
+            }
+            return;
+        }
+    
+        int mid = (ss + se) / 2;
+        build(2*si, ss, mid);
+        build(2*si+1, mid+1, se);
+    
+        st[si][0] = st[2*si][0] + st[2*si+1][0];
+        st[si][1] = st[2*si][1] + st[2*si+1][1];
+    }
 
-void update(ll si , ll ss , ll se , ll qi, ll newVal) {
-	if(ss == se) {
-		// here ss == se == qi
-		if(arr[ss] % 2 == 0){
-			// reverse even to odd
-			st[si] = {0, 1};
-		} else {
-			// reverse odd to even
-			st[si] = {1, 0};
-		}
+    void update(int qi, int newVal) {
+        update(1, 1, N, qi, newVal);
+    }
 
-		arr[qi] = newVal;
-		return;
-	}
+    void update(int si , int ss , int se , int qi, int newVal) {
+        if(ss == se) {
+            // here ss == se == qi
+            if(arr[ss] % 2 == 0){
+                // reverse even to odd
+                st[si] = {0, 1};
+            } else {
+                // reverse odd to even
+                st[si] = {1, 0};
+            }
 
-	ll mid = (ss + se) / 2;
+            arr[qi] = newVal;
+            return;
+        }
 
-	if(qi <= mid) update(2*si, ss, mid, qi, newVal);
-	else update(2*si + 1, mid + 1, se, qi, newVal);
+        int mid = (ss + se) / 2;
 
-	st[si].F = st[2*si].F + st[2*si + 1].F;
-	st[si].S = st[2*si].S + st[2*si + 1].S;
-}
+        if(qi <= mid) 
+            update(2*si, ss, mid, qi, newVal);
+        else 
+            update(2*si + 1, mid + 1, se, qi, newVal);
 
-ll query(ll si , ll ss , ll se , ll qs , ll qe, ll type) {
-	if(qe < ss || qs > se)
-		return 0;
- 
-	if(ss >= qs && se <= qe) {
-		if(type == 1) return st[si].F;
-		if(type == 2) return st[si].S;
-	}
- 
-	ll mid = (ss + se)/2;
-	ll l = query(2*si , ss , mid , qs , qe, type);
-	ll r = query(2*si+1 , mid+1 , se , qs , qe, type);
- 
-	return l + r;
-}
+        st[si][0] = st[2*si][0] + st[2*si+1][0];
+        st[si][1] = st[2*si][1] + st[2*si+1][1];
+    }
 
-void solve() {
-	ll t, q, x, y;
-	cin >> n;
-	loop(i, 1, n) cin >> arr[i];
-	build(1 , 1 , n);
+    int query(int qs, int qe, int type) {
+        return query(1, 1, N, qs, qe, type);
+    }
 
-	cin >> t;
-	while(t--) {
-		cin >> q >> x >> y;
-		if(q == 0) {
-			if(arr[x] % 2 == y % 2) continue;
-			else update(1, 1, n, x, y);
-		} else {
-			cout << query(1, 1, n, x, y, q) << endl;
-		}
-	}
-}
+    int query(int si, int ss, int se, int qs, int qe, int type) {
+        if (qe < ss || qs > se) return 0;
+
+        if (ss >= qs && se <= qe) {
+            if(type == 1) return st[si][0];
+            if(type == 2) return st[si][1];
+        }
+
+        int mid = (ss + se) / 2;
+        int l = query(2*si, ss, mid, qs, qe, type);
+        int r = query(2*si + 1, mid + 1, se, qs, qe, type);
+        
+        return l + r;
+    }
+};
 
 int32_t main() {
-	IOS
-	ll T;
-	// cin >> T;
-	// while(T--)
-	solve();
-	cerr<<"Time elapsed : "<<clock()*1000.0/CLOCKS_PER_SEC<<"ms"<<'\n'; 
-	return 0;
+    int n, t, q, x, y;
+    cin >> n;
+    vector<int> arr(n + 1);
+    for(int i = 1; i <= n; i++) cin >> arr[i];
+
+    SegmentTree st(n, arr);
+    st.build();
+
+    cin >> t;
+    while(t--) {
+        cin >> q >> x >> y;
+        if(q == 0) {
+            if(arr[x] % 2 == y % 2) continue;
+            st.update(x, y);
+        } else {
+            cout << st.query(x, y, q) << endl;
+        }
+    }
 }

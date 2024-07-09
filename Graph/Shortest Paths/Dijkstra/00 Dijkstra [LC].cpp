@@ -13,9 +13,10 @@ If node i is unreachable from node 0 then answer[i] is -1.
 
 class Solution {
 public:
-    const int inf = 1e9;
+    const int INF = 1e9;
+    
     vector<int> dijkstra(int n, vector<vector<pair<int, int>>>& g, vector<int>& disappear) {
-        vector<int> dp(n, inf);
+        vector<int> dp(n, INF);
 
         priority_queue <pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>> > pq;
         pq.push({0, 0});
@@ -40,7 +41,7 @@ public:
         }
 
         for(int i = 0; i < n; i++) {
-            if(dp[i] >= inf) dp[i] = -1;
+            if(dp[i] >= INF) dp[i] = -1;
         }
         return dp;
     }

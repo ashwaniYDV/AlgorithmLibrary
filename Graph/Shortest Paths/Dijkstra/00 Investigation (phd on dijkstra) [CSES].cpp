@@ -2,7 +2,8 @@
 // https://usaco.guide/problems/cses-1202-investigation/solution
 
 /*
-You are going to travel from city 1 to city n by plane. You would like to find answers to the following questions:
+You are going to travel from city 1 to city n by plane. 
+You would like to find answers to following questions:
 a) what is the minimum price of such a route?
 b) how many minimum-price routes are there? (modulo 10^9+7)
 c) what is the minimum number of flights in a minimum-price route?
@@ -41,6 +42,7 @@ maxFlights[v] = max(maxFlights[v], maxFlights[u] + 1)
 
 /*
 Consider priority queue method 1:
+---------------------------------
 Let priority queue pq state currently = [{2, node1}, {5, node2}]
 node1 is poped frpm pq
 pq state currently = [{5, node2}]
@@ -52,11 +54,13 @@ By vis array we ensure {3, mode2} is popped once and necessary calulations and d
 
 
 Consider priority queue method 2:
+---------------------------------
 This line can be used to counter the above affect.
 if(cost > dis[u]) continue;
 
 
 Consider set method 3:
+---------------------
 vis array is not required in set because we do these 2 steps which ensures {5, node2} is deleted and then {3, node2} is inserted 
 st.erase({dis[v], v});
 st.insert({dis[v], v});

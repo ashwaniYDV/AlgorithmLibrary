@@ -53,6 +53,7 @@ struct BIT2D {
         return query1(x2, y2) - query1(x1 - 1, y2) - query1(x2, y1 - 1) + query1(x1 - 1, y1 - 1);
     }
 } t;
+
 int main() {
     int n, m;
     cin >> n >> m;

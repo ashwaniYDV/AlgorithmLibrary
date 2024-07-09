@@ -6,7 +6,7 @@ Notes:
 x & (-x) gives the last set bit in a number x
 -x = 2’s complement of x
 
-1 based index is folled in BIT.
+1 based index is followed in BIT.
 
 BIT[x] = a[x],                  if x is odd                   
        = a[1] + ... + a[x],     if x is power of 2
@@ -64,5 +64,4 @@ Input:
 
 Output:
 Sum of first 3 elements is: 6
-
 */
