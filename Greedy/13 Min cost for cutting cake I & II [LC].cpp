@@ -1,4 +1,7 @@
 // https://leetcode.com/problems/minimum-cost-for-cutting-cake-i/
+// https://leetcode.com/problems/minimum-cost-for-cutting-cake-ii/
+
+// https://youtu.be/wLfGkk1x-lc?si=MhT8vke6OvYluBfE
 
 /*
 There is an m x n cake that needs to be cut into 1 x 1 pieces.
@@ -17,12 +20,75 @@ Return the minimum total cost to cut the entire cake into 1 x 1 pieces.
 */
 
 
-// https://leetcode.com/problems/minimum-cost-for-cutting-cake-i/
 /*
+Diff bw question i and ii is constraints:
+--------------------------------
 Constraints:
 1 <= m, n <= 20
+
+Constraints:
+1 <= m, n <= 10^5
 */
 
+
+// Greedy solution 
+/*
+Intuition:
+----------
+* Make the most expensive cut as early as possible, which leads to a greedy solution.
+* Order of horizontalCut and verticalCut doesn't matter, so we can sort them.
+*/
+
+class Solution {
+public:
+    long long minimumCost(int n, int m, vector<int>& horizontalCut, vector<int>& verticalCut) {
+        // sort in descending order
+        sort(horizontalCut.begin(), horizontalCut.end(), greater<int>());
+        sort(verticalCut.begin(), verticalCut.end(), greater<int>());
+
+        /*
+        initially, no of vertical and horizontal sections is 1 
+        which will increase in successive cuttings
+        */
+        int noOfHorSections = 1, noOfVerSections = 1;
+        long long res = 0;
+
+        int i = 0, j = 0;
+        n--, m--;
+        
+        while(i < n && j < m) {
+            // greedily take the max cut first which will contribute less in answer since noOfHorSections or noOfVerSections will be lesser
+            if(horizontalCut[i] > verticalCut[j]) {
+                res += horizontalCut[i] * noOfVerSections;
+                noOfHorSections++;
+                i++;
+            } else {
+                res += verticalCut[j] * noOfHorSections;
+                noOfVerSections++;
+                j++;
+            }
+        }
+
+        while(i < n) {
+            res += horizontalCut[i] * noOfVerSections;
+            noOfHorSections++;
+            i++;
+        }
+
+        while(j < m) {
+            res += verticalCut[j] * noOfHorSections;
+            noOfVerSections++;
+            j++;
+        }
+
+        return res;
+    }
+};
+
+
+
+
+// DP solution (Time = O(n ^ 4))
 class Solution {
 public:
     int m, n;
@@ -57,11 +123,3 @@ public:
         return f(1, n, 1, m, horCut, verCut);
     }
 };
-
-
-
-// https://leetcode.com/problems/minimum-cost-for-cutting-cake-ii/
-/*
-Constraints:
-1 <= m, n <= 10^5
-*/

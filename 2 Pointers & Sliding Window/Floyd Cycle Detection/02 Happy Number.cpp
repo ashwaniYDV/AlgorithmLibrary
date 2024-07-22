@@ -63,10 +63,12 @@ public:
     bool isHappy(int n) {
         int slow = n, fast = n;
 
-        do {
+        while(1) {
             slow = digitSquareSum(slow);
             fast = digitSquareSum(digitSquareSum(fast));
-        } while(slow != fast);
+
+            if(slow == fast) break;
+        }
 
         return slow == 1;
     }

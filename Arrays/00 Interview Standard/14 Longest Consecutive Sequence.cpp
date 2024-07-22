@@ -40,30 +40,30 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
         unordered_set<int> st(nums.begin(), nums.end());
-        int max_len = 0;
+
+        // initialize result by 0
+        int res = 0;
 
         for (int x: nums) {
             // check if the current element `x` is a candidate for starting a sequence,
             // i.e., the previous element `x-1` doesn't exist in the set
-            if (st.find(x - 1) == st.end()) {
+            if (!st.count(x - 1)) {
                 // stores the length of subsequence, starting with the current element
-                int len = 1;
+                int cnt = 1;
 
-                // check for presence of elements `e+1`, `e+2`, `e+3`, … ,`e+len` in `S`
-                while (st.find(x + len) != st.end()) {
-                    len++;
+                // check for presence of elements `x+1`, `x+2`, `x+3`, … ,`x+len` in `st`
+                while (st.count(x + cnt)) {
+                    cnt++;
                 }
 
-                // update result with the length of current consecutive subsequence
-                max_len = max(max_len, len);
+                res = max(res, cnt);
             }
         }
 
-        return max_len;
+        // return result
+        return res;
     }
 };
-
-
 
 
 
