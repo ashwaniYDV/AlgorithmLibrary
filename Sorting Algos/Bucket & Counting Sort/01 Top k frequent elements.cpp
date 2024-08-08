@@ -1,5 +1,15 @@
-// https://leetcode.com/problems/top-k-frequent-elements/submissions/1288863595/
+// https://leetcode.com/problems/top-k-frequent-elements/description/
 
+/*
+Given an integer array nums and an integer k, return k most frequent elements. 
+You may return the answer in any order.
+
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+
+Input: nums = [1], k = 1
+Output: [1]
+*/
 
 // Method 1.1: Bucket sort, Time = O(N)
 /*
@@ -68,7 +78,7 @@ public:
         }
         
         vector<int> res;
-        // pair<first, second>: first is frequency,  second is number
+        // pair<first, second>: {frequency, number}
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
         for(auto it: mp) {
             pq.push({it.second, it.first});

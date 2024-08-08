@@ -1,12 +1,10 @@
-// https://www.geeksforgeeks.org/efficiently-merging-two-sorted-arrays-with-o1-extra-space/
-// https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays5135/1
-// https://youtu.be/hVl2b3bLzBw
-
+// https://youtu.be/n7uwj04E0I4?si=mzCRF4U3BqCh5Ah9
+// https://takeuforward.org/data-structure/merge-two-sorted-arrays-without-extra-space/
+// https://leetcode.com/problems/merge-sorted-array/description/
 
 /*
 The intuition behind this is SHELL SORT
 */
-
 
 class Solution {
 public:
@@ -43,12 +41,6 @@ public:
         }
     }
 };
-
-
-
-
-
-
 
 
 
