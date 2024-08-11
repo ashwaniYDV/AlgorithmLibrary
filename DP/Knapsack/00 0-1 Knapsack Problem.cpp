@@ -49,26 +49,6 @@ void solve() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void dpfun(int n, int W, vector<int>& weight, vector<int>& value) {
     int totalValue = 0;
     
