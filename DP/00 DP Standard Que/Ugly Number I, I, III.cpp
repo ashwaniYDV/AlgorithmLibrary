@@ -28,24 +28,12 @@ public:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // https://leetcode.com/problems/ugly-number-ii/
 
 /*
 Ugly numbers are numbers whose only prime factors are 2, 3 or 5. 
-The sequence 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, … shows the first 11 ugly numbers. By convention, 1 is included. 
+The sequence 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, … shows the first 11 ugly numbers. 
+By convention, 1 is included. 
 Given a number n, the task is to find n’th Ugly number.
 */
 
@@ -66,12 +54,16 @@ Let me try to explain this using an example.
 Let's say we have the first 3 ugly numbers 1, 2, 3. What would be the next number? 
 Given the definition, the next number has to be the the smallest number among 2*(1,2,3), 3*(1,2,3), 5*(1,2,3). 
 Obviously, the smallest number is 2 * 1 = 2. But wait, 2 is already in there. 
-So precisely speaking, the next number has to be the the smallest number among all the existing numbers multiplied by 2, 3,5 that isn't in the list already. 
+
+So precisely speaking, the next number has to be the the smallest number among all the existing numbers multiplied by 2, 3, 5 that isn't in the list already. 
 Now, we can traverse all numbers and maintain a hashset if we want, but it would become O(N^2). 
-Good news is that we can solve this in a DP-like approach. First, we assume there is only one number in the list, which is 1. 
+
+Good news is that we can solve this in a DP-like approach. 
+First, we assume there is only one number in the list, which is 1. 
 The next number is Min(2 * 1, 3 * 1, 5 * 1) = 2 and it is not in the list. 
 Because we have already considered 2*1 (we move the pointer to its next position, which is 2), 
-now we only need to consider 2 * 2, 3 * 1, 5 * 1 in the next iteration. This way, we don't have to worry about finding a number that is already in the list.
+now we only need to consider 2 * 2, 3 * 1, 5 * 1 in the next iteration. 
+This way, we don't have to worry about finding a number that is already in the list.
 
 Edge case:
 a[i] = min({a[t2]*2, a[t3]*3, a[t5]*5});
@@ -100,36 +92,6 @@ public:
         return a[n-1];
     }
 };
-
-
-class Solution {
-public:
-    int nthUglyNumber(int n) {
-        vector<int> a(n+1);
-        a[1] = 1;
-        int t2 = 1, t3 = 1, t5 = 1; //pointers for 2, 3, 5
-        
-        for(int i = 2; i <= n ; i++) {
-            a[i] = min({a[t2]*2, a[t3]*3, a[t5]*5});
-            if(a[i] == a[t2]*2) t2++; 
-            if(a[i] == a[t3]*3) t3++;
-            if(a[i] == a[t5]*5) t5++;
-        }
-        return a[n];
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

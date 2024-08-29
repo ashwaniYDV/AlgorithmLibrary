@@ -20,6 +20,12 @@
         "regex": "cpp",
         "string_view": "cpp",
         "unordered_map": "cpp",
-        "unordered_set": "cpp"
+        "unordered_set": "cpp",
+        "__bit_reference": "cpp",
+        "bitset": "cpp",
+        "__memory": "cpp",
+        "locale": "cpp",
+        "ratio": "cpp",
+        "tuple": "cpp"
     }
 }

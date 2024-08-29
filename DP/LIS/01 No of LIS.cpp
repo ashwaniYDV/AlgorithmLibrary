@@ -12,7 +12,7 @@ public:
         int lis = 1;
         for(int i = 1; i < n; i++) {
             for(int j = 0; j < i; j++) {
-                if(nums[i] > nums[j]){
+                if(nums[i] > nums[j]) {
                     if (dp_lis[j] + 1 > dp_lis[i]) {
                         dp_lis[i] = dp_lis[j] + 1;
                         dp_cnt[i] = dp_cnt[j];

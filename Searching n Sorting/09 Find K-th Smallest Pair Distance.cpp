@@ -30,7 +30,7 @@ n == nums.length
 
 
 /*
-Binary search for the answer and heck how many pairs have distance <= X.
+Binary search for the answer and check how many pairs have distance <= k.
 
 FFFFFTTTTTTTT
 */
@@ -38,6 +38,7 @@ FFFFFTTTTTTTT
 
 class Solution {
 public:
+    // Time of this function = O(n)
     bool check(int mid, vector<int>& nums, int k) {
         int cnt = 0, n = nums.size();
         for (int i = 0, j = 0; i < n; i++) {
@@ -55,6 +56,37 @@ public:
             int mid = lo + (hi - lo) / 2;
             if (check(mid, nums, k)) {
                 hi = mid;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return lo;
+    }
+};
+
+
+
+
+class Solution {
+public:
+    // Time of this function = O(n)
+    bool check(int mid, vector<int>& nums, int k) {
+        int cnt = 0, n = nums.size();
+        for (int i = 0, j = 0; i < n; i++) {
+            while (j < n && nums[j] - nums[i] <= mid) j++;
+            cnt += j - i - 1;
+        }
+        return cnt >= k;
+    }
+    int smallestDistancePair(vector<int>& nums, int k) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        
+        int lo = 0, hi = nums[n - 1] - nums[0];
+        while(lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if(check(mid, nums, k)) {
+                hi = mid - 1;
             } else {
                 lo = mid + 1;
             }

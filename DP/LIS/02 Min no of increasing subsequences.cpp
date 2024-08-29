@@ -1,5 +1,6 @@
 // https://www.geeksforgeeks.org/minimum-number-of-increasing-subsequences/
 
+// Question 1
 /*
 Minimum number of increasing subsequences
 
@@ -23,8 +24,20 @@ Output : 3
 */
 
 
+// Question 2
 /*
-If we focus on the example we can see that the Minimum number of increasing subsequences equals to the 
+There are N doors in a corridor and the i'th door has an integer X[i] written on it.
+You have to paint each door. 
+However, the condition is that if the i'th and j'th door are painted with same color, where i < j, then X[i] < X[j].
+What is the minimum number of colors needed to paint every door?
+*/
+
+
+
+/*
+Intuition
+---------
+Minimum number of increasing subsequences equals to the 
 length of longest decreasing subsequence where each element from the longest decreasing subsequence represents an increasing subsequence, 
 so it can be found in N*Log(N) time complexity in the same way as longest increasing subsequence by multiplying all the elements with -1. 
 
