@@ -1,27 +1,18 @@
+// Min Size Subarray Sum >= target (array has both +ve -ve integers) [monotonic queue]
 // https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/
 
 /*
 Given an integer array nums and an integer k, return the length of the shortest non-empty subarray of nums with a sum of at least k. 
 If there is no such subarray, return -1.
 
-
-Example 1:
 Input: nums = [1], k = 1
 Output: 1
 
-Example 2:
 Input: nums = [1,2], k = 4
 Output: -1
 
-Example 3:
 Input: nums = [2,-1,2], k = 3
 Output: 3
- 
-
-Constraints:
-1 <= nums.length <= 10^5
--10^5 <= nums[i] <= 10^5
-1 <= k <= 10^9
 */
 
 
@@ -35,9 +26,8 @@ Complexity:
 Time O(N)
 Space O(N)
 
-
 How to think of such solutions?
-Basic idea, for array starting at every A[i], find the shortest one with sum at leat K.
+Basic idea, for subarray starting at every A[i], find the shortest one with sum at leat K.
 In my solution, for pref[i], find the smallest j that pref[j] - pref[i] >= K.
 Keep this in mind for understanding two while loops.
 
@@ -71,7 +61,7 @@ public:
             pref[i] = nums[i] + pref[i - 1];
         }
 
-        deque<int> d;
+        deque<int> d; // [increasing dq]
         int res = n + 1;
 
         for (int i = 0; i < n; i++) {
@@ -118,5 +108,108 @@ public:
             d.push_back(i);
         }
         return res <= n ? res : -1;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+// Min Size Subarray Sum >= target (array has only +ve integers)
+// https://leetcode.com/problems/minimum-size-subarray-sum/
+
+/*
+Given an array of positive integers nums and a positive integer target, 
+return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1, numsr] of which the sum is greater than or equal to target. 
+If there is no such subarray, return 0 instead.
+
+
+Input: target = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+
+Input: target = 4, nums = [1,4,4]
+Output: 1
+
+Input: target = 11, nums = [1,1,1,1,1,1,1,1]
+Output: 0
+*/
+
+
+// Method 1
+class Solution {
+public:
+    const int INF = 1e9;
+
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int n = nums.size();
+        
+        int left = 0, res = INF, sum = 0;
+        
+        for(int right = 0; right < n; right++) {
+            sum += nums[right];
+            
+            while(sum - nums[left] >= target) {
+                sum -= nums[left];
+                left++;
+            }
+            
+            if(sum >= target) res = min(res, right - left + 1);
+        }
+       
+        sum = 0;
+        for(int i = 0; i < n; i++) sum += nums[i];
+        
+        if(res == INF) return 0;
+        
+        if(sum < target) return 0;
+        return res;
+    }
+};
+
+// Method 2: Binary Search (FFFFFFFFFTTTTTTTTTT)
+class Solution {
+public:
+    int n;
+    bool check(int mid, int target, vector<int>& nums) {
+        int sum = 0;
+        for(int i = 0; i < mid; i++) {
+            sum += nums[i];
+        }
+        if(sum >= target) return true;
+        
+        for(int i = mid; i < n; i++) {
+            sum -= nums[i - mid];
+            sum += nums[i];
+            if(sum >= target) return true;
+        }
+        return false;
+    }
+    
+    int minSubArrayLen(int target, vector<int>& nums) {
+        n = nums.size();
+        
+        int lo = 1, hi = n;
+        
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            
+            if(check(mid, target, nums)) {
+                hi = mid;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        
+        int sum = 0;
+        for(int i = 0; i < n; i++) sum += nums[i];
+        
+        if(lo == n && sum < target) return 0;
+        return lo;
     }
 };

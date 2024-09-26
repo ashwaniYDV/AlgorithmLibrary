@@ -13,26 +13,29 @@ class Solution {
         if(k >= n)
             return "-1";
             
-        stack<char> stk;
+        stack<char> st;  // monotonic increasing stack [a, b, c, ...]
         
-        for(int i=0;i<n;i++){
+        for(int i = 0; i < n; i++) {
             char ch = s[i];
-            while(!stk.empty() && stk.top() > ch && k>0){
-                stk.pop();
+
+            // keep the stack monotonic increasing
+            while(!st.empty() && st.top() > ch && k > 0) {
+                st.pop();
                 k--;
             }
-            stk.push(ch);
+            st.push(ch);
         }
         
-        while(k>0 && !stk.empty()){
-            stk.pop();
+        // remove remaining elements
+        while(k > 0 && !st.empty()) {
+            st.pop();
             k--;
         }
         
         string ans = "";
-        while(!stk.empty()){
-            ans += stk.top();
-            stk.pop();
+        while(!st.empty()){
+            ans += st.top();
+            st.pop();
         }
         
         reverse(ans.begin(),ans.end());

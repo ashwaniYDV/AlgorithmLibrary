@@ -1,5 +1,4 @@
 // https://leetcode.com/problems/make-sum-divisible-by-p/
-// https://www.geeksforgeeks.org/length-of-smallest-subarray-to-be-removed-to-make-sum-of-remaining-elements-divisible-by-k/
 
 /*
 Given an array of positive integers nums, remove the smallest subarray (possibly empty) 
@@ -92,17 +91,6 @@ public:
         return res < n ? res : -1;
     }
 };
-
-
-
-
-
-
-
-
-
-
-
 
 
 

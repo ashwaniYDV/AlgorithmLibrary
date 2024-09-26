@@ -1,6 +1,5 @@
 // https://leetcode.com/problems/implement-stack-using-queues/
-// https://www.geeksforgeeks.org/implement-stack-using-queue/
-
+// https://takeuforward.org/data-structure/implement-stack-using-single-queue/
 
 // Method 1: Making push operation costly
 class MyStack {
@@ -38,9 +37,6 @@ public:
         return q.size() == 0;
     }
 };
-
-
-
 
 
 

@@ -40,3 +40,18 @@ public:
         return res;
     }
 };
+
+
+class Solution {
+public:
+    int longestSubsequence(vector<int>& arr, int difference) {
+        unordered_map<int, int> dp;
+        
+        int res = 1;
+        for(int x: arr) {
+            dp[x] = 1 + dp[x - difference];
+            res = max(res, dp[x]);
+        }
+        return res;
+    }
+};

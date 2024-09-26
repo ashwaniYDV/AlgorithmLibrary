@@ -1,3 +1,35 @@
+// https://leetcode.com/problems/longest-increasing-subsequence/
+
+
+// O(n^2)
+/* 
+dp[i] is the length of the longest subsequence that ends at the i'th element
+i.e. dp[i] is storing the value of LIS including nums[i] as the last element of the LIS array.
+*/
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        
+        int mx = 1;
+        vector<int> dp(n+1, 1);
+        
+        for(int i = 1; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                if(nums[i] > nums[j]) {
+                    dp[i] = max(dp[i], dp[j] + 1);
+                }
+            }
+            mx = max(mx, dp[i]);
+        }
+
+        return mx;
+    }
+};
+
+
+
+
 
 // O(n.log(n))
 // https://youtu.be/on2hvxBXJH4?si=dCzecFQHRgUGpfav

@@ -22,11 +22,11 @@ The functions get and put must each run in O(1) average time complexity.
 Note: I tried solving using deque, but it didn't worked.
 struct Node {
     int val;
-    list<int>::iterator itr;
+    deque<int>::iterator itr;
 };
 deque<int> dq;
 
-Reasoin = An insertion / deletion in middle of deque invalidates all iterators and references to elements (and thus pointers to elements)
+Reason = An insertion/deletion in middle of deque invalidates all iterators and references to elements (and thus pointers to elements)
 */
 class LRUCache {
 public:
@@ -56,6 +56,37 @@ public:
             cache.erase(key);
         }
         if (cache.size() == cap) {
+            cache.erase(dll.back());
+            dll.pop_back();
+        }
+
+        dll.push_front(key);
+        cache[key] = {value, dll.begin()};
+    }
+};
+
+
+class LRUCache {
+    int cap;
+    list<int> dll;
+    unordered_map<int, pair<int, list<int>::iterator>> cache; // key -> {val, dll_pointer}
+public:
+    LRUCache(int capacity) {
+        cap = capacity;
+    }
+    
+    int get(int key) {
+        if(!cache.count(key)) return -1;
+        put(key, cache[key].first);
+        return cache[key].first;
+    }
+    
+    void put(int key, int value) {
+        if(cache.count(key)) {
+            dll.erase(cache[key].second);
+            cache.erase(key);
+        }
+        if(cache.size() == cap) {
             cache.erase(dll.back());
             dll.pop_back();
         }
@@ -139,11 +170,6 @@ public:
         cache[key] = head->next; 
     }
 };
-
-
-
-
-
 
 
 

@@ -12,12 +12,15 @@ Output: [3,3,5,5,6,7]
 */
 
 // Method 1
+/*
+monotonic dequeue 
+*/
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         int n = nums.size();
         vector<int> res;
-        deque<int> dq;
+        deque<int> dq; // [decreasing dq]
 
         for (int i = 0; i < k; ++i) {
             // For every element, previous smaller elements are useless so remove them from deque

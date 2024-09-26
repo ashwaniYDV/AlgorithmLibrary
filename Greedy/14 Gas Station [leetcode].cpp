@@ -33,3 +33,39 @@ public:
         return start;
     }
 };
+
+
+
+
+// My method
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int n = gas.size();
+
+        int total = 0;
+        for(int i = 0; i < n; i++) {
+            gas[i] -= cost[i];
+            total += gas[i];
+        }
+        if(total < 0) return -1;
+
+        int i = 0;
+        while(i < n) {
+            int sum = 0, cnt = 0, j = i;
+            while(1) {
+                sum += gas[j];
+                if(sum < 0) {
+                    i = j + 1;
+                    break;
+                }
+                cnt++;
+                if(cnt == n) return i;
+                j++;
+                j %= n;
+            }
+        }
+
+        return -1;
+    }
+};

@@ -10,84 +10,64 @@ Page Replacement Algorithm
 
 // Method 1: Using STL List
 class LFUCache {
-private:
     struct Node {
         int value;
         list<int>::iterator itr;
     };
 
-    // <key, Node>
-    unordered_map<int, Node> cache;
-    // <key, freq>
-    unordered_map<int, int> freq;
-    // <freq, list<key>>
-    unordered_map<int, list<int>> m_countKeyMap;
-    int minFrequency;
     int cap;
-
+    unordered_map<int, Node> cache; // key -> Node
+    unordered_map<int, int> freq; // // key -> freq
+    unordered_map<int, list<int>> freqToAllNodesMap; // freq -> list<key>
+    int minFrequency;
 public:
     LFUCache(int capacity) {
         cap = capacity;
         minFrequency = 0;
     }
-
+    
     int get(int key) {
-        if (!cache.count(key) || cap <= 0) return -1;
-
-        // update frequency and return value
+        if(!cache.count(key)) return -1;
         put(key, cache[key].value);
         return cache[key].value;
     }
-
+    
     void put(int key, int value) {
-        if (cap <= 0) return;
-
+        // If key is present just update value and frequency
+        if(cache.count(key)) {
+            freqToAllNodesMap[freq[key]].erase(cache[key].itr);
+            if (freqToAllNodesMap[freq[key]].empty()) {
+                freqToAllNodesMap.erase(freq[key]);
+                if (minFrequency == freq[key]) {
+                    minFrequency++;
+                }
+            }
+            
+            freq[key]++;
+            freqToAllNodesMap[freq[key]].push_front(key);
+            cache[key] = {value, freqToAllNodesMap[freq[key]].begin()};
+        } 
         // If key is not present and capacity has exceeded,
         // then remove the key entry with least frequency
         // else just make the new key entry
-        if (cache.find(key) == cache.end()) {
+        else {
             if (cache.size() == cap) {
-                int keyToDelete = m_countKeyMap[minFrequency].back();
-                m_countKeyMap[minFrequency].pop_back();
-                if (m_countKeyMap[minFrequency].empty()) {
-                    m_countKeyMap.erase(minFrequency);
+                int keyToDelete = freqToAllNodesMap[minFrequency].back();
+                freqToAllNodesMap[minFrequency].pop_back();
+                if (freqToAllNodesMap[minFrequency].empty()) {
+                    freqToAllNodesMap.erase(minFrequency);
                 }
                 cache.erase(keyToDelete);
                 freq.erase(keyToDelete);
             }
             freq[key] = 0;
             minFrequency = 0;
-            m_countKeyMap[freq[key]].push_front(key);
-            cache[key] = {value, m_countKeyMap[freq[key]].begin()};
+            freqToAllNodesMap[freq[key]].push_front(key);
+            cache[key] = {value, freqToAllNodesMap[freq[key]].begin()};
         }
-        // Just update value and frequency
-        else {
-            m_countKeyMap[freq[key]].erase(cache[key].itr);
-            if (m_countKeyMap[freq[key]].empty()) {
-                if (minFrequency == freq[key]) {
-                    minFrequency++;
-                }
-                m_countKeyMap.erase(freq[key]);
-            }
-
-            freq[key]++;
-            m_countKeyMap[freq[key]].push_front(key);
-            cache[key] = {value, m_countKeyMap[freq[key]].begin()};
-        }
+        
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
