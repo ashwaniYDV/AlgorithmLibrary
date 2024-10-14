@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/reconstruct-itinerary/
+// https://youtu.be/WYqsg5dziaQ?si=0nGZeavWS67-52K7
 
 /*
 You are given a list of airline tickets where tickets[i] = [fromi, toi] represent the departure and the arrival airports of one flight. 
@@ -13,43 +14,60 @@ You may assume all tickets form at least one valid itinerary. You must use all t
 
 
 /*
-Just Eulerian path. Greedy DFS, building the route backwards when retreating.
+Some observations:
+------------------
+a) Tickets are only one way (directed)
+b) Return route with smallest lexicographical order
+c) All tickets must form a valid eulerian tour, thus graph should be one connected component
+d) One must use all tickets exactly once, thus we can travel an edge exactly once
+e) We can travek a node multiple times
+
+Note:
+----
+* We may not always get a valid eulerian circuit/tour by just following the lexicographical order traversal.
+* Since the node encountered during lexicographical order can be a dead end.
+
+Eg: [[J, K], [J, N], [N, J]]
+So, adj list = 
+    J -> [K, N]
+    K -> []
+    N -> [J]
+If we travel: J -> K -> then we cannot go further.
+so we should follow this: J -> N -> J -> K
+
+So to handle these cases, we can either use stack (in iterative soln) 
+or
+we can add the node u to res after processing all child node v (in recursive soln).
 */
 
 
 // Recursive version
-class Solution {    
+class Solution {
 public:
-    vector<string> res;
-    unordered_map<string, multiset<string>> g;
-    
-    void dfs(string u) {
-        while (g[u].size()) {
+    void dfs(string u, unordered_map<string, multiset<string>>& g, vector<string>& res) {
+        while(!g[u].empty()) {
             string v = *g[u].begin();
+            // marking this edge as visited by removing it
             g[u].erase(g[u].begin());
-            dfs(v);
+            dfs(v, g, res);
         }
+
         res.push_back(u);
     }
-    
     vector<string> findItinerary(vector<vector<string>>& tickets) {
-        g.clear();
-        
-        // Make graph
-        for(auto it: tickets) {
-           g[it[0]].insert(it[1]);
+        unordered_map<string, multiset<string>> g;
+
+        for(auto& it: tickets) {
+            g[it[0]].insert(it[1]);
         }
-        
-        dfs("JFK");
-        
+
+        vector<string> res;
+        dfs("JFK", g, res);
+
         reverse(res.begin(), res.end());
         return res;
     }
 };
-
-
-
-
 
 
 
@@ -68,13 +86,12 @@ public:
         }
         
         stack<string> st;
-        // JFK is our fixed starting point
         st.push("JFK");
         
         while(!st.empty()) {
             string src = st.top();
-            // No further travel possible 
-            if(g[src].size() == 0) {
+            // No further travel possible, so add it to res
+            if(g[src].empty()) {
                 res.push_back(src);
                 st.pop();
             } else {

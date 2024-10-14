@@ -1,4 +1,8 @@
-// dp_lds[i] stores value of longest decreasing subsequence ending with nums[i]  (i.e including nums[i])
+/*
+LDS can be implemented in 2 ways depending on question
+a) dp_lds[i] = longest decreasing subsequence ending with nums[i]  (i.e including nums[i])
+b) dp_lds[i] = longest decreasing subsequence starting with nums[i]  (i.e including nums[i])
+*/
 
 void solve() {
     cin >> n;

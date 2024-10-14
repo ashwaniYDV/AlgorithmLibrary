@@ -26,6 +26,7 @@ If bricks < 0, we can't make this move, then we return current index i.
 If we can reach the last building, we return n - 1.
 */
 
+// Method 1.1: using min heap
 class Solution {
 public:
     int furthestBuilding(vector<int>& heights, int bricks, int ladders) {
@@ -33,32 +34,47 @@ public:
         priority_queue<int, vector<int>, greater<int>> minHeap;
         
         for (int i = 0; i < n - 1; i++) {
-            int d = heights[i + 1] - heights[i];
-            if (d > 0)
-                minHeap.push(d); // minHeap = reverse maxHeap
+            if(heights[i] >= heights[i+1]) continue;
+
+            minHeap.push(heights[i + 1] - heights[i]);
+            
             if (minHeap.size() > ladders) {
                 bricks -= minHeap.top();
                 minHeap.pop();
             }
-            if (bricks < 0)
-                return i;
+            if (bricks < 0) return i;
         }
         return n - 1;
         
     }
 };
 
+// Method 1.2: using max heap
+class Solution {
+public:
+    int furthestBuilding(vector<int>& h, int bricks, int ladders) {
+        int n = h.size();
+        priority_queue<int> pq;
 
+        for(int i = 0; i < n-1; i++) {
+            if(h[i] >= h[i+1]) continue;
 
+            int bricksUsed = h[i+1] - h[i];
+            pq.push(bricksUsed);
+            bricks -= bricksUsed;
 
+            if(bricks < 0) {
+                if(ladders == 0) return i;
 
+                ladders--;
+                bricks += pq.top();
+                pq.pop();
+            }
+        }
 
-
-
-
-
-
-
+        return n-1;
+    }
+};
 
 
 

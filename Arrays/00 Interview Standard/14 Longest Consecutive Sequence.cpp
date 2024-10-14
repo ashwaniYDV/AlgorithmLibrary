@@ -45,19 +45,20 @@ public:
         int res = 0;
 
         for (int x: nums) {
-            // check if the current element `x` is a candidate for starting a sequence,
-            // i.e., the previous element `x-1` doesn't exist in the set
-            if (!st.count(x - 1)) {
-                // stores the length of subsequence, starting with the current element
-                int cnt = 1;
-
-                // check for presence of elements `x+1`, `x+2`, `x+3`, … ,`x+len` in `st`
-                while (st.count(x + cnt)) {
-                    cnt++;
-                }
-
-                res = max(res, cnt);
+            // if cur ele is a candidate for starting a sequence, then previous ele should not exist
+            if (st.count(x - 1)) {
+                continue;
             }
+            
+            // stores the length of subsequence, starting with the current element
+            int cnt = 1;
+
+            // check for presence of elements `x+1`, `x+2`, `x+3`, … ,`x+len` in `st`
+            while (st.count(x + cnt)) {
+                cnt++;
+            }
+
+            res = max(res, cnt);
         }
 
         // return result
