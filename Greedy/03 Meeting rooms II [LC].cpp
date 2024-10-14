@@ -10,7 +10,7 @@ Input: intervals = [[7,10],[2,4]]
 Output: 1
 */
 
-// Method 1.1
+// Method 1
 class Solution {
 public:
     int minMeetingRooms(vector<vector<int>>& intervals) {
@@ -42,40 +42,6 @@ public:
         }
 
         return result;
-    }
-};
-
-
-
-
-// Method 1.2
-class Solution {
-public:
-    int minMeetingRooms(vector<vector<int>>& intervals) {
-        int n = intervals.size();
-        
-        vector<int> arr, dept;
-
-        for(auto& it: intervals) {
-            arr.push_back(it[0]);
-            dept.push_back(it[1]);
-        }
-
-        sort(arr.begin(), arr.end());
-        sort(dept.begin(), dept.end());
-
-        int min_room_needed = 0;
-        int j = 0;
-
-        for (int i = 0; i < n; i++) {
-            if (arr[i] < dept[j]) {
-                min_room_needed++;
-            } else {
-                j++;
-            }
-        }
-
-        return min_room_needed;
     }
 };
 
