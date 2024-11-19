@@ -5,14 +5,11 @@
 Given an integer array nums and an integer k, return the length of the shortest non-empty subarray of nums with a sum of at least k. 
 If there is no such subarray, return -1.
 
-Input: nums = [1], k = 1
-Output: 1
+Input: nums = [2,-1,2], k = 3
+Output: 3
 
 Input: nums = [1,2], k = 4
 Output: -1
-
-Input: nums = [2,-1,2], k = 3
-Output: 3
  
 
 Constraints:
@@ -27,11 +24,6 @@ Constraints:
 // Monotonic queue or monoque concept
 
 What makes this problem hard is that we have negative values (otherwise we could have used sliding window or binary search).
-
-Complexity:
-Time O(N)
-Space O(N)
-
 
 How to think of such solutions?
 Basic idea, for array starting at every A[i], find the shortest one with sum at leat K.
@@ -58,14 +50,16 @@ So no need to keep d.back() in our deque.
 
 
 
+// Method 1.1
 class Solution {
 public:
-    int shortestSubarray(vector<int>& nums, int k) {
-        int n = nums.size();
-        vector<int> pref(n);
-        pref[0] = nums[0];
+    int shortestSubarray(vector<int>& a, int k) {
+        int n = a.size();
+
+        vector<long long> pref(n);
+        pref[0] = a[0];
         for (int i = 1; i < n; i++) {
-            pref[i] = nums[i] + pref[i - 1];
+            pref[i] = a[i] + pref[i - 1];
         }
 
         deque<int> d;
@@ -78,7 +72,7 @@ public:
                 res = min(res, i - d.front());
                 d.pop_front();
             }
-            while (!d.empty() && pref[i] <= pref[d.back()]) {
+            while (!d.empty() && pref[d.back()] >= pref[i]) {
                 d.pop_back();
             }
 
@@ -89,26 +83,24 @@ public:
 };
 
 
-
-
-
+// Method 1.2
 class Solution {
 public:
-    int shortestSubarray(vector<int>& nums, int k) {
-        int n = nums.size();
+    int shortestSubarray(vector<int>& a, int k) {
+        int n = a.size();
         deque<int> d;
         int res = n + 1;
 
         for (int i = 0; i < n; i++) {
-            if (i > 0) nums[i] += nums[i - 1];
+            if (i > 0) a[i] += a[i - 1];
 
-            if (nums[i] >= k) res = min(res, i + 1);
+            if (a[i] >= k) res = min(res, i + 1);
 
-            while (!d.empty() && nums[i] - nums[d.front()] >= k) {
+            while (!d.empty() && a[i] - a[d.front()] >= k) {
                 res = min(res, i - d.front());
                 d.pop_front();
             }
-            while (!d.empty() && nums[i] <= nums[d.back()]) {
+            while (!d.empty() && a[i] <= a[d.back()]) {
                 d.pop_back();
             }
 

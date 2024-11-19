@@ -7,16 +7,12 @@ return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1
 If there is no such subarray, return 0 instead.
 
 
-Example 1:
 Input: target = 7, nums = [2,3,1,2,4,3]
 Output: 2
-Explanation: The subarray [4,3] has the minimal length under the problem constraint.
 
-Example 2:
 Input: target = 4, nums = [1,4,4]
 Output: 1
 
-Example 3:
 Input: target = 11, nums = [1,1,1,1,1,1,1,1]
 Output: 0
  
@@ -65,9 +61,7 @@ public:
 
 
 
-
-
-
+// Method 2.1
 class Solution {
 public:
     int shortestSubarray(vector<int>& nums, int k) {
@@ -88,7 +82,7 @@ public:
                 res = min(res, i - d.front());
                 d.pop_front();
             }
-            while (!d.empty() && pref[i] <= pref[d.back()]) {
+            while (!d.empty() && pref[d.back()] >= pref[i]) {
                 d.pop_back();
             }
 
@@ -99,6 +93,7 @@ public:
 };
 
 
+// Method 2.2
 class Solution {
 public:
     int minSubArrayLen(int target, vector<int>& nums) {
@@ -115,7 +110,7 @@ public:
                 res = min(res, i - d.front());
                 d.pop_front();
             }
-            while (!d.empty() && nums[i] <= nums[d.back()]) {
+            while (!d.empty() && nums[d.back()] >= nums[i]) {
                 d.pop_back();
             }
 
@@ -129,14 +124,7 @@ public:
 
 
 
-
-
-
-
-
-
-
-// Method 2.1: Binary Search (FFFFFFFFFTTTTTTTTTT)
+// Method 3: Binary Search (FFFFFFFTTTTT)
 class Solution {
 public:
     int n;
@@ -174,51 +162,6 @@ public:
         for(int i = 0; i < n; i++) sum += nums[i];
         
         if(lo == n && sum < target) return 0;
-        return lo;
-    }
-};
-
-
-
-
-
-
-
-// Method 2.2: Binary Search (FFFFFFFFFTTTTTTTTTT)
-class Solution {
-public:
-    int n;
-    bool check(int mid, int target, vector<int>& nums) {
-        int sum = 0;
-        for(int i = 0; i < mid; i++) {
-            sum += nums[i];
-        }
-        if(sum >= target) return true;
-        
-        for(int i = mid; i < n; i++) {
-            sum -= nums[i - mid];
-            sum += nums[i];
-            if(sum >= target) return true;
-        }
-        return false;
-    }
-    
-    int minSubArrayLen(int target, vector<int>& nums) {
-        n = nums.size();
-        
-        int lo = 1, hi = n+1;
-        
-        while(lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            
-            if(check(mid, target, nums)) {
-                hi = mid;
-            } else {
-                lo = mid + 1;
-            }
-        }
-        
-        if(lo == n+1) return 0;
         return lo;
     }
 };

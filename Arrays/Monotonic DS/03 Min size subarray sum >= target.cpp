@@ -5,14 +5,17 @@
 Given an integer array nums and an integer k, return the length of the shortest non-empty subarray of nums with a sum of at least k. 
 If there is no such subarray, return -1.
 
-Input: nums = [1], k = 1
-Output: 1
+Input: nums = [2,-1,2], k = 3
+Output: 3
 
 Input: nums = [1,2], k = 4
 Output: -1
+ 
 
-Input: nums = [2,-1,2], k = 3
-Output: 3
+Constraints:
+1 <= nums.length <= 10^5
+-10^5 <= nums[i] <= 10^5
+1 <= k <= 10^9
 */
 
 
@@ -26,8 +29,9 @@ Complexity:
 Time O(N)
 Space O(N)
 
+
 How to think of such solutions?
-Basic idea, for subarray starting at every A[i], find the shortest one with sum at leat K.
+Basic idea, for array starting at every A[i], find the shortest one with sum at leat K.
 In my solution, for pref[i], find the smallest j that pref[j] - pref[i] >= K.
 Keep this in mind for understanding two while loops.
 
@@ -51,17 +55,19 @@ So no need to keep d.back() in our deque.
 
 
 
+// Method 1.1
 class Solution {
 public:
-    int shortestSubarray(vector<int>& nums, int k) {
-        int n = nums.size();
-        vector<int> pref(n);
-        pref[0] = nums[0];
+    int shortestSubarray(vector<int>& a, int k) {
+        int n = a.size();
+
+        vector<long long> pref(n);
+        pref[0] = a[0];
         for (int i = 1; i < n; i++) {
-            pref[i] = nums[i] + pref[i - 1];
+            pref[i] = a[i] + pref[i - 1];
         }
 
-        deque<int> d; // [increasing dq]
+        deque<int> d;
         int res = n + 1;
 
         for (int i = 0; i < n; i++) {
@@ -71,7 +77,7 @@ public:
                 res = min(res, i - d.front());
                 d.pop_front();
             }
-            while (!d.empty() && pref[i] <= pref[d.back()]) {
+            while (!d.empty() && pref[d.back()] >= pref[i]) {
                 d.pop_back();
             }
 
@@ -82,26 +88,24 @@ public:
 };
 
 
-
-
-
+// Method 1.2
 class Solution {
 public:
-    int shortestSubarray(vector<int>& nums, int k) {
-        int n = nums.size();
+    int shortestSubarray(vector<int>& a, int k) {
+        int n = a.size();
         deque<int> d;
         int res = n + 1;
 
         for (int i = 0; i < n; i++) {
-            if (i > 0) nums[i] += nums[i - 1];
+            if (i > 0) a[i] += a[i - 1];
 
-            if (nums[i] >= k) res = min(res, i + 1);
+            if (a[i] >= k) res = min(res, i + 1);
 
-            while (!d.empty() && nums[i] - nums[d.front()] >= k) {
+            while (!d.empty() && a[i] - a[d.front()] >= k) {
                 res = min(res, i - d.front());
                 d.pop_front();
             }
-            while (!d.empty() && nums[i] <= nums[d.back()]) {
+            while (!d.empty() && a[i] <= a[d.back()]) {
                 d.pop_back();
             }
 
@@ -110,9 +114,6 @@ public:
         return res <= n ? res : -1;
     }
 };
-
-
-
 
 
 
@@ -131,14 +132,22 @@ If there is no such subarray, return 0 instead.
 
 Input: target = 7, nums = [2,3,1,2,4,3]
 Output: 2
-Explanation: The subarray [4,3] has the minimal length under the problem constraint.
 
 Input: target = 4, nums = [1,4,4]
 Output: 1
 
 Input: target = 11, nums = [1,1,1,1,1,1,1,1]
 Output: 0
+ 
+
+Constraints:
+1 <= target <= 10^9
+1 <= nums.length <= 10^5
+1 <= nums[i] <= 10^5
 */
+
+
+
 
 
 // Method 1
@@ -172,7 +181,8 @@ public:
     }
 };
 
-// Method 2: Binary Search (FFFFFFFFFTTTTTTTTTT)
+
+// Method 2: Binary Search (FFFFFFFTTTTT)
 class Solution {
 public:
     int n;
