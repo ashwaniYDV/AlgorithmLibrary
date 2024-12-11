@@ -76,6 +76,10 @@ public:
 
 
 
+
+
+
+
 class Solution {
 public:
     int largestPathValue(string colors, vector<vector<int>>& edges) {
@@ -105,17 +109,16 @@ public:
         while (!q.empty()) {
             int u = q.front();
             q.pop();
+
             visitedNodesCount++;
             res = max(res, dp[u][colors[u] - 'a']);
 
             for (auto& v : g[u]) {
                 for (int i = 0; i < 26; i++) {
-                    if(colors[v] - 'a' == i) {
-                        dp[v][i] = max(dp[v][i], dp[u][i] + 1);
-                    } else {
-                        dp[v][i] = max(dp[v][i], dp[u][i]);
-                    }
+                    dp[v][i] = max(dp[v][i], dp[u][i]);
                 }
+                int curCol = colors[v] - 'a';
+                dp[v][curCol] = max(dp[v][curCol], dp[u][curCol] + 1);
 
                 indegree[v]--;
                 if (indegree[v] == 0) {
@@ -126,6 +129,7 @@ public:
 
         // there is cycle
         if(visitedNodesCount < n) return -1;
+
         return res;
     }
 };

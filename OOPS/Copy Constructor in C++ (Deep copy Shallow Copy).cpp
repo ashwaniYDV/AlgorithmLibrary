@@ -1,4 +1,6 @@
 // https://www.geeksforgeeks.org/copy-constructor-in-cpp/
+// https://www.udemy.com/course/beg-modern-cpp/learn/lecture/6569524#questions/15100088
+// https://www.udemy.com/course/beg-modern-cpp/learn/lecture/6569526#questions/15100088
 
 
 // Following is a simple example of copy constructor. 
@@ -155,7 +157,7 @@ public:
     // constructor
     String(const char *str = NULL) {
         size = strlen(str);
-        s = new char[size + 1];
+        s = new char[size + 1]; // if we want to copy a string of length n using strcpy, then we have to create char array of size = n+1 since last character is null terminating character
         strcpy(s, str);
     }
     // destructor

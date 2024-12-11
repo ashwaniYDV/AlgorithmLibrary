@@ -26,6 +26,7 @@
         "__memory": "cpp",
         "locale": "cpp",
         "ratio": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "__hash_table": "cpp"
     }
 }
