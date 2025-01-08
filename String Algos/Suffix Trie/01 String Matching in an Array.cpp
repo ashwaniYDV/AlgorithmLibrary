@@ -41,14 +41,10 @@ public:
     void insertWord(TrieNode* root, const string& word) {
         TrieNode* temp = root;
         for (char c : word) {
-            // If the character already exists as a child node, move to it.
-            if (temp->child.count(c)) {
-                temp = temp->child[c];
-            } else {
-                temp->child[c] =  new TrieNode();;
-                temp = temp->child[c];
+            if (!temp->child.count(c)) {
+                temp->child[c] =  new TrieNode();
             }
-
+            temp = temp->child[c];
             // Increment the frequency of the node.
             temp->freq++;
         }
@@ -85,8 +81,6 @@ public:
         return res;
     }
 };
-
-
 
 
 
