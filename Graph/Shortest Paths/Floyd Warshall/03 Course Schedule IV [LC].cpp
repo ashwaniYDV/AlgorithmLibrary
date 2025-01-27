@@ -152,3 +152,60 @@ public:
         return res;
     }
 };
+
+
+
+
+
+
+
+
+
+// Method 3
+class Solution {
+public:
+    // Iterate over each node and perform BFS starting from it.
+    // Mark the starting node as a prerequisite to all the nodes in the BFS traversal.
+    void preprocess(int n, vector<vector<int>>& prerequisites, vector<vector<int>>& g, vector<vector<bool>>& isPrerequisite) {
+        for (int i = 0; i < n; i++) {
+            queue<int> q;
+            q.push(i);
+
+            while (!q.empty()) {
+                int u = q.front();
+                q.pop();
+
+                for (auto v : g[u]) {
+                    // If we have marked i as a prerequisite of adj it implies we have visited it. 
+                    // This is equivalent to using a visited array.
+                    if (!isPrerequisite[i][v]) {
+                        isPrerequisite[i][v] = true;
+                        q.push(v);
+                    }
+                }
+            }
+        }
+    }
+
+    vector<bool> checkIfPrerequisite(int n,
+                                     vector<vector<int>>& prerequisites,
+                                     vector<vector<int>>& queries) {
+        vector<vector<int>> g(n);
+        for (auto& it: prerequisites) {
+            int u = it[0], v = it[1];
+            g[u].push_back(v);
+        }
+
+        vector<vector<bool>> isPrerequisite(n, vector<bool>(n, false));
+        // Store the prerequisite for each node in the array.
+        preprocess(n, prerequisites, g, isPrerequisite);
+
+        vector<bool> res;
+        for (auto& it: queries) {
+            int u = it[0], v = it[1];
+            res.push_back(isPrerequisite[u][v]);
+        }
+
+        return res;
+    }
+};
