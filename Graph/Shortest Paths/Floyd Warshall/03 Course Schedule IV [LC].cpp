@@ -39,16 +39,17 @@ ui != vi
 */
 
 
+// Method 1.1: Floyd Warshall
 class Solution {
 public:
     const int INF = 1e9;
 
-    vector<bool> checkIfPrerequisite(int n, vector<vector<int>>& p, vector<vector<int>>& q) {
+    vector<bool> checkIfPrerequisite(int n, vector<vector<int>>& prerequisites, vector<vector<int>>& queries) {
         vector<vector<long long>> dp(n, vector<long long>(n, INF));
 
         for(int i = 0; i < n; i++) dp[i][i] = 0;
 
-        for(auto& it: p) {
+        for(auto& it: prerequisites) {
             int u = it[0], v = it[1];
             dp[u][v] = 1;
         }
@@ -62,10 +63,92 @@ public:
         }
 
         vector<bool> res;
-        for(auto& it: q) {
+        for(auto& it: queries) {
             int u = it[0], v = it[1];
             res.push_back(dp[u][v] != INF);
         }
+        return res;
+    }
+};
+
+
+// Method 1.2: Floyd Warshall
+class Solution {
+public:
+    vector<bool> checkIfPrerequisite(int n, vector<vector<int>>& prerequisites, vector<vector<int>>& queries) {
+        vector<vector<bool>> dp(n, vector<bool>(n, false));
+        for (auto& it: prerequisites) {
+            int u = it[0], v = it[1];
+            dp[u][v] = true;
+        }
+
+        for (int intermediate = 0; intermediate < n; intermediate++) {
+            for (int src = 0; src < n; src++) {
+                for (int target = 0; target < n; target++) {
+                    // If src -> intermediate & intermediate -> target exists
+                    // then src -> target will also exist.
+                    dp[src][target] = dp[src][target] || (dp[src][intermediate] && dp[intermediate][target]);
+                }
+            }
+        }
+
+        vector<bool> res;
+        for (auto& it: queries) {
+            int u = it[0], v = it[1];
+            res.push_back(dp[u][v]);
+        }
+
+        return res;
+    }
+};
+
+
+
+
+
+
+
+// Method 2: Topological sort
+class Solution {
+public:
+    vector<bool> checkIfPrerequisite(int n, vector<vector<int>>& prerequisites, vector<vector<int>>& queries) {
+        vector<vector<int>> g(n);
+        vector<int> indegree(n, 0);
+        for (auto& it: prerequisites) {
+            int u = it[0], v = it[1];
+            g[u].push_back(v);
+            indegree[v]++;
+        }
+
+        queue<int> q;
+        for (int i = 0; i < n; i++) {
+            if (indegree[i] == 0) q.push(i);
+        }
+
+        // Map from the node as key to the set of prerequisite nodes
+        unordered_map<int, unordered_set<int>> nodePrerequisites;
+        
+        while (!q.empty()) {
+            int u = q.front();
+            q.pop();
+
+            for (auto v: g[u]) {
+                nodePrerequisites[v].insert(u);
+                for (auto ancestorOfU: nodePrerequisites[u]) {
+                    nodePrerequisites[v].insert(ancestorOfU);
+                }
+
+                indegree[v]--;
+                if (indegree[v] == 0) q.push(v);
+            }
+        }
+
+        vector<bool> res;
+        for (auto& it: queries) {
+            int u = it[0], v = it[1];
+            res.push_back(nodePrerequisites[v].contains(u));
+        }
+
         return res;
     }
 };
