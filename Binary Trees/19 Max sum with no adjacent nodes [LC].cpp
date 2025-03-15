@@ -1,5 +1,4 @@
 // https://leetcode.com/problems/house-robber-iii/
-
 /*
 The thief has found himself a new place for his thievery again. 
 There is only one entrance to this area, called root.
@@ -11,32 +10,25 @@ Given the root of the binary tree, return the maximum amount of money the thief 
 
 class Solution {
 public:
-    void dfs(TreeNode* root, map<pair<TreeNode*, int>, int>& dp) {
-        if(!root) return;
+    // {notPick, pick}
+    pair<int, int> f(TreeNode* root) {
+        if(!root) return {0, 0};
 
-        int sum0 = 0, sum1 = root->val;
+        int notPick = 0, pick = root->val;
 
-        if(root->left) {
-            dfs(root->left, dp);
+        pair<int, int> left = f(root->left);
+        notPick += max(left.first, left.second);
+        pick += left.first;
 
-            sum0 += max(dp[{root->left, 0}], dp[{root->left, 1}]);
-            sum1 += dp[{root->left, 0}];
-        }
+        pair<int, int> right = f(root->right);
+        notPick += max(right.first, right.second);
+        pick += right.first;
 
-        if(root->right) {
-            dfs(root->right, dp);
-
-            sum0 += max(dp[{root->right, 0}], dp[{root->right, 1}]);
-            sum1 += dp[{root->right, 0}];
-        }
-
-        dp[{root, 0}] = sum0;
-        dp[{root, 1}] = sum1;
+        return {notPick, pick};
     }
 
     int rob(TreeNode* root) {
-        map<pair<TreeNode*, int>, int> dp;
-        dfs(root, dp);
-        return max(dp[{root, 0}], dp[{root, 1}]);
+        auto it = f(root);
+        return max(it.first, it.second);
     }
 };
