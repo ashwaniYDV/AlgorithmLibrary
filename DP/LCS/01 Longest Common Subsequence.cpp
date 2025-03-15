@@ -5,6 +5,7 @@ dp[i][j] = longest common subsequence ending at indices i of s1 and j of s2
 */
 
 
+// Method 1
 ll fun(int pos1, int pos2, string s1, string s2) {
     if(pos1 < 0 || pos2 < 0) return 0;
 
@@ -16,7 +17,7 @@ ll fun(int pos1, int pos2, string s1, string s2) {
 }
 
 
-
+// Method 2
 class Solution {
 public:
     int longestCommonSubsequence(string s1, string s2) {
@@ -35,7 +36,6 @@ public:
             }
         }
 
-        int maxLength = dp[n1][n2];
         string ans = "";
         int i = n1, j = n2;
         while(i > 0 && j > 0) {
@@ -51,13 +51,39 @@ public:
         reverse(ans.begin(), ans.end());
         cout << ans << endl;
 
+        int maxLength = dp[n1][n2];
+        return maxLength;
+    }
+};
+
+// Method 3
+class Solution {
+public:
+    int longestCommonSubsequence(string s1, string s2) {
+        int n1 = s1.size(), n2 = s2.size();
+        vector<int> dpPrev(n2 + 1, 0), dpCur(n2 + 1, 0);
+
+        for(int i = 0; i <= n1; i++) {
+            for(int j = 0; j <= n2; j++) {
+                if(i == 0 || j == 0) {
+                    dpCur[j] = 0;
+                } else if(s1[i - 1] == s2[j - 1]) {
+                    dpCur[j] = dpPrev[j - 1] + 1;
+                } else {
+                    dpCur[j] = max(dpPrev[j], dpCur[j - 1]);
+                }
+            }
+
+            dpPrev = dpCur;
+        }
+
+        int maxLength = dpPrev[n2];
         return maxLength;
     }
 };
 
 
-
-
+// Method 4
 class Solution {
 public:
     int longestCommonSubsequence(string s1, string s2) {

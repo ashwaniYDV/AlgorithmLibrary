@@ -14,7 +14,7 @@ Length of SCS = (n1 - LCS) + (n2 - LCS) + LCS
 class Solution {
 public:    
     string lcs(string s1, string s2) {
-        int n1 = s1.size(), n2=s2.size();
+        int n1 = s1.size(), n2 = s2.size();
         int dp[n1 + 1][n2 + 1];
         for(int i = 0; i <= n1; i++) {
             for(int j = 0; j <= n2; j++) {
@@ -28,12 +28,11 @@ public:
             }
         }
 
-        int maxLength = dp[n1][n2];
         string ans = "";
         int i = n1, j = n2;
         while(i > 0 && j > 0) {
             if(s1[i - 1] == s2[j - 1]) {
-                ans = s1[i-1] + ans;
+                ans += s1[i - 1];
                 i--, j--;
             } else if(dp[i - 1][j] > dp[i][j - 1]) {
                 i--;
@@ -41,6 +40,7 @@ public:
                 j--;
             }
         }
+        reverse(ans.begin(), ans.end());
         return ans;
     }
     
@@ -74,49 +74,31 @@ public:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // leetcode.com/lee215
-string shortestCommonSupersequence(string& A, string& B) {
-    int i = 0, j = 0;
-    string res = "";
-    for (char c : lcs(A, B)) {
-        while (A[i] != c)
-            res += A[i++];
-        while (B[j] != c)
-            res += B[j++];
-        res += c, i++, j++;
+// MLE
+class Solution {
+public:
+    string lcs(string& A, string& B) {
+        int n = A.size(), m = B.size();
+        vector<vector<string>> dp(n + 1, vector<string>(m + 1, ""));
+        for (int i = 0; i < n; ++i)
+            for (int j = 0; j < m; ++j)
+                if (A[i] == B[j])
+                    dp[i + 1][j + 1] = dp[i][j] + A[i];
+                else
+                    dp[i + 1][j + 1] = dp[i + 1][j].size() > dp[i][j + 1].size() ?  dp[i + 1][j] : dp[i][j + 1];
+        return dp[n][m];
     }
-    return res + A.substr(i) + B.substr(j);
-}
-
-string lcs(string& A, string& B) {
-    int n = A.size(), m = B.size();
-    vector<vector<string>> dp(n + 1, vector<string>(m + 1, ""));
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < m; ++j)
-            if (A[i] == B[j])
-                dp[i + 1][j + 1] = dp[i][j] + A[i];
-            else
-                dp[i + 1][j + 1] = dp[i + 1][j].size() > dp[i][j + 1].size() ?  dp[i + 1][j] : dp[i][j + 1];
-    return dp[n][m];
-}
+    string shortestCommonSupersequence(string& A, string& B) {
+        int i = 0, j = 0;
+        string res = "";
+        for (char c : lcs(A, B)) {
+            while (A[i] != c)
+                res += A[i++];
+            while (B[j] != c)
+                res += B[j++];
+            res += c, i++, j++;
+        }
+        return res + A.substr(i) + B.substr(j);
+    }
+};
