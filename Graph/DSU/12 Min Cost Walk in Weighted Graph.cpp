@@ -23,6 +23,18 @@ Intuition:
   if u, v belongs to same connected component, its answer will be bitwise AND of all the edges in the connected component
 */
 
+/*
+Intuition:
+----------
+* Any 2 nodes in a connected component will have the same answer = bitwise AND
+of all the edge values in the connected component.
+
+* If query[i] = {u, v}, then
+  if u, v belongs to diff connected component, its answer will be -1
+  if u, v belongs to same connected component, its answer will be bitwise AND of
+all the edges in the connected component
+
+*/
 class Solution {
 public:
     struct DSU {
@@ -46,12 +58,15 @@ public:
             par[b] = a;
             return 1;
         }
-        bool sameSet(int x, int y) { return findParent(x) == findParent(y); }
-        int size(int x) { return -par[findParent(x)]; }
+        bool sameSet(int x, int y) {
+            return findParent(x) == findParent(y);
+        }
+        int size(int x) {
+            return -par[findParent(x)];
+        }
     };
 
-    vector<int> minimumCost(int n, vector<vector<int>>& edges,
-                            vector<vector<int>>& query) {
+    vector<int> minimumCost(int n, vector<vector<int>>& edges, vector<vector<int>>& query) {
         DSU dsu(n);
         for (auto& it : edges) {
             int u = it[0], v = it[1];
