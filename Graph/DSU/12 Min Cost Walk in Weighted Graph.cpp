@@ -23,18 +23,7 @@ Intuition:
   if u, v belongs to same connected component, its answer will be bitwise AND of all the edges in the connected component
 */
 
-/*
-Intuition:
-----------
-* Any 2 nodes in a connected component will have the same answer = bitwise AND
-of all the edge values in the connected component.
 
-* If query[i] = {u, v}, then
-  if u, v belongs to diff connected component, its answer will be -1
-  if u, v belongs to same connected component, its answer will be bitwise AND of
-all the edges in the connected component
-
-*/
 class Solution {
 public:
     struct DSU {
