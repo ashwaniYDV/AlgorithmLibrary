@@ -49,6 +49,7 @@ public:
         bool sameSet(int x, int y) { return findParent(x) == findParent(y); }
         int size(int x) { return -par[findParent(x)]; }
     };
+
     vector<int> minimumCost(int n, vector<vector<int>>& edges,
                             vector<vector<int>>& query) {
         DSU dsu(n);
