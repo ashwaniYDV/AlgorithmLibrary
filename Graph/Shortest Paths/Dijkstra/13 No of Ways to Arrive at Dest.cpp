@@ -41,7 +41,7 @@ public:
         }
         
         // dijkstra
-        priority_queue<array<ll, 2>, vector<array<ll, 2>>, greater<array<ll, 2>>> pq;
+        priority_queue<array<ll, 2>, vector<array<ll, 2>>, greater<>> pq;
         pq.push({0, 0});
 
         vector<ll> disDp(n, INF), cntDp(n, 0);
