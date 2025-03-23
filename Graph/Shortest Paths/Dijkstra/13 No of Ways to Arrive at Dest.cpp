@@ -27,6 +27,7 @@ You can reach any intersection from any other intersection.
 */
 
 
+// Method 1: Dijkstra
 class Solution {
 public:
     #define ll long long
@@ -69,5 +70,77 @@ public:
         }
 
         return cntDp[n-1];
+    }
+};
+
+
+
+// Method 2: Floyd Warshall
+class Solution {
+public:
+    #define ll long long
+    const ll INF = 1e12;
+    const int MOD = 1e9 + 7;
+
+    int countPaths(int n, vector<vector<int>>& roads) {
+        ll dp[n][n][2];
+        // dp[src][dest][0] stores the minimum time between src and dest
+        // dp[src][dest][1] stores the number of ways to reach dest from src with the minimum time
+
+        // Initialize the dp table
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) {
+                    // Distance from a node to itself is 0
+                    dp[i][j][0] = 0;
+
+                    // Only one trivial way (staying at the node)
+                    dp[i][j][1] = 1;
+                } else {
+                    // Set a large initial time
+                    dp[i][j][0] = INF;
+                    // No paths yet
+                    dp[i][j][1] = 0;
+                }
+            }
+        }
+
+        // Initialize direct roads from the input
+        for (auto& it : roads) {
+            int u = it[0], v = it[1], w = it[2];
+            dp[u][v][0] = w;
+            dp[v][u][0] = w;
+            
+            // There is one direct path
+            dp[u][v][1] = 1;
+            // Since the roads are bidirectional
+            dp[v][u][1] = 1;
+        }
+
+        // Intermediate node
+        for (int k = 0; k < n; k++) {
+            // Starting node
+            for (int i = 0; i < n; i++) {
+                // Destination node
+                for (int j = 0; j < n; j++) {
+                    // Avoid self-loops
+                    if (i != k && j != k) {
+                        ll newTime = dp[i][k][0] + dp[k][j][0];
+
+                        if (newTime < dp[i][j][0]) {
+                            // Found a shorter path
+                            dp[i][j][0] = newTime;
+                            dp[i][j][1] = (dp[i][k][1] * dp[k][j][1]) % MOD;
+                        } else if (newTime == dp[i][j][0]) {
+                            // Another way to achieve the same shortest time
+                            dp[i][j][1] = (dp[i][j][1] + dp[i][k][1] * dp[k][j][1]) % MOD;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Return the number of shortest paths from node 0 to node (n-1)
+        return dp[0][n - 1][1];
     }
 };
