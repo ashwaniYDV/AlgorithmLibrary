@@ -7,6 +7,14 @@ Return the count of days when the employee is available for work but no meetings
 Note: The meetings may overlap.
 */
 
+
+/*
+Intuition
+---------
+* Merge the overlapping intervals of the meetings.
+* Return the sum of difference between the end time of a meeting and the start time of the next meeting for all adjacent pairs.
+*/
+
 class Solution {
 public:
     vector<vector<int>> mergeOverlappingIntervals(vector<vector<int>>& a) {
