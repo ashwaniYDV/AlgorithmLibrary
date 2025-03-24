@@ -52,3 +52,75 @@ public:
         return res;
     }
 };
+
+
+
+
+
+// Method 2
+class Solution {
+public:
+    int countDays(int days, vector<vector<int>>& meetings) {
+        int freeDays = 0, latestEnd = 0;
+
+        // Sort meetings based on starting times
+        sort(meetings.begin(), meetings.end(), [](auto& x, auto& y) {
+            return x[0] < y[0];
+        });
+
+        for (auto& it: meetings) {
+            int start = it[0], end = it[1];
+
+            // Add current range of days without a meeting
+            if (start > latestEnd + 1) {
+                freeDays += start - (latestEnd + 1);
+            }
+
+            // Update latest meeting end
+            latestEnd = max(latestEnd, end);
+        }
+
+        // Add all days after the last day of meetings
+        freeDays += days - latestEnd;
+
+        return freeDays;
+    }
+};
+
+
+
+
+
+// Method 3
+class Solution {
+public:
+    int countDays(int days, vector<vector<int>>& meetings) {
+        map<int, int> mp;
+        int prefixSum = 0, freeDays = 0, previousDay = days;
+
+        for (auto& meeting : meetings) {
+            // Set first day of meetings
+            previousDay = min(previousDay, meeting[0]);
+
+            // Process start and end of meeting
+            mp[meeting[0]]++;
+            mp[meeting[1] + 1]--;
+        }
+
+        // Add all days before the first day of meetings
+        freeDays += (previousDay - 1);
+        for (auto& day : mp) {
+            int currentDay = day.first;
+            // Add current range of days without a meeting
+            if (prefixSum == 0) {
+                freeDays += currentDay - previousDay;
+            }
+            prefixSum += day.second;
+            previousDay = currentDay;
+        }
+
+        // Add all days after the last day of meetings
+        freeDays += days - previousDay + 1;
+        return freeDays;
+    }
+};
