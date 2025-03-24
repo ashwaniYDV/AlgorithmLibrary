@@ -15,6 +15,42 @@ Intuition
 * Return the sum of difference between the end time of a meeting and the start time of the next meeting for all adjacent pairs.
 */
 
+
+// Method 1
+class Solution {
+public:
+    int countDays(int days, vector<vector<int>>& meetings) {
+        int freeDays = 0, latestEnd = 0;
+
+        // Sort meetings based on starting times
+        sort(meetings.begin(), meetings.end(), [](auto& x, auto& y) {
+            return x[0] < y[0];
+        });
+
+        for (auto& it: meetings) {
+            int start = it[0], end = it[1];
+
+            // Add current range of days without a meeting
+            if (start > latestEnd + 1) {
+                freeDays += start - (latestEnd + 1);
+            }
+
+            // Update latest meeting end
+            latestEnd = max(latestEnd, end);
+        }
+
+        // Add all days after the last day of meetings
+        freeDays += days - latestEnd;
+
+        return freeDays;
+    }
+};
+
+
+
+
+
+// Method 2
 class Solution {
 public:
     vector<vector<int>> mergeOverlappingIntervals(vector<vector<int>>& a) {
@@ -53,39 +89,6 @@ public:
     }
 };
 
-
-
-
-
-// Method 2
-class Solution {
-public:
-    int countDays(int days, vector<vector<int>>& meetings) {
-        int freeDays = 0, latestEnd = 0;
-
-        // Sort meetings based on starting times
-        sort(meetings.begin(), meetings.end(), [](auto& x, auto& y) {
-            return x[0] < y[0];
-        });
-
-        for (auto& it: meetings) {
-            int start = it[0], end = it[1];
-
-            // Add current range of days without a meeting
-            if (start > latestEnd + 1) {
-                freeDays += start - (latestEnd + 1);
-            }
-
-            // Update latest meeting end
-            latestEnd = max(latestEnd, end);
-        }
-
-        // Add all days after the last day of meetings
-        freeDays += days - latestEnd;
-
-        return freeDays;
-    }
-};
 
 
 
