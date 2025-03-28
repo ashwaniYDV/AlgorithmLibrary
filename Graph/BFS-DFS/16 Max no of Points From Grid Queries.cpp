@@ -31,7 +31,7 @@ k == queries.length
 */
 
 
-// TLE Solution
+// Method 1: Brute Force (TLE)
 class Solution {
 public:
     int n, m;
@@ -70,7 +70,7 @@ public:
 
 
 
-// Method 1
+// Method 2: Sorting Queries + BFS + Min-Heap Expansion
 class Solution {
 public:
     int dx[4] = {0, 0, 1, -1};
