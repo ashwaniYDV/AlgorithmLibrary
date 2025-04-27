@@ -40,7 +40,6 @@ public:
 };
 
 
-
 class Solution {
 public:
     long long countSubarrays(vector<int>& nums, int minK, int maxK) {
@@ -66,8 +65,8 @@ public:
             dq_max.push_back(i);
 
             if (nums[dq_min.front()] == minK && nums[dq_max.front()] == maxK) {
-                int start = min(dq_min.front(), dq_max.front());
-                cnt += (start - left + 1);
+                int right = min(dq_min.front(), dq_max.front());
+                cnt += (right - left + 1);
                 cout << cnt << " ";
             }
         }
