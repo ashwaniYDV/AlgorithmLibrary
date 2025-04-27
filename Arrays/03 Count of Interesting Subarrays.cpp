@@ -45,14 +45,18 @@ class Solution {
 public:
     long long countInterestingSubarrays(vector<int>& nums, int modulo, int k) {
         int n = nums.size();
-        unordered_map<int, int> cnt;
+        unordered_map<int, int> mp;
+        mp[0] = 1;
+
         long long res = 0;
-        int prefix = 0;
-        cnt[0] = 1;
+        int prefCnt = 0;
+
         for (int i = 0; i < n; i++) {
-            prefix += nums[i] % modulo == k;
-            res += cnt[(prefix - k + modulo) % modulo];
-            cnt[prefix % modulo]++;
+            prefCnt += nums[i] % modulo == k;
+            
+            res += mp[(prefCnt - k + modulo) % modulo];
+
+            mp[prefCnt % modulo]++;
         }
         return res;
     }
