@@ -31,11 +31,10 @@ public:
             if(a[r] == mx) cnt++;
 
             while(cnt == k) {
+                res += n - r;
                 if(a[l] == mx) cnt--;
                 l++;
             }
-
-            res += l;
         }
 
         return res;
