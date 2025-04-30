@@ -12,34 +12,31 @@ Output: 2
 Explanation: 3 is a peak element and your function should return the index number 2.
 */
 
+
 class Solution {
 public:
-    int findPeakElement(vector<int>& nums) {
-        int n = nums.size();
+    int findPeakElement(vector<int>& a) {
+        int n = a.size();
+        int l = 0, r = n - 1;
 
-        if(n == 1) return 0;
-        if(nums[0] > nums[1]) return 0;
-        if(nums[n-1] > nums[n-2]) return n-1;
+        while(l <= r) {
+            int mid = l + (r - l) / 2;
 
-        // we can neglect 0th and n-1th position since already checked
-        int lo = 1, hi = n-2;
+            int midMinusOne = mid - 1 >= 0 ? a[mid - 1] : INT_MIN;
+            int midPlusOne = mid + 1 < n ? a[mid + 1] : INT_MIN;
 
-        while(lo <= hi) {
-            int mid = (lo + hi) / 2;
-
-            if (nums[mid-1] < nums[mid] && nums[mid] > nums[mid+1]) {
+            if(midMinusOne < a[mid] && midPlusOne < a[mid]) {
                 return mid;
             }
-
-            // left side of mid is increasing, thus answer lies in right part
-            // note: we dont have to check nums[lo] < nums[mid]
-            if(nums[mid-1] < nums[mid]) {
-                lo = mid + 1;
+            
+            // right side of mid is increasing, thus answer lies in right part
+            if (midPlusOne > a[mid]) {
+                l = mid + 1;
             } else {
-                hi = mid - 1;
+                r = mid - 1;
             }
         }
-
-        return -1;
+        
+        return 0;
     }
 };
