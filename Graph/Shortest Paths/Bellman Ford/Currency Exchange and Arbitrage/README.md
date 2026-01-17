@@ -4,6 +4,8 @@
 * [Blog] Graph algorithms and currency arbitrage, part 1 and 2
   * https://reasonabledeviations.com/2019/03/02/currency-arbitrage-graphs/
   * https://reasonabledeviations.com/2019/04/21/currency-arbitrage-graphs-2/
+* Linkedin
+  * https://www.linkedin.com/feed/update/urn:li:activity:7418275911759958016/
 
 
 # Types of question
