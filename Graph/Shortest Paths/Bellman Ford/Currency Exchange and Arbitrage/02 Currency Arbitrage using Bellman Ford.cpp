@@ -1,5 +1,30 @@
 // https://anilpai.medium.com/currency-arbitrage-using-bellman-ford-algorithm-8938dcea56ea
 
+// https://www.linkedin.com/feed/update/urn:li:activity:7418275911759958016/
+/*
+Imagine a closed system where you trade 1 dollar for 0.9 Euros, trade those Euros for 150 Yen, and then trade those Yen back for 1.10 dollars. 
+In the span of three transactions, you have manifested a 10% return out of thin air! 
+In an efficient market, the product of exchange rates along any closed loop should equal exactly 1.0. 
+When it does not, we have a financial "free lunch" known as currency arbitrage. So how can we find them?
+
+To understand the solution, we must first frame the market as a weighted directed graph G = (V, E). 
+In this model, each vertex represents a currency, and each edge (u, v) represents the exchange rate R(u, v). 
+If we follow a cycle of trades, our goal is to find a path where the product of the rates is greater than 1.0. 
+Formally, we seek a cycle where R1 * R2 * ... * Rn > 1.
+
+Now we face a hurdle, most standard graph algorithms are designed for additive weights, not multiplicative ones. 
+This is where the Logarithmic Transformation becomes essential. 
+By taking the negative natural logarithm of the exchange rates, we transform the multiplication of rates into the addition of weights.
+Formally, if we seek a path where R1 * R2 * R3 > 1, this is equivalent to log(R1) + log(R2) + log(R3) > 0. 
+By negating the values, the inequality flips: -log(R1) - log(R2) - log(R3) < 0.
+
+The problem is now reduced to finding a negative weight cycle in a directed graph. 
+This is where the Bellman-Ford algorithm excels. Unlike other shortest-path algorithms, 
+Bellman-Ford can detect negative cycles, making it the perfect tool for identifying these rare, profitable discrepancies in global markets.
+
+Don't get too excited tho, it's not free money because HFTs have bigger machines and better algorithms to identify and neutralize such fleeting opportunities!
+*/
+
 /*
 Problem Statement
 -----------------
