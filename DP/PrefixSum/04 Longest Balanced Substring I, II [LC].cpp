@@ -24,6 +24,50 @@ s contains only the characters 'a', 'b', and 'c'.
 */
 
 
+/*
+Intuition
+=========
+
+Handle single-character substrings
+-----------------------------------
+Traverse the string and count consecutive occurrences of the same character.
+The maximum consecutive length is a valid balanced substring.
+
+
+Handle two-character balanced substrings
+----------------------------------------
+We create a helper function f(x, y, z):
+
+We look at segments that do NOT contain character z.
+Inside those segments, we want:
+count(x) == count(y)
+To detect equal counts efficiently:
+
+Treat x as -1
+Treat y as +1
+
+Maintain a running prefix sum
+If the same prefix sum appears again, the substring between those indices has equal x and y.
+
+We apply this function for:
+(a, b) excluding c
+(b, c) excluding a
+(a, c) excluding b
+
+
+
+Handle three-character balanced substrings
+------------------------------------------
+We want:
+count(a) == count(b) == count(c)
+
+Instead of storing three counts directly, we store two differences: (cntA - cntB, cntB - cntC)
+If the same pair appears at two different indices, the substring between them has equal a, b, and c.
+
+We use a map to store the first occurrence of each pair.
+Whenever the same pair appears again, we update the maximum length.
+*/
+
 class Solution {
 public:
     int maxOneChar(string s, int n) {
