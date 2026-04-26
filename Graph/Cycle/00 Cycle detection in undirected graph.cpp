@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-using ll = long long;
-
 const int N = 1e5 + 5;
 
 vector<int> g[N];
@@ -13,12 +11,13 @@ void dfs(int u, int parent) {
     visited[u] = true;
 
     for (int v : g[u]) {
+        if (visited[v] && v != parent) {
+            cycleDetected = true;
+            return;
+        }
+
         if (!visited[v]) {
             dfs(v, u);
-        } 
-        else if (v != parent) {
-            // visited and not parent → cycle exists
-            cycleDetected = true;
         }
     }
 }
@@ -37,6 +36,7 @@ int main() {
     for (int i = 1; i <= n; i++) {
         if (!visited[i]) {
             dfs(i, -1);
+            if (cycleDetected) break; // optional early exit
         }
     }
 
