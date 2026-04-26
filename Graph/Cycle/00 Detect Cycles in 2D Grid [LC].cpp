@@ -37,56 +37,47 @@ public:
     int dx[4] = {1, -1, 0, 0};
     int dy[4] = {0, 0, 1, -1};
 
-    bool isSafe(int i, int j, char& ch, vector<vector<int>>& color, vector<vector<char>>& g) {
+    bool isSafe(int i, int j, char& ch, vector<vector<char>>& g) {
         if(i < 0 || i >= n || j < 0 || j >= m || g[i][j] != ch) return 0;
         return 1;
     }
 
-    void dfs(int i, int j, int parI, int parJ, char& ch, vector<vector<int>>& color, vector<vector<char>>& g, bool& cycleDetected) {
-        color[i][j] = 1;
+    void dfs(int i, int j, int parI, int parJ, char& ch, vector<vector<int>>& vis, vector<vector<char>>& g, bool& cycleDetected) {
+        vis[i][j] = 1;
 
         for(int z = 0; z < 4; z++) {
             int ni = i+dx[z];
             int nj = j+dy[z];
 
-            if(!isSafe(ni, nj, ch, color, g) || (ni == parI && nj == parJ)) {
+            if(!isSafe(ni, nj, ch, g) || (ni == parI && nj == parJ)) {
                 continue;
             }
 
-            if(color[ni][nj] == 1) {
+            if(vis[ni][nj] == 1) {
                 cycleDetected = 1;
                 return;
             }
-            if(color[ni][nj] == 0) {
-                dfs(ni, nj, i, j, ch, color, g, cycleDetected);
+            if(vis[ni][nj] == 0) {
+                dfs(ni, nj, i, j, ch, vis, g, cycleDetected);
             }
         }
-
-        color[i][j] = 2;
-    }
-
-    bool detectCycle(char ch, vector<vector<char>>& g) {
-        vector<vector<int>> color(n, vector<int>(m, 0));
-
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                if(color[i][j] == 0 && g[i][j] == ch) {
-                    bool cycleDetected = 0;
-                    dfs(i, j, -1, -1, ch, color, g, cycleDetected);
-                    if(cycleDetected) return 1;
-                }
-            }
-        }
-        return 0;
     }
 
     bool containsCycle(vector<vector<char>>& grid) {
         n = grid.size();
         m = grid[0].size();
 
-        for(char ch = 'a'; ch <= 'z'; ch++) {
-            if(detectCycle(ch, grid)) return 1;
+        vector<vector<int>> vis(n, vector<int>(m, 0));
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(!vis[i][j]) {
+                    bool cycleDetected = false;
+                    dfs(i, j, -1, -1, grid[i][j], vis, grid, cycleDetected);
+                    if(cycleDetected) return true;
+                }
+            }
         }
-        return 0;
+        return false;
     }
 };
