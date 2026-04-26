@@ -1,0 +1,92 @@
+// https://leetcode.com/problems/detect-cycles-in-2d-grid/description/
+
+/*
+Given a 2D array of characters grid of size m x n, you need to find if there exists any cycle consisting of the same value in grid.
+A cycle is a path of length 4 or more in the grid that starts and ends at the same cell. 
+From a given cell, you can move to one of the cells adjacent to it - in one of the four directions (up, down, left, or right), if it has the same value of the current cell.
+Also, you cannot move to the cell that you visited in your last move. 
+For example, the cycle (1, 1) -> (1, 2) -> (1, 1) is invalid because from (1, 2) we visited (1, 1) which was the last visited cell.
+Return true if any cycle of the same value exists in grid, otherwise, return false.
+ 
+
+Example 1:
+Input: grid = [["a","a","a","a"],["a","b","b","a"],["a","b","b","a"],["a","a","a","a"]]
+Output: true
+Explanation: There are two valid cycles shown in different colors in the image below:
+
+Example 2:
+Input: grid = [["c","c","c","a"],["c","d","c","c"],["c","c","e","c"],["f","c","c","c"]]
+Output: true
+Explanation: There is only one valid cycle highlighted in the image below:
+
+Example 3:
+Input: grid = [["a","b","b"],["b","z","b"],["b","b","a"]]
+Output: false
+
+ 
+Constraints:
+    m == grid.length
+    n == grid[i].length
+    1 <= m, n <= 500
+    grid consists only of lowercase English letters.
+*/
+
+class Solution {
+public:
+    int n, m;
+    int dx[4] = {1, -1, 0, 0};
+    int dy[4] = {0, 0, 1, -1};
+
+    bool isSafe(int i, int j, char& ch, vector<vector<int>>& color, vector<vector<char>>& g) {
+        if(i < 0 || i >= n || j < 0 || j >= m || g[i][j] != ch) return 0;
+        return 1;
+    }
+
+    void dfs(int i, int j, int parI, int parJ, char& ch, vector<vector<int>>& color, vector<vector<char>>& g, bool& cycleDetected) {
+        color[i][j] = 1;
+
+        for(int z = 0; z < 4; z++) {
+            int ni = i+dx[z];
+            int nj = j+dy[z];
+
+            if(!isSafe(ni, nj, ch, color, g) || (ni == parI && nj == parJ)) {
+                continue;
+            }
+
+            if(color[ni][nj] == 1) {
+                cycleDetected = 1;
+                return;
+            }
+            if(color[ni][nj] == 0) {
+                dfs(ni, nj, i, j, ch, color, g, cycleDetected);
+            }
+        }
+
+        color[i][j] = 2;
+    }
+
+    bool detectCycle(char ch, vector<vector<char>>& g) {
+        vector<vector<int>> color(n, vector<int>(m, 0));
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(color[i][j] == 0 && g[i][j] == ch) {
+                    bool cycleDetected = 0;
+                    dfs(i, j, -1, -1, ch, color, g, cycleDetected);
+                    if(cycleDetected) return 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    bool containsCycle(vector<vector<char>>& grid) {
+        n = grid.size();
+        m = grid[0].size();
+
+        for(char ch = 'a'; ch <= 'z'; ch++) {
+            if(detectCycle(ch, grid)) return 1;
+        }
+        return 0;
+    }
+};
