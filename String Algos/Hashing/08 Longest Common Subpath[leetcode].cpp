@@ -45,72 +45,106 @@ If not, then it means that we have to reduce our search space by half.
 So we check possible length for a max of O(logn) times as that is the max length of the minimum sized path.
 */
 
+
+
+/*
+Intuition of `check() function`
+---
+The idea is to determine whether there exists a common subpath of a given length `len` across all paths. 
+For each path, we compute the rolling hash of every subpath of length `len`. 
+For the first path, we store the hashes of all its subpaths in a set. 
+For every subsequent path, we only keep the hashes that are already present in the set, effectively taking the intersection of subpaths seen so far. 
+If at any point the set becomes empty, it means no common subpath of length `len` exists, so we return `false`. 
+If the set is still non-empty after processing all paths, then at least one subpath of length `len` is common to every path, so we return `true`.
+
+```
+check(len):
+    common = {}
+    for every path:
+        generate hashes of every subpath of length len
+        if first path:
+            common = all hashes
+        else:
+            common = (common) ∩ (current hashes)
+
+        if common becomes empty:
+            return false
+
+    return true
+```
+here ∩ = intersection
+*/
+
+
+
 // Method 1: Using 1 hash
 class Solution {
 public:
-    #define ll long long    
+    #define ll long long
     ll base = 100007, MOD = 1e11L + 7;
     vector<ll> p;
-    
-    bool check(ll len, ll n, vector<vector<int>>& paths) {
-        unordered_set<ll> s;
-        for(ll i = 0; i < n; i++) {
-            if(paths[i].size() < len) {
-                return false;
-            }
+
+    bool check(ll len, ll m, vector<vector<int>>& paths) {
+        if (len == 0) return true;
+
+        ll basePow = p[len - 1];
+        unordered_set<ll> st;
+
+        for (ll i = 0; i < m; i++) {
+            if (paths[i].size() < len) return false;
 
             ll hash = 0;
-            for(ll j = 0; j < len; j++) {
-                hash = (hash + (((paths[i][j] + 1) * p[len - 1 - j]) % MOD)) % MOD;
+            // first window
+            for (ll j = 0; j < len; j++) {
+                hash = (hash * base + (paths[i][j] + 1)) % MOD;
             }
-            
-            unordered_set<ll> tempS;
-            if(i == 0) {
-                s.insert(hash);
-            } else {
-                if(s.find(hash) != s.end()) {
-                    tempS.insert(hash);
+
+            unordered_set<ll> temp;
+
+            if (i == 0) {
+                temp.insert(hash);
+            } else if (st.count(hash)) {
+                temp.insert(hash);
+            }
+
+            // rolling hash
+            for (ll j = len; j < paths[i].size(); j++) {
+
+                hash = (hash - ((paths[i][j - len] + 1) * basePow) % MOD + MOD) % MOD;
+                hash = (hash * base + (paths[i][j] + 1)) % MOD;
+
+                if (i == 0) {
+                    temp.insert(hash);
+                } else if (st.count(hash)) {
+                    temp.insert(hash);
                 }
             }
-            
-            for(ll j = len; j < paths[i].size(); j++) {
-                ll x = ((paths[i][j - len] + 1) * p[len - 1]) % MOD;
-                hash = (hash - x + MOD) % MOD;
-                hash = hash * base % MOD;
-                hash = (hash + paths[i][j] + 1) % MOD;
-                if(i == 0) {
-                    s.insert(hash);
-                } else {
-                    if(s.find(hash) != s.end()) {
-                        tempS.insert(hash);
-                    }
-                }
-            }
-            if(i > 0) {
-                s = tempS;
-            }
-            if(s.size() == 0) {
-                return false;
-            }
+
+            st = move(temp); // we can also do (st = temp;) but its copying
+
+            if (st.empty()) return false;
         }
-        return s.size() > 0;
+
+        return true;
     }
-    
     int longestCommonSubpath(int n, vector<vector<int>>& paths) {
         int m = paths.size();
         ll lo = 0, hi = 1e9L;
         for(auto path: paths) {
             hi = min(hi, (ll)path.size());
         }
+
         p = vector<ll>(hi);
         p[0] = 1;
         for(ll i = 1; i < hi; i++) {
             p[i] = (ll)base * p[i - 1] % MOD;
         }
-        while(lo < hi) {
-            ll mid = (lo + hi + 1) / 2;
+
+        // TTTTTFFFFFF
+        while(lo <= hi) {
+            ll mid = (lo + hi) / 2;
             if(check(mid, m, paths)) {
-                lo = mid;
+                lo = mid + 1;
             } else {
                 hi = mid - 1;
             }
@@ -126,89 +160,99 @@ public:
 
 
 
-
-
-
-// Method 2: Using 2 hash
+// Method 2: Using Double Hashing
 class Solution {
 public:
-    #define ll long long    
-    ll base1 = 100007, base2 = 100009, MOD1 = 1e9L + 7, MOD2 = 1e11L + 7;
+    #define ll long long
+
+    ll base1 = 100007, base2 = 100009;
+    ll MOD1 = 1000000007LL, MOD2 = 1000000009LL;
+
     vector<ll> p1, p2;
-    
-    bool check(ll len, ll n, vector<vector<int>>& paths) {
-        set<pair<ll, ll>> s;
-        for(ll i = 0; i < n; i++) {
-            if(paths[i].size() < len) {
+
+    bool check(ll len, ll m, vector<vector<int>>& paths) {
+        if (len == 0) return true;
+
+        ll basePow1 = p1[len - 1];
+        ll basePow2 = p2[len - 1];
+
+        set<pair<ll, ll>> st;
+
+        for (ll i = 0; i < m; i++) {
+
+            if (paths[i].size() < len)
                 return false;
-            }
 
             ll hash1 = 0, hash2 = 0;
-            for(ll j = 0; j < len; j++) {
-                hash1 = (hash1 + (((paths[i][j] + 1) * p1[len - 1 - j]) % MOD1)) % MOD1;
-                hash2 = (hash2 + (((paths[i][j] + 1) * p2[len - 1 - j]) % MOD2)) % MOD2;
+
+            // First window
+            for (ll j = 0; j < len; j++) {
+                hash1 = (hash1 * base1 + paths[i][j] + 1) % MOD1;
+                hash2 = (hash2 * base2 + paths[i][j] + 1) % MOD2;
             }
-            
-            set<pair<ll, ll>> tempS;
-            if(i == 0) {
-                s.insert({hash1, hash2});
-            } else {
-                if(s.find({hash1, hash2}) != s.end()) {
-                    tempS.insert({hash1, hash2});
+
+            set<pair<ll, ll>> temp;
+
+            if (i == 0) {
+                temp.insert({hash1, hash2});
+            } else if (st.count({hash1, hash2})) {
+                temp.insert({hash1, hash2});
+            }
+
+            // Rolling hash
+            for (ll j = len; j < paths[i].size(); j++) {
+
+                hash1 = (hash1 - ((paths[i][j - len] + 1) * basePow1) % MOD1 + MOD1) % MOD1;
+                hash1 = (hash1 * base1 + paths[i][j] + 1) % MOD1;
+
+                hash2 = (hash2 - ((paths[i][j - len] + 1) * basePow2) % MOD2 + MOD2) % MOD2;
+                hash2 = (hash2 * base2 + paths[i][j] + 1) % MOD2;
+
+                if (i == 0) {
+                    temp.insert({hash1, hash2});
+                } else if (st.count({hash1, hash2})) {
+                    temp.insert({hash1, hash2});
                 }
             }
-            
-            for(ll j = len; j < paths[i].size(); j++) {
-                ll x = ((paths[i][j - len] + 1) * p1[len - 1]) % MOD1;
-                hash1 = (hash1 - x + MOD1) % MOD1;
-                hash1 = (hash1 * base1) % MOD1;
-                hash1 = (hash1 + paths[i][j] + 1) % MOD1;
-                
-                x = ((paths[i][j - len] + 1) * p2[len - 1]) % MOD2;
-                hash2 = (hash2 - x + MOD2) % MOD2;
-                hash2 = (hash2 * base2) % MOD2;
-                hash2 = (hash2 + paths[i][j] + 1) % MOD2;
-                
-                if(i == 0) {
-                    s.insert({hash1, hash2});
-                } else {
-                    if(s.find({hash1, hash2}) != s.end()) {
-                        tempS.insert({hash1, hash2});
-                    }
-                }
-            }
-            if(i > 0) {
-                s = tempS;
-            }
-            if(s.size() == 0) {
+
+            st = move(temp);
+
+            if (st.empty())
                 return false;
-            }
         }
-        return s.size() > 0;
+
+        return true;
     }
-    
+
     int longestCommonSubpath(int n, vector<vector<int>>& paths) {
-        int m = paths.size();
-        ll lo = 0, hi = 1e9L;
-        for(auto path: paths) {
+        ll lo = 0, hi = 1e9;
+
+        for (auto &path : paths) {
             hi = min(hi, (ll)path.size());
         }
-        p1 = vector<ll>(hi);
-        p2 = vector<ll>(hi);
+
+        p1.resize(hi);
+        p2.resize(hi);
+
         p1[0] = 1;
         p2[0] = 1;
-        for(ll i = 1; i < hi; i++) {
-            p1[i] = (ll)base1 * p1[i - 1] % MOD1;
-            p2[i] = (ll)base2 * p2[i - 1] % MOD2;
+
+        for (ll i = 1; i < hi; i++) {
+            p1[i] = p1[i - 1] * base1 % MOD1;
+            p2[i] = p2[i - 1] * base2 % MOD2;
         }
-        while(lo < hi) {
-            ll mid = (lo + hi + 1) / 2;
-            if(check(mid, m, paths)) {
-                lo = mid;
+
+        // TTTTTFFFFFF
+        while (lo <= hi) {
+            ll mid = (lo + hi) / 2;
+
+            if (check(mid, paths.size(), paths)) {
+                lo = mid + 1;
             } else {
                 hi = mid - 1;
             }
         }
-        return lo;
+
+        return hi;
     }
 };
