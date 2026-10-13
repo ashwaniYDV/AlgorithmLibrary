@@ -10,7 +10,51 @@ Return true if Player 1 can win the game. If the scores of both players are equa
 You may assume that both players are playing optimally.
 */
 
-// Not memoized AC
+// Method 1.1
+class Solution {
+public:
+    int minimax(int l, int r, vector<int>& nums) {
+        // Terminating condition
+        if (l > r) {
+            return 0;
+        }
+        
+        int left = nums[l] - minimax(l + 1, r, nums);
+        int right = nums[r] - minimax(l, r - 1, nums);
+        return max(left, right);
+    }
+    bool predictTheWinner(vector<int>& nums) {
+        int n = nums.size();
+        return minimax(0, n - 1, nums) >= 0;
+    }
+};
+
+// Method 1.2
+class Solution {
+public:
+    int minimax(int l, int r, vector<int>& nums, auto& dp) {
+        if (l > r) {
+            return 0;
+        }
+
+        if(dp[l][r] != -1) return dp[l][r];
+        
+        int left = nums[l] - minimax(l + 1, r, nums, dp);
+        int right = nums[r] - minimax(l, r - 1, nums, dp);
+        return dp[l][r] = max(left, right);
+    }
+    bool predictTheWinner(vector<int>& nums) {
+        int n = nums.size();
+        vector<vector<int>> dp(n+1, vector<int>(n+1, -1));
+        return minimax(0, n - 1, nums, dp) >= 0;
+    }
+};
+
+
+
+
+
+// Method 2.1
 class Solution {
 public:
     int minimax(int left, int right, bool isMax, vector<int>& nums) {
@@ -40,28 +84,10 @@ public:
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Memoized AC
+// Meethod 2.2
 class Solution {
 public:
     int minimax(int left, int right, bool isMax, vector<int>& nums, vector<vector<vector<int>>>& dp) {
-        // Terminating condition
         if (left > right) {
             return 0;
         }
